@@ -1,0 +1,776 @@
+#include"gui_global.h"
+#include <stdio.h>
+#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+
+extern const char* PainterClassType;
+const char* WidgetClassType = "org/swdc/qt/internal/widgets/SWidget";
+
+class SWidget : public QWidget {
+
+private:
+    jobject self;
+
+public:
+    SWidget(jobject self):QWidget() {
+        this->self = self;
+    }
+
+    SWidget(jobject self,QWidget * parent):QWidget(parent) {
+        this->self = self;
+    }
+
+protected:
+    void paintEvent(QPaintEvent *event) {
+
+        JNIEnv * env = getContext();
+
+        jclass type = env->FindClass(WidgetClassType);
+
+        jmethodID method = env->GetMethodID(type,"onPaint","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
+
+        jmethodID getPainter = env->GetMethodID(type,"createPainter","(J)Lorg/swdc/qt/widgets/graphics/Painter;");
+        jmethodID removePainter = env->GetMethodID(type,"removePainter","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
+        // create a qpainter from java
+        jobject painter = env->CallObjectMethod(this->self,getPainter,(jlong)(intptr_t)this);
+        // call java paint listener
+        env->CallVoidMethod(this->self,method,painter);
+        // destroy qpainter
+        env->CallVoidMethod(this->self,removePainter,painter);
+
+        releaseContext();
+
+    }
+};
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    create
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
+  (JNIEnv *jenv, jobject self,jlong parent) {
+
+    QWidget* widget = nullptr;
+
+    self = jenv->NewGlobalRef(self);
+
+    if(parent > 0) {
+        widget = new SWidget(self,(QWidget*)parent);
+    } else {
+        widget = new SWidget(self);
+    }
+
+    widget->connect(widget,&QWidget::windowTitleChanged,[self](QString title)->void {
+        asyncExec([self,title]() -> void {
+
+            std::string newTitle = title.toStdString();
+            JNIEnv* env = getContext();
+
+            jclass targetClass = env->FindClass(WidgetClassType);
+            jmethodID method = env->GetMethodID(targetClass,"onWindowTitleChange","(Ljava/lang/String;)V");
+            env->CallVoidMethod(self,method,asJavaString(env,newTitle.c_str()));
+
+            releaseContext();
+
+        });
+    });
+
+    widget->connect(widget,&QWidget::customContextMenuRequested,[self](QPoint p) -> void {
+        asyncExec([self,p]() -> void {
+
+            JNIEnv* env = getContext();
+
+            jclass targetClass = env->FindClass(WidgetClassType);
+            jmethodID method = env->GetMethodID(targetClass,"onWindowContextMenuRequest","(II)V");
+            env->CallVoidMethod(self,method,p.x(),p.y());
+
+            releaseContext();
+        });
+    });
+
+    widget->connect(widget,&QWidget::destroyed,[self]()->void{
+
+        JNIEnv* env = getContext();
+
+        cleanJavaPointer(env,self);
+        env->DeleteGlobalRef(self);
+
+        releaseContext();
+
+    });
+
+    return (jlong)(intptr_t)widget;
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    isAcceptDrops
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isAcceptDrops
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    if(widget->acceptDrops()) {
+        return JNI_TRUE;
+    }
+    return JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getAccessibleDescription
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getAccessibleDescription
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QString str = widget->accessibleDescription();
+    return asJavaString(env,str.toLatin1().data());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getAccessibleName
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getAccessibleName
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QString str = widget->accessibleName();
+    return asJavaString(env,str.toLatin1().data());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doActivateWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doActivateWindow
+  (JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->activateWindow();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    isAutoFillBackground
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isAutoFillBackground
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    if(widget->autoFillBackground()) {
+        return JNI_TRUE;
+    }
+    return JNI_FALSE;
+}
+
+
+// ----------------------- Size Methods --------------------- //
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doAdjustSize
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doAdjustSize
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->adjustSize();
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetSize
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinSize
+(JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMinimumSize(width,height);
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getBaseSize
+ * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QSize size = widget->baseSize();
+    return ssize(env,size.width(),size.height());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetBaseSize
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetBaseSize__JII
+  (JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+      QWidget * widget = (QWidget*)pointer;
+      widget->setBaseSize(width,height);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetBaseSize
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetBaseSize__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong ssizePointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QSize* size = (QSize*)ssizePointer;
+    widget->setBaseSize(*size);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMaxSize
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxSize
+(JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMaximumSize(width,height);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMaxWidth
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxWidth
+(JNIEnv * env, jobject self, jlong pointer, jint width) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMaximumWidth(width);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMinWidth
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinWidth
+(JNIEnv * env, jobject self, jlong pointer, jint width) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMinimumWidth(width);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMaxHeight
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxHeight
+  (JNIEnv * env, jobject self, jlong pointer, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMaximumHeight(height);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMinHeight
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinHeight
+(JNIEnv * env, jobject self, jlong pointer, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setMinimumHeight(height);
+}
+
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doGetContextMenuPolicy
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetContextMenuPolicy
+(JNIEnv * env, jobject self,jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    Qt::ContextMenuPolicy policy = widget->contextMenuPolicy();
+    return int(policy);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetContextMenuPolicy
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetContextMenuPolicy
+(JNIEnv * env, jobject self, jlong pointer, jint val) {
+    QWidget * widget = (QWidget*)pointer;
+    Qt::ContextMenuPolicy policy = Qt::ContextMenuPolicy(val);
+    widget->setContextMenuPolicy(policy);
+}
+
+
+
+// ------------------Size Method End ------------------
+
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getFrameGeometry
+ * Signature: (J)Lorg/swdc/qt/beans/SRect;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getFrameGeometry
+  (JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QRect rect = widget->frameGeometry();
+    return sRect(env,rect);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    show
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_show
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->show();
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doClearFocus
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doClearFocus
+  (JNIEnv * env, jobject self, jlong pointer){
+    QWidget * widget = (QWidget*)pointer;
+    widget->clearFocus();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doClearMark
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doClearMark
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->clearMask();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    close
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_close
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->close();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetFocus
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetFocus
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setFocus();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetMark
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMark
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->mask();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetFixedWidth
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetFixedWidth
+(JNIEnv * env, jobject self, jlong pointer, jint width) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setFixedWidth(width);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetFixedHeight
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetFixedHeight
+(JNIEnv * env, jobject self, jlong pointer, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setFixedHeight(height);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetFixSize
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetFixSize
+(JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setFixedSize(width,height);
+}
+
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getMaxSize
+ * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    return ssize(env,widget->maximumWidth(),widget->maximumHeight());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getMinSize
+ * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    return ssize(env,widget->minimumWidth(),widget->minimumHeight());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    resize
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_resize
+(JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+     QWidget * widget = (QWidget*)pointer;
+     widget->resize(width,height);
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetTooltip
+ * Signature: (JLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetTooltip
+(JNIEnv * env, jobject self, jlong pointer, jstring text) {
+     QWidget * widget = (QWidget*)pointer;
+     widget->setToolTip(env->GetStringUTFChars(text,JNI_FALSE));
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doGetTooltip
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetTooltip
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    return asJavaString(env,widget->toolTip().toLatin1().data());
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doGetStyleSheet
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetStyleSheet
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QString style = widget->styleSheet();
+    std::string styleStr = style.toStdString();
+    return asJavaString(env,styleStr.c_str());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetSizeIncrement
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetSizeIncrement
+(JNIEnv * env, jobject self, jlong pointer, jint width, jint height) {
+    QWidget * widget = (QWidget*)pointer;
+    QSize size(width,height);
+    widget->setSizeIncrement(size);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doGetSizeIncrement
+ * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    QSize size = widget->sizeIncrement();
+    return ssize(env,size.width(),size.height());
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetStyleSheet
+ * Signature: (JLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetStyleSheet
+(JNIEnv * env, jobject self, jlong pointer, jstring styleSheet) {
+    QWidget * widget = (QWidget*)pointer;
+    const char* styleData = env->GetStringUTFChars(styleSheet,JNI_FALSE);
+    QString qStyleData = QString(styleData);
+    widget->setStyleSheet(qStyleData);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetObjectName
+ * Signature: (JLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetObjectName
+(JNIEnv * env, jobject self, jlong pointer, jstring name) {
+    QWidget * widget = (QWidget*)pointer;
+    const char* cName = env->GetStringUTFChars(name,JNI_FALSE);
+    QString qName = QString(cName);
+    widget->setObjectName(qName);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetProperty
+ * Signature: (JLjava/lang/String;Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetProperty
+(JNIEnv * env, jobject self, jlong pointer, jstring key, jstring value) {
+    QWidget * widget = (QWidget*)pointer;
+
+    const char* cKey = env->GetStringUTFChars(key,JNI_FALSE);
+    QString qName = QString(cKey);
+
+    const char* cVal = env->GetStringUTFChars(value,JNI_FALSE);
+
+    widget->setProperty(cKey,QVariant(cVal));
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    isDisable
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isDisable
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isEnabled() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetDisable
+ * Signature: (JZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetDisable
+(JNIEnv * env, jobject self, jlong  pointer, jboolean disabled) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->setDisabled(disabled);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    setWindowTitle
+ * Signature: (JLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowTitle
+(JNIEnv * env, jobject self, jlong pointer, jstring title) {
+    QWidget * widget = (QWidget*)pointer;
+    const char* cTitle = env->GetStringUTFChars(title,JNI_FALSE);
+    widget->setWindowTitle(QString(cTitle));
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doGetWindowTitle
+ * Signature: (J)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetWindowTitle
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    return asJavaString(env,widget->windowTitle().toLatin1().data());
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    showFullScreen
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_showFullScreen
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget * widget = (QWidget*)pointer;
+    widget->showFullScreen();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    showMaxSized
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_showMaxSized
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget* widget = (QWidget*)pointer;
+    widget->showMaximized();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    showMinSized
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_showMinSized
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget* widget = (QWidget*)pointer;
+    widget->showMinimized();
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    hide
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_hide
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget* widget = (QWidget*)pointer;
+    widget->hide();
+}
+
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    setLayout
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setLayout
+(JNIEnv * env, jobject self, jlong pointer, jlong layoutPointer) {
+    QWidget* widget = (QWidget*)pointer;
+    QLayout* layout = (QLayout*)layoutPointer;
+    widget->setLayout(layout);
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    getLayout
+ * Signature: (J)V
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getLayout
+(JNIEnv * env, jobject self, jlong pointer) {
+    QWidget* widget = (QWidget*)pointer;
+    QLayout* layout = widget->layout();
+    return (jlong)(intptr_t)layout;
+}
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doDispose
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doDispose
+  (JNIEnv * env, jobject self,jlong pointer) {
+    QWidget* widget = (QWidget*)pointer;
+    delete widget;
+    return JNI_TRUE;
+}
+
+
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    addAction
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_addAction
+(JNIEnv * env, jobject self, jlong pointer, jlong actionPointer) {
+
+
+    QWidget* widget = (QWidget*)pointer;
+    QAction* action = (QAction*)actionPointer;
+    widget->addAction(action);
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    insertAction
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_insertAction
+(JNIEnv * env, jobject self, jlong pointer, jlong beforeActionPointer, jlong actionPointer) {
+
+    QWidget* widget = (QWidget*)pointer;
+    QAction* before = (QAction*)beforeActionPointer;
+    QAction* target = (QAction*)actionPointer;
+
+    widget->insertAction(before,target);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    removeAction
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_removeAction
+(JNIEnv * env, jobject self, jlong pointer, jlong actionPointer) {
+
+    QWidget* widget = (QWidget*)pointer;
+    QAction* action = (QAction*)actionPointer;
+
+    widget->removeAction(action);
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setContentsMargins
+ * Signature: (JIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setContentsMargins
+(JNIEnv * env, jobject self, jlong pointer, jint left, jint top, jint right, jint bottom) {
+
+    QWidget* widget = (QWidget*)pointer;
+    widget->setContentsMargins(left,top,right,bottom);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    contentsMargins
+ * Signature: (J)Lorg/swdc/qt/beans/Margins;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget* widget = (QWidget*)pointer;
+    QMargins margins = widget->contentsMargins();
+    return sMargins(env,margins);
+}
+
