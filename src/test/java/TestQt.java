@@ -1,4 +1,4 @@
-import org.swdc.qt.SApplication;
+import org.swdc.qt.QtApplication;
 import org.swdc.qt.beans.*;
 import org.swdc.qt.internal.graphics.SRgb;
 import org.swdc.qt.listeners.ActionListener;
@@ -12,8 +12,6 @@ import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
 import org.swdc.qt.widgets.graphics.Color;
-import org.swdc.qt.widgets.graphics.Image;
-import org.swdc.qt.widgets.graphics.Pen;
 import org.swdc.qt.widgets.graphics.Pixmap;
 import org.swdc.qt.widgets.pane.StackedWidget;
 import org.swdc.qt.widgets.pane.TabWidget;
@@ -29,7 +27,7 @@ public class TestQt {
 
     public static void main(String[] args) throws Exception {
 
-        SApplication application = new SApplication(args.length, args);
+        QtApplication application = new QtApplication(args.length, args);
 
 
         Widget widget = new Widget();
@@ -44,6 +42,9 @@ public class TestQt {
             System.err.println("clicked");
         });
 
+        Rect rect = button.getFrameGeometry();
+        System.err.println(rect);
+        rect.dispose();
 
         widget.setStyleSheet("" +
                 "QWidget { " +

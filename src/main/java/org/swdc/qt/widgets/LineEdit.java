@@ -3,11 +3,33 @@ package org.swdc.qt.widgets;
 import org.swdc.qt.beans.Alignment;
 import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.widgets.SLineEdit;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.pane.Widget;
 
 public class LineEdit extends Widget {
 
     private SLineEdit lineEdit = new SLineEdit();
+
+    @Override
+    public WindowListener getWindowListener() {
+        return lineEdit.getWindowListener();
+    }
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        lineEdit.setWindowListener(listener);
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return lineEdit.getPaintListener();
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        lineEdit.setPaintListener(paintListener);
+    }
 
     @Override
     public void allocate() throws Exception {

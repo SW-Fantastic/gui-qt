@@ -1,6 +1,23 @@
 #include "gui_global.h"
 #include "java/org_swdc_qt_internal_widgets_SLineEdit.h"
 
+#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
+SLineEdit::SLineEdit(jobject self):QLineEdit() {
+    this->self = self;
+}
+
+SLineEdit::SLineEdit(jobject self,QWidget * parent):QLineEdit(parent) {
+    this->self = self;
+}
+
+void SLineEdit::paintEvent(QPaintEvent * event) {
+
+    QLineEdit::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+
+}
+
 /*
  * Class:     org_swdc_qt_widgets_STextField
  * Method:    create
@@ -8,22 +25,17 @@
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_create
 (JNIEnv * env, jobject self, jlong parent) {
-    QLineEdit* edit = nullptr;
-    if(parent > 0) {
-        edit = new QLineEdit((QWidget*)parent);
-    } else {
-        edit = new QLineEdit();
-    }
 
     self = env->NewGlobalRef(self);
-    edit->connect(edit,&QLineEdit::destroyed,[self]()->void{
-        JNIEnv* env = getContext();
 
-        cleanJavaPointer(env,self);
-        env->DeleteGlobalRef(self);
+    QLineEdit* edit = nullptr;
+    if(parent > 0) {
+        edit = new SLineEdit(self,(QWidget*)parent);
+    } else {
+        edit = new SLineEdit(self);
+    }
 
-        releaseContext();
-    });
+    initializeWidgetEvents(edit,self);
     return (jlong)(intptr_t)edit;
 }
 

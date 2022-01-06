@@ -23,6 +23,8 @@ SOURCES += \
     TabWidget.cpp \
     ToolButton.cpp \
     Widget.cpp \
+    common/Rect.cpp \
+    graphics/PainterPath.cpp \
     gui.cpp \
     graphics/Transformation.cpp \
     graphics/Image.cpp \
@@ -44,6 +46,8 @@ HEADERS += \
     Executors.h \
     gui_global.h \
     gui.h \
+    java/common/org_swdc_qt_internal_common_SRect.h \
+    java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \
     java/jni.h \
     java/jni_md.h \
     java/layout/org_swdc_qt_internal_layout_SBoxLayout.h \

@@ -22,10 +22,11 @@
 #include <QMenu>
 #include <QMenuBar>
 
+#include <QPainterPath>
 #include <QPainter>
-#include<QThreadPool>
+#include <QThreadPool>
 
-#include<QLayout>
+#include <QLayout>
 
 #include "java/jni.h"
 
@@ -49,17 +50,6 @@ jbyteArray asJavaArray(JNIEnv *env, unsigned char *buf, int len);
  * @return
  */
 jobject ssize(JNIEnv* env, int width, int height);
-
-/**
- *
- * QRect 对应到java的SRect。
- *
- * @brief srect
- * @param env
- * @param rect
- * @return
- */
-jobject sRect(JNIEnv* env, QRect rect);
 
 /**
  * @brief sMargins
@@ -86,6 +76,11 @@ JNIEnv* getContext();
  * @brief releaseContext
  */
 void releaseContext();
+
+
+void paintEventWithJava(QPaintEvent* event,jobject self,jlong me);
+
+
 
 /**
  *

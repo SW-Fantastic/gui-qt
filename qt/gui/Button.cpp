@@ -1,29 +1,27 @@
 #include "java/org_swdc_qt_internal_widgets_SButton.h"
+#include "java/org_swdc_qt_internal_widgets_SWidget.h"
 #include "gui_global.h"
 
 
 const char* ButtonClassType = "org/swdc/qt/internal/widgets/SButton";
 
-/*
- * Class:     org_swdc_qt_widgets_SButton
- * Method:    create
- * Signature: (Ljava/lang/String;)J
- */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
-(JNIEnv *jenv, jobject self,jlong parent, jstring text) {
 
-    const char* textVal = jenv->GetStringUTFChars(text,JNI_FALSE);
-    QString qText = QString(textVal);
-    QPushButton* btn = nullptr;
-    if(parent > 0) {
-        btn = new QPushButton(qText,(QWidget*)parent);
-    } else {
-        btn = new QPushButton(qText);
-    }
+SPushButton::SPushButton(jobject self):QPushButton() {
+    this->self = self;
+}
 
-    self = jenv->NewGlobalRef(self);
+SPushButton::SPushButton(jobject self,QWidget * parent):QPushButton(parent) {
+    this->self = self;
+}
 
-    btn->connect(btn,&QPushButton::clicked,[self]()->void {
+void SPushButton::paintEvent(QPaintEvent *event) {
+    QPushButton::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+}
+
+void initializeButtonEvents(QPushButton * pushButton,jobject self) {
+
+    pushButton->connect(pushButton,&QPushButton::clicked,[self]()->void {
 
         asyncExec([self]()-> void {
             JNIEnv* env = getContext();
@@ -37,14 +35,28 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
 
     });
 
-    btn->connect(btn,&QPushButton::destroyed,[self]()->void {
-        JNIEnv* env = getContext();
+}
 
-        cleanJavaPointer(env,self);
-        env->DeleteGlobalRef(self);
 
-        releaseContext();
-    });
+/*
+ * Class:     org_swdc_qt_widgets_SButton
+ * Method:    create
+ * Signature: (Ljava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
+(JNIEnv *jenv, jobject self,jlong parent, jstring text) {
+
+    self = jenv->NewGlobalRef(self);
+
+    SPushButton* btn = nullptr;
+    if(parent > 0) {
+        btn = new SPushButton(self,(QWidget*)parent);
+    } else {
+        btn = new SPushButton(self);
+    }
+
+    initializeWidgetEvents(btn,self);
+    initializeButtonEvents(btn,self);
 
     return  (jlong)(intptr_t)btn;
 }

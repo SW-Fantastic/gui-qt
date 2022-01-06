@@ -2,12 +2,12 @@ package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.ContextMenuPolicy;
 import org.swdc.qt.beans.Margins;
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.layout.Layout;
+import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.action.Action;
 
 public class Widget {
@@ -208,9 +208,19 @@ public class Widget {
         }
     }
 
-    public SRect getFrameGeometry() {
+    public Rect getFrameGeometry() {
         if (getPointer() > 0) {
-            return widget.getFrameGeometry(getPointer());
+            long pointer = widget.getFrameGeometry(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

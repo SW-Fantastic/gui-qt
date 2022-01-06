@@ -2,11 +2,11 @@ package org.swdc.qt;
 
 import java.io.File;
 
-public class SApplication {
+public class QtApplication {
 
     private long pointer;
 
-    public SApplication(int argc, String[] argv) {
+    public QtApplication(int argc, String[] argv) {
         pointer = this.create(argc,argv,new File(".").getAbsolutePath());
     }
 

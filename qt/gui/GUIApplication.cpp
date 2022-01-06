@@ -7,7 +7,7 @@
  * Method:    create
  * Signature: (I[Ljava/lang/String;)I
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_SApplication_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
 (JNIEnv * jenv, jobject obj, jint argc, jobjectArray argv,jstring dir) {
 
     const char* rootPath = jenv->GetStringUTFChars(dir,JNI_FALSE);
@@ -27,8 +27,6 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_SApplication_create
 
     QApplication* app = new QApplication(len,arrays);
 
-    // printf("\n%s\n",app->applicationDirPath().toLatin1().data());
-
     return (jlong)app;
 }
 
@@ -37,7 +35,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_SApplication_create
  * Method:    exec
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_SApplication_exec
+JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_exec
 (JNIEnv * jenv, jobject obj, jlong pointer) {
     QApplication* app = (QApplication*)pointer;
     app->exec();

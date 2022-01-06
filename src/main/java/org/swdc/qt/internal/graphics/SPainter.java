@@ -1,6 +1,5 @@
 package org.swdc.qt.internal.graphics;
 
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.internal.SPointer;
 
 public class SPainter extends SPointer {
@@ -49,10 +48,10 @@ public class SPainter extends SPointer {
 
     public native void translate(long pointer,double dx, double dy);
 
-    public native SRect window(long pointer);
+    public native long window(long pointer);
     public native void setWindow(long pointer,int x, int y, int w, int h);
 
-    public native SRect viewport(long pointer);
+    public native long viewport(long pointer);
     public native void setViewport(long pointer,int x, int y, int w, int h);
 
     public native void setViewTransformEnabled(long pointer,boolean enable);
@@ -86,7 +85,7 @@ public class SPainter extends SPointer {
 
     public native void drawText(long pointer,int x, int y, String s);
     public native void drawText(long pointer,int x, int y, int w, int h, int flags, String text);
-    public native SRect boundingRect(long pointer,int x, int y, int w, int h, int flags, String text);
+    public native long boundingRect(long pointer,int x, int y, int w, int h, int flags, String text);
 
     //public void drawTextItem(int x, int y, const QTextItem &ti);
 

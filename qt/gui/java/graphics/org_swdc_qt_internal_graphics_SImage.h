@@ -52,7 +52,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SImage_size
  * Method:    rect
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SImage_rect
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SImage_rect
   (JNIEnv *, jobject, jlong);
 
 /*

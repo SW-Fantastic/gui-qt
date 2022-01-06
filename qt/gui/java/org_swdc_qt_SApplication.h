@@ -12,7 +12,7 @@ extern "C" {
  * Method:    create
  * Signature: (I[Ljava/lang/String;Ljava/lang/String;)J
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_SApplication_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
   (JNIEnv *, jobject, jint, jobjectArray, jstring);
 
 /*
@@ -20,7 +20,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_SApplication_create
  * Method:    exec
  * Signature: (J)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_SApplication_exec
+JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_exec
   (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus

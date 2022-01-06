@@ -5,60 +5,21 @@
 extern const char* PainterClassType;
 const char* WidgetClassType = "org/swdc/qt/internal/widgets/SWidget";
 
-class SWidget : public QWidget {
+SWidget::SWidget(jobject self):QWidget() {
+    this->self = self;
+}
 
-private:
-    jobject self;
+SWidget::SWidget(jobject self,QWidget * parent):QWidget(parent) {
+    this->self = self;
+}
 
-public:
-    SWidget(jobject self):QWidget() {
-        this->self = self;
-    }
+void SWidget::paintEvent(QPaintEvent * event) {
+    QWidget::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+}
 
-    SWidget(jobject self,QWidget * parent):QWidget(parent) {
-        this->self = self;
-    }
 
-protected:
-    void paintEvent(QPaintEvent *event) {
-
-        JNIEnv * env = getContext();
-
-        jclass type = env->FindClass(WidgetClassType);
-
-        jmethodID method = env->GetMethodID(type,"onPaint","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
-
-        jmethodID getPainter = env->GetMethodID(type,"createPainter","(J)Lorg/swdc/qt/widgets/graphics/Painter;");
-        jmethodID removePainter = env->GetMethodID(type,"removePainter","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
-        // create a qpainter from java
-        jobject painter = env->CallObjectMethod(this->self,getPainter,(jlong)(intptr_t)this);
-        // call java paint listener
-        env->CallVoidMethod(this->self,method,painter);
-        // destroy qpainter
-        env->CallVoidMethod(this->self,removePainter,painter);
-
-        releaseContext();
-
-    }
-};
-
-/*
- * Class:     org_swdc_qt_widgets_SWidget
- * Method:    create
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
-  (JNIEnv *jenv, jobject self,jlong parent) {
-
-    QWidget* widget = nullptr;
-
-    self = jenv->NewGlobalRef(self);
-
-    if(parent > 0) {
-        widget = new SWidget(self,(QWidget*)parent);
-    } else {
-        widget = new SWidget(self);
-    }
+void initializeWidgetEvents(QWidget* widget,jobject self){
 
     widget->connect(widget,&QWidget::windowTitleChanged,[self](QString title)->void {
         asyncExec([self,title]() -> void {
@@ -88,6 +49,8 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
         });
     });
 
+
+
     widget->connect(widget,&QWidget::destroyed,[self]()->void{
 
         JNIEnv* env = getContext();
@@ -98,6 +61,30 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
         releaseContext();
 
     });
+
+}
+
+
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    create
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
+  (JNIEnv *jenv, jobject self,jlong parent) {
+
+    SWidget* widget = nullptr;
+
+    self = jenv->NewGlobalRef(self);
+
+    if(parent > 0) {
+        widget = new SWidget(self,(QWidget*)parent);
+    } else {
+        widget = new SWidget(self);
+    }
+
+    initializeWidgetEvents(widget,self);
 
     return (jlong)(intptr_t)widget;
 }
@@ -321,11 +308,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetContextMen
  * Method:    getFrameGeometry
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getFrameGeometry
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getFrameGeometry
   (JNIEnv * env, jobject self, jlong pointer) {
     QWidget * widget = (QWidget*)pointer;
     QRect rect = widget->frameGeometry();
-    return sRect(env,rect);
+
+    QRect *target = new QRect(rect);
+
+    return (jlong)(intptr_t)target;
 }
 
 /*

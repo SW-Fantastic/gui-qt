@@ -1,10 +1,32 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.internal.widgets.SStackWidget;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 
 public class StackedWidget extends Widget {
 
     private SStackWidget sStackWidget = new SStackWidget();
+
+    @Override
+    public WindowListener getWindowListener() {
+        return sStackWidget.getWindowListener();
+    }
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        sStackWidget.setWindowListener(listener);
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        sStackWidget.setPaintListener(paintListener);
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return sStackWidget.getPaintListener();
+    }
 
     @Override
     public void allocate() throws Exception {

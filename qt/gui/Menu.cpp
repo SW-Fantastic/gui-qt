@@ -2,7 +2,7 @@
 #include "java/org_swdc_qt_internal_widgets_SMenu.h"
 
 
-void initMenu(JNIEnv * env,jobject self,QMenu* menu) {
+void initializeMenuEvents(JNIEnv * env,jobject self,QMenu* menu) {
 
     self = env->NewGlobalRef(self);
     menu->connect(menu,&QMenu::destroyed,[self]()->void {
@@ -24,7 +24,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_create
 
     QMenu * menu = new QMenu();
 
-    initMenu(env,self,menu);
+    initializeMenuEvents(env,self,menu);
 
     return (jlong)(intptr_t)menu;
 }
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_wrap
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QMenu* menu = (QMenu*)pointer;
-    initMenu(env,self,menu);
+    initializeMenuEvents(env,self,menu);
 }
 
 /*

@@ -265,7 +265,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_translate
  * Method:    window
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_window
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_window
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -281,7 +281,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setWindow
  * Method:    viewport
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewport
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewport
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -441,7 +441,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
  * Method:    boundingRect
  * Signature: (JIIIIILjava/lang/String;)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_boundingRect
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_boundingRect
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint, jstring);
 
 /*

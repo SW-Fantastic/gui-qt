@@ -3,6 +3,7 @@ package org.swdc.qt.widgets.graphics;
 import org.swdc.qt.beans.*;
 import org.swdc.qt.internal.graphics.SImage;
 import org.swdc.qt.internal.graphics.SRgb;
+import org.swdc.qt.widgets.Rect;
 
 import java.io.File;
 
@@ -68,9 +69,19 @@ public class Image {
         return null;
     }
 
-    public SRect rect() {
+    public Rect rect() {
         if (getPointer() > 0) {
-            return image.rect(getPointer());
+            long pointer = image.rect(getPointer());
+            if (pointer <= 0){
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

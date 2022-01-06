@@ -415,13 +415,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_translate
  * Method:    window
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_window
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_window
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QPainter * painter = (QPainter*)pointer;
     QRect window = painter->window();
+    QRect * target = new QRect(window);
 
-    return sRect(env,window);
+    return (jlong)(intptr_t)target;
 }
 
 /*
@@ -442,13 +443,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setWindow
  * Method:    viewport
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewport
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewport
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QPainter * painter = (QPainter*)pointer;
     QRect rect = painter->viewport();
 
-    return sRect(env,rect);
+    QRect * target = new QRect(rect);
+    return (jlong)(intptr_t)target;
 }
 
 /*
@@ -707,14 +709,15 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
  * Method:    boundingRect
  * Signature: (JIIIIILjava/lang/String;)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPainter_boundingRect
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_boundingRect
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height, jint flag, jstring text) {
 
     const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     QRect rect = painter->boundingRect(x,y,width,height,flag,str);
-    return sRect(env,rect);
+    QRect * target = new QRect(rect);
+    return (jlong)(intptr_t)target;
 
 }
 

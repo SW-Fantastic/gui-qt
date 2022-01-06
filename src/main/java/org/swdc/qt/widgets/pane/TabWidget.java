@@ -2,10 +2,32 @@ package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.STabWidget;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 
 public class TabWidget extends Widget {
 
     private STabWidget tabWidget = new STabWidget();
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        tabWidget.setWindowListener(listener);
+    }
+
+    @Override
+    public WindowListener getWindowListener() {
+        return tabWidget.getWindowListener();
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return tabWidget.getPaintListener();
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        tabWidget.setPaintListener(paintListener);
+    }
 
     @Override
     public void allocate() throws Exception {

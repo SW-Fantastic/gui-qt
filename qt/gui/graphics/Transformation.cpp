@@ -1,5 +1,5 @@
 #include"gui_global.h"
-#include"java/org_swdc_qt_internal_graphics_STransformation.h"
+#include"java/graphics/org_swdc_qt_internal_graphics_STransformation.h"
 
 /*
  * Class:     org_swdc_qt_internal_graphics_STransformation

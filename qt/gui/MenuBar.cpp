@@ -1,6 +1,24 @@
 #include "gui_global.h"
 #include "java/org_swdc_qt_internal_widgets_SMenuBar.h"
 
+#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
+
+SMenuBar::SMenuBar(jobject self):QMenuBar() {
+    this->self = self;
+}
+
+SMenuBar::SMenuBar(jobject self, QWidget * widget):QMenuBar(widget){
+    this->self = self;
+}
+
+void SMenuBar::paintEvent(QPaintEvent * event) {
+
+    QMenuBar::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+
+}
+
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenuBar
  * Method:    create
@@ -9,7 +27,9 @@
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_create
 (JNIEnv * env, jobject self){
 
-    QMenuBar * menuBar = new QMenuBar();
+    self = env->NewGlobalRef(self);
+    SMenuBar * menuBar = new SMenuBar(self);
+    initializeWidgetEvents(menuBar,self);
 
     return (jlong)(intptr_t)menuBar;
 

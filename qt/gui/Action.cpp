@@ -3,7 +3,7 @@
 
 const char* ActionClassType = "org/swdc/qt/internal/widgets/SAction";
 
-void init(QAction* action,jobject self,JNIEnv* env) {
+void initializeActionEvents(QAction* action,jobject self,JNIEnv* env) {
 
     self = env->NewGlobalRef(self);
 
@@ -75,7 +75,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SAction_create
 (JNIEnv * env, jobject self) {
 
     QAction *action = new QAction();
-    init(action,self,env);
+    initializeActionEvents(action,self,env);
     return (jlong)(intptr_t)action;
 }
 
@@ -89,7 +89,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_wrap
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QAction* action = (QAction*)pointer;
-    init(action,self,env);
+    initializeActionEvents(action,self,env);
 
 }
 

@@ -1,8 +1,8 @@
 package org.swdc.qt.layout;
 
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.layout.SLayoutItem;
+import org.swdc.qt.widgets.Rect;
 
 public abstract class LayoutItem<T extends SLayoutItem> {
 
@@ -39,9 +39,19 @@ public abstract class LayoutItem<T extends SLayoutItem> {
             layoutItem.setGeometry(getPointer(),x,y,width,height,top,center,bottom,left,right);
         }
     }
-    public SRect getGeometry() {
+    public Rect getGeometry() {
         if (layoutItem.isUsable()) {
-            return layoutItem.getGeometry(getPointer());
+            long pointer = layoutItem.getGeometry(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_setGeometry
  * Method:    getGeometry
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getGeometry
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getGeometry
   (JNIEnv *, jobject, jlong);
 
 /*

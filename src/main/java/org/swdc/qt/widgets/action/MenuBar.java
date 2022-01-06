@@ -2,11 +2,33 @@ package org.swdc.qt.widgets.action;
 
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SMenuBar;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.pane.Widget;
 
 public class MenuBar extends Widget {
 
     private SMenuBar menuBar = new SMenuBar();
+
+    @Override
+    public WindowListener getWindowListener() {
+        return menuBar.getWindowListener();
+    }
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        menuBar.setWindowListener(listener);
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        menuBar.setPaintListener(paintListener);
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return menuBar.getPaintListener();
+    }
 
     @Override
     public void allocate() throws Exception {

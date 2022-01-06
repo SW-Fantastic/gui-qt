@@ -1,6 +1,23 @@
 #include"gui_global.h"
 #include"java/org_swdc_qt_internal_widgets_STabWidget.h"
 
+#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+
+
+STabWidget::STabWidget(jobject self):QTabWidget() {
+    this->self = self;
+}
+
+STabWidget::STabWidget(jobject self,QWidget * parent):QTabWidget(parent) {
+    this->self = self;
+}
+
+void STabWidget::paintEvent(QPaintEvent * event){
+
+    QTabWidget::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+}
+
 /*
  * Class:     org_swdc_qt_internal_widgets_STabWidget
  * Method:    create
@@ -9,18 +26,10 @@
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_create
 (JNIEnv * env, jobject self) {
 
-    QTabWidget* tabWidget = new QTabWidget();
-
     self = env->NewGlobalRef(self);
 
-    tabWidget->connect(tabWidget,&QTabWidget::destroyed,[self]()->void{
-        JNIEnv* env = getContext();
-
-        cleanJavaPointer(env,self);
-        env->DeleteGlobalRef(self);
-
-        releaseContext();
-    });
+    STabWidget* tabWidget = new STabWidget(self);
+    initializeWidgetEvents(tabWidget,self);
 
     return (jlong)(intptr_t)tabWidget;
 

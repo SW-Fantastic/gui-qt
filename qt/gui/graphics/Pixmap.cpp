@@ -68,12 +68,13 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_size
  * Method:    rect
  * Signature: (J)Lorg/swdc/qt/beans/SRect;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_rect
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_rect
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QPixmap * pixmap = (QPixmap*)pointer;
     QRect rect = pixmap->rect();
-    return sRect(env,rect);
+    QRect * target = new QRect(rect);
+    return (jlong)(intptr_t)target;
 }
 
 /*

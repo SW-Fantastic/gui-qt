@@ -42,7 +42,24 @@ JNIEnv* getContext() {
 }
 
 
+void paintEventWithJava(QPaintEvent* event,jobject self,jlong me) {
+    JNIEnv * env = getContext();
 
+    jclass type = env->FindClass("org/swdc/qt/internal/widgets/SWidget");
+
+    jmethodID method = env->GetMethodID(type,"onPaint","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
+
+    jmethodID getPainter = env->GetMethodID(type,"createPainter","(J)Lorg/swdc/qt/widgets/graphics/Painter;");
+    jmethodID removePainter = env->GetMethodID(type,"removePainter","(Lorg/swdc/qt/widgets/graphics/Painter;)V");
+    // create a qpainter from java
+    jobject painter = env->CallObjectMethod(self,getPainter,me);
+    // call java paint listener
+    env->CallVoidMethod(self,method,painter);
+    // destroy qpainter
+    env->CallVoidMethod(self,removePainter,painter);
+
+    releaseContext();
+}
 
 
 /*
@@ -125,23 +142,6 @@ jobject ssize(JNIEnv* env, int width, int height) {
     jmethodID sizeConstructor = env->GetMethodID(sizeClass,"<init>","(II)V");
     return env->NewObject(sizeClass,sizeConstructor,width,height);
 }
-
-jobject sRect(JNIEnv* env, QRect rect) {
-    jclass sizeClass = env->FindClass("org/swdc/qt/beans/SRect");
-    jmethodID sizeConstructor = env->GetMethodID(sizeClass,"<init>","(IIIIIIIII)V");
-    return env->NewObject(sizeClass,sizeConstructor,
-                          rect.x(),
-                          rect.y(),
-                          rect.width(),
-                          rect.height(),
-                          rect.top(),
-                          rect.center(),
-                          rect.bottom(),
-                          rect.left(),
-                          rect.right()
-                         );
-}
-
 
 jobject sMargins(JNIEnv* env, QMargins margins) {
     jclass sizeClass = env->FindClass("org/swdc/qt/beans/Margins");

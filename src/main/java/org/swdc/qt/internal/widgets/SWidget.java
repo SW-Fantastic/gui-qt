@@ -2,13 +2,10 @@ package org.swdc.qt.internal.widgets;
 
 import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.SPointer;
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.beans.SSize;
-import org.swdc.qt.internal.graphics.SPainter;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.graphics.Painter;
-import org.swdc.qt.widgets.pane.Widget;
 
 public class SWidget extends SPointer  {
 
@@ -99,7 +96,7 @@ public class SWidget extends SPointer  {
     public native void doSetBaseSize(long pointer, int width, int height);
     public native int doGetContextMenuPolicy(long pointer);
     public native void doSetContextMenuPolicy(long pointer, int val);
-    public native SRect getFrameGeometry(long pointer);
+    public native long getFrameGeometry(long pointer);
     public native void doClearFocus(long pointer);
     public native void doClearMark(long pointer);
     public native void doSetFocus(long pointer);

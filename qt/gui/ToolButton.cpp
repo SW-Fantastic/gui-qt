@@ -1,6 +1,22 @@
 #include"gui_global.h"
 #include"java/org_swdc_qt_internal_widgets_SToolButton.h"
 
+#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+
+SToolButton::SToolButton(jobject self,QWidget * parent):QToolButton(parent) {
+    this->self = self;
+}
+
+SToolButton::SToolButton(jobject self):QToolButton() {
+    this->self = self;
+}
+
+
+void SToolButton::paintEvent(QPaintEvent *event)  {
+    QToolButton::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+ }
+
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SToolButton
@@ -10,16 +26,10 @@
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_create
 (JNIEnv * env, jobject self) {
 
-    QToolButton * toolButton = new QToolButton();
+
     self = env->NewGlobalRef(self);
-    toolButton->connect(toolButton,&QToolButton::destroyed,[self]()->void {
-
-       JNIEnv* jenv = getContext();
-       cleanJavaPointer(jenv,self);
-       jenv->DeleteGlobalRef(self);
-       releaseContext();
-
-    });
+    QToolButton * toolButton = new SToolButton(self);
+    initializeWidgetEvents(toolButton,self);
 
     return (jlong)(intptr_t)toolButton;
 }

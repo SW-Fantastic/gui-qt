@@ -1,5 +1,21 @@
 #include"gui_global.h"
 #include"java/org_swdc_qt_internal_widgets_SStackWidget.h"
+#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+
+
+SStackWidget::SStackWidget(jobject self):QStackedWidget() {
+    this->self = self;
+}
+
+SStackWidget::SStackWidget(jobject self,QWidget * parent):QStackedWidget(parent) {
+    this->self = self;
+}
+
+void SStackWidget::paintEvent(QPaintEvent *event) {
+
+    QStackedWidget::paintEvent(event);
+    paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
+}
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SStackWidget
@@ -9,17 +25,12 @@
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SStackWidget_create
 (JNIEnv * env, jobject self) {
 
-    QStackedWidget * stackWidget = new QStackedWidget();
+
 
     self = env->NewGlobalRef(self);
-    stackWidget->connect(stackWidget,&QStackedWidget::destroyed,[self]()->void{
-        JNIEnv* env = getContext();
+    SStackWidget * stackWidget = new SStackWidget(self);
+    initializeWidgetEvents(stackWidget,self);
 
-        cleanJavaPointer(env,self);
-        env->DeleteGlobalRef(self);
-
-        releaseContext();
-    });
     return (jlong)(intptr_t)stackWidget;
 
 }

@@ -2,6 +2,8 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.internal.widgets.SButton;
 import org.swdc.qt.listeners.ClickedListener;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 
 public class PushButton extends AbstractButton<SButton> {
 
@@ -16,6 +18,26 @@ public class PushButton extends AbstractButton<SButton> {
 
     public ClickedListener getClickedListener() {
         return button.getClickedListener();
+    }
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        button.setWindowListener(listener);
+    }
+
+    @Override
+    public WindowListener getWindowListener() {
+        return button.getWindowListener();
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        button.setPaintListener(paintListener);
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return button.getPaintListener();
     }
 
     @Override

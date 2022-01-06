@@ -2,6 +2,8 @@ package org.swdc.qt.widgets.action;
 
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SToolButton;
+import org.swdc.qt.listeners.PaintListener;
+import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.AbstractButton;
 
 public class ToolButton extends AbstractButton<SToolButton> {
@@ -9,6 +11,26 @@ public class ToolButton extends AbstractButton<SToolButton> {
     @Override
     protected SToolButton createButton() {
         return new SToolButton();
+    }
+
+    @Override
+    public void setPaintListener(PaintListener paintListener) {
+        this.button.setPaintListener(paintListener);
+    }
+
+    @Override
+    public PaintListener getPaintListener() {
+        return button.getPaintListener();
+    }
+
+    @Override
+    public WindowListener getWindowListener() {
+        return button.getWindowListener();
+    }
+
+    @Override
+    public void setWindowListener(WindowListener listener) {
+        button.setWindowListener(listener);
     }
 
     public SSize getSizeHint() {

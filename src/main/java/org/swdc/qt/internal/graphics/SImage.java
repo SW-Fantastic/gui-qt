@@ -1,6 +1,5 @@
 package org.swdc.qt.internal.graphics;
 
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.SPointer;
 
@@ -12,7 +11,7 @@ public class SImage extends SPointer {
     public native int width(long pointer);
     public native int height(long pointer);
     public native SSize size(long pointer);
-    public native SRect rect(long pointer);
+    public native long rect(long pointer);
 
     public native int depth(long pointer);
     public native int colorCount(long pointer);

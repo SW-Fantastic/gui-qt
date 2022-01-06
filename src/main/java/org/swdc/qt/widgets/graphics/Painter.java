@@ -2,9 +2,9 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.beans.BGMode;
 import org.swdc.qt.beans.PainterCompositionMode;
-import org.swdc.qt.beans.SRect;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainter;
+import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.pane.Widget;
 
 public class Painter {
@@ -303,9 +303,19 @@ public class Painter {
         }
     }
 
-    public SRect window() {
+    public Rect window() {
         if (getPointer() > 0) {
-            return painter.window(getPointer());
+            long pointer = painter.window(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
             return null;
         }
@@ -317,9 +327,19 @@ public class Painter {
         }
     }
 
-    public SRect getViewport() {
+    public Rect getViewport() {
         if (getPointer() > 0 ) {
-            return painter.viewport(getPointer());
+            long pointer = painter.viewport(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
@@ -447,9 +467,19 @@ public class Painter {
         }
     }
 
-    public SRect boundingRect(int x, int y, int w, int h, int flags, String text){
+    public Rect boundingRect(int x, int y, int w, int h, int flags, String text){
         if (getPointer() > 0) {
-            return painter.boundingRect(getPointer(),x,y,w,h,flags,text);
+            long pointer = painter.boundingRect(getPointer(),x,y,w,h,flags,text);
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
