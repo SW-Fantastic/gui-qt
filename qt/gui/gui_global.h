@@ -8,6 +8,7 @@
 #include <QSize>
 #include <QWidget>
 #include <QRectF>
+#include <QSize>
 #include <QRect>
 #include <QLineEdit>
 #include <QTabWidget>
@@ -39,17 +40,7 @@
 jstring asJavaString(JNIEnv* env, const char* pat);
 
 jbyteArray asJavaArray(JNIEnv *env, unsigned char *buf, int len);
-/**
- *
- * QSize在java中对应的SSize。
- *
- * @brief qsize
- * @param env
- * @param width
- * @param height
- * @return
- */
-jobject ssize(JNIEnv* env, int width, int height);
+
 
 /**
  * @brief sMargins

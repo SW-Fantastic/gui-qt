@@ -1,9 +1,9 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.beans.AspectRatioMode;
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.graphics.SPixmap;
 import org.swdc.qt.widgets.Rect;
+import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.pane.Widget;
 
 import java.io.File;
@@ -47,9 +47,19 @@ public class Pixmap {
         return 0;
     }
 
-    public SSize size() {
+    public Size size() {
         if (getPointer() > 0) {
-            return pixmap.size(getPointer());
+            long pointer = pixmap.size(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

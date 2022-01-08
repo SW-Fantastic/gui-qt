@@ -1,9 +1,9 @@
 package org.swdc.qt.widgets.action;
 
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SMenuBar;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
+import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.pane.Widget;
 
 public class MenuBar extends Widget {
@@ -153,16 +153,36 @@ public class MenuBar extends Widget {
         return false;
     }
 
-    public SSize sizeHint() {
+    public Size sizeHint() {
         if (getPointer() > 0) {
-            return menuBar.sizeHint(getPointer());
+            long pointer = menuBar.sizeHint(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
-    public SSize minimumSizeHint() {
+    public Size minimumSizeHint() {
         if (getPointer() > 0) {
-            return menuBar.minimumSizeHint(getPointer());
+            long pointer = menuBar.minimumSizeHint(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

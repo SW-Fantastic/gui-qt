@@ -2,7 +2,6 @@ package org.swdc.qt.internal.widgets;
 
 import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.SPointer;
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.graphics.Painter;
@@ -71,8 +70,8 @@ public class SWidget extends SPointer  {
     public native void doSetMinSize(long pointer,int width, int height);
     public native long create(long parentPointer);
     public native void doSetMaxSize(long pointer, int width, int height);
-    public native SSize getMaxSize(long pointer);
-    public native SSize getMinSize(long pointer);
+    public native long getMaxSize(long pointer);
+    public native long getMinSize(long pointer);
     public native void resize(long pointer, int width, int height);
     public native void doSetMaxWidth(long pointer, int width);
     public native void doSetFixedWidth(long pointer, int width);
@@ -84,7 +83,7 @@ public class SWidget extends SPointer  {
     public native void doSetMinHeight(long pointer, int height);
 
     
-    public native SSize doGetSizeIncrement(long pointer);
+    public native long doGetSizeIncrement(long pointer);
     public native boolean isAcceptDrops(long pointer);
     public native String getAccessibleDescription(long pointer);
 
@@ -92,7 +91,7 @@ public class SWidget extends SPointer  {
     public native void doActivateWindow(long pointer);
     public native void doAdjustSize(long pointer);
     public native boolean isAutoFillBackground(long pointer);
-    public native SSize getBaseSize(long pointer);
+    public native long getBaseSize(long pointer);
     public native void doSetBaseSize(long pointer, int width, int height);
     public native int doGetContextMenuPolicy(long pointer);
     public native void doSetContextMenuPolicy(long pointer, int val);

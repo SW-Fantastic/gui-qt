@@ -2,12 +2,12 @@ package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.ContextMenuPolicy;
 import org.swdc.qt.beans.Margins;
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.layout.Layout;
 import org.swdc.qt.widgets.Rect;
+import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.action.Action;
 
 public class Widget {
@@ -53,16 +53,36 @@ public class Widget {
         }
     }
     
-    public SSize getMaxSize() {
+    public Size getMaxSize() {
         if (getPointer() > 0) {
-            return widget.getMaxSize(getPointer());
+            long pointer = widget.getMaxSize(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
     
-    public SSize getMinSize() {
+    public Size getMinSize() {
         if (getPointer() > 0) {
-            return widget.getMinSize(getPointer());
+            long pointer = widget.getMinSize(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
@@ -121,9 +141,19 @@ public class Widget {
         }
     }
 
-    public SSize getSizeIncrement() {
+    public Size getSizeIncrement() {
         if (getPointer() > 0) {
-            return widget.doGetSizeIncrement(getPointer());
+            long pointer = widget.doGetSizeIncrement(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e ) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
@@ -168,9 +198,19 @@ public class Widget {
         return false;
     }
 
-    public SSize getBaseSize() {
+    public Size getBaseSize() {
         if (getPointer() > 0) {
-            return widget.getBaseSize(getPointer());
+            long pointer = widget.getBaseSize(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

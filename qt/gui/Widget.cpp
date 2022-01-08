@@ -186,11 +186,11 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinSize
  * Method:    getBaseSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
 (JNIEnv * env, jobject self, jlong pointer) {
     QWidget * widget = (QWidget*)pointer;
-    QSize size = widget->baseSize();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(widget->baseSize());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -425,10 +425,11 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetFixSize
  * Method:    getMaxSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
 (JNIEnv * env, jobject self, jlong pointer) {
     QWidget * widget = (QWidget*)pointer;
-    return ssize(env,widget->maximumWidth(),widget->maximumHeight());
+    QSize * size = new QSize(widget->maximumSize());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -436,10 +437,11 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
  * Method:    getMinSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
 (JNIEnv * env, jobject self, jlong pointer) {
     QWidget * widget = (QWidget*)pointer;
-    return ssize(env,widget->minimumWidth(),widget->minimumHeight());
+    QSize * size = new QSize(widget->minimumSize());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -507,11 +509,11 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetSizeIncrem
  * Method:    doGetSizeIncrement
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
 (JNIEnv * env, jobject self, jlong pointer) {
     QWidget * widget = (QWidget*)pointer;
-    QSize size = widget->sizeIncrement();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(widget->sizeIncrement());
+    return (jlong)(intptr_t)size;
 }
 
 

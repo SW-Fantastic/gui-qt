@@ -12,7 +12,7 @@ extern "C" {
  * Method:    getSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHint
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -20,7 +20,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHi
  * Method:    getMinimumSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimumSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimumSize
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -28,7 +28,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimu
  * Method:    getMaximumSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMaximumSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMaximumSize
   (JNIEnv *, jobject, jlong);
 
 /*

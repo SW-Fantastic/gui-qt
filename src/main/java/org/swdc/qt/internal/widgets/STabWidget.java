@@ -1,7 +1,5 @@
 package org.swdc.qt.internal.widgets;
 
-import org.swdc.qt.beans.SSize;
-
 public class STabWidget extends SWidget {
 
     public native long create();
@@ -50,8 +48,8 @@ public class STabWidget extends SWidget {
 
     public native void clear(long pointer);
 
-    public native SSize sizeHint(long pointer);
-    public native SSize minimumSizeHint(long pointer);
+    public native long sizeHint(long pointer);
+    public native long minimumSizeHint(long pointer);
     public native int heightForWidth(long pointer,int width);
     public native boolean hasHeightForWidth(long pointer);
 

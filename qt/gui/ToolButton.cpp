@@ -39,12 +39,12 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_create
  * Method:    sizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_sizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_sizeHint
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QToolButton * toolButton = (QToolButton*)pointer;
-    QSize size = toolButton->sizeHint();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(toolButton->sizeHint());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -52,12 +52,12 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_sizeHint
  * Method:    minimumSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_minimumSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_minimumSizeHint
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QToolButton * toolButton = (QToolButton*)pointer;
-    QSize size = toolButton->minimumSizeHint();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(toolButton->minimumSizeHint());
+    return (jlong)(intptr_t)size;
 }
 
 /*

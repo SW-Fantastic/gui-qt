@@ -1,7 +1,5 @@
 package org.swdc.qt.internal.widgets;
 
-import org.swdc.qt.beans.SSize;
-
 public class SMenuBar extends SWidget {
 
     public native long create();
@@ -20,8 +18,8 @@ public class SMenuBar extends SWidget {
     public native void setDefaultUp(long pointer,boolean val);
     public native boolean isDefaultUp(long pointer);
 
-    public native SSize sizeHint(long pointer);
-    public native SSize minimumSizeHint(long pointer);
+    public native long sizeHint(long pointer);
+    public native long minimumSizeHint(long pointer);
     public native int heightForWidth(long pointer,int val);
     public native void setVisible(long pointer,boolean visible);
 

@@ -1,10 +1,10 @@
 package org.swdc.qt.widgets.action;
 
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.SToolButton;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.AbstractButton;
+import org.swdc.qt.widgets.Size;
 
 public class ToolButton extends AbstractButton<SToolButton> {
 
@@ -33,16 +33,36 @@ public class ToolButton extends AbstractButton<SToolButton> {
         button.setWindowListener(listener);
     }
 
-    public SSize getSizeHint() {
+    public Size getSizeHint() {
         if(getPointer() > 0) {
-            return button.sizeHint(getPointer());
+            long pointer = button.sizeHint(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
-    public SSize getMinimumSizeHint() {
+    public Size getMinimumSizeHint() {
         if (getPointer() > 0) {
-            return button.minimumSizeHint(getPointer());
+            long pointer = button.minimumSizeHint(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

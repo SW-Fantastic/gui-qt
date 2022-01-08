@@ -1,9 +1,9 @@
 package org.swdc.qt.widgets.pane;
 
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.widgets.STabWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
+import org.swdc.qt.widgets.Size;
 
 public class TabWidget extends Widget {
 
@@ -239,16 +239,36 @@ public class TabWidget extends Widget {
         }
     }
 
-    public SSize sizeHint() {
+    public Size sizeHint() {
         if (getPointer() > 0){
-            return tabWidget.sizeHint(getPointer());
+            long pointer = tabWidget.sizeHint(getPointer());
+            if (pointer <= 0 ) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
-    public SSize minimumSizeHint() {
+    public Size minimumSizeHint() {
         if (getPointer() > 0) {
-            return tabWidget.minimumSizeHint(getPointer());
+            long pointer = tabWidget.minimumSizeHint(getPointer());
+            if (pointer <= 0 ){
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

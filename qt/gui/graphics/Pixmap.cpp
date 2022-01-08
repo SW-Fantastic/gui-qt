@@ -55,12 +55,12 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_height
  * Method:    size
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_size
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_size
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QPixmap * pixmap = (QPixmap*)pointer;
-    QSize size = pixmap->size();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(pixmap->size());
+    return (jlong)(intptr_t)size;
 }
 
 /*

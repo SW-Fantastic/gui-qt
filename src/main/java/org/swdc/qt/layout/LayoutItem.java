@@ -1,8 +1,8 @@
 package org.swdc.qt.layout;
 
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.layout.SLayoutItem;
 import org.swdc.qt.widgets.Rect;
+import org.swdc.qt.widgets.Size;
 
 public abstract class LayoutItem<T extends SLayoutItem> {
 
@@ -12,23 +12,53 @@ public abstract class LayoutItem<T extends SLayoutItem> {
 
     public abstract void allocate() throws Exception;
 
-    public SSize getSizeHint() {
+    public Size getSizeHint() {
         if (layoutItem.isUsable()) {
-            layoutItem.getSizeHint(getPointer());
+            long pointer = layoutItem.getSizeHint(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
-    public SSize getMinimumSize() {
+    public Size getMinimumSize() {
         if (layoutItem.isUsable()) {
-            return layoutItem.getMinimumSize(getPointer());
+            long pointer = layoutItem.getMinimumSize(getPointer());
+            if (pointer <= 0){
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
-    public SSize getMaximumSize() {
+    public Size getMaximumSize() {
         if (layoutItem.isUsable()) {
-            return layoutItem.getMaximumSize(getPointer());
+            long pointer = layoutItem.getMaximumSize(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

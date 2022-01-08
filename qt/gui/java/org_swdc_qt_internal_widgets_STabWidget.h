@@ -282,7 +282,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_clear
  * Method:    sizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -290,7 +290,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
  * Method:    minimumSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_minimumSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_minimumSizeHint
   (JNIEnv *, jobject, jlong);
 
 /*

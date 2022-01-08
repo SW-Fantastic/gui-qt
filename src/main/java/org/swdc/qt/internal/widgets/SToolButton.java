@@ -1,12 +1,10 @@
 package org.swdc.qt.internal.widgets;
 
-import org.swdc.qt.beans.SSize;
-
 public class SToolButton extends SAbstractButton {
 
     public native long create();
-    public native SSize sizeHint(long pointer);
-    public native SSize minimumSizeHint(long pointer);
+    public native long sizeHint(long pointer);
+    public native long minimumSizeHint(long pointer);
 
     public native void setToolButtonStyle(long pointer,int style);
     public native int toolButtonStyle(long pointer);

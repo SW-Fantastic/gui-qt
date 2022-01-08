@@ -63,12 +63,12 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_graphics_SImage_height
  * Method:    size
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_graphics_SImage_size
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SImage_size
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QImage * image = (QImage*)pointer;
-    QSize size = image->size();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(image->size());
+    return (jlong)(intptr_t)size;
 }
 
 /*

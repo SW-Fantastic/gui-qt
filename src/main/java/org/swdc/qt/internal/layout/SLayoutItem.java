@@ -1,14 +1,13 @@
 package org.swdc.qt.internal.layout;
 
 import org.swdc.qt.internal.SPointer;
-import org.swdc.qt.beans.SSize;
 
 public abstract class SLayoutItem extends SPointer {
 
 
-    public native SSize getSizeHint(long pointer);
-    public native SSize getMinimumSize(long pointer);
-    public native SSize getMaximumSize(long pointer);
+    public native long getSizeHint(long pointer);
+    public native long getMinimumSize(long pointer);
+    public native long getMaximumSize(long pointer);
     public native void setGeometry(long pointer,int x,int y,int width, int height,
                                     int top, int center, int bottom, int left, int right);
     public native long getGeometry(long pointer);

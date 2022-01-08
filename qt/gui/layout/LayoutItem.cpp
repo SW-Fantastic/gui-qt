@@ -6,11 +6,11 @@
  * Method:    getSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHint
   (JNIEnv * env, jobject self, jlong pointer) {
     QLayoutItem* item = (QLayoutItem*)pointer;
-    QSize size = item->sizeHint();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(item->sizeHint());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -18,11 +18,11 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getSizeHi
  * Method:    getMinimumSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimumSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimumSize
 (JNIEnv * env, jobject self, jlong pointer) {
     QLayoutItem* item = (QLayoutItem*)pointer;
-    QSize size = item->minimumSize();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(item->minimumSize());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -30,11 +30,11 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMinimu
  * Method:    getMaximumSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMaximumSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayoutItem_getMaximumSize
 (JNIEnv * env, jobject self, jlong pointer) {
     QLayoutItem* item = (QLayoutItem*)pointer;
-    QSize size = item->maximumSize();
-    return ssize(env,size.width(),size.height());
+    QSize * size = new QSize(item->maximumSize());
+    return (jlong)(intptr_t)size;
 }
 
 /*

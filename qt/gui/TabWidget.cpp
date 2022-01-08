@@ -442,13 +442,13 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_clear
  * Method:    sizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
 (JNIEnv * env, jobject self, jlong pointer){
 
     QTabWidget* tabWidget = (QTabWidget*)pointer;
-    QSize size = tabWidget->sizeHint();
+    QSize * size = new QSize(tabWidget->sizeHint());
 
-    return ssize(env,size.width(),size.height());
+    return (jlong)(intptr_t)size;
 
 }
 
@@ -457,13 +457,13 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_sizeHint
  * Method:    minimumSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_minimumSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_minimumSizeHint
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QTabWidget* tabWidget = (QTabWidget*)pointer;
-    QSize size = tabWidget->minimumSizeHint();
+    QSize * size = new QSize(tabWidget->minimumSizeHint());
 
-    return ssize(env,size.width(),size.height());
+    return (jlong)(intptr_t)size;
 }
 
 /*

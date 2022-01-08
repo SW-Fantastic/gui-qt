@@ -42,6 +42,8 @@ public class TestQt {
             System.err.println("clicked");
         });
 
+        System.err.println(button.getBaseSize());
+
         Rect rect = button.getFrameGeometry();
         System.err.println(rect);
         rect.dispose();

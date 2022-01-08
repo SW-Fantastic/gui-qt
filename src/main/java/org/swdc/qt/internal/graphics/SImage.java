@@ -1,6 +1,5 @@
 package org.swdc.qt.internal.graphics;
 
-import org.swdc.qt.beans.SSize;
 import org.swdc.qt.internal.SPointer;
 
 public class SImage extends SPointer {
@@ -10,7 +9,7 @@ public class SImage extends SPointer {
 
     public native int width(long pointer);
     public native int height(long pointer);
-    public native SSize size(long pointer);
+    public native long size(long pointer);
     public native long rect(long pointer);
 
     public native int depth(long pointer);

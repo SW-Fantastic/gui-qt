@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxSize
  * Method:    getMaxSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -67,7 +67,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
  * Method:    getMinSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -147,7 +147,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetSizeIncrem
  * Method:    doGetSizeIncrement
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -203,7 +203,7 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isAutoFillB
  * Method:    getBaseSize
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
   (JNIEnv *, jobject, jlong);
 
 /*

@@ -180,13 +180,13 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_isDefaultU
  * Method:    sizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QMenuBar * menuBar = (QMenuBar*)pointer;
-    QSize size = menuBar->sizeHint();
+    QSize * size = new QSize(menuBar->sizeHint());
 
-    return ssize(env,size.width(),size.height());
+    return (jlong)(intptr_t)size;
 }
 
 /*
@@ -194,13 +194,13 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
  * Method:    minimumSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_minimumSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_minimumSizeHint
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QMenuBar * menuBar = (QMenuBar*)pointer;
-    QSize size = menuBar->minimumSizeHint();
+    QSize*  size = new QSize(menuBar->minimumSizeHint());
 
-    return ssize(env,size.width(),size.height());
+    return (jlong)(intptr_t)size;
 }
 
 /*

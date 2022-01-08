@@ -4,6 +4,7 @@ import org.swdc.qt.beans.*;
 import org.swdc.qt.internal.graphics.SImage;
 import org.swdc.qt.internal.graphics.SRgb;
 import org.swdc.qt.widgets.Rect;
+import org.swdc.qt.widgets.Size;
 
 import java.io.File;
 
@@ -62,9 +63,19 @@ public class Image {
         return 0;
     }
 
-    public SSize size() {
+    public Size size() {
         if (getPointer() > 0) {
-            return image.size(getPointer());
+            long pointer = image.size(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

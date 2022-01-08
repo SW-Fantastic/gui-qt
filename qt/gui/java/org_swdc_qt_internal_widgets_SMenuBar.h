@@ -122,7 +122,7 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_isDefaultU
  * Method:    sizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
   (JNIEnv *, jobject, jlong);
 
 /*
@@ -130,7 +130,7 @@ JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_sizeHint
  * Method:    minimumSizeHint
  * Signature: (J)Lorg/swdc/qt/beans/SSize;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_minimumSizeHint
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_minimumSizeHint
   (JNIEnv *, jobject, jlong);
 
 /*
