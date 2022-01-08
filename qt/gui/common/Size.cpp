@@ -7,12 +7,24 @@
  * Method:    create
  * Signature: ()J
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create__
 (JNIEnv * env, jobject self) {
 
     QSize * size = new QSize();
     return (jlong)(intptr_t)size;
 
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    create
+ * Signature: (II)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create__II
+(JNIEnv * env, jobject self, jint width, jint height) {
+
+    QSize * size = new QSize(width,height);
+    return (jlong)(intptr_t)size;
 }
 
 
@@ -178,6 +190,43 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_boundedTo
 
     return (jlong)(intptr_t)result;
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    grownBy
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_grownBy
+(JNIEnv * env, jobject self, jlong pointer,jlong marginPointer) {
+
+    QSize * size = (QSize*)pointer;
+    QMargins * margins = (QMargins*)marginPointer;
+
+    QSize target = size->grownBy(*margins);
+    QSize * result = new QSize(target);
+
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    shrunkBy
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_shrunkBy
+(JNIEnv * env, jobject self, jlong pointer,jlong marginsPointer) {
+
+    QSize * size = (QSize*)pointer;
+    QMargins * margins = (QMargins*)marginsPointer;
+
+    QSize target = size->shrunkBy(*margins);
+    QSize * result = new QSize(target);
+
+    return (jlong)(intptr_t)result;
+}
+
+
 
 
 /*

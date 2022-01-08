@@ -19,6 +19,17 @@ public class Rect {
         rect.address(pointer);
     }
 
+    public void allocate(int left,int top,int width, int height) throws Exception {
+        if (getPointer() > 0) {
+            return;
+        }
+        long pointer = rect.create(left,top,width,height);
+        if (pointer <= 0) {
+            throw new Exception("fail to create rect");
+        }
+        rect.address(pointer);
+    }
+
     public void wrap(long nativePointer) throws Exception {
         if (getPointer() > 0) {
             return;

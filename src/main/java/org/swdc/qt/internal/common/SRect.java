@@ -5,6 +5,7 @@ import org.swdc.qt.internal.SPointer;
 public class SRect extends SPointer {
 
     public native long create();
+    public native long create(int left,int top, int width, int height);
 
     public native boolean isEmpty(long pointer);
     public native boolean isValid(long pointer);

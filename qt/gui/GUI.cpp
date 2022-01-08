@@ -127,34 +127,6 @@ jstring asJavaString(JNIEnv* env, const char* pat){
     return (jstring)(env)->NewObject(strClass, ctorID, bytes, encoding);
 }
 
-/**
- *
- * QSize在java中对应的SSize。
- *
- * @brief qsize
- * @param env
- * @param width
- * @param height
- * @return
- */
-jobject ssize(JNIEnv* env, int width, int height) {
-    jclass sizeClass = env->FindClass("org/swdc/qt/beans/SSize");
-    jmethodID sizeConstructor = env->GetMethodID(sizeClass,"<init>","(II)V");
-    return env->NewObject(sizeClass,sizeConstructor,width,height);
-}
-
-jobject sMargins(JNIEnv* env, QMargins margins) {
-    jclass sizeClass = env->FindClass("org/swdc/qt/beans/Margins");
-    jmethodID sizeConstructor = env->GetMethodID(sizeClass,"<init>","(IIII)V");
-    return env->NewObject(sizeClass,sizeConstructor,
-                          margins.top(),
-                          margins.bottom(),
-                          margins.left(),
-                          margins.right()
-                          );
-}
-
-
 void cleanJavaPointer(JNIEnv* env,jobject target) {
 
     jclass jpointer = env->FindClass("org/swdc/qt/internal/SPointer");

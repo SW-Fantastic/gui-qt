@@ -543,12 +543,12 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setTextMargin
  * Method:    textMargins
  * Signature: (J)Lorg/swdc/qt/beans/Margins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_textMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_textMargins
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QLineEdit* lineEdit = (QLineEdit*)pointer;
-    QMargins margins = lineEdit->textMargins();
-    return sMargins(env,margins);
+    QMargins * margins = new QMargins(lineEdit->textMargins());
+    return (jlong)(intptr_t)margins;
 
 }
 

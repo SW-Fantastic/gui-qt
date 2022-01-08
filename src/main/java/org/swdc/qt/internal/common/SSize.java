@@ -6,6 +6,7 @@ public class SSize extends SPointer  {
 
 
     public native long create();
+    public native long create(int width, int height);
 
     public native boolean isEmpty(long pointer) ;
     public native boolean isValid(long pointer) ;
@@ -25,10 +26,7 @@ public class SSize extends SPointer  {
 
     public native void dispose(long pointer);
 
-//      QSize grownBy(QMargins m)
-//    { return {width() + m.left() + m.right(), height() + m.top() + m.bottom()}; }
-//      QSize shrunkBy(QMargins m)
-//    { return {width() - m.left() - m.right(), height() - m.top() - m.bottom()}; }
-
+    public native long grownBy(long pointer,long marginPointer);
+    public native long shrunkBy(long pointer,long marginPointer);
 
 }

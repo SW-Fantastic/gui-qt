@@ -346,7 +346,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setTextMargin
  * Method:    textMargins
  * Signature: (J)Lorg/swdc/qt/beans/Margins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_textMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_textMargins
   (JNIEnv *, jobject, jlong);
 
 /*

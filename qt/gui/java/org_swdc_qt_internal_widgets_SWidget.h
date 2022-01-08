@@ -461,7 +461,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setContentsMarg
  * Method:    contentsMargins
  * Signature: (J)Lorg/swdc/qt/beans/Margins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
   (JNIEnv *, jobject, jlong);
 
 

@@ -99,11 +99,11 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_layout_SLayout_getSpacing
  * Method:    getContentsMargins
  * Signature: (J)Lorg/swdc/qt/beans/SMargins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayout_getContentsMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayout_getContentsMargins
 (JNIEnv * env, jobject self, jlong pointer) {
     QLayout * layout = (QLayout*)pointer;
-    QMargins margins = layout->contentsMargins();
-    return sMargins(env,margins);
+    QMargins * margins = new QMargins(layout->contentsMargins());
+    return (jlong)(intptr_t)margins;
 }
 
 /*

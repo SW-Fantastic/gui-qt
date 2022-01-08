@@ -154,6 +154,41 @@ public class Size {
         }
     }
 
+    public Size grownBy(Margins margin) {
+        if (getPointer() > 0 && margin.getPointer() > 0) {
+            long pointer = size.grownBy(getPointer(),margin.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public Size shrunkBy(Margins margin) {
+        if (getPointer() > 0 && margin.getPointer() > 0) {
+            long pointer = size.shrunkBy(getPointer(),margin.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
     public long getPointer() {
         return size.address();
     }

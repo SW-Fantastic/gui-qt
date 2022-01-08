@@ -13,8 +13,17 @@ extern "C" {
  * Method:    create
  * Signature: ()J
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create__
   (JNIEnv *, jobject);
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    create
+ * Signature: (II)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_create__II
+  (JNIEnv *, jobject, jint, jint);
 
 
 /*
@@ -112,6 +121,26 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_expandedTo
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_boundedTo
   (JNIEnv *, jobject, jlong, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    grownBy
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_grownBy
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SSize
+ * Method:    shrunkBy
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SSize_shrunkBy
+  (JNIEnv *, jobject, jlong, jlong);
+
+
+
 
 
 /*

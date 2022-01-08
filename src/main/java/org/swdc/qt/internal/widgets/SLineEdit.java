@@ -1,7 +1,5 @@
 package org.swdc.qt.internal.widgets;
 
-import org.swdc.qt.beans.Margins;
-
 public class SLineEdit extends SWidget{
 
 
@@ -59,7 +57,7 @@ public class SLineEdit extends SWidget{
     public native boolean dragEnabled(long pointer);
 
     public native void setTextMargins(long pointer,int left, int top, int right, int bottom);
-    public native Margins textMargins(long pointer);
+    public native long textMargins(long pointer);
 
     public native void setText(long pointer,String text);
     public native void clear(long pointer);

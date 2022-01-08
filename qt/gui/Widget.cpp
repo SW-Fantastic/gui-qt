@@ -758,11 +758,11 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setContentsMarg
  * Method:    contentsMargins
  * Signature: (J)Lorg/swdc/qt/beans/Margins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QWidget* widget = (QWidget*)pointer;
-    QMargins margins = widget->contentsMargins();
-    return sMargins(env,margins);
+    QMargins * margins =new QMargins(widget->contentsMargins());
+    return (jlong)(intptr_t)widget;
 }
 

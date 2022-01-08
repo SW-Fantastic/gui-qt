@@ -1,11 +1,11 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.ContextMenuPolicy;
-import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.layout.Layout;
+import org.swdc.qt.widgets.Margins;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.action.Action;
@@ -431,7 +431,17 @@ public class Widget {
 
     public Margins getContentMargins() {
         if (getPointer() > 0) {
-            return widget.contentsMargins(getPointer());
+            long pointer = widget.contentsMargins(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Margins margins = new Margins();
+                margins.wrap(pointer);
+                return margins;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

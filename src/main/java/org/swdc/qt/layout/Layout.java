@@ -1,7 +1,7 @@
 package org.swdc.qt.layout;
 
-import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.layout.SLayout;
+import org.swdc.qt.widgets.Margins;
 import org.swdc.qt.widgets.pane.Widget;
 
 public abstract class Layout<T extends SLayout> extends LayoutItem<T> {
@@ -69,7 +69,17 @@ public abstract class Layout<T extends SLayout> extends LayoutItem<T> {
 
     public Margins getContentsMargins() {
         if (getPointer() > 0) {
-            return layoutItem.getContentsMargins(getPointer());
+            long pointer = layoutItem.getContentsMargins(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Margins margins = new Margins();
+                margins.wrap(pointer);
+                return margins;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

@@ -42,16 +42,6 @@ jstring asJavaString(JNIEnv* env, const char* pat);
 jbyteArray asJavaArray(JNIEnv *env, unsigned char *buf, int len);
 
 
-/**
- * @brief sMargins
- * @param env
- * @param margins
- * @return
- */
-jobject sMargins(JNIEnv* env, QMargins margins);
-
-
-
 jobject sRgb(JNIEnv * env,QRgb val);
 
 

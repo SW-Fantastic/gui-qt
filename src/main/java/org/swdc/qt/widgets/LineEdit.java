@@ -1,7 +1,6 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.Alignment;
-import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.widgets.SLineEdit;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -293,7 +292,17 @@ public class LineEdit extends Widget {
 
     public Margins getTextMargins() {
         if (getPointer() > 0) {
-            return lineEdit.textMargins(getPointer());
+            long pointer = lineEdit.textMargins(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Margins margins = new Margins();
+                margins.wrap(pointer);
+                return margins;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

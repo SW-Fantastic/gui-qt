@@ -1,6 +1,5 @@
 package org.swdc.qt.internal.widgets;
 
-import org.swdc.qt.beans.Margins;
 import org.swdc.qt.internal.SPointer;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -125,7 +124,7 @@ public class SWidget extends SPointer  {
     public native void removeAction(long pointer,long actionPointer);
 
     public native void setContentsMargins(long pointer,int left, int top, int right, int bottom);
-    public native Margins contentsMargins(long pointer);
+    public native long contentsMargins(long pointer);
 
 
 

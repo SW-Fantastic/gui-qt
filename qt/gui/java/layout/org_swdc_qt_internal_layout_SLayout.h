@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_layout_SLayout_removeItem
  * Method:    getContentsMargins
  * Signature: (J)Lorg/swdc/qt/beans/Margins;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_qt_internal_layout_SLayout_getContentsMargins
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_layout_SLayout_getContentsMargins
   (JNIEnv *, jobject, jlong);
 
 /*

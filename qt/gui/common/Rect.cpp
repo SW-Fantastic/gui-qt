@@ -7,10 +7,24 @@
  * Method:    create
  * Signature: ()V
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create__
 (JNIEnv * env, jobject self) {
 
     QRect * rect = new QRect();
+    return (jlong)(intptr_t)rect;
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    create
+ * Signature: (IIII)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create__IIII
+(JNIEnv * env, jobject self, jint left, jint top, jint width, jint height) {
+
+    QRect * rect = new QRect(top,left,width,height);
     return (jlong)(intptr_t)rect;
 
 }

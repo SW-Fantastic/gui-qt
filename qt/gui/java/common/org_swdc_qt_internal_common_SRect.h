@@ -12,8 +12,19 @@ extern "C" {
  * Method:    create
  * Signature: ()V
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create__
   (JNIEnv *, jobject);
+
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    create
+ * Signature: (IIII)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_create__IIII
+  (JNIEnv *, jobject, jint, jint, jint, jint);
+
 
 /*
  * Class:     org_swdc_qt_internal_common_SRect
