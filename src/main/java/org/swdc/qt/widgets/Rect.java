@@ -2,8 +2,6 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.internal.common.SRect;
 
-import java.util.Objects;
-
 public class Rect {
 
     private SRect rect = new SRect();
@@ -38,6 +36,210 @@ public class Rect {
             throw new Exception("invalid pointer");
         }
         rect.address(nativePointer);
+    }
+
+    public Size getSize() {
+        if (getPointer() > 0) {
+            long pointer = rect.size(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Size size = new Size();
+                size.wrap(pointer);
+                return size;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public void setSize(Size size) {
+        if (getPointer() > 0 && size.getPointer() > 0) {
+            rect.setSize(getPointer(),size.getPointer());
+        }
+    }
+
+    public Rect marginsAdded(Margins margins) {
+        if (getPointer() > 0 && margins.getPointer() > 0) {
+            long pointer = rect.marginsAdded(getPointer(),margins.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Rect marginsRemoved(Margins margins) {
+        if (getPointer() > 0 && margins.getPointer() > 0) {
+            long pointer = rect.marginsRemoved(getPointer(),margins.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Rect rect = new Rect();
+                rect.wrap(pointer);
+                return rect;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+
+    public void setTopLeft(Point point){
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.setTopLeft(getPointer(),point.getPointer());
+        }
+    }
+
+    public void setBottomRight(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.setBottomRight(getPointer(),point.getPointer());
+        }
+    }
+
+    public void setTopRight(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.setTopRight(getPointer(),point.getPointer());
+        }
+    }
+
+    public void setBottomLeft(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.setBottomLeft(getPointer(),point.getPointer());
+        }
+    }
+
+    public Point getTopLeft() {
+        if (getPointer() > 0) {
+            long pointer = rect.topLeft(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Point point = new Point();
+                point.wrap(pointer);
+                return point;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Point getBottomRight() {
+        if (getPointer() > 0) {
+            long pointer = rect.bottomRight(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Point point = new Point();
+                point.wrap(pointer);
+                return point;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Point getTopRight() {
+        if (getPointer() > 0) {
+            long pointer = rect.topRight(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Point point = new Point();
+                point.wrap(pointer);
+                return point;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Point getBottomLeft() {
+        if (getPointer() > 0) {
+            long pointer = rect.bottomLeft(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Point point = new Point();
+                point.wrap(pointer);
+                return point;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Point getCenter() {
+        if (getPointer() > 0){
+            long pointer = rect.center(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            try {
+                Point point = new Point();
+                point.wrap(pointer);
+                return point;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+
+    public void moveTopLeft(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveTopLeft(getPointer(),point.getPointer());
+        }
+    }
+
+    public void moveBottomRight(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveBottomRight(getPointer(),point.getPointer());
+        }
+    }
+
+    public void moveTopRight(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveTopRight(getPointer(),point.getPointer());
+        }
+    }
+
+    public void moveBottomLeft(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveBottomLeft(getPointer(),point.getPointer());
+        }
+    }
+
+    public void moveCenter(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveCenter(getPointer(),point.getPointer());
+        }
+    }
+
+    public void moveTo(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            rect.moveTo(getPointer(),point.getPointer());
+        }
     }
 
     public boolean isEmpty() {
@@ -249,7 +451,7 @@ public class Rect {
 
     public boolean contains(int x, int y, boolean proper) {
         if (getPointer() > 0) {
-            return rect.contains(x,y,proper);
+            return rect.contains(getPointer(),x,y,proper);
         }
         return false;
     }

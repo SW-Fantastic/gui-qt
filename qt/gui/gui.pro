@@ -24,6 +24,7 @@ SOURCES += \
     ToolButton.cpp \
     Widget.cpp \
     common/Margin.cpp \
+    common/Point.cpp \
     common/Rect.cpp \
     common/Size.cpp \
     graphics/PainterPath.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     gui_global.h \
     gui.h \
     java/common/org_swdc_qt_internal_common_SMargins.h \
+    java/common/org_swdc_qt_internal_common_SPoint.h \
     java/common/org_swdc_qt_internal_common_SRect.h \
     java/common/org_swdc_qt_internal_common_SSize.h \
     java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \

@@ -146,6 +146,81 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setX
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setY
   (JNIEnv *, jobject, jlong, jint);
 
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setTopLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setTopLeft
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setBottomRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setBottomRight
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setTopRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setTopRight
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setBottomLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setBottomLeft
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    topLeft
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_topLeft
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    bottomRight
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_bottomRight
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    topRight
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_topRight
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    bottomLeft
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_bottomLeft
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    center
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_center
+  (JNIEnv *, jobject, jlong);
+
+
+
 /*
  * Class:     org_swdc_qt_internal_common_SRect
  * Method:    moveLeft
@@ -178,13 +253,65 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveRight
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottom
   (JNIEnv *, jobject, jlong, jint);
 
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTopLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTopLeft
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveBottomRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottomRight
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTopRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTopRight
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveBottomLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottomLeft
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveCenter
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveCenter
+  (JNIEnv *, jobject, jlong, jlong);
+
+
 /*
  * Class:     org_swdc_qt_internal_common_SRect
  * Method:    translate
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate__JII
   (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    translate
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_common_SRect
@@ -199,8 +326,16 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_transposed
  * Method:    moveTo
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo__JII
   (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTo
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo__JJ
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     org_swdc_qt_internal_common_SRect
@@ -272,6 +407,40 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_common_SRect_contains__JIIZ
  * Signature: (JJ)Z
  */
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_common_SRect_intersects
+  (JNIEnv *, jobject, jlong, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    marginsAdded
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_marginsAdded
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    marginsRemoved
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_marginsRemoved
+  (JNIEnv *, jobject, jlong, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    size
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_size
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setSize
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setSize
   (JNIEnv *, jobject, jlong, jlong);
 
 /*

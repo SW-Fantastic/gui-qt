@@ -213,6 +213,131 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setY
     rect->setY(y);
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setTopLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setTopLeft
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->setTopLeft(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setBottomRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setBottomRight
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->setBottomRight(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setTopRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setTopRight
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->setTopRight(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setBottomLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setBottomLeft
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->setBottomLeft(*point);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    topLeft
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_topLeft
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint* result = new QPoint(rect->topLeft());
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    bottomRight
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_bottomRight
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint* result = new QPoint(rect->bottomRight());
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    topRight
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_topRight
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint* result = new QPoint(rect->topRight());
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    bottomLeft
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_bottomLeft
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint* result = new QPoint(rect->bottomLeft());
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    center
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_center
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint* result = new QPoint(rect->center());
+    return (jlong)(intptr_t)result;
+}
+
+
+
 /*
  * Class:     org_swdc_qt_internal_common_SRect
  * Method:    moveLeft
@@ -261,17 +386,105 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottom
     rect->moveBottom(bottom);
 }
 
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTopLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTopLeft
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->moveTopLeft(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveBottomRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottomRight
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->moveBottomRight(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTopRight
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTopRight
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->moveTopRight(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveBottomLeft
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveBottomLeft
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->moveBottomLeft(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveCenter
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveCenter
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QRect * rect = (QRect*)pointer;
+
+    rect->moveCenter(*point);
+}
+
+
 /*
  * Class:     org_swdc_qt_internal_common_SRect
  * Method:    translate
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate__JII
 (JNIEnv * env, jobject self, jlong pointer, jint dx, jint dy) {
 
     QRect * rect = (QRect*)pointer;
     rect->translate(dx,dy);
 }
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    translate
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_translate__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint * point = (QPoint*)pointPointer;
+
+    rect->translate(*point);
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_common_SRect
@@ -293,12 +506,28 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_transposed
  * Method:    moveTo
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo__JII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y) {
 
     QRect * rect = (QRect*)pointer;
     rect->moveTo(x,y);
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    moveTo
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_moveTo__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QPoint * point = (QPoint*)pointPointer;
+
+    rect->moveTo(*point);
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_common_SRect
@@ -411,6 +640,65 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_common_SRect_intersects
     QRect * anotherRect = (QRect*)another;
 
     return rect->intersects(*anotherRect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    size
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_size
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QSize * size = new QSize(rect->size());
+
+    return (jlong)(intptr_t)size;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    setSize
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_common_SRect_setSize
+(JNIEnv * env, jobject self, jlong pointer, jlong sizePointer) {
+
+    QRect * rect = (QRect*)pointer;
+    QSize * size = (QSize*)sizePointer;
+
+    rect->setSize(*size);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    marginsAdded
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_marginsAdded
+(JNIEnv * env, jobject self, jlong pointer, jlong margins) {
+
+    QMargins * qMargins = (QMargins*)margins;
+    QRect * rect = (QRect*)pointer;
+
+    QRect * target = new QRect(rect->marginsAdded(*qMargins));
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_common_SRect
+ * Method:    marginsRemoved
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_common_SRect_marginsRemoved
+(JNIEnv * env, jobject self, jlong pointer, jlong margins) {
+
+    QMargins * qMargins = (QMargins*)margins;
+    QRect * rect = (QRect*)pointer;
+
+    QRect * target = new QRect(rect->marginsRemoved(*qMargins));
+    return (jlong)(intptr_t)target;
 }
 
 /*
