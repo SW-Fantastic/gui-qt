@@ -4,8 +4,12 @@ import org.swdc.qt.beans.BGMode;
 import org.swdc.qt.beans.PainterCompositionMode;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainter;
+import org.swdc.qt.widgets.Point;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.pane.Widget;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Painter {
 
@@ -99,13 +103,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Pen pen = new Pen();
-                pen.wrap(pointer);
-                return pen;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Pen.asPen(pointer);
         } else {
             return null;
         }
@@ -205,13 +203,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Transformation transformation = new Transformation();
-                transformation.wrap(pointer);
-                return transformation;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Transformation.asTransformation(pointer);
         } else {
             return null;
         }
@@ -235,13 +227,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Transformation transformation = new Transformation();
-                transformation.wrap(pointer);
-                return transformation;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Transformation.asTransformation(pointer);
         } else {
             return null;
         }
@@ -253,13 +239,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Transformation transformation = new Transformation();
-                transformation.wrap(pointer);
-                return transformation;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Transformation.asTransformation(pointer);
         } else {
             return null;
         }
@@ -309,13 +289,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         } else {
             return null;
         }
@@ -333,13 +307,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }
@@ -364,9 +332,53 @@ public class Painter {
     }
 
 
+
+    public void strokePath(PainterPath path, Pen pen) {
+        if (getPointer() > 0 && pen.getPointer() > 0 && path.getPointer() > 0) {
+            painter.strokePath(getPointer(),path.getPointer(),pen.getPointer());
+        }
+    }
+
+    public void fillPath(PainterPath path, Brush brush) {
+        if (getPointer() > 0 && path.getPointer() > 0 && brush.getPointer() > 0) {
+            painter.fillPath(getPointer(),path.getPointer(),brush.getPointer());
+        }
+    }
+
+    public void drawPath(PainterPath path) {
+        if (getPointer() > 0 && path.getPointer() > 0) {
+            painter.drawPath(getPointer(),path.getPointer());
+        }
+    }
+
     public void drawPoint(int x, int y) {
         if (getPointer() > 0) {
             painter.drawPoint(getPointer(),x,y);
+        }
+    }
+
+    public void drawPoint(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            painter.drawPoint(getPointer(),point.getPointer());
+        }
+    }
+
+    public void drawPoints(List<Point> points) {
+        if (getPointer() > 0) {
+
+            points = points
+                    .stream()
+                    .filter(p -> p != null && p.getPointer() > 0)
+                    .collect(Collectors.toList());
+
+            long [] pointers = new long[points.size()];
+            for (int idx = 0; idx < points.size(); idx ++) {
+                Point p = points.get(idx);
+                long pointer = p.getPointer();
+                pointers[idx] = pointer;
+            }
+
+            painter.drawPoints(getPointer(),pointers);
         }
     }
 
@@ -473,13 +485,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }

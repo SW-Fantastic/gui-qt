@@ -28,12 +28,12 @@ public class Margins {
         margins.address(pointer);
     }
 
-    public void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer !");
+            throw new RuntimeException("invalid pointer !");
         }
         margins.address(pointer);
     }
@@ -99,6 +99,15 @@ public class Margins {
 
     public long getPointer() {
         return margins.address();
+    }
+
+    public static Margins asMargins(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Margins margins = new Margins();
+        margins.wrap(nativePointer);
+        return margins;
     }
 
     @Override

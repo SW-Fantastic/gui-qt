@@ -43,12 +43,12 @@ public class Bitmap extends Pixmap {
         bitmap.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         bitmap.address(pointer);
     }
@@ -71,13 +71,7 @@ public class Bitmap extends Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Bitmap bitmap = new Bitmap();
-                bitmap.wrap(pointer);
-                return bitmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Bitmap.asBitmap(pointer);
         } else {
             return null;
         }
@@ -87,6 +81,15 @@ public class Bitmap extends Pixmap {
         if (getPointer() > 0) {
             bitmap.dispose(getPointer());
         }
+    }
+
+    public static Bitmap asBitmap(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid Pointer");
+        }
+        Bitmap bitmap = new Bitmap();
+        bitmap.wrap(nativePointer);
+        return bitmap;
     }
 
     @Override

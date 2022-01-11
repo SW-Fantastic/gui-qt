@@ -17,12 +17,12 @@ public class Pen {
         pen.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         pen.address(pointer);
     }
@@ -163,6 +163,15 @@ public class Pen {
             pen.dispose(getPointer());
             pen.cleanAddress();
         }
+    }
+
+    public static Pen asPen(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid Pointer");
+        }
+        Pen pen = new Pen();
+        pen.wrap(nativePointer);
+        return pen;
     }
 
 }

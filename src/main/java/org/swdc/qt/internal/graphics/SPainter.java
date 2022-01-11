@@ -57,12 +57,17 @@ public class SPainter extends SPointer {
     public native void setViewTransformEnabled(long pointer,boolean enable);
     public native boolean viewTransformEnabled(long pointer);
 
-   // public native void strokePath(QPainterPath &path, const QPen &pen);
-   // void fillPath(const QPainterPath &path, const QBrush &brush);
-   // void drawPath(const QPainterPath &path);
+    public native void strokePath(long pointer,long path, long pen);
+    public native void fillPath(long pointer,long path, long brush);
+    public native void drawPath(long pointer,long path);
 
     public native void drawPoint(long pointer,int x, int y);
+    public native void drawPoint(long pointer, long point);
+    public native void drawPoints(long pointer, long[] point);
+
     public native void drawLine(long pointer,int x1, int y1, int x2, int y2);
+    //public native void drawLine(long pointer,long p1, long p2);
+
     public native void drawRect(long pointer,int x1, int y1, int w, int h);
     public native void drawEllipse(long pointer,int x, int y, int w, int h);
     public native void drawArc(long pointer,int x, int y, int w, int h, int a, int alen);

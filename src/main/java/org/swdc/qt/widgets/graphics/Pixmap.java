@@ -23,12 +23,12 @@ public class Pixmap {
         pixmap.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         pixmap.address(pointer);
     }
@@ -70,13 +70,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }
@@ -124,16 +118,10 @@ public class Pixmap {
     public Pixmap scaled(int width, int height, AspectRatioMode aspectMode, TransformationMode transformationMode) {
         if (getPointer() > 0) {
             long pixmapPointer = pixmap.scaled(getPointer(),width,height,aspectMode.getVal(),transformationMode.getVal());
-            try {
-                if (pixmapPointer <= 0 ) {
-                    return null;
-                }
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pixmapPointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pixmapPointer <= 0 ) {
+                return null;
             }
+            return Pixmap.asPixmap(pixmapPointer);
         } else {
             return null;
         }
@@ -146,16 +134,10 @@ public class Pixmap {
     public Pixmap scaledToWidth(int w, TransformationMode transformationMode) {
         if (getPointer() > 0) {
             long pointer = pixmap.scaledToWidth(getPointer(),w,transformationMode.getVal());
-            try {
-                if (pointer <= 0) {
-                    return null;
-                }
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Pixmap.asPixmap(pointer);
         } else {
             return null;
         }
@@ -168,16 +150,10 @@ public class Pixmap {
     public Pixmap scaledToHeight(int h, TransformationMode transformationMode) {
         if (getPointer() > 0) {
             long pointer = pixmap.scaledToHeight(getPointer(),h,transformationMode.getVal());
-            try {
-                if (pointer <= 0) {
-                    return null;
-                }
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Pixmap.asPixmap(pointer);
         } else {
             return null;
         }
@@ -190,16 +166,10 @@ public class Pixmap {
     public Pixmap transformed(Transformation transformPointer, TransformationMode transformationMode) {
         if (getPointer() > 0) {
             long pointer = pixmap.transformed(getPointer(),transformPointer.getPointer(),transformationMode.getVal());
-            try {
-                if (pointer <= 0) {
-                    return null;
-                }
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Pixmap.asPixmap(pointer);
         } else {
             return null;
         }
@@ -265,13 +235,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Pixmap.asPixmap(pointer);
         } else {
             return null;
         }
@@ -291,13 +255,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Bitmap bitmap = new Bitmap();
-                bitmap.wrap(pointer);
-                return bitmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Bitmap.asBitmap(pointer);
         } else {
             return null;
         }
@@ -315,13 +273,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Bitmap bitmap = new Bitmap();
-                bitmap.wrap(pointer);
-                return bitmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Bitmap.asBitmap(pointer);
         } else  {
             return null;
         }
@@ -333,13 +285,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Bitmap bitmap = new Bitmap();
-                bitmap.wrap(pointer);
-                return bitmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Bitmap.asBitmap(pointer);
         } else {
             return null;
         }
@@ -353,13 +299,7 @@ public class Pixmap {
         if (pointer <= 0) {
             return null;
         }
-        try {
-            Pixmap pixmap = new Pixmap();
-            pixmap.wrap(pointer);
-            return pixmap;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return Pixmap.asPixmap(pointer);
     }
 
     public static <T extends Widget> Pixmap grabWidget(T widget,int x,int y,int width, int height) {
@@ -370,13 +310,7 @@ public class Pixmap {
         if (pointer <= 0) {
             return null;
         }
-        try {
-            Pixmap pixmap = new Pixmap();
-            pixmap.wrap(pointer);
-            return pixmap;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return Pixmap.asPixmap(pointer);
     }
 
     public void dispose() {
@@ -384,6 +318,15 @@ public class Pixmap {
             pixmap.dispose(getPointer());
             pixmap.cleanAddress();
         }
+    }
+
+    public static Pixmap asPixmap(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Pixmap pixmap = new Pixmap();
+        pixmap.wrap(nativePointer);
+        return pixmap;
     }
 
     public long getPointer() {

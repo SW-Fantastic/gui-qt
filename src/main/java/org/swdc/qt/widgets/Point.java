@@ -28,12 +28,12 @@ public class Point {
         point.address(pointer);
     }
 
-    public void wrap(long nativePointer) throws Exception {
+    private void wrap(long nativePointer) {
         if (getPointer() > 0) {
             return;
         }
         if (nativePointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         point.address(nativePointer);
     }
@@ -77,13 +77,7 @@ public class Point {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -96,6 +90,15 @@ public class Point {
 
     public long getPointer() {
         return point.address();
+    }
+
+    public static Point asPoint(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Point point = new Point();
+        point.wrap(nativePointer);
+        return point;
     }
 
 }

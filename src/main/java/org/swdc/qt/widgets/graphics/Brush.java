@@ -47,13 +47,7 @@ public class Brush {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Transformation transformation = new Transformation();
-                transformation.wrap(pointer);
-                return transformation;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Transformation.asTransformation(pointer);
         } else {
             return null;
         }
@@ -71,13 +65,7 @@ public class Brush {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Pixmap pixmap = new Pixmap();
-                pixmap.wrap(pointer);
-                return pixmap;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Pixmap.asPixmap(pointer);
         } else {
             return null;
         }

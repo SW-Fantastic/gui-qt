@@ -28,12 +28,12 @@ public class Rect {
         rect.address(pointer);
     }
 
-    public void wrap(long nativePointer) throws Exception {
+    private void wrap(long nativePointer) {
         if (getPointer() > 0) {
             return;
         }
         if (nativePointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         rect.address(nativePointer);
     }
@@ -67,13 +67,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }
@@ -84,13 +78,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }
@@ -126,13 +114,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -143,13 +125,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -160,13 +136,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -177,13 +147,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -194,13 +158,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Point point = new Point();
-                point.wrap(pointer);
-                return point;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Point.asPoint(pointer);
         }
         return null;
     }
@@ -287,13 +245,10 @@ public class Rect {
     public Rect normalized() {
         if (getPointer() > 0) {
             long pointer = rect.normalized(getPointer());
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Rect.asRect(pointer);
         } else {
             return null;
         }
@@ -385,13 +340,7 @@ public class Rect {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         } else {
             return null;
         }
@@ -485,6 +434,15 @@ public class Rect {
     @Override
     public int hashCode() {
         return Long.hashCode(rect.address());
+    }
+
+    public static Rect asRect(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Rect rect = new Rect();
+        rect.wrap(nativePointer);
+        return rect;
     }
 
     @Override

@@ -296,13 +296,7 @@ public class LineEdit extends Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Margins margins = new Margins();
-                margins.wrap(pointer);
-                return margins;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Margins.asMargins(pointer);
         }
         return null;
     }

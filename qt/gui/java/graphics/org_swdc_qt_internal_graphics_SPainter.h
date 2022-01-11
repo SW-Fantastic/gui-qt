@@ -308,13 +308,58 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setViewTransf
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewTransformEnabled
   (JNIEnv *, jobject, jlong);
 
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    strokePath
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_strokePath
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillPath
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillPath
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPath
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPath
+  (JNIEnv *, jobject, jlong, jlong);
+
+
+
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawPoint
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint__JII
   (JNIEnv *, jobject, jlong, jint, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPoint
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPoints
+ * Signature: (J[J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoints
+  (JNIEnv *, jobject, jlong, jlongArray);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter

@@ -254,13 +254,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }
@@ -435,13 +429,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Margins margins = new Margins();
-                margins.wrap(pointer);
-                return margins;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Margins.asMargins(pointer);
         }
         return null;
     }

@@ -2,6 +2,7 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.beans.Axis;
 import org.swdc.qt.internal.graphics.STransformation;
+import org.swdc.qt.layout.Layout;
 
 public class Transformation {
 
@@ -18,12 +19,12 @@ public class Transformation {
         transformation.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0){
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         transformation.address(pointer);
     }
@@ -223,6 +224,15 @@ public class Transformation {
         Transformation transformation = new Transformation();
         long pointer = STransformation.fromScale(dx,dy);
         transformation.wrap(pointer);
+        return transformation;
+    }
+
+    public static Transformation asTransformation(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Transformation transformation = new Transformation();
+        transformation.wrap(nativePointer);
         return transformation;
     }
 

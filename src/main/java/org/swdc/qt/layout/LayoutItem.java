@@ -75,13 +75,7 @@ public abstract class LayoutItem<T extends SLayoutItem> {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Rect rect = new Rect();
-                rect.wrap(pointer);
-                return rect;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Rect.asRect(pointer);
         }
         return null;
     }

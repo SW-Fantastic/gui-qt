@@ -490,17 +490,104 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPainter_viewTrans
     return painter->viewTransformEnabled() ? JNI_TRUE : JNI_FALSE;
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    strokePath
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_strokePath
+(JNIEnv * env, jobject self, jlong pointer, jlong painterPathPointer, jlong penPointer) {
+
+    QPen * pen = (QPen*)penPointer;
+    QPainterPath * path = (QPainterPath*)painterPathPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->strokePath(*path,*pen);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillPath
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillPath
+(JNIEnv * env, jobject self, jlong pointer, jlong pathPointer, jlong brushPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QBrush * brush = (QBrush*)brushPointer;
+    QPainterPath * path = (QPainterPath*)pathPointer;
+
+
+    painter->fillPath(*path,*brush);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPath
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPath
+(JNIEnv * env, jobject self, jlong pointer, jlong pathPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QPainterPath * path = (QPainterPath*)pathPointer;
+
+    painter->drawPath(*path);
+
+}
+
+
+
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawPoint
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint__JII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y) {
 
     QPainter * painter = (QPainter*)pointer;
     painter->drawPoint(x,y);
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPoint
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoint__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint * point = (QPoint*)pointPointer;
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawPoint(*point);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPoints
+ * Signature: (J[J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoints
+(JNIEnv * env, jobject self, jlong pointer, jlongArray pointsPointer) {
+
+    int arrLen = env->GetArrayLength(pointsPointer);
+    jlong * arr = env->GetLongArrayElements(pointsPointer,JNI_FALSE);
+
+    QVector<QPoint> points;
+    for(int idx = 0; idx < arrLen; idx ++) {
+        QPoint * point = (QPoint*)arr[idx];
+        points.append(*point);
+    }
+
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawPoints(points);
+
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
