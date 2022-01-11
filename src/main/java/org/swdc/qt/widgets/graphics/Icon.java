@@ -1,8 +1,6 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.beans.Alignment;
-import org.swdc.qt.beans.IconMode;
-import org.swdc.qt.beans.IconState;
 import org.swdc.qt.internal.graphics.SIcon;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;

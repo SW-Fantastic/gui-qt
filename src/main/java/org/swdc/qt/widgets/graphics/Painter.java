@@ -1,7 +1,6 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.beans.BGMode;
-import org.swdc.qt.beans.PainterCompositionMode;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainter;
 import org.swdc.qt.widgets.Point;

@@ -1,4 +1,4 @@
-package org.swdc.qt.beans;
+package org.swdc.qt.widgets.graphics;
 
 import java.util.Arrays;
 import java.util.List;
