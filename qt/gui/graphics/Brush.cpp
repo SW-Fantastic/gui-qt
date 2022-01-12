@@ -10,10 +10,25 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_create
 (JNIEnv * env, jobject self) {
 
     QBrush * brush = new QBrush();
-
     return (jlong)(intptr_t)brush;
 
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SBrush
+ * Method:    createWithGradient
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_createWithGradient
+(JNIEnv * env, jobject self, jlong gradient) {
+
+    QGradient * qGradient = (QGradient*)gradient;
+    QBrush * brush = new QBrush(*qGradient);
+
+    return (jlong)(intptr_t)brush;
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SBrush
@@ -153,6 +168,23 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SBrush_setColor
     brush->setColor(QColor(val));
 
 }
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SBrush
+ * Method:    gradient
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_gradient
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QBrush * brush = (QBrush*)pointer;
+    const QGradient * gradient = brush->gradient();
+    if(gradient) {
+        return (jlong)(intptr_t)gradient;
+    }
+    return 0;
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SBrush

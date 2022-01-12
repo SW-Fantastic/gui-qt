@@ -17,12 +17,26 @@ public class Brush {
         brush.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    public <T extends Gradient> void allocate(T gradient) throws Exception {
+        if (getPointer() > 0) {
+            return;
+        }
+        if (gradient.getPointer() <= 0) {
+            throw new Exception("invalid gradient instance");
+        }
+        long pointer = brush.createWithGradient(gradient.getPointer());
+        if (pointer <= 0) {
+            throw new Exception("can not create brush");
+        }
+        brush.address(pointer);
+    }
+
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new RuntimeException("invalid pointer");
         }
         brush.address(pointer);
     }
@@ -118,6 +132,15 @@ public class Brush {
         }
     }
 
+
+    public static Brush asBrush(long nativePointer) {
+        if (nativePointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Brush brush = new Brush();
+        brush.wrap(nativePointer);
+        return brush;
+    }
 
     public long getPointer() {
         return brush.address();

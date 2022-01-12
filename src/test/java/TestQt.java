@@ -1,3 +1,4 @@
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.swdc.qt.QtApplication;
 import org.swdc.qt.beans.*;
 import org.swdc.qt.internal.graphics.SRgb;
@@ -11,13 +12,16 @@ import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
+import org.swdc.qt.widgets.graphics.Brush;
 import org.swdc.qt.widgets.graphics.Color;
+import org.swdc.qt.widgets.graphics.LinearGradient;
 import org.swdc.qt.widgets.graphics.Pixmap;
 import org.swdc.qt.widgets.pane.StackedWidget;
 import org.swdc.qt.widgets.pane.TabWidget;
 import org.swdc.qt.widgets.pane.Widget;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class TestQt {
 
@@ -98,6 +102,9 @@ public class TestQt {
         layout.addWidget(button);
         layout.setContentsMargins(12,12,24,24);
 
+
+
+
         Widget tabA = new Widget();
         tabA.allocate();
 
@@ -140,11 +147,29 @@ public class TestQt {
         tabA.setPaintListener(painter -> {
             try {
 
-                Color color = new Color();
-                color.allocate("#FFF");
+                /*Color color = new Color();
+                color.allocate("#FFF");*/
+
+                Color colorA = new Color();
+                colorA.allocate(0,0,0,1.0);
+
+                Color colorB = new Color();
+                colorB.allocate(255,255,255,1.0);
+
+                LinearGradient l = new LinearGradient();
+                l.allocate();
+                l.setStops(Arrays.asList(
+                        MutablePair.of(0.0,colorA.getVal()),
+                        MutablePair.of(1.0,colorB.getVal())
+                ));
+                l.setStart(120,0);
+                l.setFinalStop(120,240);
+
+                Brush brush = new Brush();
+                brush.allocate(l);
 
                 painter.drawLine(0,0,10,10);
-                painter.fillRect(0,0,240,240,color);
+                painter.fillRect(0,0,240,240,brush);
 
                 System.err.println("painted!");
             } catch (Exception e) {

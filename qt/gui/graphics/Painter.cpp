@@ -594,11 +594,41 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoints
  * Method:    drawLine
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x1, jint y1, jint x2, jint y2) {
 
     QPainter * painter = (QPainter*)pointer;
     painter->drawLine(x1,y2,x2,y2);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawLine
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong line) {
+
+    QLine * qLine = (QLine*)line;
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawLine(*qLine);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawLine
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointAPointer, jlong pointBPointer) {
+
+    QPoint * pointA = (QPoint*)pointAPointer;
+    QPoint * pointB = (QPoint*)pointBPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->drawLine(*pointA,*pointB);
 }
 
 /*
@@ -853,6 +883,36 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JII
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRectWithPresetGradient
+ * Signature: (JIIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithPresetGradient
+(JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint w, jint h, jint presetVal) {
+
+    QGradient::Preset preset = QGradient::Preset(presetVal);
+    QPainter * painter = (QPainter*)pointer;
+    painter->fillRect(x,y,w,h,preset);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRectWithRectPresetGradient
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithRectPresetGradient
+(JNIEnv * env, jobject self, jlong pointer, jlong rect, jint presetVal) {
+
+    QGradient::Preset preset = QGradient::Preset(presetVal);
+    QRect * qRect = (QRect*)rect;
+    QPainter * painter = (QPainter*)pointer;
+    painter->fillRect(*qRect,preset);
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    eraseRect
  * Signature: (JIIII)V
  */
@@ -864,6 +924,33 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect
 }
 
 
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setRenderHint
+ * Signature: (JJZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setRenderHint
+(JNIEnv * env, jobject self, jlong pointer, jlong renderHintVal, jboolean on) {
+
+    QPainter::RenderHint hint = QPainter::RenderHint(renderHintVal);
+    QPainter * painter = (QPainter*)pointer;
+    painter->setRenderHint(hint,on);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setRenderHints
+ * Signature: (JJZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setRenderHints
+(JNIEnv * env, jobject self, jlong pointer, jlong renderHints, jboolean on) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QPainter::RenderHints hints = QPainter::RenderHints(renderHints);
+    painter->setRenderHints(hints);
+
+}
 
 
 /*

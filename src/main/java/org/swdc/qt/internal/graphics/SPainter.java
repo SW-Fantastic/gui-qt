@@ -66,7 +66,8 @@ public class SPainter extends SPointer {
     public native void drawPoints(long pointer, long[] point);
 
     public native void drawLine(long pointer,int x1, int y1, int x2, int y2);
-    //public native void drawLine(long pointer,long p1, long p2);
+    public native void drawLine(long pointer,long p1, long p2);
+    public native void drawLine(long pointer,long line);
 
     public native void drawRect(long pointer,int x1, int y1, int w, int h);
     public native void drawEllipse(long pointer,int x, int y, int w, int h);
@@ -98,16 +99,14 @@ public class SPainter extends SPointer {
     public native void fillRect(long pointer,int x, int y, int w, int h, long color);
     public native void fillRect(long pointer,int x, int y, int w, int h, int brushStyle);
 
-    //public void fillRect(int x, int y, int w, int h, QGradient::Preset preset);
-    //public void fillRect(const QRect &r, QGradient::Preset preset);
+    public native void fillRectWithPresetGradient(long pointer,int x, int y, int w, int h, int preset);
+    public native void fillRectWithRectPresetGradient(long pointer,long rectPointer, int preset);
     //public void fillRect(const QRectF &r, QGradient::Preset preset);
 
     public native void eraseRect(long pointer,int x, int y, int w, int h);
 
-    //void setRenderHint(RenderHint hint, bool on = true);
-    //void setRenderHints(RenderHints hints, bool on = true);
-    //RenderHints renderHints() const;
-    //public bool testRenderHint(RenderHint hint) const { return renderHints() & hint; }
+    public native void setRenderHint(long pointer,long hint, boolean on);
+    public native void setRenderHints(long pointer,long hints, boolean on);
 
     public native void dispose(long pointer);
 

@@ -3,6 +3,7 @@ package org.swdc.qt.widgets.graphics;
 import org.swdc.qt.beans.BGMode;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainter;
+import org.swdc.qt.widgets.Line;
 import org.swdc.qt.widgets.Point;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.pane.Widget;
@@ -126,13 +127,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Brush brush = new Brush();
-                brush.wrap(pointer);
-                return brush;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Brush.asBrush(pointer);
         } else {
             return null;
         }
@@ -165,13 +160,7 @@ public class Painter {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Brush brush = new Brush();
-                brush.wrap(pointer);
-                return brush;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Brush.asBrush(pointer);
         } else {
             return null;
         }
@@ -387,6 +376,18 @@ public class Painter {
         }
     }
 
+    public void drawLine(Point x, Point y) {
+        if (getPointer() > 0 && x.getPointer() > 0 && y.getPointer() > 0) {
+            painter.drawLine(getPointer(),x.getPointer(),y.getPointer());
+        }
+    }
+
+    public void drawLine(Line line) {
+        if (getPointer() > 0 && line.getPointer() > 0) {
+            painter.drawLine(getPointer(),line.getPointer());
+        }
+    }
+
     public void drawRect(int x1, int y1, int w, int h) {
         if (getPointer() > 0) {
             painter.drawRect(getPointer(),x1,y1,w,h);
@@ -504,6 +505,42 @@ public class Painter {
     public void fillRect(int x, int y, int w, int h, BrushStyle brushStyle) {
         if (getPointer() > 0) {
             painter.fillRect(getPointer(),x,y,w,h,brushStyle.getVal());
+        }
+    }
+
+    public void fillRect(int x, int y, int w, int h, GradientPresets preset) {
+        if (getPointer() > 0) {
+            painter.fillRectWithPresetGradient(getPointer(),x,y,w,h,preset.getVal());
+        }
+    }
+
+    public void fillRect(Rect rect, GradientPresets preset) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.fillRectWithRectPresetGradient(getPointer(),rect.getPointer(),preset.getVal());
+        }
+    }
+
+    public void eraseRect(int x, int y, int w, int h) {
+        if (getPointer() > 0) {
+            painter.eraseRect(getPointer(),x,y,w,h);
+        }
+    }
+
+    public void setRenderHint(RenderHint hint, boolean on) {
+        if (getPointer() > 0) {
+            painter.setRenderHint(getPointer(),hint.getVal(),on);
+        }
+    }
+
+    public void setRenderHints(boolean on,RenderHint ...hints) {
+        if (getPointer() > 0) {
+            long val = hints[0].getVal();
+            if (hints.length > 1) {
+                for (int idx = 1; idx < hints.length; idx ++) {
+                    val = val | hints[idx].getVal();
+                }
+            }
+            painter.setRenderHints(getPointer(),val,on);
         }
     }
 

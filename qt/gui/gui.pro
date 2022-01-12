@@ -26,10 +26,15 @@ SOURCES += \
     common/Line.cpp \
     common/Margin.cpp \
     common/Point.cpp \
+    common/RealPoint.cpp \
     common/Rect.cpp \
     common/Size.cpp \
+    graphics/ConicalGradient.cpp \
+    graphics/Gradient.cpp \
     graphics/Icon.cpp \
+    graphics/LinearGradient.cpp \
     graphics/PainterPath.cpp \
+    graphics/RadialGradient.cpp \
     gui.cpp \
     graphics/Transformation.cpp \
     graphics/Image.cpp \
@@ -54,10 +59,15 @@ HEADERS += \
     java/common/org_swdc_qt_internal_common_SLine.h \
     java/common/org_swdc_qt_internal_common_SMargins.h \
     java/common/org_swdc_qt_internal_common_SPoint.h \
+    java/common/org_swdc_qt_internal_common_SRealPoint.h \
     java/common/org_swdc_qt_internal_common_SRect.h \
     java/common/org_swdc_qt_internal_common_SSize.h \
+    java/graphics/org_swdc_qt_internal_graphics_SConicalGradient.h \
+    java/graphics/org_swdc_qt_internal_graphics_SGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SIcon.h \
+    java/graphics/org_swdc_qt_internal_graphics_SLinearGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \
+    java/graphics/org_swdc_qt_internal_graphics_SRadialGradient.h \
     java/jni.h \
     java/jni_md.h \
     java/layout/org_swdc_qt_internal_layout_SBoxLayout.h \

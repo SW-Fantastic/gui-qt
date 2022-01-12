@@ -5,6 +5,7 @@ import org.swdc.qt.internal.SPointer;
 public class SBrush extends SPointer {
 
     public native long create();
+    public native long createWithGradient(long gradient);
 
     public native int style(long pointer);
     public native void setStyle(long pointer,int style);
@@ -21,7 +22,7 @@ public class SBrush extends SPointer {
     public native long color(long pointer);
     public native void setColor(long pointer,long color);
 
-    //private native long gradient();
+    private native long gradient(long pointer);
 
     public native boolean isOpaque(long pointer);
 

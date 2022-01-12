@@ -17,6 +17,15 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_create
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SBrush
+ * Method:    createWithGradient
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_createWithGradient
+  (JNIEnv *, jobject, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SBrush
  * Method:    style
  * Signature: (J)I
  */
@@ -94,6 +103,15 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_color
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SBrush_setColor
   (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SBrush
+ * Method:    gradient
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SBrush_gradient
+  (JNIEnv *, jobject, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SBrush

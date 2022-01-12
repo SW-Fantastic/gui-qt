@@ -366,8 +366,27 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPoints
  * Method:    drawLine
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawLine
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawLine
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -515,6 +534,23 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JII
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRectWithPresetGradient
+ * Signature: (JIIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithPresetGradient
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRectWithRectPresetGradient
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithRectPresetGradient
+  (JNIEnv *, jobject, jlong, jlong, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    eraseRect
  * Signature: (JIIII)V
  */
@@ -522,6 +558,21 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
 
 
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setRenderHint
+ * Signature: (JJZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setRenderHint
+  (JNIEnv *, jobject, jlong, jlong, jboolean);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setRenderHints
+ * Signature: (JJZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setRenderHints
+  (JNIEnv *, jobject, jlong, jlong, jboolean);
 
 #ifdef __cplusplus
 }
