@@ -3,9 +3,7 @@ package org.swdc.qt.widgets.graphics;
 import org.swdc.qt.beans.BGMode;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainter;
-import org.swdc.qt.widgets.Line;
-import org.swdc.qt.widgets.Point;
-import org.swdc.qt.widgets.Rect;
+import org.swdc.qt.widgets.*;
 import org.swdc.qt.widgets.pane.Widget;
 
 import java.util.List;
@@ -394,9 +392,33 @@ public class Painter {
         }
     }
 
+    public void drawRect(Rect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRect(getPointer(),rect.getPointer());
+        }
+    }
+
+    public void drawRect(RealRect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRealRect(getPointer(),rect.getPointer());
+        }
+    }
+
     public void drawEllipse(int x, int y, int w, int h) {
         if (getPointer() > 0) {
             painter.drawEllipse(getPointer(),x,y,w,h);
+        }
+    }
+
+    public void drawEllipse(Rect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawEllipse(getPointer(),rect.getPointer());
+        }
+    }
+
+    public void drawEllipse(RealRect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRealEllipse(getPointer(),rect.getPointer());
         }
     }
 
@@ -406,9 +428,45 @@ public class Painter {
         }
     }
 
+    public void drawArc(Rect rect, int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() > 0){
+            painter.drawArc(getPointer(),rect.getPointer(),a,alen);
+        }
+    }
+
+    public void drawArc(RealRect rect, int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRealArc(getPointer(),rect.getPointer(),a,alen);
+        }
+    }
+
     public void drawPie(int x, int y, int w, int h, int a, int alen) {
         if (getPointer() > 0) {
             painter.drawPie(getPointer(),x,y,w,h,a,alen);
+        }
+    }
+
+    public void drawPie(Rect rect, int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() >0) {
+            painter.drawPie(getPointer(),rect.getPointer(),a,alen);
+        }
+    }
+
+    public void drawPie(RealRect rect, int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRealPie(getPointer(),rect.getPointer(),a,alen);
+        }
+    }
+
+    public void drawChord(Rect rect,int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawChord(getPointer(),rect.getPointer(),a,alen);
+        }
+    }
+
+    public void drawChord(RealRect rect,int a, int alen) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRealChord(getPointer(),rect.getPointer(),a,alen);
         }
     }
 
@@ -422,6 +480,18 @@ public class Painter {
                                        SizeMode sizeMode) {
         if (getPointer() > 0) {
             painter.drawRoundedRect(getPointer(),x,y,w,h,xRadius,yRadius,sizeMode.getVal());
+        }
+    }
+
+    public void drawRoundedRect(Rect rect, double xRadius, double yRadius, SizeMode sizeMode) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawRoundedRect(getPointer(),rect.getPointer(),xRadius,yRadius,sizeMode.getVal());
+        }
+    }
+
+    public void drawRoundedRect(RealRect rect, double xRadius, double yRadius, SizeMode sizeMode) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+           painter.drawRealRoundedRect(getPointer(),rect.getPointer(),xRadius,yRadius,sizeMode.getVal());
         }
     }
 
@@ -459,6 +529,53 @@ public class Painter {
         }
     }
 
+    public void drawPixmap(Point point, Pixmap pm, Rect sourceRect) {
+        if (getPointer() > 0 && point.getPointer() > 0 && sourceRect.getPointer() > 0) {
+            painter.drawPixmapPoint(getPointer(),point.getPointer(),pm.getPointer(),sourceRect.getPointer());
+        }
+    }
+
+    public void drawPixmap(RealPoint point, Pixmap pm, RealRect sourceRect) {
+        if (getPointer() > 0 && point.getPointer() > 0 && pm.getPointer() > 0 && sourceRect.getPointer() > 0) {
+            painter.drawRealPixmap(getPointer(),point.getPointer(),pm.getPointer(),sourceRect.getPointer());
+        }
+    }
+
+    public void drawPixmap(Rect targetRect,Pixmap pixmap, Rect sourceRect) {
+        if (getPointer() > 0 &&
+                targetRect.getPointer() > 0 &&
+                sourceRect.getPointer() > 0) {
+            painter.drawPixmap(getPointer(),targetRect.getPointer(),pixmap.getPointer(),sourceRect.getPointer());
+        }
+    }
+
+    public void drawPixmap(RealRect targetRect, Pixmap pixmap, RealRect sourceRect) {
+        if (getPointer() > 0 &&
+                targetRect.getPointer() > 0 &&
+                pixmap.getPointer() > 0 &&
+                sourceRect.getPointer() > 0) {
+            painter.drawRealPixmap(getPointer(),targetRect.getPointer(),pixmap.getPointer(),sourceRect.getPointer());
+        }
+    }
+
+    public void drawPixmap(Point point, Pixmap pm) {
+        if (getPointer() > 0 && point.getPointer() > 0 && pm.getPointer() > 0) {
+            painter.drawPixmap(getPointer(),point.getPointer(),pm.getPointer());
+        }
+    }
+
+    public void drawPixmap(RealPoint point,Pixmap pm) {
+        if (getPointer() > 0 && point.getPointer() > 0 && pm.getPointer() > 0) {
+            painter.drawPixmapRealPoint(getPointer(),point.getPointer(),pm.getPointer());
+        }
+    }
+
+    public void drawPixmap(Rect rect, Pixmap pm) {
+        if (getPointer() > 0 && rect.getPointer() > 0 && pm.getPointer() > 0) {
+            painter.drawPixmapRect(getPointer(),rect.getPointer(),pm.getPointer());
+        }
+    }
+
     public void drawImage(int x, int y, Image image, int sx, int sy,
                                  int sw, int sh, ImageConversation conversation) {
         if (getPointer() > 0 && image.getPointer() > 0) {
@@ -476,6 +593,30 @@ public class Painter {
     public void drawText(int x, int y, int w, int h, int flags, String text) {
         if (getPointer() > 0) {
             painter.drawText(getPointer(),x,y,w,h,flags,text);
+        }
+    }
+
+    public void drawText(RealRect rect, int flags, String text) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawTextRealRect(getPointer(),rect.getPointer(),flags,text);
+        }
+    }
+
+    public void drawText(Rect rect, int flags, String text) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.drawTextRect(getPointer(),rect.getPointer(),flags,text);
+        }
+    }
+
+    public void drawText(Point point,String s) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            painter.drawText(getPointer(),point.getPointer(),s);
+        }
+    }
+
+    public void drawText(RealPoint point, String s) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            painter.drawRealText(getPointer(),point.getPointer(),s);
         }
     }
 
@@ -520,9 +661,61 @@ public class Painter {
         }
     }
 
+    public void fillRect(Rect rect, Brush brush) {
+        if (getPointer() > 0 && rect.getPointer() > 0 && brush.getPointer() > 0) {
+            painter.fillRect(getPointer(),rect.getPointer(),brush.getPointer());
+        }
+    }
+
+    public void fillRect(RealRect realRect,Brush brush) {
+        if (getPointer() > 0 && brush.getPointer() > 0 && realRect.getPointer() > 0) {
+            painter.fillRealRect(getPointer(),realRect.getPointer(),brush.getPointer());
+        }
+    }
+
+    public void fillRect(Rect rect,Color color) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.fillColorRect(getPointer(),rect.getPointer(),color.getVal());
+        }
+    }
+    public void fillRect(RealRect rect,Color color) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.fillColorRealRect(getPointer(),rect.getPointer(),color.getVal());
+        }
+    }
+
+    public void fillRect(Rect rect, BrushStyle brushStyle) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.fillRect(getPointer(),rect.getPointer(),brushStyle.getVal());
+        }
+    }
+    public void fillRect(RealRect rect, BrushStyle brushStyle) {
+        if (getPointer() > 0 && rect.getPointer() > 0 ) {
+            painter.fillRealRect(getPointer(),rect.getPointer(),brushStyle.getVal());
+        }
+    }
+
+    public void fillRect(RealRect rect, GradientPresets preset) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.fillRealRectWithRectPresetGradient(getPointer(),rect.getPointer(),preset.getVal());
+        }
+    }
+
     public void eraseRect(int x, int y, int w, int h) {
         if (getPointer() > 0) {
             painter.eraseRect(getPointer(),x,y,w,h);
+        }
+    }
+
+    public void eraseRect(Rect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.eraseRect(getPointer(),rect.getPointer());
+        }
+    }
+
+    public void eraseRealRect(RealRect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            painter.eraseRealRect(getPointer(),rect.getPointer());
         }
     }
 

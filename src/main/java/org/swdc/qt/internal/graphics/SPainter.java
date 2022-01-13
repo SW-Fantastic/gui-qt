@@ -70,18 +70,49 @@ public class SPainter extends SPointer {
     public native void drawLine(long pointer,long line);
 
     public native void drawRect(long pointer,int x1, int y1, int w, int h);
+    public native void drawRect(long pointer,long rect);
+    public native void drawRealRect(long pointer,long realRect);
+
     public native void drawEllipse(long pointer,int x, int y, int w, int h);
+    public native void drawEllipse(long pointer,long rect);
+    public native void drawRealEllipse(long pointer, long rect);
+
     public native void drawArc(long pointer,int x, int y, int w, int h, int a, int alen);
+    public native void drawArc(long pointer,long rect, int a, int alen);
+    public native void drawRealArc(long pointer,long rect, int a, int alen);
+
     public native void drawPie(long pointer,int x, int y, int w, int h, int a, int alen);
+    public native void drawPie(long pointer,long rect, int a, int alen);
+    public native void drawRealPie(long pointer,long rect, int a, int alen);
+
     public native void drawChord(long pointer,int x, int y, int w, int h, int a, int alen);
+    public native void drawChord(long pointer, long rect,int a, int alen);
+    public native void drawRealChord(long pointer, long rect,int a, int alen);
+
     public native void drawRoundedRect(long pointer,int x, int y, int w, int h, double xRadius, double yRadius,
-                                int sizeMode);
+                                       int sizeMode);
+    public native void drawRoundedRect(long pointer,long rect, double xRadius, double yRadius,
+                                           int sizeMode);
+    public native void drawRealRoundedRect(long pointer,long rect, double xRadius, double yRadius,
+                                           int sizeMode);
 
     public native void drawTiledPixmap(long pointer,int x, int y, int w, int h, long pixmapPointer, int sx, int sy);
+
+
+
     public native void drawPixmap(long pointer,int x, int y, int w, int h, long pm,
                            int sx, int sy, int sw, int sh);
     public native void drawPixmap(long pointer,int x, int y, long pm,
                            int sx, int sy, int sw, int sh);
+
+    public native void drawPixmapPoint(long pointer,long pointPointer, long pm, long sourceRect);
+    public native void drawPixmapRealPoint(long pointer,long pointPointer,long pm, long sourceRect);
+    public native void drawPixmap(long pointer,long targetRect,long pixmap, long sourceRect);
+    public native void drawRealPixmap(long pointer,long targetRect, long pixmap, long sourceRect);
+
+    public native void drawPixmapRealPoint(long pointer,long pointPointer, long pm);
+    public native void drawPixmap(long pointer,long pointPointer,long pm);
+    public native void drawPixmapRect(long pointer,long rectPointer, long pm);
     public native void drawPixmap(long pointer,int x, int y, long pm);
     public native void drawPixmap(long pointer,int x, int y, int w, int h, long pm);
 
@@ -91,19 +122,37 @@ public class SPainter extends SPointer {
 
     public native void drawText(long pointer,int x, int y, String s);
     public native void drawText(long pointer,int x, int y, int w, int h, int flags, String text);
+
+    public native void drawTextRealRect(long pointer,long rect, int flags, String text);
+    public native void drawTextRect(long pointer,long rect, int flags, String text);
+
+    public native void drawText(long pointer,long pointPointer,String s);
+    public native void drawRealText(long pointer,long pointPointer, String s);
+
+
     public native long boundingRect(long pointer,int x, int y, int w, int h, int flags, String text);
 
     //public void drawTextItem(int x, int y, const QTextItem &ti);
 
     public native void fillRectBrush(long pointer,int x, int y, int w, int h, long brushPointer);
+    public native void fillRect(long pointer, long rect, long brush);
+    public native void fillRealRect(long pointer, long realRect, long brush);
+
     public native void fillRect(long pointer,int x, int y, int w, int h, long color);
+    public native void fillColorRect(long pointer,long rectPointer,long color);
+    public native void fillColorRealRect(long pointer,long rectPointer,long color);
+
     public native void fillRect(long pointer,int x, int y, int w, int h, int brushStyle);
+    public native void fillRect(long pointer,long rect, int brushStyle);
+    public native void fillRealRect(long pointer,long rect, int brushStyle);
 
     public native void fillRectWithPresetGradient(long pointer,int x, int y, int w, int h, int preset);
     public native void fillRectWithRectPresetGradient(long pointer,long rectPointer, int preset);
-    //public void fillRect(const QRectF &r, QGradient::Preset preset);
+    public native void fillRealRectWithRectPresetGradient(long pointer,long rect, int preset);
 
     public native void eraseRect(long pointer,int x, int y, int w, int h);
+    public native void eraseRect(long pointer,long rect);
+    public native void eraseRealRect(long pointer, long rect);
 
     public native void setRenderHint(long pointer,long hint, boolean on);
     public native void setRenderHints(long pointer,long hints, boolean on);

@@ -636,19 +636,48 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJJ
  * Method:    drawRect
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect__JIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height) {
 
     QPainter * painter = (QPainter*)pointer;
     painter->drawRect(x,y,width,height);
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+    QRect * rect = (QRect*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawRect(*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+
+    painter->drawRect(*rect);
+}
+
+
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawEllipse
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse__JIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height) {
 
     QPainter * painter = (QPainter*)pointer;
@@ -657,10 +686,41 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawEllipse
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+
+    painter->drawRect(*rect);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealEllipse
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealEllipse
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+
+    painter->drawEllipse(*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawArc
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc__JIIIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height, jint a, jint alen) {
 
     QPainter * painter = (QPainter*)pointer;
@@ -670,10 +730,37 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawArc
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc__JJII
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+    painter->drawArc(*rect,a,alen);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealArc
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealArc
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+    painter->drawArc(*rect,a,alen);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawPie
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie__JIIIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height, jint a, jint alen) {
 
     QPainter * painter = (QPainter*)pointer;
@@ -682,10 +769,37 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPie
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie__JJII
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+    painter->drawPie(*rect,a,alen);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealPie
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealPie
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+    painter->drawPie(*rect,a,alen);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawChord
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord__JIIIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height, jint a, jint alen) {
 
     QPainter * painter = (QPainter*)pointer;
@@ -694,15 +808,71 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawChord
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord__JJII
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+    painter->drawPie(*rect,a,alen);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealChord
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealChord
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint a, jint alen) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+    painter->drawChord(*rect,a,alen);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawRoundedRect
  * Signature: (JIIIIDDI)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect__JIIIIDDI
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height, jdouble radX, jdouble radY, jint sizeMode) {
 
     Qt::SizeMode mode = Qt::SizeMode(sizeMode);
     QPainter * painter = (QPainter*)pointer;
     painter->drawRoundedRect(x,y,width,height,radX,radY,mode);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRoundedRect
+ * Signature: (JJDDI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect__JJDDI
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jdouble radX, jdouble radY, jint sizeModeVal) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+    Qt::SizeMode mode = Qt::SizeMode(sizeModeVal);
+    painter->drawRoundedRect(*rect,radX,radY,mode);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealRoundedRect
+ * Signature: (JJDDI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealRoundedRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jdouble radX, jdouble radY, jint sizeModeVal) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+    Qt::SizeMode mode = Qt::SizeMode(sizeModeVal);
+    painter->drawRoundedRect(*rect,radX,radY,mode);
 }
 
 /*
@@ -747,6 +917,118 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__J
     painter->drawPixmap(x,y,*pixmap,sx,sy,sw,sh);
 
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapPoint
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapPoint
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jlong pixmapPointer, jlong sourceRectPointer) {
+
+    QRect * rect = (QRect*)sourceRectPointer;
+    QPoint * point = (QPoint*)pointPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*point,*pixmap,*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRealPoint
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRealPoint__JJJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jlong pixmapPointer, jlong sourceRectPointer) {
+
+    QRectF * rect = (QRectF*)sourceRectPointer;
+    QPointF * point = (QPointF*)pointPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*point,*pixmap,*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmap
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__JJJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong targetRectPointer, jlong pixmapPointer, jlong sourceRectPointer) {
+
+    QRect * rect = (QRect*)sourceRectPointer;
+    QRect * sourceRect = (QRect*)sourceRectPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*sourceRect,*pixmap,*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealPixmap
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealPixmap
+(JNIEnv * env, jobject self, jlong pointer, jlong targetPointer, jlong pixmapPointer, jlong sourceRectPointer) {
+
+    QRectF * rect = (QRectF*)sourceRectPointer;
+    QRectF * sourceRect = (QRectF*)sourceRectPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*sourceRect,*pixmap,*rect);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRealPoint
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRealPoint__JJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jlong pixmapPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QPointF * point = (QPointF*)pointPointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*point,*pixmap);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmap
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__JJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jlong pixmapPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QPoint * point = (QPoint*)pointPointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*point,*pixmap);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jlong pixmapPointer){
+
+    QPainter * painter = (QPainter*)pointer;
+    QRect * point = (QRect*)rectPointer;
+    QPixmap * pixmap = (QPixmap*)pixmapPointer;
+
+    painter->drawPixmap(*point,*pixmap);
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -823,6 +1105,67 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawTextRealRect
+ * Signature: (JJILjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRealRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint flags, jstring text) {
+
+    const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
+    QRectF * rect = (QRectF*)rectPointer;
+    QString str(cText);
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawText(*rect,flags,str);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawTextRect
+ * Signature: (JJILjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint flags, jstring text) {
+
+    const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
+    QRect * rect = (QRect*)rectPointer;
+    QString str(cText);
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawText(*rect,flags,str);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawText
+ * Signature: (JJLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JJLjava_lang_String_2
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jstring text) {
+
+    const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
+    QPoint * point = (QPoint*)pointPointer;
+    QString str(cText);
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawText(*point,str);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealText
+ * Signature: (JJLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealText
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer, jstring text){
+
+    const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
+    QPointF * point = (QPointF*)pointPointer;
+    QString str(cText);
+    QPainter * painter = (QPainter*)pointer;
+    painter->drawText(*point,str);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    boundingRect
  * Signature: (JIIIIILjava/lang/String;)Lorg/swdc/qt/beans/SRect;
  */
@@ -851,6 +1194,38 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectBrush
     painter->fillRect(x,y,width,height,*brush);
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jlong brushPointer) {
+
+    QBrush * brush = (QBrush*)brushPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+
+    painter->fillRect(*rect,*brush);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRect__JJJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jlong brushPointer) {
+
+    QBrush * brush = (QBrush*)brushPointer;
+    QPainter * painter = (QPainter*)pointer;
+    QRectF * rect = (QRectF*)rectPointer;
+
+    painter->fillRect(*rect,*brush);
+}
+
+
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    fillRect
@@ -869,6 +1244,38 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JII
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillColorRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillColorRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jlong rgbaVal) {
+
+    QRgb rgb = QRgb(rgbaVal);
+    QColor color = QColor(rgb);
+    QRect * rect = (QRect*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->fillRect(*rect,color);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillColorRealRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillColorRealRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jlong rgbaVal) {
+
+    QRgb rgb = QRgb(rgbaVal);
+    QColor color = QColor(rgb);
+    QRectF * rect = (QRectF*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->fillRect(*rect,color);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    fillRect
  * Signature: (JIIIII)V
  */
@@ -880,6 +1287,38 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JII
     painter->fillRect(x,y,width,height,style);
 
 }
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRect
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JJI
+  (JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint brushStyleVal) {
+
+    Qt::BrushStyle style = Qt::BrushStyle(brushStyleVal);
+    QRect * rect = (QRect*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->fillRect(*rect,style);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRect
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRect__JJI
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer, jint brushStyleVal) {
+
+    Qt::BrushStyle style = Qt::BrushStyle(brushStyleVal);
+    QRectF * rect = (QRectF*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+
+    painter->fillRect(*rect,style);
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -910,17 +1349,57 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithR
 
 }
 
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRectWithRectPresetGradient
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRectWithRectPresetGradient
+(JNIEnv * env, jobject self, jlong pointer, jlong rect, jint presetVal) {
+
+    QGradient::Preset preset = QGradient::Preset(presetVal);
+    QRectF * qRect = (QRectF*)rect;
+    QPainter * painter = (QPainter*)pointer;
+    painter->fillRect(*qRect,preset);
+}
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    eraseRect
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect__JIIII
 (JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint width, jint height) {
 
     QPainter * painter = (QPainter*)pointer;
     painter->eraseRect(x,y,width,height);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    eraseRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer){
+
+    QRect * rect = (QRect*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+    painter->eraseRect(*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    eraseRealRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRealRect
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+    QRectF * rect = (QRectF*)rectPointer;
+    QPainter * painter = (QPainter*)pointer;
+    painter->eraseRect(*rect);
 }
 
 

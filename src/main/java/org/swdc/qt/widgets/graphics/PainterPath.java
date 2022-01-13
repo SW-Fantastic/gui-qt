@@ -1,6 +1,5 @@
 package org.swdc.qt.widgets.graphics;
 
-import org.swdc.qt.beans.FillRule;
 import org.swdc.qt.beans.SizeMode;
 import org.swdc.qt.internal.graphics.SPainterPath;
 
@@ -144,15 +143,15 @@ public class PainterPath {
         return false;
     }
 
-    public FillRule fillRule(){
+    public PainterFillRule fillRule(){
         if(getPointer() > 0) {
             int rule = painterPath.fillRule(getPointer());
-            return FillRule.valueOf(rule);
+            return PainterFillRule.valueOf(rule);
         }
         return null;
     }
 
-    public void setFillRule(FillRule fillRule) {
+    public void setFillRule(PainterFillRule fillRule) {
         if (getPointer() > 0) {
             painterPath.setFillRule(getPointer(),fillRule.getVal());
         }

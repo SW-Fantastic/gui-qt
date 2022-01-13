@@ -393,48 +393,152 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawLine__JJ
  * Method:    drawRect
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect__JIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRect__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealRect
+  (JNIEnv *, jobject, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawEllipse
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse__JIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawEllipse
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawEllipse__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealEllipse
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealEllipse
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawArc
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc__JIIIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawArc
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawArc__JJII
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealArc
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealArc
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawPie
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie__JIIIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPie
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPie__JJII
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealPie
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealPie
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawChord
  * Signature: (JIIIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord__JIIIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawChord
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawChord__JJII
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealChord
+ * Signature: (JJII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealChord
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    drawRoundedRect
  * Signature: (JIIIIDDI)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect__JIIIIDDI
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jdouble, jdouble, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRoundedRect
+ * Signature: (JJDDI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRoundedRect__JJDDI
+  (JNIEnv *, jobject, jlong, jlong, jdouble, jdouble, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealRoundedRect
+ * Signature: (JJDDI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealRoundedRect
+  (JNIEnv *, jobject, jlong, jlong, jdouble, jdouble, jint);
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -459,6 +563,64 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__J
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__JIIJIIII
   (JNIEnv *, jobject, jlong, jint, jint, jlong, jint, jint, jint, jint);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapPoint
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapPoint
+  (JNIEnv *, jobject, jlong, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRealPoint
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRealPoint__JJJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmap
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__JJJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealPixmap
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealPixmap
+  (JNIEnv *, jobject, jlong, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRealPoint
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRealPoint__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmap
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmap__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawPixmapRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawPixmapRect
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -502,6 +664,40 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawTextRealRect
+ * Signature: (JJILjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRealRect
+  (JNIEnv *, jobject, jlong, jlong, jint, jstring);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawTextRect
+ * Signature: (JJILjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRect
+  (JNIEnv *, jobject, jlong, jlong, jint, jstring);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawText
+ * Signature: (JJLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JJLjava_lang_String_2
+  (JNIEnv *, jobject, jlong, jlong, jstring);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    drawRealText
+ * Signature: (JJLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealText
+  (JNIEnv *, jobject, jlong, jlong, jstring);
+
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    boundingRect
  * Signature: (JIIIIILjava/lang/String;)Lorg/swdc/qt/beans/SRect;
  */
@@ -519,10 +715,43 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectBrush
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    fillRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRect__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRect
  * Signature: (JIIIIJ)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JIIIIJ
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillColorRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillColorRect
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillColorRealRect
+ * Signature: (JJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillColorRealRect
+  (JNIEnv *, jobject, jlong, jlong, jlong);
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -531,6 +760,23 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JII
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JIIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRect
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRect__JJI
+  (JNIEnv *, jobject, jlong, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRect
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRect__JJI
+  (JNIEnv *, jobject, jlong, jlong, jint);
+
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
@@ -551,11 +797,35 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRectWithR
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    fillRealRectWithRectPresetGradient
+ * Signature: (JJI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_fillRealRectWithRectPresetGradient
+  (JNIEnv *, jobject, jlong, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    eraseRect
  * Signature: (JIIII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect__JIIII
   (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    eraseRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRect__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    eraseRealRect
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_eraseRealRect
+  (JNIEnv *, jobject, jlong, jlong);
 
 
 /*

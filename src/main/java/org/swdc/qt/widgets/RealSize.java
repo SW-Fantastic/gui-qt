@@ -1,11 +1,11 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.AspectRatioMode;
-import org.swdc.qt.internal.common.SSize;
+import org.swdc.qt.internal.common.SRealSize;
 
-public class Size {
+public class RealSize {
 
-    private SSize size = new SSize();
+    private SRealSize size = new SRealSize();
 
     public void allocate() throws Exception {
         if (getPointer() > 0) {
@@ -42,108 +42,84 @@ public class Size {
         return false;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         if (getPointer() > 0) {
             return size.width(getPointer());
         }
         return 0;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         if (getPointer() > 0) {
             return size.height(getPointer());
         }
         return 0;
     }
 
-    public void setWidth(int w) {
+    public void setWidth(double w) {
         if (getPointer() > 0) {
             size.setWidth(getPointer(),w);
         }
     }
 
-    public void setHeight(int h){
+    public void setHeight(double h){
         if (getPointer() > 0) {
             size.setHeight(getPointer(),h);
         }
     }
 
-    public void transpose(Size size) {
+    public void transpose(RealSize size) {
         if (getPointer() > 0 && size.getPointer() > 0) {
             this.size.transpose(size.getPointer());
         }
     }
 
-    public Size transposed() {
+    public RealSize transposed() {
         if (getPointer() > 0) {
             long pointer = size.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return RealSize.asRealSize(pointer);
         }
         return null;
     }
 
-    public void scale(int w, int h, AspectRatioMode mode) {
+    public void scale(double w, double h, AspectRatioMode mode) {
         if (getPointer() > 0) {
             this.size.scale(getPointer(),w,h,mode.getVal());
         }
     }
 
-    public Size scaled(int w, int h,AspectRatioMode mode) {
+    public RealSize scaled(int w, int h,AspectRatioMode mode) {
         if (getPointer() > 0) {
             long pointer = this.size.scaled(getPointer(),w,h,mode.getVal());
             if (getPointer() < 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.allocate();
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return RealSize.asRealSize(pointer);
         }
         return null;
     }
 
-    public Size expandedTo(Rect another){
+    public RealSize expandedTo(RealRect another){
         if (getPointer() > 0 && another.getPointer() > 0) {
             long pointer = size.expandedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e){
-                throw new RuntimeException(e);
-            }
+            return asRealSize(pointer);
         } else {
             return null;
         }
     }
-    public Size boundedTo(Size another) {
+    public RealSize boundedTo(RealSize another) {
         if (getPointer() > 0 && another.getPointer() > 0) {
             long pointer = size.boundedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return asRealSize(pointer);
         }
         return null;
     }
@@ -154,46 +130,34 @@ public class Size {
         }
     }
 
-    public Size grownBy(Margins margin) {
+    public RealSize grownBy(RealMargins margin) {
         if (getPointer() > 0 && margin.getPointer() > 0) {
             long pointer = size.grownBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return asRealSize(pointer);
         } else {
             return null;
         }
     }
 
-    public Size shrunkBy(Margins margin) {
+    public RealSize shrunkBy(RealMargins margin) {
         if (getPointer() > 0 && margin.getPointer() > 0) {
             long pointer = size.shrunkBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return asRealSize(pointer);
         }
         return null;
     }
 
-    public static Size asSize(long nativePointer) {
+    public static RealSize asRealSize(long nativePointer) {
         if (nativePointer <= 0) {
             throw new RuntimeException("invalid pointer");
         }
-        Size size = new Size();
+        RealSize size = new RealSize();
         size.wrap(nativePointer);
         return size;
     }
@@ -209,4 +173,5 @@ public class Size {
                 ", height = " + getHeight() +
                 '}';
     }
+
 }

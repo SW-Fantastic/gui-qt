@@ -1,12 +1,12 @@
-package org.swdc.qt.beans;
+package org.swdc.qt.widgets.graphics;
 
-public enum FillRule {
+public enum PainterFillRule {
 
     OddEvenFill(0),
     WindingFill(1);
 
     private int val;
-    FillRule(int val) {
+    PainterFillRule(int val) {
         this.val = val;
     }
 
@@ -14,7 +14,7 @@ public enum FillRule {
         return val;
     }
 
-    public static FillRule valueOf(int val) {
+    public static PainterFillRule valueOf(int val) {
         switch (val) {
             case 0 : return OddEvenFill;
             case 1 : return WindingFill;
