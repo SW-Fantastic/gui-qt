@@ -53,13 +53,7 @@ public class Pixmap {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }

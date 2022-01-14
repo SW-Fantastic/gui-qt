@@ -741,6 +741,23 @@ public class Painter {
         return painter.address();
     }
 
+    public void setFont(Font font) {
+        if (getPointer() > 0 && font.getPointer() > 0) {
+            this.painter.setFont(getPointer(),font.getPointer());
+        }
+    }
+
+    public Font getFont() {
+        if (getPointer() > 0) {
+            long pointer = this.painter.font(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Font.asFont(pointer);
+        }
+        return null;
+    }
+
     public void dispose() {
         if (getPointer() > 0) {
             painter.dispose(getPointer());

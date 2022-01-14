@@ -9,6 +9,7 @@ import org.swdc.qt.widgets.Margins;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.action.Action;
+import org.swdc.qt.widgets.graphics.Font;
 
 public class Widget {
     
@@ -59,13 +60,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }
@@ -76,13 +71,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }
@@ -147,13 +136,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e ) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }
@@ -204,13 +187,7 @@ public class Widget {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size size = new Size();
-                size.wrap(pointer);
-                return size;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }
@@ -430,6 +407,23 @@ public class Widget {
                 return null;
             }
             return Margins.asMargins(pointer);
+        }
+        return null;
+    }
+
+    public void setFont(Font font) {
+        if (getPointer() > 0 && font.getPointer() > 0) {
+            this.widget.setFont(getPointer(),font.getPointer());
+        }
+    }
+
+    public Font getFont() {
+        if (getPointer() > 0) {
+            long pointer = this.widget.font(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Font.asFont(pointer);
         }
         return null;
     }

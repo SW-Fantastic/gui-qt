@@ -12,10 +12,7 @@ import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
-import org.swdc.qt.widgets.graphics.Brush;
-import org.swdc.qt.widgets.graphics.Color;
-import org.swdc.qt.widgets.graphics.LinearGradient;
-import org.swdc.qt.widgets.graphics.Pixmap;
+import org.swdc.qt.widgets.graphics.*;
 import org.swdc.qt.widgets.pane.StackedWidget;
 import org.swdc.qt.widgets.pane.TabWidget;
 import org.swdc.qt.widgets.pane.Widget;
@@ -59,6 +56,8 @@ public class TestQt {
                 "   font-size: 14px;" +
                 "}" +
                 "QPushButton{" +
+                "   font-family:FZMiaoWuS-GB;" +
+                "   font-size: 20px;" +
                 "   background-color:#68CA93;" +
                 "   color: #FFF;" +
                 "   border-width: 0px;" +
@@ -101,7 +100,6 @@ public class TestQt {
         layout.addSpacerItem(sSpacer);
         layout.addWidget(button);
         layout.setContentsMargins(12,12,24,24);
-
 
 
 
@@ -194,6 +192,13 @@ public class TestQt {
         vbox.allocate();
         vbox.setContentsMargins(0,0,0,0);
 
+        Font font = Font.load(new File("font.ttf"));
+        System.err.println(font.getFamily());
+
+        font.setPixelSize(24);
+
+        button.setFont(font);
+        field.setFont(font);
 
         MenuBar menuBar = new MenuBar();
         menuBar.allocate();

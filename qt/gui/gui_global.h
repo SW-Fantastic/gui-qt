@@ -23,6 +23,8 @@
 #include <QMenu>
 #include <QMenuBar>
 
+#include <QFontDatabase>
+
 #include <QPainterPath>
 #include <QPainter>
 #include <QThreadPool>

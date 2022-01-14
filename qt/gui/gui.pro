@@ -33,6 +33,7 @@ SOURCES += \
     common/Rect.cpp \
     common/Size.cpp \
     graphics/ConicalGradient.cpp \
+    graphics/Font.cpp \
     graphics/Gradient.cpp \
     graphics/Icon.cpp \
     graphics/LinearGradient.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     java/common/org_swdc_qt_internal_common_SRect.h \
     java/common/org_swdc_qt_internal_common_SSize.h \
     java/graphics/org_swdc_qt_internal_graphics_SConicalGradient.h \
+    java/graphics/org_swdc_qt_internal_graphics_SFont.h \
     java/graphics/org_swdc_qt_internal_graphics_SGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SIcon.h \
     java/graphics/org_swdc_qt_internal_graphics_SLinearGradient.h \

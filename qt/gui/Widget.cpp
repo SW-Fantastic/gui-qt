@@ -763,6 +763,32 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargin
 
     QWidget* widget = (QWidget*)pointer;
     QMargins * margins =new QMargins(widget->contentsMargins());
-    return (jlong)(intptr_t)widget;
+    return (jlong)(intptr_t)margins;
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    font
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_font
+  (JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QFont * font = new QFont(widget->font());
+    return (jlong)(intptr_t)font;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setFont
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setFont
+(JNIEnv * env, jobject self, jlong pointer, jlong font) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QFont * fontVal = (QFont*)font;
+    widget->setFont(*fontVal);
+}

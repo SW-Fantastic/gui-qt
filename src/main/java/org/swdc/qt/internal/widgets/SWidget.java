@@ -126,6 +126,9 @@ public class SWidget extends SPointer  {
     public native void setContentsMargins(long pointer,int left, int top, int right, int bottom);
     public native long contentsMargins(long pointer);
 
+    public native long font(long pointer);
+    public native void setFont(long pointer, long font);
+
 
 
 }

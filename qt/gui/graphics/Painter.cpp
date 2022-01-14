@@ -72,6 +72,34 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPainter_isActive
     return painter->isActive() ? JNI_TRUE : JNI_FALSE;
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    font
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_font
+  (JNIEnv * env, jobject self, jlong pointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QFont * font = new QFont(painter->font());
+    return (jlong)(intptr_t)font;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setFont
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setFont
+(JNIEnv * env, jobject self, jlong pointer, jlong fontPointer) {
+
+    QPainter * painter = (QPainter*)pointer;
+    QFont* font = (QFont*)fontPointer;
+    painter->setFont(*font);
+
+}
+
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    setColorPen

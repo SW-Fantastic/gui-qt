@@ -465,6 +465,23 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargin
   (JNIEnv *, jobject, jlong);
 
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    font
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_font
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setFont
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setFont
+  (JNIEnv *, jobject, jlong, jlong);
+
+
 #ifdef __cplusplus
 }
 #endif

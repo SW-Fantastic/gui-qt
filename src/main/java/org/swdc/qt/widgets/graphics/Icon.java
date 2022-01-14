@@ -54,13 +54,7 @@ public class Icon {
             if (pointer <= 0) {
                 return null;
             }
-            try {
-                Size result = new Size();
-                result.wrap(pointer);
-                return result;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return Size.asSize(pointer);
         }
         return null;
     }

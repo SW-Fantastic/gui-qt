@@ -12,6 +12,9 @@ public class SPainter extends SPointer {
 
     public native boolean isActive(long pointer);
 
+    public native long font(long pointer);
+    public native void setFont(long pointer,long font);
+
     public native void setColorPen(long pointer,long color);
     public native void setPen(long pointer,long penPointer);
     public native void setPen(long pointer,int penStyle);

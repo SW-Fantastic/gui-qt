@@ -62,6 +62,22 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPainter_isActive
 
 /*
  * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    font
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_font
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
+ * Method:    setFont
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setFont
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_graphics_SPainter
  * Method:    setColorPen
  * Signature: (JJ)V
  */
