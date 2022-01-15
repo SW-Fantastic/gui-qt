@@ -1,15 +1,18 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.ContextMenuPolicy;
+import org.swdc.qt.beans.WindowModality;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.layout.Layout;
 import org.swdc.qt.widgets.Margins;
+import org.swdc.qt.widgets.Point;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.graphics.Font;
+import org.swdc.qt.widgets.graphics.Icon;
 
 public class Widget {
     
@@ -424,6 +427,149 @@ public class Widget {
                 return null;
             }
             return Font.asFont(pointer);
+        }
+        return null;
+    }
+
+    public Icon getWindowIcon() {
+        if (getPointer() > 0) {
+            long pointer = widget.windowIcon(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Icon.asIcon(pointer);
+        }
+        return null;
+    }
+
+    public void setWindowIcon(Icon icon) {
+        if (getPointer() > 0 && icon.getPointer() > 0) {
+            widget.setWindowIcon(getPointer(),icon.getPointer());
+        }
+    }
+
+    public void update(int x, int y, int w, int h){
+        if (getPointer() > 0) {
+            widget.update(getPointer(),x,y,w,h);
+        }
+    }
+
+    public void update(Rect rect) {
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            widget.update(getPointer(),rect.getPointer());
+        }
+    }
+
+    public void update() {
+        if (getPointer() > 0) {
+           widget.update(getPointer());
+        }
+    }
+
+    public boolean isTopLevel() {
+        if (getPointer() > 0) {
+            return widget.isTopLevel(getPointer());
+        }
+        return false;
+    }
+
+    public boolean isWindow() {
+        if (getPointer() > 0) {
+            return widget.isWindow(getPointer());
+        }
+        return false;
+    }
+
+    public boolean isModal() {
+        if (getPointer() > 0) {
+            return widget.isModal(getPointer());
+        }
+        return false;
+    }
+
+    public WindowModality windowModality() {
+        if (getPointer() > 0) {
+            int val = widget.windowModality(getPointer());
+            return WindowModality.valueOf(val);
+        }
+        return null;
+    }
+
+    public void setWindowModality(WindowModality windowModality) {
+        if (getPointer() > 0) {
+            widget.setWindowModality(getPointer(),windowModality.getVal());
+        }
+    }
+
+    public boolean isEnabled(){
+        if (getPointer() > 0) {
+            return widget.isEnabled(getPointer());
+        }
+        return false;
+    }
+
+    public Point mapToGlobal(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            long pointer = widget.mapToGlobal(getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public Point mapFromGlobal(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            long pointer = widget.mapFromGlobal(getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public Point mapToParent(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            long pointer = widget.mapToParent(getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public Point mapFromParent(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            long pointer = widget.mapFromParent(getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public <T extends Widget> Point mapTo(T widget, Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0 && widget.getPointer() > 0) {
+            long pointer = this.widget.mapTo(getPointer(),widget.getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public <T extends Widget> Point mapFrom(T widget, Point point) {
+        if (getPointer() > 0 && widget.getPointer() > 0 && point.getPointer() > 0) {
+            long pointer = this.widget.mapFrom(getPointer(),widget.getPointer(),point.getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
         }
         return null;
     }

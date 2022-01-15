@@ -792,3 +792,238 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setFont
     QFont * fontVal = (QFont*)font;
     widget->setFont(*fontVal);
 }
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setWindowIcon
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowIcon
+(JNIEnv * env, jobject self, jlong pointer, jlong iconPointer) {
+
+    QIcon * icon = (QIcon*)iconPointer;
+    QWidget * widget = (QWidget*)pointer;
+    widget->setWindowIcon(*icon);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    windowIcon
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_windowIcon
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QIcon * icon = new QIcon(widget->windowIcon());
+
+    return (jlong)(intptr_t)icon;
+}
+
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (JIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__JIIII
+(JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint w, jint h) {
+
+    QWidget * widget = (QWidget*)pointer;
+    widget->update(x,y,w,h);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QRect * rect = (QRect*)rectPointer;
+
+    widget->update(*rect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__J
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    widget->update();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isTopLevel
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isTopLevel
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isTopLevel() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isWindow
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isWindow
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isWindow() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isModal
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isModal
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isModal() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    windowModality
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_windowModality
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return int(widget->windowModality());
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setWindowModality
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowModality
+(JNIEnv * env, jobject self, jlong pointer, jint modalVal) {
+
+    Qt::WindowModality modal = Qt::WindowModality(modalVal);
+    QWidget * widget = (QWidget*)pointer;
+    widget->setWindowModality(modal);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isEnabled
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isEnabled
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isEnabled();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapToGlobal
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapToGlobal
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QPoint * result = new QPoint(widget->mapToGlobal(*point));
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFromGlobal
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFromGlobal
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QPoint * result = new QPoint(widget->mapFromGlobal(*point));
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapToParent
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapToParent
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QPoint * result = new QPoint(widget->mapToParent(*point));
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFromParent
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFromParent
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QPoint * result = new QPoint(widget->mapFromParent(*point));
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapTo
+ * Signature: (JJJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapTo
+(JNIEnv * env, jobject self, jlong pointer, jlong widgetPointer, jlong pointPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QWidget * from = (QWidget*)widgetPointer;
+
+    QPoint * result = new QPoint(widget->mapTo(from,*point));
+    return (jlong)(intptr_t)result;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFrom
+ * Signature: (JJJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFrom
+(JNIEnv * env, jobject self, jlong pointer, jlong widgetPointer, jlong pointPointer){
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint* point = (QPoint*)pointPointer;
+
+    QWidget * from = (QWidget*)widgetPointer;
+
+    QPoint * result = new QPoint(widget->mapFrom(from,*point));
+    return (jlong)(intptr_t)result;
+}

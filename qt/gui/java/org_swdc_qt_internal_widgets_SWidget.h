@@ -482,6 +482,144 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setFont
   (JNIEnv *, jobject, jlong, jlong);
 
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setWindowIcon
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowIcon
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    windowIcon
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_windowIcon
+  (JNIEnv *, jobject, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (JIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__JIIII
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__JJ
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    update
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_update__J
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isTopLevel
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isTopLevel
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isWindow
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isWindow
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isModal
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isModal
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    windowModality
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_windowModality
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setWindowModality
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowModality
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isEnabled
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isEnabled
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapToGlobal
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapToGlobal
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFromGlobal
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFromGlobal
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapToParent
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapToParent
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFromParent
+ * Signature: (JJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFromParent
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapTo
+ * Signature: (JJJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapTo
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    mapFrom
+ * Signature: (JJJ)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFrom
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+
 #ifdef __cplusplus
 }
 #endif

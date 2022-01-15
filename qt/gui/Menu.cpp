@@ -49,9 +49,25 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenu
  * Method:    popup
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong pointPointer) {
+
+    QPoint* point = (QPoint*)pointer;
+    QMenu* menu = (QMenu*)pointer;
+
+    menu->popup(*point);
+
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    popup
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup__JJII
 (JNIEnv * env, jobject self, jlong pointer,jlong widgetPointer, jint x, jint y) {
 
     QWidget* widget = (QWidget*)widgetPointer;
@@ -60,6 +76,33 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup
     menu->popup(p);
 
 }
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    icon
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_icon
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMenu* menu = (QMenu*)pointer;
+    QIcon * icon = new QIcon(menu->icon());
+    return (jlong)(intptr_t)icon;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    setIcon
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_setIcon
+(JNIEnv * env, jobject self, jlong pointer, jlong iconPointer) {
+
+    QIcon * icon = (QIcon*)iconPointer;
+    QMenu* menu = (QMenu*)pointer;
+    menu->setIcon(*icon);
+}
+
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenu
@@ -101,6 +144,23 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JLjava_
     QString str(textStr);
     QMenu* target = menu->addMenu(str);
     return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    addMenu
+ * Signature: (JJLjava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JJLjava_lang_String_2
+(JNIEnv * env, jobject self, jlong pointer, jlong iconPointer, jstring text) {
+
+    QMenu* menu = (QMenu*)pointer;
+    const char* textStr = env->GetStringUTFChars(text,JNI_FALSE);
+    QIcon * icon = (QIcon*)iconPointer;
+    QString str(textStr);
+
+    QMenu * subMenu = menu->addMenu(*icon,str);
+    return (jlong)(intptr_t)subMenu;
 }
 
 /*

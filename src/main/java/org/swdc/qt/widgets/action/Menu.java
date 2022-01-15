@@ -1,6 +1,9 @@
 package org.swdc.qt.widgets.action;
 
 import org.swdc.qt.internal.widgets.SMenu;
+import org.swdc.qt.widgets.Point;
+import org.swdc.qt.widgets.graphics.Icon;
+import org.swdc.qt.widgets.graphics.Painter;
 import org.swdc.qt.widgets.pane.Widget;
 
 public class Menu extends Widget {
@@ -57,9 +60,24 @@ public class Menu extends Widget {
         }
         return null;
     }
+
     public Menu addMenu(String text) {
         if (getPointer() > 0) {
             long pointer = menu.addMenu(getPointer(),text);
+            try {
+                Menu menu = new Menu();
+                menu.wrap(pointer);
+                return menu;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public Menu addMenu(Icon icon,String text) {
+        if (getPointer() > 0 && icon.getPointer() > 0) {
+            long pointer = menu.addMenu(getPointer(),icon.getPointer(),text);
             try {
                 Menu menu = new Menu();
                 menu.wrap(pointer);
@@ -239,6 +257,29 @@ public class Menu extends Widget {
     public <T extends Widget> void popup(T widget,int x, int y) {
         if (getPointer() > 0 && widget.getPointer() > 0) {
             menu.popup(getPointer(),widget.getPointer(),x,y);
+        }
+    }
+
+    public void popup(Point point) {
+        if (getPointer() > 0 && point.getPointer() > 0) {
+            menu.popup(getPointer(),point.getPointer());
+        }
+    }
+
+    public Icon icon() {
+        if (getPointer() > 0) {
+            long pointer = menu.icon(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Icon.asIcon(pointer);
+        }
+        return null;
+    }
+
+    public void setIcon(Icon icon) {
+        if (getPointer() > 0 && icon.getPointer() > 0) {
+            menu.setIcon(getPointer(),icon.getPointer());
         }
     }
 

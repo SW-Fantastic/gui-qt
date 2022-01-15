@@ -30,6 +30,13 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
   (JNIEnv *, jobject, jlong, jstring);
 
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    popup
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup__JJ
+  (JNIEnv *, jobject, jlong, jlong);
 
 
 /*
@@ -37,8 +44,25 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
  * Method:    popup
  * Signature: (JJII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_popup__JJII
   (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    icon
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_icon
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    setIcon
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_setIcon
+  (JNIEnv *, jobject, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenu
@@ -63,6 +87,14 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JJ
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JLjava_lang_String_2
   (JNIEnv *, jobject, jlong, jstring);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    addMenu
+ * Signature: (JJLjava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JJLjava_lang_String_2
+  (JNIEnv *, jobject, jlong, jlong, jstring);
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenu

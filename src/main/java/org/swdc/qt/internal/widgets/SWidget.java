@@ -129,6 +129,28 @@ public class SWidget extends SPointer  {
     public native long font(long pointer);
     public native void setFont(long pointer, long font);
 
+    public native void setWindowIcon(long pointer,long icon);
+    public native long windowIcon(long pointer);
 
+
+    public native void update(long pointer,int x, int y, int w, int h);
+    public native void update(long pointer,long rect);
+    public native void update(long pointer);
+
+    public native boolean isTopLevel(long pointer);
+    public native boolean isWindow(long pointer);
+
+    public native boolean isModal(long pointer);
+    public native int windowModality(long pointer);
+    public native void setWindowModality(long pointer,int windowModality);
+
+    public native boolean isEnabled(long pointer);
+
+    public native long mapToGlobal(long pointer,long point);
+    public native long mapFromGlobal(long pointer,long point);
+    public native long mapToParent(long pointer, long point);
+    public native long mapFromParent(long pointer, long point);
+    public native long mapTo(long pointer,long widget, long point);
+    public native long mapFrom(long pointer,long widget, long point);
 
 }

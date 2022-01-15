@@ -47,6 +47,15 @@ public class Icon {
         icon.address(pointer);
     }
 
+    private void wrap(long pointer) {
+        if (getPointer() > 0) {
+            return;
+        }
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        icon.address(pointer);
+    }
 
     public Size getActualSize(Size size, IconMode mode, IconState state) {
         if (getPointer() > 0 && size.getPointer() > 0) {
@@ -114,6 +123,15 @@ public class Icon {
         if (getPointer() > 0) {
             icon.dispose(getPointer());
         }
+    }
+
+    public static Icon asIcon(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Icon icon = new Icon();
+        icon.wrap(pointer);
+        return icon;
     }
 
     public long getPointer() {

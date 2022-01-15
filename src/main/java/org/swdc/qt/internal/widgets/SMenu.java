@@ -12,12 +12,17 @@ public class SMenu extends SWidget {
     public native long addAction(long pointer,String text);
 
 
+    public native void popup(long pointer,long point);
     public native void popup(long pointer,long widgetPointer,int x,int y);
+
+    public native long icon(long pointer);
+    public native void setIcon(long pointer,long icon);
 
     public native void wrap(long pointer);
 
     public native long addMenu(long pointer,long menuPointer);
     public native long addMenu(long pointer,String text);
+    public native long addMenu(long pointer,long icon,String text);
 
     public native long addSeparator(long pointer);
     public native long addSection(long pointer,String text);

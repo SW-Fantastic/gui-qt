@@ -294,6 +294,12 @@ public class TestQt {
         System.err.println("RGBA : " + rgb.getVal());
         System.err.println("RGBA : " + rgb.toHexString(rgb.getVal()) );
 
+        Icon icon = new Icon();
+        icon.allocate(new File("java.png"));
+
+        widget.setWindowIcon(icon);
+
+        icon.dispose();
 
         widget.setContextMenuPolicy(ContextMenuPolicy.CustomContextMenu);
         widget.setWindowTitle("Demo");
