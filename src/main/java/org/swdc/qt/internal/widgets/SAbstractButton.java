@@ -24,4 +24,12 @@ public abstract class SAbstractButton extends SWidget {
     public native void setAutoExclusive(long pointer,boolean val);
     public native boolean autoExclusive(long pointer);
 
+    public native void setChecked(long pointer,boolean checked);
+
+    public native void setIcon(long pointer,long icon);
+    public native long icon(long pointer);
+
+    public native long iconSize(long pointer);
+    public native void setIconSize(long pointer,long size);
+
 }

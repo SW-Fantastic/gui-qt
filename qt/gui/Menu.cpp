@@ -34,7 +34,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_create
  * Method:    addAction
  * Signature: (JLjava/lang/String;)J
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JLjava_lang_String_2
 (JNIEnv * env, jobject self, jlong pointer, jstring text) {
 
     QMenu* menu = (QMenu*)pointer;
@@ -43,6 +43,24 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
     QAction* action = menu->addAction(textStr);
     return (jlong)(intptr_t)action;
 
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    addAction
+ * Signature: (JJLjava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JJLjava_lang_String_2
+(JNIEnv * env, jobject self, jlong pointer, jlong iconPointer, jstring text) {
+
+    QMenu* menu = (QMenu*)pointer;
+    const char* textVal = env->GetStringUTFChars(text,JNI_FALSE);
+
+    QIcon * icon = (QIcon*)iconPointer;
+    QString textStr(textVal);
+
+    QAction* action = menu->addAction(*icon,textStr);
+    return (jlong)(intptr_t)action;
 }
 
 

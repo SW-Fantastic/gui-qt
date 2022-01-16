@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.internal.widgets.SAbstractButton;
+import org.swdc.qt.widgets.graphics.Icon;
 import org.swdc.qt.widgets.pane.Widget;
 
 public abstract class AbstractButton<T extends SAbstractButton> extends Widget {
@@ -109,5 +110,43 @@ public abstract class AbstractButton<T extends SAbstractButton> extends Widget {
         return false;
     }
 
+    public void setChecked(boolean checked) {
+        if (getPointer() > 0) {
+            button.setChecked(getPointer(),checked);
+        }
+    }
 
+    public void setIcon(Icon icon) {
+        if (getPointer() > 0 && icon.getPointer() > 0) {
+            button.setIcon(getPointer(),icon.getPointer());
+        }
+    }
+
+    public Icon icon() {
+        if (getPointer() > 0) {
+            long iconPointer = button.icon(getPointer());
+            if (iconPointer <= 0) {
+                return null;
+            }
+            return Icon.asIcon(iconPointer);
+        }
+        return null;
+    }
+
+    public Size iconSize(){
+        if (getPointer() > 0) {
+            long iconSize = button.iconSize(getPointer());
+            if (iconSize <= 0) {
+                return null;
+            }
+            return Size.asSize(iconSize);
+        }
+        return null;
+    }
+
+    public void setIconSize(Size size) {
+        if (getPointer() > 0 && size.getPointer() > 0) {
+            button.setIconSize(getPointer(),size.getPointer());
+        }
+    }
 }

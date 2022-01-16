@@ -153,4 +153,28 @@ public class SWidget extends SPointer  {
     public native long mapTo(long pointer,long widget, long point);
     public native long mapFrom(long pointer,long widget, long point);
 
+
+    public native int x(long pointer);
+    public native int y(long pointer);
+    public native long pos(long pointer);
+    public native long frameSize(long pointer);
+    public native long size(long pointer);
+    public native int width(long pointer);
+    public native int height(long pointer);
+    public native long rect(long pointer);
+
+    public native boolean isActiveWindow(long pointer);
+    public native boolean hasFocus(long pointer);
+    public native void setGeometry(long pointer,int x, int y, int w, int h);
+    public native void setGeometry(long pointer,long rect);
+    public native long geometry(long pointer);
+    public native long normalGeometry(long pointer);
+
+    public native boolean isMinimized(long pointer);
+    public native boolean isMaximized(long pointer);
+    public native boolean isFullScreen(long pointer);
+    public native boolean isHidden(long pointer);
+
+    public native static void setTabOrder(long widget, long nextWidget);
+
 }

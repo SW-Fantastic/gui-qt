@@ -47,6 +47,20 @@ public class Menu extends Widget {
         return null;
     }
 
+    public Action addAction(Icon icon,String text) {
+        if (getPointer() > 0 && icon.getPointer() > 0) {
+            try {
+                long pointer = menu.addAction(getPointer(),icon.getPointer(),text);
+                Action action = new Action();
+                action.wrap(pointer);
+                return action;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
     public Action addMenu(Menu target) {
         if (getPointer() > 0 && target.getPointer() > 0) {
             long pointer = menu.addMenu(getPointer(),target.getPointer());

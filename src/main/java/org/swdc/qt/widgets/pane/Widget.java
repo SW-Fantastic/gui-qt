@@ -574,6 +574,154 @@ public class Widget {
         return null;
     }
 
+    public int getx() {
+        if (getPointer() > 0) {
+            return widget.x(getPointer());
+        }
+        return 0;
+    }
+
+    public int getY() {
+        if (getPointer() > 0) {
+            return widget.y(getPointer());
+        }
+        return 0;
+    }
+
+    public Point pos() {
+        if (getPointer() > 0) {
+            long pointer = widget.pos(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Point.asPoint(pointer);
+        }
+        return null;
+    }
+
+    public Size frameSize() {
+        if (getPointer() > 0) {
+            long frameSize = widget.frameSize(getPointer());
+            if (frameSize <= 0) {
+                return null;
+            }
+            return Size.asSize(frameSize);
+        }
+        return null;
+    }
+
+    public Size size() {
+        if (getPointer() > 0) {
+            long pointer = widget.size(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Size.asSize(pointer);
+        }
+        return null;
+    }
+
+    public int getWidth() {
+        if (getPointer() > 0) {
+            return widget.width(getPointer());
+        }
+        return 0;
+    }
+
+    public int getHeight() {
+        if (getPointer() > 0) {
+            return widget.height(getPointer());
+        }
+        return 0;
+    }
+
+    public Rect getRect() {
+        if (getPointer() > 0) {
+            long pointer = widget.rect(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Rect.asRect(pointer);
+        }
+        return null;
+    }
+
+    public boolean isActiveWindow() {
+        if (getPointer() > 0) {
+            return widget.isActiveWindow(getPointer());
+        }
+        return false;
+    }
+
+    public boolean hasFocus() {
+        if (getPointer() > 0) {
+            return widget.hasFocus(getPointer());
+        }
+        return false;
+    }
+
+    public void setGeometry(int x, int y, int w, int h) {
+        if (getPointer() > 0) {
+            widget.setGeometry(getPointer(),x,y,w,h);
+        }
+    }
+
+    public void setGeometry(Rect rect){
+        if (getPointer() > 0 && rect.getPointer() > 0) {
+            widget.setGeometry(getPointer(),rect.getPointer());
+        }
+    }
+
+    public Rect geometry() {
+        if (getPointer() > 0) {
+            long pointer = widget.geometry(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Rect.asRect(pointer);
+        }
+        return null;
+    }
+
+    public Rect normalGeometry() {
+        if (getPointer() > 0) {
+            long pointer = widget.normalGeometry(getPointer());
+            if (pointer <= 0) {
+                return null;
+            }
+            return Rect.asRect(pointer);
+        }
+        return null;
+    }
+
+    public boolean isMinimized() {
+        if (getPointer() > 0) {
+            return widget.isMinimized(getPointer());
+        }
+        return false;
+    }
+
+    public boolean isMaximized() {
+        if (getPointer() > 0) {
+            return widget.isMaximized(getPointer());
+        }
+        return false;
+    }
+
+    public boolean isFullScreen() {
+        if (getPointer() > 0) {
+            return widget.isFullScreen(getPointer());
+        }
+        return false;
+    }
+
+    public boolean isHidden() {
+        if (getPointer() > 0) {
+            return widget.isHidden(getPointer());
+        }
+        return false;
+    }
+
     public long getPointer() {
         return widget.address();
     }

@@ -26,8 +26,16 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_create
  * Method:    addAction
  * Signature: (JLjava/lang/String;)J
  */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JLjava_lang_String_2
   (JNIEnv *, jobject, jlong, jstring);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMenu
+ * Method:    addAction
+ * Signature: (JJLjava/lang/String;)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JJLjava_lang_String_2
+  (JNIEnv *, jobject, jlong, jlong, jstring);
 
 
 /*

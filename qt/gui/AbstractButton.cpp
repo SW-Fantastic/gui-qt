@@ -183,3 +183,72 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_aut
     QAbstractButton* button = (QAbstractButton*)pointer;
     return button->autoExclusive();
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    setChecked
+ * Signature: (JZ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setChecked
+(JNIEnv * env, jobject self, jlong pointer, jboolean val) {
+
+     QAbstractButton* button = (QAbstractButton*)pointer;
+     button->setChecked(val);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    setIcon
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setIcon
+(JNIEnv * env, jobject self, jlong pointer, jlong icon) {
+
+     QAbstractButton* button = (QAbstractButton*)pointer;
+     QIcon * qIcon = (QIcon*)icon;
+     button->setIcon(*qIcon);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    icon
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_icon
+(JNIEnv * env, jobject self, jlong pointer) {
+
+     QAbstractButton* button = (QAbstractButton*)pointer;
+     QIcon * icon = new QIcon(button->icon());
+
+     return (jlong)(intptr_t)icon;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    iconSize
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_iconSize
+(JNIEnv * env, jobject self, jlong pointer) {
+
+     QAbstractButton* button = (QAbstractButton*)pointer;
+     QSize * size = new QSize(button->iconSize());
+
+     return (jlong)(intptr_t)size;
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    setIconSize
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setIconSize
+(JNIEnv * env, jobject self, jlong pointer, jlong sizeVal) {
+
+    QSize * size = (QSize*)sizeVal;
+    QAbstractButton* button = (QAbstractButton*)pointer;
+    button->setIconSize(*size);
+}

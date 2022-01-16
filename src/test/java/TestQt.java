@@ -149,10 +149,12 @@ public class TestQt {
                 color.allocate("#FFF");*/
 
                 Color colorA = new Color();
-                colorA.allocate(0,0,0,1.0);
+                colorA.allocate("#84fab0");
 
                 Color colorB = new Color();
-                colorB.allocate(255,255,255,1.0);
+                colorB.allocate("#8fd3f4");
+
+                Size size = widget.size();
 
                 LinearGradient l = new LinearGradient();
                 l.allocate();
@@ -160,14 +162,14 @@ public class TestQt {
                         MutablePair.of(0.0,colorA.getVal()),
                         MutablePair.of(1.0,colorB.getVal())
                 ));
-                l.setStart(120,0);
-                l.setFinalStop(120,240);
+
+                l.setStart(0,0);
+                l.setFinalStop(size.getWidth(),size.getHeight());
 
                 Brush brush = new Brush();
                 brush.allocate(l);
 
-                painter.drawLine(0,0,10,10);
-                painter.fillRect(0,0,240,240,brush);
+                painter.fillRect(0,0,size.getWidth(),size.getHeight(),brush);
 
                 System.err.println("painted!");
             } catch (Exception e) {
@@ -229,10 +231,14 @@ public class TestQt {
         actionC.setText("Text Action C");
         menu.addAction(actionC);
 
+        Icon icon = new Icon();
+        icon.allocate(new File("java.png"));
+
         Menu subMenu = new Menu();
         subMenu.allocate();
         subMenu.addAction("Sub A");
-        subMenu.addAction("Sub B");
+        subMenu.addAction(icon,"Sub B");
+        subMenu.setIcon(icon);
 
         Action menuAction = menu.addMenu(subMenu);
         menuAction.setText("Sub");
@@ -269,7 +275,14 @@ public class TestQt {
         Action actionTextB = menu.addAction("Text B");
         actionTextB.setCheckable(true);
 
+        Size size = new Size();
+        size.allocate();
+        size.setWidth(32);
+        size.setHeight(32);
+
         toolButton.setDefaultAction(actionTextA);
+        toolButton.setIcon(icon);
+        toolButton.setIconSize(size);
 
         widget.setWindowListener(new WindowListener() {
 
@@ -294,8 +307,7 @@ public class TestQt {
         System.err.println("RGBA : " + rgb.getVal());
         System.err.println("RGBA : " + rgb.toHexString(rgb.getVal()) );
 
-        Icon icon = new Icon();
-        icon.allocate(new File("java.png"));
+
 
         widget.setWindowIcon(icon);
 

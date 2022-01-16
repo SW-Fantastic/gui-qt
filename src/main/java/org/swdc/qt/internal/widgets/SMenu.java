@@ -10,7 +10,7 @@ public class SMenu extends SWidget {
      * @return the QAction C++ address。
      */
     public native long addAction(long pointer,String text);
-
+    public native long addAction(long pointer,long icon, String text);
 
     public native void popup(long pointer,long point);
     public native void popup(long pointer,long widgetPointer,int x,int y);

@@ -1027,3 +1027,247 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFrom
     QPoint * result = new QPoint(widget->mapFrom(from,*point));
     return (jlong)(intptr_t)result;
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    x
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_x
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->x();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    y
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_y
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->y();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    pos
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_pos
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QPoint * point = new QPoint(widget->pos());
+
+    return (jlong)(intptr_t)point;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    frameSize
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_frameSize
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QSize * size = new QSize(widget->frameSize());
+
+    return (jlong)(intptr_t)size;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    size
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_size
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QSize * size = new QSize(widget->size());
+    return (jlong)(intptr_t)size;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    width
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_width
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->width();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    height
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_height
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->height();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    rect
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_rect
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QRect * rect = new QRect(widget->rect());
+    return (jlong)(intptr_t)rect;
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isActiveWindow
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isActiveWindow
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isActiveWindow() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    hasFocus
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_hasFocus
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->hasFocus() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setGeometry
+ * Signature: (JIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setGeometry__JIIII
+(JNIEnv * env, jobject self, jlong pointer, jint x, jint y, jint w, jint h) {
+
+    QWidget * widget = (QWidget*)pointer;
+    widget->setGeometry(x,y,w,h);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setGeometry
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setGeometry__JJ
+(JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QRect * rect = (QRect*) rectPointer;
+    widget->setGeometry(*rect);
+
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    geometry
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_geometry
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QRect *rect = new QRect(widget->geometry());
+
+    return (jlong)(intptr_t)rect;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    normalGeometry
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_normalGeometry
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    QRect * rect = new QRect(widget->normalGeometry());
+
+    return (jlong)(intptr_t)rect;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isMinimized
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isMinimized
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isMinimized() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isMaximized
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isMaximized
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isMaximized() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isFullScreen
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isFullScreen
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isFullScreen() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    isHidden
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isHidden
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QWidget * widget = (QWidget*)pointer;
+    return widget->isHidden() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setTabOrder
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setTabOrder
+(JNIEnv * env, jclass type, jlong widgetAPointer, jlong widgetBPointer) {
+
+    QWidget * widgetA = (QWidget*)widgetAPointer;
+    QWidget * widgetB = (QWidget*)widgetBPointer;
+
+    QWidget::setTabOrder(widgetA,widgetB);
+}
