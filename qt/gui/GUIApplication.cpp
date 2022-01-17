@@ -16,16 +16,33 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
 
     QApplication::addLibraryPath(qPath);
 
-    int len = jenv->GetArrayLength(argv);
-    char** arrays = (char**)malloc(sizeof(char*) * len);
+    QApplication* app = NULL;
 
-    for(int idx = 0; idx < len; idx ++) {
-        jstring str = (jstring)jenv->GetObjectArrayElement(argv,idx);
-        const char* strArg = jenv->GetStringUTFChars(str,JNI_FALSE);
-        arrays[idx] = const_cast<char*>(strArg);
+    int len = jenv->GetArrayLength(argv);
+
+    if(len > 0) {
+
+        len = len + 1;
+        char** arrays = (char**)malloc(sizeof(char*) * len);
+
+            for(int idx = 1; idx < len + 1; idx ++) {
+            jstring str = (jstring)jenv->GetObjectArrayElement(argv,idx);
+                jboolean copy = JNI_FALSE;
+                const char* strArg = jenv->GetStringUTFChars(str,&copy);
+            arrays[idx] = const_cast<char*>(strArg);
+        }
+
+        arrays[0] = const_cast<char*>(rootPath);
+        app = new QApplication(len,arrays);
+
+    } else {
+
+        int argc = 1;
+        char* arr[1] = { const_cast<char*>(rootPath) };
+        app = new QApplication(argc,arr);
     }
 
-    QApplication* app = new QApplication(len,arrays);
+    //app->setAttribute(Qt::AA_DontUseNativeMenuBar);
 
     return (jlong)app;
 }

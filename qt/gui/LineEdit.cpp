@@ -251,7 +251,8 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setAlignment
 (JNIEnv * env, jobject self, jlong pointer, jlong val) {
 
     QLineEdit* lineEdit = (QLineEdit*)pointer;
-    lineEdit->setAlignment(Qt::Alignment(val));
+    Qt::Alignment alignment = Qt::Alignment((unsigned int)val);
+    lineEdit->setAlignment(Qt::Alignment(alignment));
 
 }
 

@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SIcon_paint__JJJJII
 (JNIEnv * env, jobject self, jlong pointer, jlong painterPointer, jlong rect, jlong alignment, jint mode, jint state) {
 
     QRect * qRect = (QRect*)rect;
-    Qt::Alignment align = Qt::Alignment(alignment);
+    Qt::Alignment align = Qt::Alignment((unsigned int)alignment);
     QPainter * painter = (QPainter*)painterPointer;
     QIcon * icon = (QIcon*)pointer;
     QIcon::Mode iconMode = QIcon::Mode(mode);
@@ -105,7 +105,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SIcon_paint__JJIIIIIII
 
     QIcon::Mode iconMode = QIcon::Mode(mode);
     QIcon::State iconState = QIcon::State(state);
-    Qt::Alignment align = Qt::Alignment(alignment);
+    Qt::Alignment align = Qt::Alignment((unsigned int)alignment);
     QIcon * icon = (QIcon*)pointer;
 
     QPainter * painter = (QPainter*)painterPointer;

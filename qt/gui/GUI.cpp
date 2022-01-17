@@ -2,7 +2,7 @@
 #include"Executors.h"
 
 JavaVM* VMContext = NULL;
-Executors asyncContext;
+// Executors asyncContext;
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
@@ -138,11 +138,11 @@ void cleanJavaPointer(JNIEnv* env,jobject target) {
 
 void asyncExec(std::function<void()> func) {
 
-    asyncContext.exec([func]()->void{
-        QMetaObject::invokeMethod(QApplication::instance(),[func]()->void {
-            func();
-        },Qt::BlockingQueuedConnection);
-    });
+    QMetaObject::invokeMethod(
+        QApplication::instance(),
+        func,
+        Qt::QueuedConnection
+    );
 
 }
 

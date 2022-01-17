@@ -21,6 +21,7 @@ SOURCES += \
     MenuBar.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
+    ToolBar.cpp \
     ToolButton.cpp \
     Widget.cpp \
     common/Line.cpp \
@@ -39,7 +40,6 @@ SOURCES += \
     graphics/LinearGradient.cpp \
     graphics/PainterPath.cpp \
     graphics/RadialGradient.cpp \
-    gui.cpp \
     graphics/Transformation.cpp \
     graphics/Image.cpp \
     graphics/Bitmap.cpp \
@@ -51,7 +51,6 @@ SOURCES += \
     layout/Layout.cpp \
     layout/BoxLayout.cpp \
     layout/HBoxLayout.cpp \
-    layout/Layout.cpp \
     layout/LayoutItem.cpp \
     layout/SpacerItem.cpp \
     layout/VBoxLayout.cpp
@@ -77,7 +76,6 @@ HEADERS += \
     java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \
     java/graphics/org_swdc_qt_internal_graphics_SRadialGradient.h \
     java/jni.h \
-    java/jni_md.h \
     java/layout/org_swdc_qt_internal_layout_SBoxLayout.h \
     java/layout/org_swdc_qt_internal_layout_SHBoxLayout.h \
     java/layout/org_swdc_qt_internal_layout_SLayout.h \
@@ -102,6 +100,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
+    java/org_swdc_qt_internal_widgets_SToolBar.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h
 

@@ -45,28 +45,22 @@ public class MenuBar extends Widget {
 
     public Action addAction(String text) {
         if (getPointer() > 0) {
-            try {
-                long pointer = menuBar.addAction(getPointer(),text);
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menuBar.addAction(getPointer(),text);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
 
     public Action addMenu(Menu menu) {
         if (getPointer() > 0 && menu.getPointer() > 0) {
-            try {
-                long pointer = menuBar.addMenu(getPointer(),menu.getPointer());
-                Action target = new Action();
-                target.wrap(pointer);
-                return target;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menuBar.addMenu(getPointer(),menu.getPointer());
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -87,41 +81,33 @@ public class MenuBar extends Widget {
 
     public Action addSeparator() {
         if (getPointer() > 0) {
-            try {
-                long pointer = menuBar.addSeparator(getPointer());
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menuBar.addSeparator(getPointer());
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
+
     public Action insertSeparator(Action beforeAction) {
         if (getPointer() > 0 && beforeAction.getPointer() > 0) {
-            try {
-                long pointer = menuBar.insertSeparator(getPointer(),beforeAction.getPointer());
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menuBar.insertSeparator(getPointer(),beforeAction.getPointer());
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
 
     public Action insertMenu(Action beforeAction, Menu menu) {
         if (getPointer() > 0 && beforeAction.getPointer() > 0 && menu.getPointer() > 0) {
-            try {
-                long pointer = menuBar.insertMenu(getPointer(),beforeAction.getPointer(),menu.getPointer());
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menuBar.insertMenu(getPointer(),beforeAction.getPointer(),menu.getPointer());
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }

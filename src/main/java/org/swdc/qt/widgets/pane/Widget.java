@@ -369,13 +369,10 @@ public class Widget {
         }
     }
 
-    public boolean dispose() {
+    public void dispose() {
         if (getPointer() > 0) {
             widget.doDispose(getPointer());
             widget.cleanAddress();
-            return true;
-        } else {
-            return false;
         }
     }
 

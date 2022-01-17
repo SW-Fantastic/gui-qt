@@ -1454,8 +1454,8 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_setRenderHint
 (JNIEnv * env, jobject self, jlong pointer, jlong renderHints, jboolean on) {
 
     QPainter * painter = (QPainter*)pointer;
-    QPainter::RenderHints hints = QPainter::RenderHints(renderHints);
-    painter->setRenderHints(hints);
+    QPainter::RenderHints hints = QPainter::RenderHints((unsigned int)renderHints);
+    painter->setRenderHints(hints,on);
 
 }
 

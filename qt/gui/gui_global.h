@@ -20,6 +20,7 @@
 #include <QColorSpace>
 #include <QStackedWidget>
 #include <QToolButton>
+#include <QToolBar>
 #include <QMenu>
 #include <QMenuBar>
 

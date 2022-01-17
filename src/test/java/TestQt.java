@@ -208,11 +208,11 @@ public class TestQt {
 
         Menu fileMenu = new Menu();
         fileMenu.allocate();
-        fileMenu.setTitle("File");
-        fileMenu.addAction("Open");
-        fileMenu.addAction("Edit");
+        fileMenu.setTitle("File 文件");
+        fileMenu.addAction("Open 打开");
+        fileMenu.addAction("Edit 编辑");
         fileMenu.addSeparator();
-        fileMenu.addAction("Exit");
+        fileMenu.addAction("Exit 退出");
 
 
         menuBar.addMenu(fileMenu);

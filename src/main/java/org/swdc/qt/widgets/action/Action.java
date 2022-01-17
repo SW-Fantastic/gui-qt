@@ -21,12 +21,12 @@ public class Action extends Widget {
         action.address(pointer);
     }
 
-    void wrap(long pointer) throws Exception {
+    private void wrap(long pointer) {
         if (getPointer() > 0) {
             return;
         }
         if (pointer <= 0) {
-            throw new Exception("invalid pointer");
+            throw new  RuntimeException("invalid pointer");
         }
         action.address(pointer);
         action.wrap(pointer);
@@ -242,6 +242,15 @@ public class Action extends Widget {
             return action.isShortcutVisibleInContextMenu(getPointer());
         }
         return false;
+    }
+
+    public static Action asAction(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        Action action = new Action();
+        action.wrap(pointer);
+        return action;
     }
 
     @Override

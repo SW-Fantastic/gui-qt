@@ -35,28 +35,22 @@ public class Menu extends Widget {
 
     public Action addAction(String text) {
         if (getPointer() > 0) {
-            try {
-                long pointer = menu.addAction(getPointer(),text);
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menu.addAction(getPointer(),text);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
 
     public Action addAction(Icon icon,String text) {
         if (getPointer() > 0 && icon.getPointer() > 0) {
-            try {
-                long pointer = menu.addAction(getPointer(),icon.getPointer(),text);
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            long pointer = menu.addAction(getPointer(),icon.getPointer(),text);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -64,13 +58,10 @@ public class Menu extends Widget {
     public Action addMenu(Menu target) {
         if (getPointer() > 0 && target.getPointer() > 0) {
             long pointer = menu.addMenu(getPointer(),target.getPointer());
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0){
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -106,13 +97,10 @@ public class Menu extends Widget {
     public Action addSeparator() {
         if (getPointer() > 0) {
             long pointer = menu.addSeparator(getPointer());
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0){
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -120,13 +108,10 @@ public class Menu extends Widget {
     public Action addSection(String text) {
         if (getPointer() > 0) {
             long pointer = menu.addSection(getPointer(),text);
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (getPointer() < 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -134,26 +119,20 @@ public class Menu extends Widget {
     public Action insertMenu(Action beforeAction, Menu menu) {
         if (getPointer() > 0 && beforeAction.getPointer() > 0 && menu.getPointer() > 0) {
             long pointer = this.menu.insertMenu(getPointer(),beforeAction.getPointer(),menu.getPointer());
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
     public Action insertSeparator(Action beforeAction) {
         if (getPointer() > 0 && beforeAction.getPointer() > 0) {
             long pointer = menu.insertSeparator(getPointer(),beforeAction.getPointer());
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
@@ -161,13 +140,10 @@ public class Menu extends Widget {
     public Action insertSection(Action beforeAction, String text) {
         if (getPointer() > 0 && beforeAction.getPointer() > 0) {
             long pointer = menu.insertSection(getPointer(),beforeAction.getPointer(),text);
-            try {
-                Action action = new Action();
-                action.wrap(pointer);
-                return action;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (pointer <= 0) {
+                return null;
             }
+            return Action.asAction(pointer);
         }
         return null;
     }
