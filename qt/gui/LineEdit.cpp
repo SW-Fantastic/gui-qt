@@ -658,3 +658,29 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_paste
     lineEdit->paste();
 
 }
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SLineEdit
+ * Method:    echoMode
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_echoMode
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QLineEdit* lineEdit = (QLineEdit*)pointer;
+    return int(lineEdit->echoMode());
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SLineEdit
+ * Method:    setEchoMode
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setEchoMode
+(JNIEnv * env, jobject self, jlong pointer, jint echoMode) {
+
+    QLineEdit* lineEdit = (QLineEdit*)pointer;
+    QLineEdit::EchoMode mode = QLineEdit::EchoMode(echoMode);
+
+    lineEdit->setEchoMode(mode);
+}

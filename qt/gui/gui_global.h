@@ -2,6 +2,8 @@
 #define GUI_GLOBAL_H
 
 #include <QtCore/qglobal.h>
+#include <QInputDialog>
+#include <QTranslator>
 #include <QApplication>
 #include <QPushButton>
 #include <QDir>

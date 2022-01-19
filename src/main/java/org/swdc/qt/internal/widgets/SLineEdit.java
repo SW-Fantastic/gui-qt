@@ -69,4 +69,7 @@ public class SLineEdit extends SWidget{
     public native void copy(long pointer);
     public native void paste(long pointer);
 
+    public native int echoMode(long pointer);
+    public native void setEchoMode(long pointer,int mode);
+
 }

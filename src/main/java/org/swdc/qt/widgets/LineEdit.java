@@ -349,6 +349,19 @@ public class LineEdit extends Widget {
         }
     }
 
+    public void setEchoMode (EditEchoMode echoMode) {
+        if (getPointer() > 0) {
+            lineEdit.setEchoMode(getPointer(),echoMode.getVal());
+        }
+    }
+
+    public EditEchoMode getEchoMode(){
+        if (getPointer() > 0) {
+            int mode = lineEdit.echoMode(getPointer());
+            return EditEchoMode.valueOf(mode);
+        }
+        return null;
+    }
 
     @Override
     public long getPointer() {

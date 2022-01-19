@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.ContextMenuPolicy;
+import org.swdc.qt.beans.SizePolicy;
 import org.swdc.qt.beans.WindowModality;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
@@ -198,6 +199,12 @@ public class Widget {
     public void setBaseSize( int width, int height) {
         if (getPointer() > 0){
             widget.doSetBaseSize(getPointer(),width,height);
+        }
+    }
+
+    public void setBaseSize(Size size) {
+        if (getPointer() > 0 && size.getPointer() > 0){
+            widget.doSetBaseSize(getPointer(),size.getPointer());
         }
     }
 
@@ -712,12 +719,36 @@ public class Widget {
         return false;
     }
 
+    public SizePolicy horizontalSizePolicy() {
+        if (getPointer() > 0) {
+            int val = widget.horizontalSizePolicy(getPointer());
+            return SizePolicy.valueOf(val);
+        }
+        return null;
+    }
+
+    public SizePolicy verticalSizePolicy(){
+        if (getPointer() > 0) {
+            int val = widget.verticalSizePolicy(getPointer());
+            return SizePolicy.valueOf(val);
+        }
+        return null;
+    }
+
+    public void setSizePolicy(SizePolicy horizontal, SizePolicy vertical) {
+        if (getPointer() > 0) {
+            widget.setSizePolicy(getPointer(),horizontal.getFlagValue(),vertical.getFlagValue());
+        }
+    }
+
+
     public boolean isHidden() {
         if (getPointer() > 0) {
             return widget.isHidden(getPointer());
         }
         return false;
     }
+
 
     public long getPointer() {
         return widget.address();

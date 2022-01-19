@@ -45,7 +45,7 @@ public class PushButton extends AbstractButton<SButton> {
         if (getPointer() > 0) {
             return;
         }
-        long pointer = button.create(0L,"");
+        long pointer = button.create(0L);
         if (pointer <= 0) {
             throw new Exception("failed to create button");
         }

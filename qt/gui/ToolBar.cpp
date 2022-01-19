@@ -226,7 +226,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_setAllowedArea
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_isAreaAllowed
 (JNIEnv * env, jobject self, jlong pointer, jlong areasVal) {
 
-    Qt::ToolBarArea area = Qt::ToolBarArea(areasVal);
+    Qt::ToolBarArea area = Qt::ToolBarArea((unsigned int)areasVal);
     QToolBar * bar = (QToolBar*)pointer;
     return bar->isAreaAllowed(area) ? JNI_TRUE : JNI_FALSE;
 }

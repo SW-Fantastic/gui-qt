@@ -413,6 +413,22 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_copy
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_paste
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SLineEdit
+ * Method:    echoMode
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_echoMode
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SLineEdit
+ * Method:    setEchoMode
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setEchoMode
+  (JNIEnv *, jobject, jlong, jint);
+
 #ifdef __cplusplus
 }
 #endif

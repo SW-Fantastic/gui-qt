@@ -35,4 +35,13 @@ public enum SizePolicy {
         }
     }
 
+    public static SizePolicy valueOf (int val) {
+        for (SizePolicy p: SizePolicy.values()) {
+            if (p.getFlagValue() == val) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }

@@ -47,6 +47,45 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
     return (jlong)app;
 }
 
+
+/*
+ * Class:     org_swdc_qt_QtApplication
+ * Method:    loadLanguage
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_loadLanguage
+(JNIEnv * env, jobject self,jlong pointer,jstring folder, jstring langFile) {
+
+    const char * name = env->GetStringUTFChars(langFile,JNI_FALSE);
+    const char * path = env->GetStringUTFChars(folder,JNI_FALSE);
+
+    QString transFileName(name);
+    QString transFilePath(path);
+    QTranslator * translator = new QTranslator();
+    translator->load(transFileName,transFilePath);
+
+    QApplication * app = (QApplication*)pointer;
+    app->installTranslator(translator);
+
+    return (jlong)(intptr_t)translator;
+
+}
+
+/*
+ * Class:     org_swdc_qt_QtApplication
+ * Method:    disposeLanguage
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_disposeLanguage
+(JNIEnv * env, jobject self, jlong pointer, jlong translatorPointer) {
+
+    QTranslator * translator = (QTranslator*)translatorPointer;
+    QApplication * app = (QApplication*)pointer;
+    app->removeTranslator(translator);
+    delete translator;
+
+}
+
 /*
  * Class:     org_swdc_qt_SApplication
  * Method:    exec

@@ -12,6 +12,8 @@ import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
+import org.swdc.qt.widgets.dialogs.DialogInputMode;
+import org.swdc.qt.widgets.dialogs.InputDialog;
 import org.swdc.qt.widgets.graphics.*;
 import org.swdc.qt.widgets.pane.StackedWidget;
 import org.swdc.qt.widgets.pane.TabWidget;
@@ -29,7 +31,8 @@ public class TestQt {
     public static void main(String[] args) throws Exception {
 
         QtApplication application = new QtApplication(args.length, args);
-
+        application.language(new File("qt_zh_CN.qm"));
+        application.language(new File("qtbase_zh_CN.qm"));
 
         Widget widget = new Widget();
         widget.allocate();
@@ -40,7 +43,28 @@ public class TestQt {
         button.setText("Text");
         button.setMinSize(120,30);
         button.setClickListener(() -> {
-            System.err.println("clicked");
+            try {
+
+                InputDialog dlg = new InputDialog();
+                dlg.allocate(widget);
+                dlg.setOkButtonText("确定");
+                dlg.setCancelButtonText("取消");
+                dlg.setTextEchoMode(EditEchoMode.Normal);
+                dlg.setWindowTitle("输入对话框测试");
+                dlg.setLabelText("请随意输入");
+                dlg.setComboBoxItems(Arrays.asList("A","B","C","D"));
+                dlg.setInputMode(DialogInputMode.TextInput);
+                dlg.setMinSize(320,120);
+                dlg.resize(320,120);
+
+                dlg.exec();
+
+                String text = dlg.getTextValue();
+                System.err.println(text);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         System.err.println(button.getBaseSize());
@@ -101,8 +125,6 @@ public class TestQt {
         layout.addWidget(button);
         layout.setContentsMargins(12,12,24,24);
 
-
-
         Widget tabA = new Widget();
         tabA.allocate();
 
@@ -138,8 +160,18 @@ public class TestQt {
             }
         });
         toolButton.setText("Test");
-        toolButton.setMinSize(80,40);
-        tabALayout.addWidget(toolButton);
+        toolButton.setMinSize(40,40);
+
+        ToolBar toolBar = new ToolBar();
+        toolBar.allocate();
+        toolBar.setOrientation(Orientation.Horizontal);
+        toolBar.addWidget(toolButton);
+
+        SpacerItem itemTabA = new SpacerItem();
+        itemTabA.allocate(0,1,SizePolicy.Minimum,SizePolicy.Expanding);
+
+        tabALayout.addWidget(toolBar);
+        tabALayout.addSpacerItem(itemTabA);
         tabA.setLayout(tabALayout);
 
         tabA.setPaintListener(painter -> {
@@ -181,7 +213,7 @@ public class TestQt {
 
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
-        tabWidget.addTab(tabA,"Test TabA");
+        tabWidget.addTab(tabA,"ToolBar");
         tabWidget.addTab(tabB,"Test TabB");
 
         StackedWidget stackedWidget = new StackedWidget();
@@ -314,7 +346,7 @@ public class TestQt {
         icon.dispose();
 
         widget.setContextMenuPolicy(ContextMenuPolicy.CustomContextMenu);
-        widget.setWindowTitle("Demo");
+        widget.setWindowTitle("Demo Qt的测试窗口");
         widget.setLayout(vbox);
         System.err.println(vbox.getContentsMargins());
         widget.show();

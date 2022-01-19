@@ -92,6 +92,7 @@ public class SWidget extends SPointer  {
     public native boolean isAutoFillBackground(long pointer);
     public native long getBaseSize(long pointer);
     public native void doSetBaseSize(long pointer, int width, int height);
+    public native void doSetBaseSize(long pointer, long rect);
     public native int doGetContextMenuPolicy(long pointer);
     public native void doSetContextMenuPolicy(long pointer, int val);
     public native long getFrameGeometry(long pointer);
@@ -174,6 +175,10 @@ public class SWidget extends SPointer  {
     public native boolean isMaximized(long pointer);
     public native boolean isFullScreen(long pointer);
     public native boolean isHidden(long pointer);
+
+    public native int horizontalSizePolicy(long pointer);
+    public native int verticalSizePolicy(long pointer);
+    public native void setSizePolicy(long pointer,int horizontal, int vertical);
 
     public native static void setTabOrder(long widget, long nextWidget);
 

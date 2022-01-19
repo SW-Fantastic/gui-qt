@@ -21,6 +21,6 @@ public class SButton extends SAbstractButton {
         this.clickedListener.onClicked();
     }
 
-    public native long create(long parentPointer, String text);
+    public native long create(long parentPointer);
 
 }

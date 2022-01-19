@@ -31,7 +31,7 @@ void initializeButtonEvents(QPushButton * pushButton,jobject self);
  * Signature: (JLjava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
-  (JNIEnv *, jobject, jlong, jstring);
+  (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
 }

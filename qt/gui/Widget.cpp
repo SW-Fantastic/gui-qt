@@ -1177,7 +1177,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setGeometry__JJ
 (JNIEnv * env, jobject self, jlong pointer, jlong rectPointer) {
 
     QWidget * widget = (QWidget*)pointer;
-    QRect * rect = (QRect*) rectPointer;
+    QRect * rect = (QRect*)rectPointer;
     widget->setGeometry(*rect);
 
 }
@@ -1191,8 +1191,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_geometry
 (JNIEnv * env, jobject self, jlong pointer) {
 
     QWidget * widget = (QWidget*)pointer;
-    QRect *rect = new QRect(widget->geometry());
-
+    QRect * rect = new QRect(widget->geometry());
     return (jlong)(intptr_t)rect;
 }
 
@@ -1206,7 +1205,6 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_normalGeometry
 
     QWidget * widget = (QWidget*)pointer;
     QRect * rect = new QRect(widget->normalGeometry());
-
     return (jlong)(intptr_t)rect;
 }
 
@@ -1258,16 +1256,57 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isHidden
     return widget->isHidden() ? JNI_TRUE : JNI_FALSE;
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    horizontalSizePolicy
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_horizontalSizePolicy
+(JNIEnv * env, jobject self, jlong pointer) {
+
+     QWidget * widget = (QWidget*)pointer;
+     QSizePolicy p = widget->sizePolicy();
+     return int(p.horizontalPolicy());
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    verticalSizePolicy
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_verticalSizePolicy
+(JNIEnv * env, jobject self, jlong pointer) {
+
+     QWidget * widget = (QWidget*)pointer;
+     QSizePolicy p = widget->sizePolicy();
+     return (int)p.verticalPolicy();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setSizePolicy
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setSizePolicy
+(JNIEnv * env, jobject self, jlong pointer, jint horizontol, jint vertical) {
+
+    QSizePolicy::Policy h = QSizePolicy::Policy(horizontol);
+    QSizePolicy::Policy v = QSizePolicy::Policy(vertical);
+
+     QWidget * widget = (QWidget*)pointer;
+     widget->setSizePolicy(h,v);
+}
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    setTabOrder
  * Signature: (JJ)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setTabOrder
-(JNIEnv * env, jclass type, jlong widgetAPointer, jlong widgetBPointer) {
+(JNIEnv * env, jclass type, jlong widgetPointerA, jlong widgetPointerB) {
 
-    QWidget * widgetA = (QWidget*)widgetAPointer;
-    QWidget * widgetB = (QWidget*)widgetBPointer;
+    QWidget * widget = (QWidget*)widgetPointerA;
+    QWidget * widgetB = (QWidget*)widgetPointerB;
 
-    QWidget::setTabOrder(widgetA,widgetB);
+    QWidget::setTabOrder(widget,widgetB);
 }

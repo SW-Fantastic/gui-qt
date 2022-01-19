@@ -32,19 +32,19 @@ void initializeWidgetEvents(QWidget * widget,jobject self);
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
- * Method:    create
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    doSetMinSize
  * Signature: (JII)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinSize
   (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    create
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
+  (JNIEnv *, jobject, jlong);
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxSize
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    getMaxSize
- * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
   (JNIEnv *, jobject, jlong);
@@ -65,7 +65,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMaxSize
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    getMinSize
- * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getMinSize
   (JNIEnv *, jobject, jlong);
@@ -128,14 +128,6 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMaxHeight
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
- * Method:    doSetMinHeight
- * Signature: (JI)V
- */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinHeight
-  (JNIEnv *, jobject, jlong, jint);
-
-/*
- * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    doSetSizeIncrement
  * Signature: (JII)V
  */
@@ -144,8 +136,16 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetSizeIncrem
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    doSetMinHeight
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetMinHeight
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    doGetSizeIncrement
- * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doGetSizeIncrement
   (JNIEnv *, jobject, jlong);
@@ -201,7 +201,7 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isAutoFillB
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    getBaseSize
- * Signature: (J)Lorg/swdc/qt/beans/SSize;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
   (JNIEnv *, jobject, jlong);
@@ -211,8 +211,17 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getBaseSize
  * Method:    doSetBaseSize
  * Signature: (JII)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetBaseSize
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetBaseSize__JII
   (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     org_swdc_qt_widgets_SWidget
+ * Method:    doSetBaseSize
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetBaseSize__JJ
+(JNIEnv *, jobject, jlong, jlong);
+
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -233,7 +242,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doSetContextMen
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    getFrameGeometry
- * Signature: (J)Lorg/swdc/qt/beans/SRect;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getFrameGeometry
   (JNIEnv *, jobject, jlong);
@@ -422,8 +431,6 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_getLayout
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_doDispose
   (JNIEnv *, jobject, jlong);
 
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    addAction
@@ -459,11 +466,10 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setContentsMarg
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    contentsMargins
- * Signature: (J)Lorg/swdc/qt/beans/Margins;
+ * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_contentsMargins
   (JNIEnv *, jobject, jlong);
-
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -481,7 +487,6 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_font
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setFont
   (JNIEnv *, jobject, jlong, jlong);
 
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    setWindowIcon
@@ -497,7 +502,6 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setWindowIcon
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_windowIcon
   (JNIEnv *, jobject, jlong);
-
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -619,7 +623,6 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapTo
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_mapFrom
   (JNIEnv *, jobject, jlong, jlong, jlong);
 
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    x
@@ -683,7 +686,6 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_height
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_rect
   (JNIEnv *, jobject, jlong);
-
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -765,6 +767,32 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isFullScree
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isHidden
   (JNIEnv *, jobject, jlong);
 
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    horizontalSizePolicy
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_horizontalSizePolicy
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    verticalSizePolicy
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SWidget_verticalSizePolicy
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    setSizePolicy
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setSizePolicy
+  (JNIEnv *, jobject, jlong, jint, jint);
+
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    setTabOrder
@@ -772,6 +800,7 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SWidget_isHidden
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setTabOrder
   (JNIEnv *, jclass, jlong, jlong);
+
 
 #ifdef __cplusplus
 }

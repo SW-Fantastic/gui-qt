@@ -21,6 +21,7 @@ public class ToolBar extends Widget  {
         if (pointer <= 0) {
             throw new Exception("can not create a tool-bar");
         }
+        toolBar.address(pointer);
     }
 
     public void setMovable(boolean movable) {

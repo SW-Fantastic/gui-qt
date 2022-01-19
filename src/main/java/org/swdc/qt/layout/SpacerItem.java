@@ -35,7 +35,7 @@ public class SpacerItem extends LayoutItem<SSpacerItem> {
         layoutItem.address(pointer);
     }
 
-    public long createSpacer(int width, int height, SizePolicy sizePolicyW, SizePolicy sizePolicyV) throws Exception {
+    private long createSpacer(int width, int height, SizePolicy sizePolicyW, SizePolicy sizePolicyV) throws Exception {
         long pointer = layoutItem.createSpacer(width,height,sizePolicyW.getFlagValue(),sizePolicyV.getFlagValue());
         if (pointer <= 0) {
             throw new Exception("failed to create spacerItem.");

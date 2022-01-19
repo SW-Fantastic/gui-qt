@@ -44,7 +44,7 @@ void initializeButtonEvents(QPushButton * pushButton,jobject self) {
  * Signature: (Ljava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
-(JNIEnv *jenv, jobject self,jlong parent, jstring text) {
+(JNIEnv *jenv, jobject self,jlong parent) {
 
     self = jenv->NewGlobalRef(self);
 

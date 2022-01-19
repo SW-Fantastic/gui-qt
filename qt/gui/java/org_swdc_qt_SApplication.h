@@ -16,12 +16,29 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
   (JNIEnv *, jobject, jint, jobjectArray, jstring);
 
 /*
- * Class:     org_swdc_qt_SApplication
+ * Class:     org_swdc_qt_QtApplication
  * Method:    exec
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_exec
   (JNIEnv *, jobject, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_QtApplication
+ * Method:    loadLanguage
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_loadLanguage
+  (JNIEnv *, jobject, jlong, jstring, jstring);
+
+/*
+ * Class:     org_swdc_qt_QtApplication
+ * Method:    disposeLanguage
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_disposeLanguage
+  (JNIEnv *, jobject, jlong, jlong);
 
 #ifdef __cplusplus
 }
