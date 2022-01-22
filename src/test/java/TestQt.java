@@ -1,6 +1,7 @@
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.swdc.qt.QtApplication;
 import org.swdc.qt.beans.*;
+import org.swdc.qt.internal.dialogs.SMessageDialog;
 import org.swdc.qt.internal.graphics.SRgb;
 import org.swdc.qt.listeners.ActionListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -12,8 +13,7 @@ import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
-import org.swdc.qt.widgets.dialogs.DialogInputMode;
-import org.swdc.qt.widgets.dialogs.InputDialog;
+import org.swdc.qt.widgets.dialogs.*;
 import org.swdc.qt.widgets.graphics.*;
 import org.swdc.qt.widgets.pane.StackedWidget;
 import org.swdc.qt.widgets.pane.TabWidget;
@@ -45,6 +45,14 @@ public class TestQt {
         button.setClickListener(() -> {
             try {
 
+                MessageDialog msg = new MessageDialog();
+                msg.allocate(widget);
+                msg.setText("here is a text information dialog");
+                msg.setIcon(MsgIcon.Information);
+                msg.setWindowTitle("hello world");
+                msg.setStandardButtons(MsgStandardButton.No,MsgStandardButton.Yes);
+                msg.exec();
+
                 InputDialog dlg = new InputDialog();
                 dlg.allocate(widget);
                 dlg.setOkButtonText("确定");
@@ -54,13 +62,13 @@ public class TestQt {
                 dlg.setLabelText("请随意输入");
                 dlg.setComboBoxItems(Arrays.asList("A","B","C","D"));
                 dlg.setInputMode(DialogInputMode.TextInput);
-                dlg.setMinSize(320,120);
                 dlg.resize(320,120);
 
                 dlg.exec();
 
                 String text = dlg.getTextValue();
                 System.err.println(text);
+                dlg.dispose();
 
             } catch (Exception e) {
                 e.printStackTrace();

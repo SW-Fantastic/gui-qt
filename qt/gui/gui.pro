@@ -35,6 +35,7 @@ SOURCES += \
     common/Size.cpp \
     dialogs/AbstractDialog.cpp \
     dialogs/InputDialog.cpp \
+    dialogs/MessageDialog.cpp \
     graphics/ConicalGradient.cpp \
     graphics/Font.cpp \
     graphics/Gradient.cpp \
@@ -72,6 +73,7 @@ HEADERS += \
     java/common/org_swdc_qt_internal_common_SSize.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SInputDialog.h \
+    java/dialogs/org_swdc_qt_internal_dialogs_SMessageDialog.h \
     java/graphics/org_swdc_qt_internal_graphics_SConicalGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SFont.h \
     java/graphics/org_swdc_qt_internal_graphics_SGradient.h \

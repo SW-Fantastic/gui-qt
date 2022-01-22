@@ -32,4 +32,6 @@ public abstract class SAbstractButton extends SWidget {
     public native long iconSize(long pointer);
     public native void setIconSize(long pointer,long size);
 
+    public native void wrap(long pointer);
+
 }

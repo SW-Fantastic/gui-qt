@@ -22,12 +22,18 @@ void SToolBar::paintEvent(QPaintEvent * event) {
  * Signature: ()J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_create
-(JNIEnv * env, jobject self) {
+(JNIEnv * env, jobject self,jlong parent) {
 
 
     self = env->NewGlobalRef(self);
+    SToolBar * bar = NULL;
+    if(parent > 0) {
+        bar = new SToolBar(self);
+    } else {
+        QWidget * widget = (QWidget*)parent;
+        bar = new SToolBar(self,widget);
+    }
 
-    SToolBar * bar = new SToolBar(self);
     initializeWidgetEvents(bar,self);
 
     return (jlong)(intptr_t)bar;

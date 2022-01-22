@@ -149,4 +149,28 @@ public abstract class AbstractButton<T extends SAbstractButton> extends Widget {
             button.setIconSize(getPointer(),size.getPointer());
         }
     }
+
+    public static AbstractButton asAbstractButton(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        AbstractButton button = new AbstractButton() {
+            @Override
+            protected SAbstractButton createButton() {
+                return new SAbstractButton(){};
+            }
+
+            @Override
+            public void allocate() throws Exception {
+            }
+
+            @Override
+            public long getPointer() {
+                return pointer;
+            }
+        };
+        button.button.wrap(pointer);
+        return button;
+    }
+
 }

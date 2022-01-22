@@ -33,6 +33,15 @@ void initializeButtonEvents(QPushButton * pushButton,jobject self);
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SButton
+ * Method:    wrap
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SButton_wrap
+  (JNIEnv *, jobject, jlong);
+
+
 #ifdef __cplusplus
 }
 #endif

@@ -13,6 +13,18 @@ public class InputDialog extends AbstractDialog {
     private SInputDialog inputDialog = new SInputDialog();
 
     @Override
+    public void allocate() throws Exception {
+        if (getPointer() > 0) {
+            return;
+        }
+        long pointer = inputDialog.create(0L);
+        if (pointer <= 0) {
+            throw new Exception("can not create a input dialog");
+        }
+        inputDialog.address(pointer);
+    }
+
+    @Override
     public <T extends Widget> void allocate(T widget) throws Exception {
         if (getPointer() > 0) {
             return;

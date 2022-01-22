@@ -1,5 +1,6 @@
 #include"gui_global.h"
 #include"java/org_swdc_qt_internal_widgets_SAbstractButton.h"
+#include"java/org_swdc_qt_internal_widgets_SWidget.h"
 
 /*
  * Class:     org_swdc_qt_widgets_SAbstractButton
@@ -251,4 +252,17 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setIcon
     QSize * size = (QSize*)sizeVal;
     QAbstractButton* button = (QAbstractButton*)pointer;
     button->setIconSize(*size);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    wrap
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_wrap
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QAbstractButton * button = (QAbstractButton*)pointer;
+    self = env->NewGlobalRef(self);
+    initializeWidgetEvents(button,self);
 }

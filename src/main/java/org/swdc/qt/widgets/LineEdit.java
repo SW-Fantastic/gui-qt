@@ -42,6 +42,20 @@ public class LineEdit extends Widget {
         lineEdit.address(pointer);
     }
 
+    public <T extends Widget> void allocate(T parent) throws Exception {
+        if (getPointer() > 0) {
+            return;
+        }
+        if (parent.getPointer() <= 0) {
+            throw new Exception("invalid parent widget");
+        }
+        long pointer = lineEdit.create(0L);
+        if (pointer <= 0) {
+            throw new Exception("failed to create line-edit");
+        }
+        lineEdit.address(pointer);
+    }
+
     public String getText() {
         if (getPointer() > 0) {
             return lineEdit.text(getPointer());

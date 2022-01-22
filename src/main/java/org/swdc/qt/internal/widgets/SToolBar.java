@@ -2,7 +2,7 @@ package org.swdc.qt.internal.widgets;
 
 public class SToolBar extends SWidget {
 
-    public native long create();
+    public native long create(long pointer);
 
     public native void setMovable(long pointer,boolean movable);
     public native boolean isMovable(long pointer);

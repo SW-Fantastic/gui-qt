@@ -21,6 +21,7 @@ void SWidget::paintEvent(QPaintEvent * event) {
 
 void initializeWidgetEvents(QWidget* widget,jobject self){
 
+    widget->disconnect(widget,&QWidget::windowTitleChanged,widget,NULL);
     widget->connect(widget,&QWidget::windowTitleChanged,[self](QString title)->void {
         asyncExec([self,title]() -> void {
 
@@ -36,6 +37,7 @@ void initializeWidgetEvents(QWidget* widget,jobject self){
         });
     });
 
+    widget->disconnect(widget,&QWidget::customContextMenuRequested,widget,NULL);
     widget->connect(widget,&QWidget::customContextMenuRequested,[self](QPoint p) -> void {
         asyncExec([self,p]() -> void {
 
@@ -50,7 +52,7 @@ void initializeWidgetEvents(QWidget* widget,jobject self){
     });
 
 
-
+    widget->disconnect(widget,&QWidget::destroyed,widget,NULL);
     widget->connect(widget,&QWidget::destroyed,[self]()->void{
 
         JNIEnv* env = getContext();

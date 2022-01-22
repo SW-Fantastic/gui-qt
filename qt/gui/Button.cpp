@@ -21,6 +21,7 @@ void SPushButton::paintEvent(QPaintEvent *event) {
 
 void initializeButtonEvents(QPushButton * pushButton,jobject self) {
 
+    pushButton->disconnect(pushButton,&QPushButton::clicked,pushButton,NULL);
     pushButton->connect(pushButton,&QPushButton::clicked,[self]()->void {
 
         asyncExec([self]()-> void {
@@ -60,4 +61,21 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
 
     return  (jlong)(intptr_t)btn;
 }
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SButton
+ * Method:    wrap
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SButton_wrap
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    self = env->NewGlobalRef(self);
+    QPushButton * pushButton = (QPushButton*)pointer;
+    initializeWidgetEvents(pushButton,self);
+    initializeButtonEvents(pushButton,self);
+
+
+}
+
 

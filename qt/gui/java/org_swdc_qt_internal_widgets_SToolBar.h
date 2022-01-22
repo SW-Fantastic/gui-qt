@@ -28,7 +28,7 @@ protected:
  * Signature: ()J
  */
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_create
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject,jlong);
 
 /*
  * Class:     org_swdc_qt_internal_widgets_SToolBar

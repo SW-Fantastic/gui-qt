@@ -52,6 +52,16 @@ public class PushButton extends AbstractButton<SButton> {
         button.address(pointer);
     }
 
+    public static PushButton asPushButton(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        PushButton button = new PushButton();
+        button.button.address(pointer);
+        button.button.wrap(pointer);
+        return button;
+    }
+
     @Override
     public long getPointer() {
         return button.address();

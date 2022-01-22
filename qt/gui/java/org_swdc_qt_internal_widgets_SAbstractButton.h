@@ -169,6 +169,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setIcon
   (JNIEnv *, jobject, jlong, jlong);
 
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SAbstractButton
+ * Method:    wrap
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_wrap
+  (JNIEnv *, jobject, jlong);
+
 #ifdef __cplusplus
 }
 #endif

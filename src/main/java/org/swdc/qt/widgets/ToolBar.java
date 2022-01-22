@@ -17,7 +17,22 @@ public class ToolBar extends Widget  {
         if (getPointer() > 0) {
             return;
         }
-        long pointer = toolBar.create();
+        long pointer = toolBar.create(0L);
+        if (pointer <= 0) {
+            throw new Exception("can not create a tool-bar");
+        }
+        toolBar.address(pointer);
+    }
+
+    public <T extends Widget> void allocate(T parent) throws Exception {
+        if (getPointer() > 0) {
+            return;
+        }
+        if (parent.getPointer() <= 0 ) {
+            throw new Exception("invalid parent widget");
+        }
+
+        long pointer = toolBar.create(0L);
         if (pointer <= 0) {
             throw new Exception("can not create a tool-bar");
         }
