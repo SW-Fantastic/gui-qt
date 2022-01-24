@@ -11,6 +11,10 @@ extern "C" {
 #endif
 
 
+class SMenu :public QMenu {
+
+};
+
 void initializeMenuEvents(JNIEnv * env,jobject self,QMenu* menu);
 
 /*

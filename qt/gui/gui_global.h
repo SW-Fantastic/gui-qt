@@ -6,6 +6,8 @@
 #include <QTranslator>
 #include <QApplication>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include <QDir>
 #include <QSize>
 #include <QWidget>

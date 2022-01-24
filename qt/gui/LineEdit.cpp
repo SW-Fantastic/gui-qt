@@ -1,7 +1,8 @@
 #include "gui_global.h"
+#include "java/types/SLineEdit.h"
+#include "java/types/SWidget.h"
 #include "java/org_swdc_qt_internal_widgets_SLineEdit.h"
 
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
 
 SLineEdit::SLineEdit(jobject self):QLineEdit() {
     this->self = self;
@@ -35,7 +36,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_create
         edit = new SLineEdit(self);
     }
 
-    initializeWidgetEvents(edit,self);
+    SWidget::initializeWidgetEvents(edit,self);
     return (jlong)(intptr_t)edit;
 }
 

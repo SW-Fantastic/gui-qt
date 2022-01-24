@@ -1,6 +1,9 @@
 #include "gui_global.h"
+
+#include "java/types/SWidget.h"
+#include "java/types/SToolBar.h"
 #include "java/org_swdc_qt_internal_widgets_SToolBar.h"
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
 
 SToolBar::SToolBar(jobject self):QToolBar() {
     this->self = self;
@@ -34,7 +37,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_create
         bar = new SToolBar(self,widget);
     }
 
-    initializeWidgetEvents(bar,self);
+    SWidget::initializeWidgetEvents(bar,self);
 
     return (jlong)(intptr_t)bar;
 }

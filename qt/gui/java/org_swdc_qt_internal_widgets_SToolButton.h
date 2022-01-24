@@ -9,25 +9,6 @@
 extern "C" {
 #endif
 
-
-
-
-class SToolButton : public QToolButton {
-
-private:
-    jobject self;
-public:
-
-    SToolButton(jobject self);
-    SToolButton(jobject self,QWidget * parent);
-
-protected:
-    void paintEvent(QPaintEvent *event);
-
-};
-
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SToolButton
  * Method:    create

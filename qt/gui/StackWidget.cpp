@@ -1,6 +1,9 @@
 #include"gui_global.h"
+
+#include "java/types/SWidget.h"
+#include "java/types/SStackWidget.h"
 #include"java/org_swdc_qt_internal_widgets_SStackWidget.h"
-#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+
 
 
 SStackWidget::SStackWidget(jobject self):QStackedWidget() {
@@ -29,7 +32,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SStackWidget_create
 
     self = env->NewGlobalRef(self);
     SStackWidget * stackWidget = new SStackWidget(self);
-    initializeWidgetEvents(stackWidget,self);
+    SWidget::initializeWidgetEvents(stackWidget,self);
 
     return (jlong)(intptr_t)stackWidget;
 

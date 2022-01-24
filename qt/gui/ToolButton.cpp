@@ -1,7 +1,8 @@
 #include"gui_global.h"
-#include"java/org_swdc_qt_internal_widgets_SToolButton.h"
 
-#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+#include "java/types/SWidget.h"
+#include "java/types/SToolButton.h"
+#include"java/org_swdc_qt_internal_widgets_SToolButton.h"
 
 SToolButton::SToolButton(jobject self,QWidget * parent):QToolButton(parent) {
     this->self = self;
@@ -29,7 +30,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolButton_create
 
     self = env->NewGlobalRef(self);
     QToolButton * toolButton = new SToolButton(self);
-    initializeWidgetEvents(toolButton,self);
+    SWidget::initializeWidgetEvents(toolButton,self);
 
     return (jlong)(intptr_t)toolButton;
 }

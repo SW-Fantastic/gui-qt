@@ -50,6 +50,7 @@ public class TestQt {
                 msg.setText("here is a text information dialog");
                 msg.setIcon(MsgIcon.Information);
                 msg.setWindowTitle("hello world");
+                msg.addButton("测试按钮",MsgButtonRoles.YesRole);
                 msg.setStandardButtons(MsgStandardButton.No,MsgStandardButton.Yes);
                 msg.exec();
 
@@ -179,7 +180,44 @@ public class TestQt {
         itemTabA.allocate(0,1,SizePolicy.Minimum,SizePolicy.Expanding);
 
         tabALayout.addWidget(toolBar);
+        RadioButton radioButton = new RadioButton();
+        radioButton.allocate();
+        radioButton.setText("test radio A");
+
+        RadioButton radioButtonA = new RadioButton();
+        radioButtonA.allocate();
+        radioButtonA.setText("test radio B");
+
+        RadioButton radioButtonB = new RadioButton();
+        radioButtonB.allocate();
+        radioButtonB.setText("radio C");
+
+        RadioButton radioButtonC = new RadioButton();
+        radioButtonC.allocate();
+        radioButtonC.setText("radio D");
+
+        HBoxLayout hOptionLayout = new HBoxLayout();
+        hOptionLayout.allocate();
+
+        hOptionLayout.addWidget(radioButton);
+        hOptionLayout.addWidget(radioButtonA);
+        hOptionLayout.addWidget(radioButtonB);
+        hOptionLayout.addWidget(radioButtonC);
+
+        ButtonGroup group = new ButtonGroup();
+        group.allocate();
+        group.addButton(radioButton,0);
+        group.addButton(radioButtonA,1);
+
+        ButtonGroup groupA = new ButtonGroup();
+        groupA.allocate();
+        groupA.addButton(radioButtonB,0);
+        groupA.addButton(radioButtonC,1);
+
+        tabALayout.addLayout(hOptionLayout);
+
         tabALayout.addSpacerItem(itemTabA);
+
         tabA.setLayout(tabALayout);
 
         tabA.setPaintListener(painter -> {

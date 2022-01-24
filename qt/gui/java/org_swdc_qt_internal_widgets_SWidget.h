@@ -10,26 +10,6 @@
 extern "C" {
 #endif
 
-
-class SWidget : public QWidget {
-
-private:
-    jobject self;
-
-public:
-
-    SWidget(jobject self);
-    SWidget(jobject self,QWidget * parent);
-
-
-protected:
-    void paintEvent(QPaintEvent *event);
-};
-
-
-void initializeWidgetEvents(QWidget * widget,jobject self);
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
  * Method:    doSetMinSize

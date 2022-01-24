@@ -1,6 +1,9 @@
 #include "gui_global.h"
+
+#include "java/types/SWidget.h"
+#include "java/dialogs/types/SInputDialog.h"
 #include "java/dialogs/org_swdc_qt_internal_dialogs_SInputDialog.h"
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
 
 SInputDialog::SInputDialog(jobject self):QInputDialog() {
     this->self = self;
@@ -32,7 +35,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_create
         dialog = new SInputDialog(self);
     }
 
-    initializeWidgetEvents(dialog,self);
+    SWidget::initializeWidgetEvents(dialog,self);
     return (jlong)(intptr_t)dialog;
 }
 

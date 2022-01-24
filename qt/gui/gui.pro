@@ -13,12 +13,14 @@ SOURCES += \
     AbstractButton.cpp \
     Action.cpp \
     Button.cpp \
+    ButtonGroup.cpp \
     Executors.cpp \
     GUI.cpp \
     GUIApplication.cpp \
     LineEdit.cpp \
     Menu.cpp \
     MenuBar.cpp \
+    RadioButton.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
     ToolBar.cpp \
@@ -74,6 +76,8 @@ HEADERS += \
     java/dialogs/org_swdc_qt_internal_dialogs_SDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SInputDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SMessageDialog.h \
+    java/dialogs/types/SInputDialog.h \
+    java/dialogs/types/SMessageDialog.h \
     java/graphics/org_swdc_qt_internal_graphics_SConicalGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SFont.h \
     java/graphics/org_swdc_qt_internal_graphics_SGradient.h \
@@ -102,14 +106,25 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SAbstractButton.h \
     java/org_swdc_qt_internal_widgets_SAction.h \
     java/org_swdc_qt_internal_widgets_SButton.h \
+    java/org_swdc_qt_internal_widgets_SButtonGroup.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
     java/org_swdc_qt_internal_widgets_SMenu.h \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
+    java/org_swdc_qt_internal_widgets_SRadioButton.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
-    java/org_swdc_qt_internal_widgets_SWidget.h
+    java/org_swdc_qt_internal_widgets_SWidget.h \
+    java/types/SLineEdit.h \
+    java/types/SMenuBar.h \
+    java/types/SPushButton.h \
+    java/types/SRadioButton.h \
+    java/types/SStackWidget.h \
+    java/types/STabWidget.h \
+    java/types/SToolBar.h \
+    java/types/SToolButton.h \
+    java/types/SWidget.h
 
 # Default rules for deployment.
 unix {

@@ -10,23 +10,6 @@ extern "C" {
 #endif
 
 
-class STabWidget : public QTabWidget {
-
-private:
-
-    jobject self;
-
-public:
-
-    STabWidget(jobject self);
-    STabWidget(jobject self, QWidget * parent);
-
-protected:
-
-    void paintEvent(QPaintEvent *);
-
-};
-
 
 /*
  * Class:     org_swdc_qt_internal_widgets_STabWidget

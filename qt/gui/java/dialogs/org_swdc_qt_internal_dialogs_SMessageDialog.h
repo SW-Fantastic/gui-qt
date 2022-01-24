@@ -9,16 +9,6 @@
 extern "C" {
 #endif
 
-class SMessageDialog : public QMessageBox {
-
-private:
-    jobject self;
-public:
-    SMessageDialog(jobject self);
-    SMessageDialog(jobject self,QWidget*);
-protected:
-    void paintEvent(QPaintEvent *event);
-};
 
 /*
  * Class:     org_swdc_qt_internal_dialogs_SMessageDialog

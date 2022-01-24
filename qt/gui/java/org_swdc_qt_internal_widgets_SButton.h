@@ -9,22 +9,6 @@
 extern "C" {
 #endif
 
-
-class SPushButton :public QPushButton {
-
-private:
-    jobject self;
-public:
-    SPushButton(jobject self);
-    SPushButton(jobject self,QWidget* parent);
-protected:
-    void paintEvent(QPaintEvent* event);
-};
-
-
-void initializeButtonEvents(QPushButton * pushButton,jobject self);
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SButton
  * Method:    create

@@ -1,5 +1,8 @@
+#include "java/types/SPushButton.h"
+
 #include "java/org_swdc_qt_internal_widgets_SButton.h"
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
+#include "java/types/SWidget.h"
 #include "gui_global.h"
 
 
@@ -14,12 +17,18 @@ SPushButton::SPushButton(jobject self,QWidget * parent):QPushButton(parent) {
     this->self = self;
 }
 
+void SPushButton::setSelf(jobject obj) {
+    if(this->self == NULL) {
+        this->self = obj;
+    }
+}
+
 void SPushButton::paintEvent(QPaintEvent *event) {
     QPushButton::paintEvent(event);
     paintEventWithJava(event,this->self,(jlong)(intptr_t)this);
 }
 
-void initializeButtonEvents(QPushButton * pushButton,jobject self) {
+void SPushButton::initializeButtonEvents(QPushButton * pushButton,jobject self) {
 
     pushButton->disconnect(pushButton,&QPushButton::clicked,pushButton,NULL);
     pushButton->connect(pushButton,&QPushButton::clicked,[self]()->void {
@@ -56,8 +65,8 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SButton_create
         btn = new SPushButton(self);
     }
 
-    initializeWidgetEvents(btn,self);
-    initializeButtonEvents(btn,self);
+    SWidget::initializeWidgetEvents(btn,self);
+    SPushButton::initializeButtonEvents(btn,self);
 
     return  (jlong)(intptr_t)btn;
 }
@@ -72,9 +81,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SButton_wrap
 
     self = env->NewGlobalRef(self);
     QPushButton * pushButton = (QPushButton*)pointer;
-    initializeWidgetEvents(pushButton,self);
-    initializeButtonEvents(pushButton,self);
+    SWidget::initializeWidgetEvents(pushButton,self);
+    SPushButton::initializeButtonEvents(pushButton,self);
 
+    SPushButton * sPushButton = qobject_cast<SPushButton *>(pushButton);
+
+    if(sPushButton) {
+        sPushButton->setSelf(self);
+    }
 
 }
 

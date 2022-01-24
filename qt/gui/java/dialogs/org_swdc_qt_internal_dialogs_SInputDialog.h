@@ -9,16 +9,7 @@
 extern "C" {
 #endif
 
-class SInputDialog : public QInputDialog {
 
-private:
-    jobject self;
-public:
-    SInputDialog(jobject);
-    SInputDialog(jobject, QWidget*);
-protected:
-    void paintEvent(QPaintEvent *event);
-};
 
 /*
  * Class:     org_swdc_qt_internal_dialogs_SInputDialog

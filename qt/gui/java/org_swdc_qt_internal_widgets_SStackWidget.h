@@ -9,23 +9,6 @@
 extern "C" {
 #endif
 
-class SStackWidget: public QStackedWidget {
-
-private:
-
-    jobject self;
-
-public:
-    SStackWidget(jobject self);
-    SStackWidget(jobject self,QWidget * parent);
-
-protected:
-
-    void paintEvent(QPaintEvent* event);
-
-};
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SStackWidget
  * Method:    create

@@ -150,6 +150,13 @@ public abstract class AbstractButton<T extends SAbstractButton> extends Widget {
         }
     }
 
+    /**
+     * 如果Qt没有明确返回的按钮类型，或者指定为QAbstractButton，那么应该使用此方法
+     * 包装C++返回的Pointer。
+     *
+     * @param pointer QAbstractButton的指针。
+     * @return 包装好的Button
+     */
     public static AbstractButton asAbstractButton(long pointer) {
         if (pointer <= 0) {
             throw new RuntimeException("invalid pointer");

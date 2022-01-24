@@ -1,7 +1,8 @@
 #include "gui_global.h"
 #include "java/org_swdc_qt_internal_widgets_SMenuBar.h"
 
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+#include "java/types/SMenuBar.h"
+#include "java/types/SWidget.h"
 
 
 SMenuBar::SMenuBar(jobject self):QMenuBar() {
@@ -29,7 +30,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_create
 
     self = env->NewGlobalRef(self);
     SMenuBar * menuBar = new SMenuBar(self);
-    initializeWidgetEvents(menuBar,self);
+    SWidget::initializeWidgetEvents(menuBar,self);
 
     return (jlong)(intptr_t)menuBar;
 

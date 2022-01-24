@@ -1,4 +1,7 @@
 #include"gui_global.h"
+
+#include "java/types/SWidget.h"
+
 #include"java/org_swdc_qt_internal_widgets_SAbstractButton.h"
 #include"java/org_swdc_qt_internal_widgets_SWidget.h"
 
@@ -264,5 +267,5 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_wrap
 
     QAbstractButton * button = (QAbstractButton*)pointer;
     self = env->NewGlobalRef(self);
-    initializeWidgetEvents(button,self);
+    SWidget::initializeWidgetEvents(button,self);
 }

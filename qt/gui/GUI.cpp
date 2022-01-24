@@ -43,6 +43,9 @@ JNIEnv* getContext() {
 
 
 void paintEventWithJava(QPaintEvent* event,jobject self,jlong me) {
+    if(self == NULL) {
+        return;
+    }
     JNIEnv * env = getContext();
 
     jclass type = env->FindClass("org/swdc/qt/internal/widgets/SWidget");

@@ -10,24 +10,6 @@
 extern "C" {
 #endif
 
-
-class SMenuBar :public QMenuBar {
-
-private:
-
-    jobject self;
-
-public:
-
-    SMenuBar(jobject self);
-    SMenuBar(jobject self,QWidget * widget);
-
-protected:
-
-    void paintEvent(QPaintEvent *);
-
-};
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SMenuBar
  * Method:    create

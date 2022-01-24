@@ -1,5 +1,11 @@
 #include "gui_global.h"
-#include "java/org_swdc_qt_internal_widgets_SWidget.h"
+
+
+#include "java/types/SWidget.h"
+#include "java/types/SPushButton.h"
+#include "java/dialogs/types/SMessageDialog.h"
+
+#include "java/org_swdc_qt_internal_widgets_SButton.h"
 #include "java/dialogs/org_swdc_qt_internal_dialogs_SMessageDialog.h"
 
 
@@ -33,7 +39,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_create
         dialog = new SMessageDialog(self);
     }
 
-    initializeWidgetEvents(dialog,self);
+    SWidget::initializeWidgetEvents(dialog,self);
     return (jlong)(intptr_t)dialog;
 }
 
@@ -66,7 +72,10 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_addButt
     const char * cText = env->GetStringUTFChars(text,JNI_FALSE);
     QString val(cText);
 
-    QAbstractButton * button = messageBox->addButton(val,bRole);
+    SPushButton * button = new SPushButton(NULL);
+    button->setText(val);
+    messageBox->addButton(button,bRole);
+
     return (jlong)(intptr_t)button;
 }
 

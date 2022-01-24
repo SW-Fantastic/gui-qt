@@ -1,7 +1,8 @@
 #include"gui_global.h"
-#include"java/org_swdc_qt_internal_widgets_STabWidget.h"
 
-#include"java/org_swdc_qt_internal_widgets_SWidget.h"
+#include "java/types/SWidget.h"
+#include "java/types/STabWidget.h"
+#include"java/org_swdc_qt_internal_widgets_STabWidget.h"
 
 
 STabWidget::STabWidget(jobject self):QTabWidget() {
@@ -29,7 +30,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_create
     self = env->NewGlobalRef(self);
 
     STabWidget* tabWidget = new STabWidget(self);
-    initializeWidgetEvents(tabWidget,self);
+    SWidget::initializeWidgetEvents(tabWidget,self);
 
     return (jlong)(intptr_t)tabWidget;
 

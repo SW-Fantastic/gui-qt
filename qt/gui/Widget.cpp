@@ -1,5 +1,7 @@
 #include"gui_global.h"
 #include <stdio.h>
+
+#include"java/types/SWidget.h"
 #include"java/org_swdc_qt_internal_widgets_SWidget.h"
 
 extern const char* PainterClassType;
@@ -19,7 +21,7 @@ void SWidget::paintEvent(QPaintEvent * event) {
 }
 
 
-void initializeWidgetEvents(QWidget* widget,jobject self){
+void SWidget::initializeWidgetEvents(QWidget* widget,jobject self){
 
     widget->disconnect(widget,&QWidget::windowTitleChanged,widget,NULL);
     widget->connect(widget,&QWidget::windowTitleChanged,[self](QString title)->void {
@@ -86,7 +88,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SWidget_create
         widget = new SWidget(self);
     }
 
-    initializeWidgetEvents(widget,self);
+    SWidget::initializeWidgetEvents(widget,self);
 
     return (jlong)(intptr_t)widget;
 }

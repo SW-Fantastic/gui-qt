@@ -8,27 +8,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-
-
-class SLineEdit : public QLineEdit {
-
-private :
-
-    jobject self;
-
-public:
-
-    SLineEdit(jobject self);
-    SLineEdit(jobject self,QWidget * parent);
-
-protected:
-
-    void paintEvent(QPaintEvent *);
-
-};
-
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SLineEdit
  * Method:    create

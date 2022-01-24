@@ -9,19 +9,6 @@
 extern "C" {
 #endif
 
-class SToolBar : public QToolBar {
-
-private:
-    jobject self;
-
-public:
-    SToolBar(jobject self);
-    SToolBar(jobject self,QWidget * parent);
-
-protected:
-    void paintEvent(QPaintEvent *event);
-};
-
 /*
  * Class:     org_swdc_qt_internal_widgets_SToolBar
  * Method:    create
