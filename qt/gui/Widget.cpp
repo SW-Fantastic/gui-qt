@@ -54,7 +54,9 @@ void SWidget::initializeWidgetEvents(QWidget* widget,jobject self){
     });
 
 
-    widget->disconnect(widget,&QWidget::destroyed,widget,NULL);
+    // do not disconnect this event because there might be multiple global-reference
+
+    //widget->disconnect(widget,&QWidget::destroyed,widget,NULL);
     widget->connect(widget,&QWidget::destroyed,[self]()->void{
 
         JNIEnv* env = getContext();
@@ -1298,8 +1300,8 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setSizePolicy
     QSizePolicy::Policy h = QSizePolicy::Policy(horizontol);
     QSizePolicy::Policy v = QSizePolicy::Policy(vertical);
 
-     QWidget * widget = (QWidget*)pointer;
-     widget->setSizePolicy(h,v);
+    QWidget * widget = (QWidget*)pointer;
+    widget->setSizePolicy(h,v);
 }
 /*
  * Class:     org_swdc_qt_internal_widgets_SWidget
@@ -1313,4 +1315,17 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setTabOrder
     QWidget * widgetB = (QWidget*)widgetPointerB;
 
     QWidget::setTabOrder(widget,widgetB);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    wrapAsWidget
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_wrapAsWidget
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    self = env->NewGlobalRef(self);
+    QWidget * widget = (QWidget*)pointer;
+    SWidget::initializeWidgetEvents(widget,self);
 }

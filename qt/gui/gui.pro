@@ -11,16 +11,24 @@ CONFIG += c++11
 
 SOURCES += \
     AbstractButton.cpp \
+    AbstractScrollArea.cpp \
+    AbstractSlider.cpp \
     Action.cpp \
     Button.cpp \
     ButtonGroup.cpp \
+    CheckBox.cpp \
+    CommandLinkButton.cpp \
     Executors.cpp \
+    Frame.cpp \
     GUI.cpp \
     GUIApplication.cpp \
+    GroupBox.cpp \
     LineEdit.cpp \
     Menu.cpp \
     MenuBar.cpp \
     RadioButton.cpp \
+    ScrollArea.cpp \
+    ScrollBar.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
     ToolBar.cpp \
@@ -104,22 +112,36 @@ HEADERS += \
     java/graphics/org_swdc_qt_internal_graphics_STransformation.h \
     java/org_swdc_qt_SApplication.h \
     java/org_swdc_qt_internal_widgets_SAbstractButton.h \
+    java/org_swdc_qt_internal_widgets_SAbstractScrollArea.h \
+    java/org_swdc_qt_internal_widgets_SAbstractSlider.h \
     java/org_swdc_qt_internal_widgets_SAction.h \
     java/org_swdc_qt_internal_widgets_SButton.h \
     java/org_swdc_qt_internal_widgets_SButtonGroup.h \
+    java/org_swdc_qt_internal_widgets_SCheckBox.h \
+    java/org_swdc_qt_internal_widgets_SCommandLinkButton.h \
+    java/org_swdc_qt_internal_widgets_SFrame.h \
+    java/org_swdc_qt_internal_widgets_SGroupBox.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
     java/org_swdc_qt_internal_widgets_SMenu.h \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
+    java/org_swdc_qt_internal_widgets_SScrollArea.h \
+    java/org_swdc_qt_internal_widgets_SScrollBar.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
+    java/types/SCheckBox.h \
+    java/types/SCommandLinkButton.h \
+    java/types/SFrame.h \
+    java/types/SGroupBox.h \
     java/types/SLineEdit.h \
     java/types/SMenuBar.h \
     java/types/SPushButton.h \
     java/types/SRadioButton.h \
+    java/types/SScrollArea.h \
+    java/types/SScrollBar.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
     java/types/SToolBar.h \

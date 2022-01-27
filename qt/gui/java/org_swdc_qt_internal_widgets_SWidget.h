@@ -782,6 +782,14 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_setTabOrder
   (JNIEnv *, jclass, jlong, jlong);
 
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SWidget
+ * Method:    wrapAsWidget
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SWidget_wrapAsWidget
+  (JNIEnv *, jobject, jlong);
+
 #ifdef __cplusplus
 }
 #endif

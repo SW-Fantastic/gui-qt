@@ -15,9 +15,7 @@ import org.swdc.qt.widgets.action.MenuBar;
 import org.swdc.qt.widgets.action.ToolButton;
 import org.swdc.qt.widgets.dialogs.*;
 import org.swdc.qt.widgets.graphics.*;
-import org.swdc.qt.widgets.pane.StackedWidget;
-import org.swdc.qt.widgets.pane.TabWidget;
-import org.swdc.qt.widgets.pane.Widget;
+import org.swdc.qt.widgets.pane.*;
 
 import java.io.File;
 import java.util.Arrays;
@@ -143,6 +141,34 @@ public class TestQt {
         Widget tabB = new Widget();
         tabB.allocate();
 
+        VBoxLayout tabBLayout = new VBoxLayout();
+        tabBLayout.allocate();
+
+        ScrollArea area = new ScrollArea();
+        area.allocate();
+
+        Widget scrollView = new Widget();
+        scrollView.allocate();
+
+        VBoxLayout areaLayout = new VBoxLayout();
+        areaLayout.allocate();
+        areaLayout.setSpacing(12);
+
+        for (int i = 0; i < 40; i ++) {
+            PushButton itemButton = new PushButton();
+            itemButton.allocate();
+            itemButton.setText("button_" + i);
+            itemButton.setContentMargins(4,2,2,4);
+            areaLayout.addWidget(itemButton);
+        }
+
+        scrollView.setLayout(areaLayout);
+
+        area.setSizePolicy(SizePolicy.Expanding,SizePolicy.Expanding);
+        area.setWidget(scrollView);
+        tabBLayout.addWidget(area);
+        tabB.setLayout(tabBLayout);
+
         ToolButton toolButton = new ToolButton();
         toolButton.allocate();
         Action toolAction = new Action();
@@ -216,6 +242,37 @@ public class TestQt {
 
         tabALayout.addLayout(hOptionLayout);
 
+        CheckBox checkBox = new CheckBox();
+        checkBox.allocate();
+        checkBox.setText("option A");
+
+        CheckBox checkBoxA = new CheckBox();
+        checkBoxA.allocate();
+        checkBoxA.setText("option B");
+
+        CheckBox checkBoxB = new CheckBox();
+        checkBoxB.allocate();
+        checkBoxB.setText("option C");
+
+        HBoxLayout hCheckOptions = new HBoxLayout();
+        hCheckOptions.allocate();
+        hCheckOptions.addWidget(checkBox);
+        hCheckOptions.addWidget(checkBoxA);
+        hCheckOptions.addWidget(checkBoxB);
+
+        tabALayout.addLayout(hCheckOptions);
+
+        CommandLinkButton linkButton = new CommandLinkButton();
+        linkButton.allocate();
+        linkButton.setText("Linked button");
+        tabALayout.addWidget(linkButton);
+
+        GroupBox gpBox = new GroupBox();
+        gpBox.allocate();
+        gpBox.setTitle("Group box");
+        gpBox.setMinSize(120,120);
+        tabALayout.addWidget(gpBox);
+
         tabALayout.addSpacerItem(itemTabA);
 
         tabA.setLayout(tabALayout);
@@ -249,7 +306,6 @@ public class TestQt {
 
                 painter.fillRect(0,0,size.getWidth(),size.getHeight(),brush);
 
-                System.err.println("painted!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -259,8 +315,8 @@ public class TestQt {
 
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
-        tabWidget.addTab(tabA,"ToolBar");
-        tabWidget.addTab(tabB,"Test TabB");
+        tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
+        tabWidget.addTab(tabB,"ScrollArea");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();

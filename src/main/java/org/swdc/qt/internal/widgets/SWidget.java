@@ -182,4 +182,6 @@ public class SWidget extends SPointer  {
 
     public native static void setTabOrder(long widget, long nextWidget);
 
+    public native void wrapAsWidget(long pointer);
+
 }

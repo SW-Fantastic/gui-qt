@@ -749,6 +749,15 @@ public class Widget {
         return false;
     }
 
+    public static Widget asWidget(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer.");
+        }
+        Widget widget = new Widget();
+        widget.widget.wrapAsWidget(pointer);
+        widget.widget.address(pointer);
+        return widget;
+    }
 
     public long getPointer() {
         return widget.address();

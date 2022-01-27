@@ -7,7 +7,12 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QGroupBox>
+#include <QCommandLinkButton>
+#include <QCheckBox>
 #include <QButtonGroup>
+#include <QAbstractSlider>
+#include <QScrollArea>
 #include <QDir>
 #include <QSize>
 #include <QWidget>
