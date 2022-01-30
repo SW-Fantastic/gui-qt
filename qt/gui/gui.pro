@@ -24,6 +24,8 @@ SOURCES += \
     GUIApplication.cpp \
     GroupBox.cpp \
     LineEdit.cpp \
+    MdiArea.cpp \
+    MdiSubWindow.cpp \
     Menu.cpp \
     MenuBar.cpp \
     RadioButton.cpp \
@@ -32,6 +34,7 @@ SOURCES += \
     StackWidget.cpp \
     TabWidget.cpp \
     ToolBar.cpp \
+    ToolBox.cpp \
     ToolButton.cpp \
     Widget.cpp \
     common/Line.cpp \
@@ -122,6 +125,8 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SFrame.h \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
+    java/org_swdc_qt_internal_widgets_SMdiArea.h \
+    java/org_swdc_qt_internal_widgets_SMdiSubWindow.h \
     java/org_swdc_qt_internal_widgets_SMenu.h \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
@@ -130,6 +135,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
+    java/org_swdc_qt_internal_widgets_SToolBox.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
     java/types/SCheckBox.h \
@@ -137,6 +143,7 @@ HEADERS += \
     java/types/SFrame.h \
     java/types/SGroupBox.h \
     java/types/SLineEdit.h \
+    java/types/SMdiArea.h \
     java/types/SMenuBar.h \
     java/types/SPushButton.h \
     java/types/SRadioButton.h \
@@ -145,6 +152,7 @@ HEADERS += \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
     java/types/SToolBar.h \
+    java/types/SToolBox.h \
     java/types/SToolButton.h \
     java/types/SWidget.h
 

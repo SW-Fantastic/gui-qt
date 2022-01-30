@@ -312,11 +312,56 @@ public class TestQt {
 
         });
 
+        Widget tabToolBox = new Widget();
+        tabToolBox.allocate();
+
+        VBoxLayout tabBoxLayout = new VBoxLayout();
+        tabBoxLayout.allocate();
+
+        ToolBox box = new ToolBox();
+        box.allocate();
+
+        Widget toolSecA = new Widget();
+        toolSecA.allocate();
+        box.addItem(toolSecA,"Tools A");
+
+        Widget toolSecB = new Widget();
+        toolSecB.allocate();
+        box.addItem(toolSecB,"Tools B");
+
+        tabBoxLayout.addWidget(box);
+        tabToolBox.setLayout(tabBoxLayout);
+
+        Widget mdiWidget = new Widget();
+        mdiWidget.allocate();
+        VBoxLayout mdiLayout = new VBoxLayout();
+        mdiLayout.allocate();
+        mdiWidget.setLayout(mdiLayout);
+
+        MdiArea mdiArea = new MdiArea();
+        mdiArea.allocate();
+        mdiArea.setTabsClosable(false);
+        mdiArea.setSizePolicy(SizePolicy.Expanding,SizePolicy.Expanding);
+        mdiLayout.addWidget(mdiArea);
+
+        Widget mdiWindowA = new Widget();
+        mdiWindowA.allocate();
+
+        Widget mdiWindowB = new Widget();
+        mdiWindowB.allocate();
+
+        MdiSubWindow windowA = mdiArea.addSubWindow(mdiWindowA);
+        windowA.setMinSize(200,200);
+
+        MdiSubWindow windowB = mdiArea.addSubWindow(mdiWindowB);
+        windowB.setMinSize(200,200);
 
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
         tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
         tabWidget.addTab(tabB,"ScrollArea");
+        tabWidget.addTab(tabToolBox,"ToolBox");
+        tabWidget.addTab(mdiWidget,"Mdi area");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();
