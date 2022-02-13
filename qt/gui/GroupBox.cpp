@@ -65,6 +65,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SGroupBox_setTitle
     const char* cText = env->GetStringUTFChars(text,JNI_FALSE);
     QGroupBox * box = (QGroupBox*)pointer;
     box->setTitle(QString(cText));
+    env->ReleaseStringUTFChars(text,cText);
 
 }
 

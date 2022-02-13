@@ -106,6 +106,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setText
     const char* str = env->GetStringUTFChars(text,JNI_FALSE);
     QString textStr(str);
     action->setText(textStr);
+    env->ReleaseStringUTFChars(text,str);
 
 }
 
@@ -135,6 +136,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setIconText
     const char* str = env->GetStringUTFChars(text,JNI_FALSE);
     QString strText(str);
     action->setIconText(strText);
+    env->ReleaseStringUTFChars(text,str);
 }
 
 /*
@@ -163,6 +165,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setToolTip
     const char* textStr = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(textStr);
     action->setIconText(str);
+    env->ReleaseStringUTFChars(text,textStr);
 }
 
 /*
@@ -191,6 +194,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setStatusTip
     const char* textVal = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(textVal);
     action->setStatusTip(str);
+    env->ReleaseStringUTFChars(text,textVal);
 }
 
 /*
@@ -219,7 +223,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setWhatsThis
     const char* str = env->GetStringUTFChars(text,JNI_FALSE);
     QString textStr(str);
     action->setWhatsThis(textStr);
-
+    env->ReleaseStringUTFChars(text,str);
 }
 
 /*
@@ -326,6 +330,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAction_setShortcut__JL
     const char* str = env->GetStringUTFChars(text,JNI_FALSE);
     QString textVal(str);
     action->setShortcut(QKeySequence(textVal));
+    env->ReleaseStringUTFChars(text,str);
 
 }
 

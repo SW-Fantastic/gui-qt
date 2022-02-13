@@ -1,4 +1,5 @@
 #include <qglobal.h>
+#include <qmetatype.h>
 
 #ifndef JNI
 #define JNI

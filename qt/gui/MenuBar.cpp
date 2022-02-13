@@ -49,6 +49,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_addAction
     const char* title = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(title);
     QAction * action = menuBar->addAction(str);
+    env->ReleaseStringUTFChars(text,title);
     return (jlong)(intptr_t)action;
 }
 
@@ -79,6 +80,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenuBar_addMenu__JLja
     const char* title = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(title);
     QMenu* result = bar->addMenu(str);
+    env->ReleaseStringUTFChars(text,title);
     return (jlong)(intptr_t)result;
 }
 

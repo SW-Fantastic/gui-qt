@@ -18,6 +18,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractButton_setText
     const char* textVal = jenv->GetStringUTFChars(text,JNI_FALSE);
     QString qText = QString(textVal);
     button->setText(qText);
+    jenv->ReleaseStringUTFChars(text,textVal);
 }
 
 /*

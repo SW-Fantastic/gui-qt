@@ -117,6 +117,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_addAction__JL
     QToolBar * bar = (QToolBar*)pointer;
 
     QAction * action = bar->addAction(QString(text));
+    env->ReleaseStringUTFChars(val,text);
     return (jlong)(intptr_t)action;
 }
 
@@ -134,6 +135,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_addAction__JJ
     QString qText(text);
 
     QAction * action = bar->addAction(*icon,qText);
+    env->ReleaseStringUTFChars(str,text);
     return (jlong)(intptr_t)action;
 }
 

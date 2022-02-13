@@ -33,4 +33,19 @@ public class SMdiArea extends SAbstractScrollArea {
     public native void setTabsMovable(long pointer,boolean movable);
     public native boolean tabsMovable(long pointer);
 
+    public native void setTabShape(long pointer,int shape);
+    public native int tabShape(long pointer);
+
+    public native void setTabPosition(long pointer,int position);
+    public native int tabPosition(long pointer);
+
+    public native void setActiveSubWindow(long pointer,long window);
+    public native void tileSubWindows(long pointer);
+    public native void cascadeSubWindows(long pointer);
+    public native void closeActiveSubWindow(long pointer);
+    public native void closeAllSubWindows(long pointer);
+    public native void activateNextSubWindow(long pointer);
+    public native void activatePreviousSubWindow(long pointer);
+
+
 }

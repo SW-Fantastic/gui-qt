@@ -235,6 +235,76 @@ public class MdiArea extends AbstractScrollArea {
         return false;
     }
 
+    public void setTabShape(TabWidgetShape shape) {
+        if (getPointer() > 0) {
+            area.setTabShape(getPointer(),shape.getVal());
+        }
+    }
+
+    public TabWidgetShape getTabShape() {
+        if (getPointer() > 0) {
+            int val = area.tabShape(getPointer());
+            return TabWidgetShape.valueOf(val);
+        }
+        return null;
+    }
+
+    public void setTabPosition(TabWidgetPositions position) {
+        if (getPointer() > 0) {
+            area.setTabPosition(getPointer(),position.getVal());
+        }
+    }
+
+    public TabWidgetPositions tabPosition() {
+        if (getPointer() > 0) {
+            int pos = area.tabPosition(getPointer());
+            return TabWidgetPositions.valueOf(pos);
+        }
+        return null;
+    }
+
+    public void setActiveSubWindow(MdiSubWindow window) {
+        if (getPointer() > 0) {
+            area.setActiveSubWindow(getPointer(),window.getPointer());
+        }
+    }
+
+    public void tileSubWindows() {
+        if (getPointer() > 0) {
+            area.tileSubWindows(getPointer());
+        }
+    }
+
+    public void cascadeSubWindows() {
+        if (getPointer() > 0) {
+            area.cascadeSubWindows(getPointer());
+        }
+    }
+
+    public void closeActiveSubWindow() {
+        if (getPointer() > 0) {
+            area.closeActiveSubWindow(getPointer());
+        }
+    }
+
+    public void closeAllSubWindows() {
+        if (getPointer() > 0) {
+            area.closeAllSubWindows(getPointer());
+        }
+    }
+
+    public void activateNextSubWindow() {
+        if (getPointer() > 0) {
+            area.activateNextSubWindow(getPointer());
+        }
+    }
+
+    public void activatePreviousSubWindow() {
+        if (getPointer() > 0) {
+            area.activatePreviousSubWindow(getPointer());
+        }
+    }
+
     @Override
     public long getPointer() {
         return area.address();

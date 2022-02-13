@@ -76,6 +76,8 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_addButt
     button->setText(val);
     messageBox->addButton(button,bRole);
 
+    env->ReleaseStringUTFChars(text,cText);
+
     return (jlong)(intptr_t)button;
 }
 
@@ -303,6 +305,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_setText
     QMessageBox * messageBox = (QMessageBox*)pointer;
     const char * cText = env->GetStringUTFChars(text,JNI_FALSE);
     messageBox->setText(QString(cText));
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -382,6 +385,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_setInfor
     const char * cText = env->GetStringUTFChars(text,JNI_FALSE);
     QMessageBox * messageBox = (QMessageBox*)pointer;
     messageBox->setInformativeText(QString(cText));
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -395,6 +399,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SMessageDialog_setWindo
     const char * cText = env->GetStringUTFChars(title,JNI_FALSE);
     QMessageBox * messageBox = (QMessageBox*)pointer;
     messageBox->setWindowTitle(QString(cText));
+    env->ReleaseStringUTFChars(title,cText);
 }
 
 /*

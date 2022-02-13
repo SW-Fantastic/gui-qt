@@ -51,7 +51,9 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_addTab
     QString str(label);
     QWidget * widget = (QWidget*)widgetPointer;
 
-    return tabWidget->addTab(widget,str);
+    int result = tabWidget->addTab(widget,str);
+    env->ReleaseStringUTFChars(text,label);
+    return result;
 }
 
 /*
@@ -67,8 +69,9 @@ JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_insertTab
     QString str(label);
     QWidget* widget = (QWidget*)widgetPointer;
 
-    return tabWidget->insertTab(index,widget,str);
-
+    int result = tabWidget->insertTab(index,widget,str);
+    env->ReleaseStringUTFChars(text,label);
+    return result;
 }
 
 /*
@@ -162,8 +165,9 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_setTabText
     QTabWidget* tabWidget = (QTabWidget*)pointer;
     const char* label = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(label);
-    tabWidget->setTabText(index,str);
 
+    tabWidget->setTabText(index,str);
+    env->ReleaseStringUTFChars(text,label);
 }
 
 /*
@@ -178,6 +182,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_setTabToolTi
     const char* label = env->GetStringUTFChars(tooltip,JNI_FALSE);
     QString str(label);
     tabWidget->setTabToolTip(index,str);
+    env->ReleaseStringUTFChars(tooltip,label);
 
 }
 
@@ -208,6 +213,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STabWidget_setTabWhatsT
     const char * text = env->GetStringUTFChars(whatIsThis,JNI_FALSE);
     QString str(text);
     tabWidget->setTabWhatsThis(index,str);
+    env->ReleaseStringUTFChars(whatIsThis,text);
 }
 
 /*

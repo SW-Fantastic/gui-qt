@@ -41,6 +41,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JLjav
     const char* textVal = env->GetStringUTFChars(text,JNI_FALSE);
     QString textStr(textVal);
     QAction* action = menu->addAction(textStr);
+    env->ReleaseStringUTFChars(text,textVal);
     return (jlong)(intptr_t)action;
 
 }
@@ -60,6 +61,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addAction__JJLja
     QString textStr(textVal);
 
     QAction* action = menu->addAction(*icon,textStr);
+    env->ReleaseStringUTFChars(text,textVal);
     return (jlong)(intptr_t)action;
 }
 
@@ -161,6 +163,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JLjava_
     const char* textStr = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(textStr);
     QMenu* target = menu->addMenu(str);
+    env->ReleaseStringUTFChars(text,textStr);
     return (jlong)(intptr_t)target;
 }
 
@@ -178,6 +181,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addMenu__JJLjava
     QString str(textStr);
 
     QMenu * subMenu = menu->addMenu(*icon,str);
+    env->ReleaseStringUTFChars(text,textStr);
     return (jlong)(intptr_t)subMenu;
 }
 
@@ -206,6 +210,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_addSection
     const char* textVal = env->GetStringUTFChars(text,JNI_FALSE);
     QString str(textVal);
     QAction* result = menu->addSection(str);
+    env->ReleaseStringUTFChars(text,textVal);
     return (jlong)(intptr_t)result;
 }
 
@@ -253,6 +258,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SMenu_insertSection
     const char* str = env->GetStringUTFChars(title,JNI_FALSE);
     QString strVal(str);
     QAction* action = menu->insertSection(before,strVal);
+    env->ReleaseStringUTFChars(title,str);
     return (jlong)(intptr_t)action;
 }
 
@@ -422,7 +428,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMenu_setTitle
     const char* text = env->GetStringUTFChars(title,JNI_FALSE);
     QString strTitle(text);
     menu->setTitle(strTitle);
-
+    env->ReleaseStringUTFChars(title,text);
 }
 
 /*

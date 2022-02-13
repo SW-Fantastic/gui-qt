@@ -377,6 +377,15 @@ public class LineEdit extends Widget {
         return null;
     }
 
+    public static LineEdit asLineEdit(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("invalid pointer");
+        }
+        LineEdit edit = new LineEdit();
+        edit.lineEdit.address(pointer);
+        return edit;
+    }
+
     @Override
     public long getPointer() {
         return lineEdit.address();

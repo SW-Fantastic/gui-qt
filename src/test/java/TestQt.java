@@ -32,6 +32,11 @@ public class TestQt {
         application.language(new File("qt_zh_CN.qm"));
         application.language(new File("qtbase_zh_CN.qm"));
 
+        Variant variant = new Variant();
+        variant.allocate();
+        variant.setString("test! 测试文本");
+        System.err.println(variant.getString());
+
         Widget widget = new Widget();
         widget.allocate();
         widget.setMinSize(800,600);
@@ -262,6 +267,17 @@ public class TestQt {
 
         tabALayout.addLayout(hCheckOptions);
 
+        ComboBox comboBox = new ComboBox();
+        comboBox.allocate();
+        comboBox.addItems("OptionA","OptionB","OptionC");
+        //comboBox.setMinSize(120,120);
+        tabALayout.addWidget(comboBox);
+
+        FontCombBox fontCbx = new FontCombBox();
+        fontCbx.allocate();
+        fontCbx.setSizePolicy(SizePolicy.Expanding,SizePolicy.Preferred);
+        tabALayout.addWidget(fontCbx);
+
         CommandLinkButton linkButton = new CommandLinkButton();
         linkButton.allocate();
         linkButton.setText("Linked button");
@@ -340,7 +356,7 @@ public class TestQt {
 
         MdiArea mdiArea = new MdiArea();
         mdiArea.allocate();
-        mdiArea.setTabsClosable(false);
+        //mdiArea.set(false);
         mdiArea.setSizePolicy(SizePolicy.Expanding,SizePolicy.Expanding);
         mdiLayout.addWidget(mdiArea);
 
@@ -356,12 +372,26 @@ public class TestQt {
         MdiSubWindow windowB = mdiArea.addSubWindow(mdiWindowB);
         windowB.setMinSize(200,200);
 
+        Widget dockWidget = new Widget();
+        dockWidget.allocate();
+
+        VBoxLayout dockLayout = new VBoxLayout();
+        dockLayout.allocate();
+
+        DockWidget dockA = new DockWidget();
+        dockA.allocate();
+        dockA.setWindowTitle("dockA");
+        dockLayout.addWidget(dockA);
+
+        dockWidget.setLayout(dockLayout);
+
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
         tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
         tabWidget.addTab(tabB,"ScrollArea");
         tabWidget.addTab(tabToolBox,"ToolBox");
         tabWidget.addTab(mdiWidget,"Mdi area");
+        tabWidget.addTab(dockWidget,"dock");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();

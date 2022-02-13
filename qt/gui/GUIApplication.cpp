@@ -12,6 +12,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
 
     const char* rootPath = jenv->GetStringUTFChars(dir,JNI_FALSE);
     QString qPath = QString(rootPath);
+    jenv->ReleaseStringUTFChars(dir,rootPath);
     //QDir::setCurrent(qPath);
 
     QApplication::addLibraryPath(qPath);
@@ -25,10 +26,9 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
         len = len + 1;
         char** arrays = (char**)malloc(sizeof(char*) * len);
 
-            for(int idx = 1; idx < len + 1; idx ++) {
+        for(int idx = 1; idx < len + 1; idx ++) {
             jstring str = (jstring)jenv->GetObjectArrayElement(argv,idx);
-                jboolean copy = JNI_FALSE;
-                const char* strArg = jenv->GetStringUTFChars(str,&copy);
+            const char* strArg = jenv->GetStringUTFChars(str,0);
             arrays[idx] = const_cast<char*>(strArg);
         }
 
@@ -66,6 +66,9 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_loadLanguage
 
     QApplication * app = (QApplication*)pointer;
     app->installTranslator(translator);
+
+    env->ReleaseStringUTFChars(folder,path);
+    env->ReleaseStringUTFChars(langFile,name);
 
     return (jlong)(intptr_t)translator;
 

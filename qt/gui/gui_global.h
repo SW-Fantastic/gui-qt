@@ -16,6 +16,8 @@
 #include <QAbstractSlider>
 #include <QScrollArea>
 #include <QToolBox>
+#include <QDockWidget>
+#include <QModelIndex>
 #include <QDir>
 #include <QSize>
 #include <QWidget>

@@ -175,6 +175,94 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setTabsMovable
 JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabsMovable
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setTabShape
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setTabShape
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tabShape
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabShape
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setTabPosition
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setTabPosition
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tabPosition
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabPosition
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setActiveSubWindow
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setActiveSubWindow
+  (JNIEnv *, jobject, jlong, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tileSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tileSubWindows
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    cascadeSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_cascadeSubWindows
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    closeActiveSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_closeActiveSubWindow
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    closeAllSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_closeAllSubWindows
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    activateNextSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_activateNextSubWindow
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    activatePreviousSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_activatePreviousSubWindow
+  (JNIEnv *, jobject, jlong);
+
 #ifdef __cplusplus
 }
 #endif

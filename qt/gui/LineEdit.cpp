@@ -97,6 +97,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setPlaceholde
     const char* text = env->GetStringUTFChars(str,JNI_FALSE);
     QString val(text);
     lineEdit->setPlaceholderText(val);
+    env->ReleaseStringUTFChars(str,text);
 
 }
 
@@ -566,7 +567,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SLineEdit_setText
     const char* text = env->GetStringUTFChars(val,JNI_FALSE);
     QString str(text);
     lineEdit->setText(str);
-
+    env->ReleaseStringUTFChars(val,text);
 }
 
 /*

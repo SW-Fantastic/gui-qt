@@ -17,8 +17,11 @@ SOURCES += \
     Button.cpp \
     ButtonGroup.cpp \
     CheckBox.cpp \
+    ComboBox.cpp \
     CommandLinkButton.cpp \
+    DockWidget.cpp \
     Executors.cpp \
+    FontComboBox.cpp \
     Frame.cpp \
     GUI.cpp \
     GUIApplication.cpp \
@@ -37,6 +40,9 @@ SOURCES += \
     ToolBox.cpp \
     ToolButton.cpp \
     Widget.cpp \
+    common/AbstractItemModel.cpp \
+    common/ModelIndex.cpp \
+    common/Variant.cpp \
     common/Line.cpp \
     common/Margin.cpp \
     common/Point.cpp \
@@ -74,9 +80,10 @@ SOURCES += \
 HEADERS += \
     Executors.h \
     gui_global.h \
-    gui.h \
+    java/common/org_swdc_qt_internal_common_SAbstractItemModel.h \
     java/common/org_swdc_qt_internal_common_SLine.h \
     java/common/org_swdc_qt_internal_common_SMargins.h \
+    java/common/org_swdc_qt_internal_common_SModelIndex.h \
     java/common/org_swdc_qt_internal_common_SPoint.h \
     java/common/org_swdc_qt_internal_common_SRealMargins.h \
     java/common/org_swdc_qt_internal_common_SRealPoint.h \
@@ -84,6 +91,7 @@ HEADERS += \
     java/common/org_swdc_qt_internal_common_SRealSize.h \
     java/common/org_swdc_qt_internal_common_SRect.h \
     java/common/org_swdc_qt_internal_common_SSize.h \
+    java/common/org_swdc_qt_internal_common_SVariant.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SInputDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SMessageDialog.h \
@@ -121,7 +129,10 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SButton.h \
     java/org_swdc_qt_internal_widgets_SButtonGroup.h \
     java/org_swdc_qt_internal_widgets_SCheckBox.h \
+    java/org_swdc_qt_internal_widgets_SComboBox.h \
     java/org_swdc_qt_internal_widgets_SCommandLinkButton.h \
+    java/org_swdc_qt_internal_widgets_SDockWidget.h \
+    java/org_swdc_qt_internal_widgets_SFontComboBox.h \
     java/org_swdc_qt_internal_widgets_SFrame.h \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
@@ -139,7 +150,10 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
     java/types/SCheckBox.h \
+    java/types/SComboBox.h \
     java/types/SCommandLinkButton.h \
+    java/types/SDockWidget.h \
+    java/types/SFontComboBox.h \
     java/types/SFrame.h \
     java/types/SGroupBox.h \
     java/types/SLineEdit.h \

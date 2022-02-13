@@ -1114,6 +1114,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(x,y,str);
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -1129,6 +1130,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JII
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(x,y,width,height,flag,str);
 
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -1144,6 +1146,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRealR
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(*rect,flags,str);
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -1159,6 +1162,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawTextRect
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(*rect,flags,str);
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -1174,6 +1178,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawText__JJL
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(*point,str);
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -1189,6 +1194,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_graphics_SPainter_drawRealText
     QString str(cText);
     QPainter * painter = (QPainter*)pointer;
     painter->drawText(*point,str);
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 
@@ -1205,6 +1211,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPainter_boundingRect
     QPainter * painter = (QPainter*)pointer;
     QRect rect = painter->boundingRect(x,y,width,height,flag,str);
     QRect * target = new QRect(rect);
+    env->ReleaseStringUTFChars(text,cText);
     return (jlong)(intptr_t)target;
 
 }

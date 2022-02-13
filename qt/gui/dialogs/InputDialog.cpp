@@ -50,6 +50,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_setTextVal
     const char * cText = env->GetStringUTFChars(text,JNI_FALSE);
     QInputDialog * dialog = (QInputDialog*)pointer;
     dialog->setTextValue(QString(cText));
+    env->ReleaseStringUTFChars(text,cText);
 
 }
 
@@ -321,6 +322,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_setOkButto
     const char* cOkText = env->GetStringUTFChars(okText,JNI_FALSE);
     QInputDialog * dialog = (QInputDialog*)pointer;
     dialog->setOkButtonText(QString(cOkText));
+    env->ReleaseStringUTFChars(okText,cOkText);
 }
 
 /*
@@ -348,6 +350,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_setCancelB
     const char * cText = env->GetStringUTFChars(text,JNI_FALSE);
     QInputDialog * dialog = (QInputDialog*)pointer;
     dialog->setCancelButtonText(QString(cText));
+    env->ReleaseStringUTFChars(text,cText);
 }
 
 /*
@@ -404,7 +407,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_setLabelTe
     const char * val = env->GetStringUTFChars(text,JNI_FALSE);
     QInputDialog * dialog = (QInputDialog*)pointer;
     dialog->setLabelText(QString(val));
-
+    env->ReleaseStringUTFChars(text,val);
 }
 
 /*
@@ -433,10 +436,12 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_dialogs_SInputDialog_setComboBo
 
     QStringList list;
     int len = env->GetArrayLength(options);
+    std::map<const char*,jstring> vals;
     for(int idx = 0; idx < len; idx ++) {
        jstring str = (jstring)env->GetObjectArrayElement(options,idx);
        const char * cStr = env->GetStringUTFChars(str,JNI_FALSE);
        list.append(QString(cStr));
+       env->ReleaseStringUTFChars(str,cStr);
     }
 
     dialog->setComboBoxItems(list);

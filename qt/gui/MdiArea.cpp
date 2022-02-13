@@ -307,3 +307,139 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabsMovabl
     QMdiArea * area = (QMdiArea*)pointer;
     return area->tabsMovable() ? JNI_TRUE : JNI_FALSE;
 }
+
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setTabShape
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setTabShape
+(JNIEnv * env, jobject self, jlong pointer, jint val) {
+
+    QTabWidget::TabShape shape = QTabWidget::TabShape(val);
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->setTabShape(shape);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tabShape
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabShape
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    return int(area->tabShape());
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setTabPosition
+ * Signature: (JI)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setTabPosition
+(JNIEnv * env, jobject self, jlong pointer, jint val) {
+
+    QTabWidget::TabPosition pos = QTabWidget::TabPosition(val);
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->setTabPosition(pos);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tabPosition
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tabPosition
+(JNIEnv * env, jobject self, jlong pointer){
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    return int(area->tabPosition());
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    setActiveSubWindow
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_setActiveSubWindow
+(JNIEnv * env, jobject self, jlong pointer, jlong windowPointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    QMdiSubWindow * window = (QMdiSubWindow*)windowPointer;
+    area->setActiveSubWindow(window);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    tileSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_tileSubWindows
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->tileSubWindows();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    cascadeSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_cascadeSubWindows
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->cascadeSubWindows();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    closeActiveSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_closeActiveSubWindow
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->closeActiveSubWindow();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    closeAllSubWindows
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_closeAllSubWindows
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->closeAllSubWindows();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    activateNextSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_activateNextSubWindow
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->activateNextSubWindow();
+}
+
+/*
+ * Class:     org_swdc_qt_internal_widgets_SMdiArea
+ * Method:    activatePreviousSubWindow
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SMdiArea_activatePreviousSubWindow
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QMdiArea * area = (QMdiArea*)pointer;
+    area->activatePreviousSubWindow();
+}

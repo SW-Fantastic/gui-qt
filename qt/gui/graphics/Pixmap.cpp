@@ -23,6 +23,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_create__Ljava
 
     const char* path = env->GetStringUTFChars(absPath,JNI_FALSE);
     QPixmap * pixmap = new QPixmap(QString(path));
+    env->ReleaseStringUTFChars(absPath,path);
     return (jlong)(intptr_t)pixmap;
 }
 
@@ -248,7 +249,11 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_load
     QString qPath = (path);
     const char * cFormat = env->GetStringUTFChars(format,JNI_FALSE);
 
-    return pixmap->load(qPath,cFormat,conversation) ? JNI_TRUE : JNI_FALSE;
+    bool result = pixmap->load(qPath,cFormat,conversation);
+    env->ReleaseStringUTFChars(absPath,path);
+    env->ReleaseStringUTFChars(format,cFormat);
+
+    return result ? JNI_TRUE : JNI_FALSE;
 
 }
 
@@ -268,6 +273,7 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_loadFromDa
     int length = env->GetArrayLength(data);
     unsigned char * imageData = (unsigned char*)env->GetByteArrayElements(data,JNI_FALSE);
     bool result = pixmap->loadFromData(imageData,length,imageFormat,conv);
+    env->ReleaseStringUTFChars(format,imageFormat);
 
     return result ? JNI_TRUE : JNI_FALSE;
 }
@@ -285,7 +291,10 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_graphics_SPixmap_save
     QString qFilePath(path);
 
     const char* imageFormat = env->GetStringUTFChars(format,JNI_FALSE);
-    return pixmap->save(qFilePath,imageFormat) ? JNI_TRUE : JNI_FALSE;
+    bool result = pixmap->save(qFilePath,imageFormat);
+    env->ReleaseStringUTFChars(format,imageFormat);
+    env->ReleaseStringUTFChars(filePath,path);
+    return result ? JNI_TRUE : JNI_FALSE;;
 }
 
 /*
