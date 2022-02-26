@@ -37,6 +37,9 @@
 #include <QToolBar>
 #include <QMenu>
 #include <QMenuBar>
+#include <QTextDocument>
+#include <QTextFrame>
+#include <QAbstractTextDocumentLayout>
 
 #include <QFontDatabase>
 

@@ -61,6 +61,7 @@ SOURCES += \
     graphics/Icon.cpp \
     graphics/LinearGradient.cpp \
     graphics/PainterPath.cpp \
+    graphics/Palette.cpp \
     graphics/RadialGradient.cpp \
     graphics/Transformation.cpp \
     graphics/Image.cpp \
@@ -75,7 +76,15 @@ SOURCES += \
     layout/HBoxLayout.cpp \
     layout/LayoutItem.cpp \
     layout/SpacerItem.cpp \
-    layout/VBoxLayout.cpp
+    layout/VBoxLayout.cpp \
+    text/TextBlockFormat.cpp \
+    text/TextCharFotmat.cpp \
+    text/TextFormat.cpp \
+    text/TextFrameFormat.cpp \
+    text/TextImageFormat.cpp \
+    text/TextLength.cpp \
+    text/TextListFormat.cpp \
+    text/TextTableFormat.cpp
 
 HEADERS += \
     Executors.h \
@@ -103,6 +112,7 @@ HEADERS += \
     java/graphics/org_swdc_qt_internal_graphics_SIcon.h \
     java/graphics/org_swdc_qt_internal_graphics_SLinearGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \
+    java/graphics/org_swdc_qt_internal_graphics_SPalette.h \
     java/graphics/org_swdc_qt_internal_graphics_SRadialGradient.h \
     java/jni.h \
     java/layout/org_swdc_qt_internal_layout_SBoxLayout.h \
@@ -149,6 +159,14 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SToolBox.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
+    java/text/org_swdc_qt_internal_text_STextBlockFormat.h \
+    java/text/org_swdc_qt_internal_text_STextCharFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFrameFormat.h \
+    java/text/org_swdc_qt_internal_text_STextImageFormat.h \
+    java/text/org_swdc_qt_internal_text_STextLength.h \
+    java/text/org_swdc_qt_internal_text_STextListFormat.h \
+    java/text/org_swdc_qt_internal_text_STextTableFormat.h \
     java/types/SCheckBox.h \
     java/types/SComboBox.h \
     java/types/SCommandLinkButton.h \
@@ -165,6 +183,7 @@ HEADERS += \
     java/types/SScrollBar.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
+    java/types/STextEdit.h \
     java/types/SToolBar.h \
     java/types/SToolBox.h \
     java/types/SToolButton.h \
