@@ -142,7 +142,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractScrollArea_add
 (JNIEnv * env, jobject self, jlong pointer, jlong widgetPointer, jlong align) {
 
     QWidget * widget = (QWidget*)widgetPointer;
-    Qt::Alignment alignment = Qt::Alignment(align);
+    Qt::Alignment alignment = Qt::Alignment((unsigned int)align);
     QAbstractScrollArea * area = (QAbstractScrollArea*)pointer;
     area->addScrollBarWidget(widget,alignment);
 }
@@ -155,7 +155,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SAbstractScrollArea_add
 JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_widgets_SAbstractScrollArea_scrollBarWidgets
 (JNIEnv * env, jobject self, jlong pointer, jlong align) {
 
-    Qt::Alignment alignment = Qt::Alignment(align);
+    Qt::Alignment alignment = Qt::Alignment((unsigned int)align);
     QAbstractScrollArea * area = (QAbstractScrollArea*)pointer;
     QWidgetList widgets = area->scrollBarWidgets(alignment);
 

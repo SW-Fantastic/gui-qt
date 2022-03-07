@@ -223,7 +223,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_actionGeometr
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_SToolBar_setAllowedAreas
 (JNIEnv * env, jobject self, jlong pointer, jlong areas) {
 
-    Qt::ToolBarAreas area = Qt::ToolBarAreas(areas);
+    Qt::ToolBarAreas area = Qt::ToolBarAreas((unsigned int)areas);
     QToolBar * bar = (QToolBar*)pointer;
     bar->setAllowedAreas(area);
 

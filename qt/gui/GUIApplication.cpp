@@ -12,7 +12,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_QtApplication_create
 
     const char* rootPath = jenv->GetStringUTFChars(dir,JNI_FALSE);
     QString qPath = QString(rootPath);
-    jenv->ReleaseStringUTFChars(dir,rootPath);
+    //jenv->ReleaseStringUTFChars(dir,rootPath);
     //QDir::setCurrent(qPath);
 
     QApplication::addLibraryPath(qPath);
@@ -96,6 +96,5 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_disposeLanguage
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_QtApplication_exec
 (JNIEnv * jenv, jobject obj, jlong pointer) {
-    QApplication* app = (QApplication*)pointer;
-    app->exec();
+    QApplication::exec();
 }
