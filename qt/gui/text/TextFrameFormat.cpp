@@ -22,6 +22,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextFrameFormat_dispose
 
     QTextFrameFormat* format = (QTextFrameFormat*)pointer;
     delete format;
+    cleanJavaPointer(env,self);
 }
 
 /*

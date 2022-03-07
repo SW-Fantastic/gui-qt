@@ -24,6 +24,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextLength_dispose
 
     QTextLength * len = (QTextLength*)pointer;
     delete len;
+    cleanJavaPointer(env,self);
 }
 
 /*

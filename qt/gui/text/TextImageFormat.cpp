@@ -23,6 +23,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextImageFormat_dispose
 
     QTextImageFormat * format = (QTextImageFormat*)pointer;
     delete format;
+    cleanJavaPointer(env,self);
 }
 
 /*

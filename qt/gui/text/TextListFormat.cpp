@@ -23,6 +23,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextListFormat_dispose
 
     QTextListFormat * format = (QTextListFormat*)pointer;
     delete format;
+    cleanJavaPointer(env,self);
 }
 
 /*

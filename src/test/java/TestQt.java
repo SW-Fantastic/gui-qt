@@ -456,7 +456,7 @@ public class TestQt {
             @Override
             public void onAction(boolean isSelected) {
                 System.err.println("Action A Clicked.");
-                Pixmap pixmap = Pixmap.grabWidget(widget,0,0,800,600);
+                Pixmap pixmap = Pixmap.grabWidget(widget,0,0,widget.getWidth(),widget.getHeight());
                 pixmap.save(new File("grab.png"),"png");
                 pixmap.dispose();
             }

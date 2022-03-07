@@ -42,7 +42,7 @@
 #include <QAbstractTextDocumentLayout>
 
 #include <QFontDatabase>
-
+#include <QTextDocumentFragment>
 #include <QPainterPath>
 #include <QPainter>
 #include <QThreadPool>

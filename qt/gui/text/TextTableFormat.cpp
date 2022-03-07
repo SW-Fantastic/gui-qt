@@ -23,6 +23,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextTableFormat_dispose
 
     QTextTableFormat * tableFormat = (QTextTableFormat *)pointer;
     delete tableFormat;
+    cleanJavaPointer(env,self);
 }
 
 /*

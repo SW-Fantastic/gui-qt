@@ -36,6 +36,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextFormat_dispose
 
     QTextFormat * format = (QTextFormat*)pointer;
     delete format;
+    cleanJavaPointer(env,self);
 }
 
 /*
@@ -378,6 +379,104 @@ JNIEXPORT jboolean JNICALL Java_org_swdc_qt_internal_text_STextFormat_isTableCel
 
     QTextFormat * format = (QTextFormat*)pointer;
     return format->isTableCellFormat() ? JNI_TRUE : JNI_FALSE;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toBlockFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toBlockFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextBlockFormat * target = new QTextBlockFormat();
+    *target = format->toBlockFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toCharFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toCharFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextCharFormat * target = new QTextCharFormat();
+    *target = format->toCharFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toListFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toListFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextListFormat * target = new QTextListFormat();
+    *target = format->toListFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toTableFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toTableFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextTableFormat * target = new QTextTableFormat();
+    *target = format->toTableFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toFrameFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toFrameFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextFrameFormat * target = new QTextFrameFormat();
+    *target = format->toFrameFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toImageFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toImageFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextImageFormat * target = new QTextImageFormat();
+    *target = format->toImageFormat();
+    return (jlong)(intptr_t)target;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    toTableCellFormat
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toTableCellFormat
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextTableCellFormat * target = new QTextTableCellFormat();
+    *target = format->toTableCellFormat();
+    return (jlong)(intptr_t)target;
 }
 
 /*

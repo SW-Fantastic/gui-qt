@@ -79,11 +79,15 @@ SOURCES += \
     layout/VBoxLayout.cpp \
     text/TextBlockFormat.cpp \
     text/TextCharFotmat.cpp \
+    text/TextDocumentFragment.cpp \
     text/TextFormat.cpp \
     text/TextFrameFormat.cpp \
     text/TextImageFormat.cpp \
     text/TextLength.cpp \
     text/TextListFormat.cpp \
+    text/TextOption.cpp \
+    text/TextOptionTab.cpp \
+    text/TextTableCellFormat.cpp \
     text/TextTableFormat.cpp
 
 HEADERS += \
@@ -161,11 +165,15 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SWidget.h \
     java/text/org_swdc_qt_internal_text_STextBlockFormat.h \
     java/text/org_swdc_qt_internal_text_STextCharFormat.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentFragment.h \
     java/text/org_swdc_qt_internal_text_STextFormat.h \
     java/text/org_swdc_qt_internal_text_STextFrameFormat.h \
     java/text/org_swdc_qt_internal_text_STextImageFormat.h \
     java/text/org_swdc_qt_internal_text_STextLength.h \
     java/text/org_swdc_qt_internal_text_STextListFormat.h \
+    java/text/org_swdc_qt_internal_text_STextOption.h \
+    java/text/org_swdc_qt_internal_text_STextOptionTab.h \
+    java/text/org_swdc_qt_internal_text_STextTableCellFormat.h \
     java/text/org_swdc_qt_internal_text_STextTableFormat.h \
     java/types/SCheckBox.h \
     java/types/SComboBox.h \

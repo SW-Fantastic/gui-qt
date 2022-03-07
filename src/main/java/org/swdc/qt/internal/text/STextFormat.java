@@ -50,6 +50,14 @@ public class STextFormat extends SPointer {
     public native boolean isTableFormat(long pointer);
     public native boolean isTableCellFormat(long pointer);
 
+    public native long toBlockFormat(long pointer);
+    public native long toCharFormat(long pointer);
+    public native long toListFormat(long pointer);
+    public native long toTableFormat(long pointer);
+    public native long toFrameFormat(long pointer);
+    public native long toImageFormat(long pointer);
+    public native long toTableCellFormat(long pointer);
+
     public native void setLayoutDirection(long pointer,int direction);
     public native int layoutDirection(long pointer);
 
