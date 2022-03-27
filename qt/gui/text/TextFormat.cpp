@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_create__
 (JNIEnv * env, jobject self) {
 
     QTextFormat * format = new QTextFormat();
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*
@@ -23,7 +23,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_create__I
 
     QTextFormat::FormatType typeVal = QTextFormat::FormatType(type);
     QTextFormat * format = new QTextFormat(typeVal);
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*
@@ -125,7 +125,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_property
     QVariant variant = format->property(val);
     QVariant * result = new QVariant();
     *result = variant;
-    return (jlong)(intptr_t)result;
+    return _P(result);
 }
 
 /*
@@ -133,7 +133,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_property
  * Method:    setProperty
  * Signature: (JIJ)V
  */
-JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextFormat_setProperty
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextFormat_setProperty__JIJ
 (JNIEnv * env, jobject self, jlong pointer, jint propId, jlong variantPointer) {
 
     QVariant * variantData = (QVariant*)variantPointer;
@@ -242,7 +242,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_penProperty
     QPen pen = format->penProperty(propId);
     QPen * target = new QPen();
     *target = pen;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -258,7 +258,104 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_brushProperty
     QBrush * target = new QBrush();
     *target = brush;
 
-    return (jlong)(intptr_t)target;
+    return _P(target);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    lengthProperty
+ * Signature: (JI)J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_lengthProperty
+(JNIEnv * env, jobject self, jlong pointer, jint propId) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QTextLength * leng = new QTextLength();
+    *leng = format->lengthProperty(propId);
+    return _P(leng);
+}
+
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    lengthVectorProperty
+ * Signature: (JI)[J
+ */
+JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_text_STextFormat_lengthVectorProperty
+(JNIEnv * env, jobject self, jlong pointer, jint propId) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+    QVector<QTextLength> vect = format->lengthVectorProperty(propId);
+
+    jlong * arr = new jlong[vect.length()];
+    jlongArray array = env->NewLongArray(vect.size());
+
+    for(int idx = 0; idx < vect.size(); idx ++) {
+        QTextLength * len = new QTextLength();
+        *len = vect.at(idx);
+        arr[idx] = _P(len);
+    }
+
+    env->SetLongArrayRegion(array,0,vect.size(),arr);
+    delete[] arr;
+    return array;
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    setProperty
+ * Signature: (JI[J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextFormat_setProperty__JI_3J
+(JNIEnv * env, jobject self, jlong pointer, jint propId, jlongArray lengthPointerArr) {
+
+    int len = env->GetArrayLength(lengthPointerArr);
+    jlong * buf = env->GetLongArrayElements(lengthPointerArr,0);
+
+    QVector<QTextLength> vect;
+    for(int idx = 0; idx < len; idx ++) {
+        QTextLength * len = (QTextLength*)buf[idx];
+        vect.append(*len);
+    }
+
+    env->ReleaseLongArrayElements(lengthPointerArr,buf,0);
+    QTextFormat * format = (QTextFormat*)pointer;
+    format->setProperty(propId,vect);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextFormat
+ * Method:    properties
+ * Signature: (J)[Lorg/apache/commons/lang3/tuple/ImmutablePair;
+ */
+JNIEXPORT jobjectArray JNICALL Java_org_swdc_qt_internal_text_STextFormat_properties
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextFormat * format = (QTextFormat*)pointer;
+
+    jclass type = env->FindClass("org/swdc/qt/internal/text/STextFormat");
+    jmethodID getPair = env->GetMethodID(type,"getPair","(IJ)Lorg/apache/commons/lang3/tuple/ImmutablePair;");
+
+    jclass pairType = env->FindClass("org/apache/commons/lang3/tuple/ImmutablePair");
+
+    QMap<int,QVariant> map = format->properties();
+
+    jobjectArray arr = env->NewObjectArray(map.size(),pairType,0);
+    int idx = 0;
+    QMap<int,QVariant>::iterator iter = map.begin();
+    while(iter != map.end()) {
+        int key = iter.key();
+
+        QVariant * val = new QVariant();
+        *val = iter.value();
+
+        jobject pair = env->CallObjectMethod(self,getPair,key,_P(val));
+        env->SetObjectArrayElement(arr,idx,pair);
+        idx ++;
+        iter++;
+    }
+
+    return arr;
 }
 
 /*
@@ -392,7 +489,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toBlockFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextBlockFormat * target = new QTextBlockFormat();
     *target = format->toBlockFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -406,7 +503,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toCharFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextCharFormat * target = new QTextCharFormat();
     *target = format->toCharFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -420,7 +517,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toListFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextListFormat * target = new QTextListFormat();
     *target = format->toListFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -434,7 +531,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toTableFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextTableFormat * target = new QTextTableFormat();
     *target = format->toTableFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -448,7 +545,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toFrameFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextFrameFormat * target = new QTextFrameFormat();
     *target = format->toFrameFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -462,7 +559,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toImageFormat
     QTextFormat * format = (QTextFormat*)pointer;
     QTextImageFormat * target = new QTextImageFormat();
     *target = format->toImageFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -476,7 +573,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_toTableCellFo
     QTextFormat * format = (QTextFormat*)pointer;
     QTextTableCellFormat * target = new QTextTableCellFormat();
     *target = format->toTableCellFormat();
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -528,7 +625,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_background
     QBrush brush = format->background();
     QBrush * target = new QBrush();
     *target = brush;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -569,7 +666,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFormat_foreground
     QBrush * target = new QBrush();
     *target = foreground;
 
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*

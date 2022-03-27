@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextOption_create__
 (JNIEnv *, jobject) {
 
     QTextOption * option = new QTextOption();
-    return (jlong)(intptr_t)option;
+    return _P(option);
 }
 
 /*
@@ -23,7 +23,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextOption_create__J
 
     QTextOption * option = (QTextOption*)pointer;
     QTextOption * val = new QTextOption(*option);
-    return (jlong)(intptr_t)val;
+    return _P(val);
 }
 
 /*
@@ -233,7 +233,7 @@ JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_text_STextOption_tabs
     for(int idx = 0; idx < vals.size(); idx ++) {
        QTextOption::Tab * tab = new QTextOption::Tab();
        *tab = vals.at(idx);
-       buf[idx] = (jlong)(intptr_t)tab;
+       buf[idx] = _P(tab);
     }
 
     env->SetLongArrayRegion(arr,0,vals.size(),buf);

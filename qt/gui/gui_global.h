@@ -2,6 +2,8 @@
 #define GUI_GLOBAL_H
 
 #include <QtCore/qglobal.h>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <QInputDialog>
 #include <QTranslator>
 #include <QApplication>
@@ -39,6 +41,7 @@
 #include <QMenuBar>
 #include <QTextDocument>
 #include <QTextFrame>
+#include <QTextList>
 #include <QAbstractTextDocumentLayout>
 
 #include <QFontDatabase>
@@ -58,6 +61,8 @@
 #endif
 
 jstring asJavaString(JNIEnv* env, const char* pat);
+
+jobjectArray asJavaStringArray(JNIEnv * env,QStringList list);
 
 jbyteArray asJavaArray(JNIEnv *env, unsigned char *buf, int len);
 

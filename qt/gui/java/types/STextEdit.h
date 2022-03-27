@@ -6,6 +6,8 @@
 
 class STextEdit : public QTextEdit {
 
+    Q_OBJECT
+
 };
 
 #endif // STEXTEDIT_H

@@ -11,7 +11,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextLength_create
 
     QTextLength::Type typeVal = QTextLength::Type(type);
     QTextLength * len = new QTextLength(typeVal,val);
-    return (jlong)(intptr_t)len;
+    return _P(len);
 }
 
 /*

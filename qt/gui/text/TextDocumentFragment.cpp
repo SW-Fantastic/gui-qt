@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
 (JNIEnv *, jobject) {
 
     QTextDocumentFragment * doc = new QTextDocumentFragment();
-    return (jlong)(intptr_t)doc;
+    return _P(doc);
 }
 
 /*
@@ -23,7 +23,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
 
     QTextDocumentFragment * doc = (QTextDocumentFragment*)documnetPointer;
     QTextDocumentFragment * target = new QTextDocumentFragment(*doc);
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -36,7 +36,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
 
     QTextCursor * cursor = (QTextCursor*)cursorPointer;
     QTextDocumentFragment * target = new QTextDocumentFragment(*cursor);
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -49,7 +49,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
 
     QTextDocumentFragment * fragment = (QTextDocumentFragment*)fragmentPointer;
     QTextDocumentFragment * target = new QTextDocumentFragment(*fragment);
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -106,7 +106,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_fro
     QTextDocumentFragment * val = new QTextDocumentFragment();
     *val = QTextDocumentFragment::fromPlainText(QString(text));
     env->ReleaseStringUTFChars(str,text);
-    return (jlong)(intptr_t)val;
+    return _P(val);
 }
 
 /*
@@ -121,7 +121,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_fro
     QTextDocumentFragment * val = new QTextDocumentFragment();
     *val = QTextDocumentFragment::fromHtml(QString(text));
     env->ReleaseStringUTFChars(str,text);
-    return (jlong)(intptr_t)val;
+    return _P(val);
 }
 
 /*
@@ -137,5 +137,5 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_fro
     QTextDocumentFragment * data = new QTextDocumentFragment();
     *data = QTextDocumentFragment::fromHtml(QString(text),doc);
     env->ReleaseStringUTFChars(str,text);
-    return (jlong)(intptr_t)data;
+    return _P(data);
 }

@@ -4,6 +4,8 @@
 #ifndef JNI
 #define JNI
 
+#define _P(val) (jlong)(intptr_t)val
+
 #ifdef Q_OS_WIN32
     #include "os/windows/jni.h"
 #endif

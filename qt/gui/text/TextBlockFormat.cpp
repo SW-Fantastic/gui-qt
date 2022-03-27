@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_create
 (JNIEnv *, jobject) {
 
     QTextBlockFormat * blockFormat = new QTextBlockFormat();
-    return (jlong)(intptr_t)blockFormat;
+    return _P(blockFormat);
 }
 
 /*

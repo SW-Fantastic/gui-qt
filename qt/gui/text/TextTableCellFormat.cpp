@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableCellFormat_crea
 (JNIEnv *, jobject) {
 
     QTextTableCellFormat * format = new QTextTableCellFormat();
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*
@@ -374,7 +374,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableCellFormat_topB
     QTextTableCellFormat * format = (QTextTableCellFormat*)pointer;
     QBrush * brush = new QBrush();
     *brush = format->topBorderBrush();
-    return (jlong)(intptr_t)brush;
+    return _P(brush);
 }
 
 /*
@@ -401,7 +401,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableCellFormat_bott
     QTextTableCellFormat * format = (QTextTableCellFormat*)pointer;
     QBrush * brush = new QBrush();
     *brush = format->bottomBorderBrush();
-    return (jlong)(intptr_t)brush;
+    return _P(brush);
 }
 
 /*
@@ -428,7 +428,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableCellFormat_left
     QTextTableCellFormat * format = (QTextTableCellFormat*)pointer;
     QBrush * brush = new QBrush();
     *brush = format->leftBorderBrush();
-    return (jlong)(intptr_t)brush;
+    return _P(brush);
 }
 
 /*
@@ -455,7 +455,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableCellFormat_righ
     QTextTableCellFormat * format = (QTextTableCellFormat*)pointer;
     QBrush * brush = new QBrush();
     *brush = format->rightBorderBrush();
-    return (jlong)(intptr_t)brush;
+    return _P(brush);
 }
 
 /*

@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextImageFormat_create
 (JNIEnv *, jobject) {
 
     QTextImageFormat * imageFormat = new QTextImageFormat();
-    return (jlong)(intptr_t)imageFormat;
+    return _P(imageFormat);
 }
 
 /*

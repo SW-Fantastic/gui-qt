@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextOptionTab_create__
 (JNIEnv *, jobject) {
 
     QTextOption::Tab * tab = new QTextOption::Tab();
-    return (jlong)(intptr_t)tab;
+    return _P(tab);
 }
 
 /*
@@ -22,7 +22,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextOptionTab_create__DI
 (JNIEnv *, jobject, jdouble pos, jint typeVal, jchar declVal) {
 
     QTextOption::Tab * tab = new QTextOption::Tab(pos,QTextOption::TabType(typeVal),QChar(declVal));
-    return (jlong)(intptr_t)tab;
+    return _P(tab);
 }
 
 /*

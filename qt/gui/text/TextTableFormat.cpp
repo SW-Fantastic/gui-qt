@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextTableFormat_create
 (JNIEnv *, jobject) {
 
     QTextTableFormat * tableFormat = new QTextTableFormat();
-    return (jlong)(intptr_t)tableFormat;
+    return _P(tableFormat);
 }
 
 /*
@@ -76,7 +76,7 @@ JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_text_STextTableFormat_col
         QTextLength len = vect.at(idx);
         QTextLength * target = new QTextLength();
         *target = len;
-        arrVals[idx] = (jlong)(intptr_t)target;
+        arrVals[idx] = _P(target);
     }
 
     env->SetLongArrayRegion(arr,0,vect.size(),arrVals);

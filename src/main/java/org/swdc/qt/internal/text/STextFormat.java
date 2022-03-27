@@ -1,8 +1,13 @@
 package org.swdc.qt.internal.text;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.swdc.qt.internal.SPointer;
 
 public class STextFormat extends SPointer {
+
+    private ImmutablePair<Integer,Long> getPair(int propertyId, long pointer) {
+        return ImmutablePair.of(propertyId,pointer);
+    }
 
     public native long create();
     public native long create(int formatType);
@@ -31,12 +36,12 @@ public class STextFormat extends SPointer {
     public native long colorProperty(long pointer,int propertyId);
     public native long penProperty(long pointer,int propertyId);
     public native long brushProperty(long pointer,int propertyId);
-    //QTextLength lengthProperty(int propertyId) const;
-    //QVector<QTextLength> lengthVectorProperty(int propertyId) const;
 
-    //void setProperty(int propertyId, const QVector<QTextLength> &lengths);
+    public native long lengthProperty(long pointer,int propertyId);
+    public native long[] lengthVectorProperty(long pointer,int propertyId);
+    public native void setProperty(long pointer,int propertyId, long[] textLengths);
+    public native ImmutablePair<Integer,Long>[] properties(long pointer);
 
-    //QMap<int, QVariant> properties() const;
     public native int propertyCount(long pointer);
 
     public native void setObjectType(long pointer,int type);

@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextListFormat_create
 (JNIEnv *, jobject) {
 
     QTextListFormat * format = new QTextListFormat();
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*

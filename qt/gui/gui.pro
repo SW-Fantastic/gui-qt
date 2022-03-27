@@ -77,13 +77,28 @@ SOURCES += \
     layout/LayoutItem.cpp \
     layout/SpacerItem.cpp \
     layout/VBoxLayout.cpp \
+    text/AbstractTextLayout.cpp \
+    text/RegExp.cpp \
+    text/RegularExpression.cpp \
+    text/RegularExpressionMatch.cpp \
+    text/RegularExpressionMatchIterator.cpp \
+    text/TextBlock.cpp \
     text/TextBlockFormat.cpp \
+    text/TextBlockIter.cpp \
     text/TextCharFotmat.cpp \
+    text/TextDocument.cpp \
     text/TextDocumentFragment.cpp \
+    text/TextDocumentLayoutPaintContext.cpp \
+    text/TextDocumentLayoutSelection.cpp \
     text/TextFormat.cpp \
+    text/TextFragment.cpp \
+    text/TextFrame.cpp \
     text/TextFrameFormat.cpp \
+    text/TextFrameIterator.cpp \
     text/TextImageFormat.cpp \
+    text/TextLayoutFormatRange.cpp \
     text/TextLength.cpp \
+    text/TextList.cpp \
     text/TextListFormat.cpp \
     text/TextOption.cpp \
     text/TextOptionTab.cpp \
@@ -163,13 +178,28 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SToolBox.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
+    java/text/org_swdc_qt_internal_text_SAbstractTextLayout.h \
+    java/text/org_swdc_qt_internal_text_SRegExp.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpression.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpressionMatch.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpressionMatchIterator.h \
+    java/text/org_swdc_qt_internal_text_STextBlock.h \
     java/text/org_swdc_qt_internal_text_STextBlockFormat.h \
+    java/text/org_swdc_qt_internal_text_STextBlockIterator.h \
     java/text/org_swdc_qt_internal_text_STextCharFormat.h \
+    java/text/org_swdc_qt_internal_text_STextDocument.h \
     java/text/org_swdc_qt_internal_text_STextDocumentFragment.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentLayoutPaintContext.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentLayoutSelection.h \
     java/text/org_swdc_qt_internal_text_STextFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFragment.h \
+    java/text/org_swdc_qt_internal_text_STextFrame.h \
     java/text/org_swdc_qt_internal_text_STextFrameFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFrameIterator.h \
     java/text/org_swdc_qt_internal_text_STextImageFormat.h \
+    java/text/org_swdc_qt_internal_text_STextLayoutFormatRange.h \
     java/text/org_swdc_qt_internal_text_STextLength.h \
+    java/text/org_swdc_qt_internal_text_STextList.h \
     java/text/org_swdc_qt_internal_text_STextListFormat.h \
     java/text/org_swdc_qt_internal_text_STextOption.h \
     java/text/org_swdc_qt_internal_text_STextOptionTab.h \

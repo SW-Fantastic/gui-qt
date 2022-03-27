@@ -115,6 +115,22 @@ jobject sRgb(JNIEnv * env, QRgb val) {
 }
 
 
+jobjectArray asJavaStringArray(JNIEnv * env,QStringList list) {
+
+    jclass stringType = env->FindClass("java/lang/String");
+    jobjectArray arr = env->NewObjectArray(list.size(),stringType,NULL);
+
+    for(int idx = 0; idx < list.size(); idx ++) {
+        std::string str = list.at(idx).toStdString();
+        const char* cStr = str.c_str();
+        jstring jstr = asJavaString(env,cStr);
+        env->SetObjectArrayElement(arr,idx,jstr);
+    }
+
+    return arr;
+
+}
+
 jstring asJavaString(JNIEnv* env, const char* pat){
     //定义java String类 strClass
     jclass strClass = (env)->FindClass("java/lang/String");

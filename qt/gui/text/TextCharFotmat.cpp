@@ -10,7 +10,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_create
 (JNIEnv *, jobject) {
 
     QTextCharFormat * format = new QTextCharFormat();
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*
@@ -77,7 +77,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_font
     QFont font = format->font();
     QFont * target = new QFont();
     *target = font;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -673,7 +673,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_textOutli
     QPen * pen = new QPen();
     QTextCharFormat * format = (QTextCharFormat*)pointer;
     *pen = format->textOutline();
-    return (jlong)(intptr_t)pen;
+    return _P(pen);
 }
 
 /*

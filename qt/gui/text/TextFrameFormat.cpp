@@ -9,7 +9,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFrameFormat_create
 (JNIEnv *, jobject) {
 
     QTextFrameFormat * format = new QTextFrameFormat();
-    return (jlong)(intptr_t)format;
+    return _P(format);
 }
 
 /*
@@ -99,7 +99,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFrameFormat_borderBr
     QBrush brush = format->borderBrush();
     QBrush * target = new QBrush();
     *target = brush;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -308,7 +308,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFrameFormat_width
     QTextLength leng = format->width();
     QTextLength * target = new QTextLength();
     *target = leng;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
@@ -348,7 +348,7 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextFrameFormat_height
     QTextLength len = format->height();
     QTextLength * target = new QTextLength();
     *target = len;
-    return (jlong)(intptr_t)target;
+    return _P(target);
 }
 
 /*
