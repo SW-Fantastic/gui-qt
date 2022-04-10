@@ -53,8 +53,8 @@ public class STextBlock extends SPointer {
 
     private native long iterator(long pointer);
 
-    private STextBlockIterator iterator() {
-        return new STextBlockIterator(iterator(address()));
+    public STextBlockIterator iterator() {
+        return address() > 0 ? new STextBlockIterator(iterator(address())) : null;
     }
 
     public native int fragmentIndex(long pointer);

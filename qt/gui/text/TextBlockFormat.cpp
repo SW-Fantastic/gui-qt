@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_setAlignm
 (JNIEnv * env, jobject self, jlong pointer, jlong alignmentVal) {
 
     QTextBlockFormat * format = (QTextBlockFormat*)pointer;
-    Qt::Alignment align = Qt::Alignment(alignmentVal);
+    Qt::Alignment align = Qt::Alignment((unsigned int)alignmentVal);
     format->setAlignment(align);
 }
 
@@ -314,6 +314,55 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_setPageBr
     QTextBlockFormat * format = (QTextBlockFormat*)pointer;
     format->setPageBreakPolicy(QTextBlockFormat::PageBreakFlags(pgBreakPolicy));
 }
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextBlockFormat
+ * Method:    setTabPositions
+ * Signature: (J[J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_setTabPositions
+(JNIEnv * env, jobject self, jlong pointer, jlongArray posArray) {
+
+    int len = env->GetArrayLength(posArray);
+    jlong* arr = env->GetLongArrayElements(posArray,0);
+    QList<QTextOption::Tab> tabs;
+
+    for(int idx = 0; idx < len; idx ++) {
+        QTextOption::Tab * range = (QTextOption::Tab*)arr[idx];
+        tabs.append(*range);
+    }
+
+    QTextBlockFormat * format = (QTextBlockFormat*)pointer;
+    format->setTabPositions(tabs);
+
+    env->ReleaseLongArrayElements(posArray,arr,0);
+}
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextBlockFormat
+ * Method:    tabPositions
+ * Signature: (J)[J
+ */
+JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_tabPositions
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextBlockFormat * format = (QTextBlockFormat*)pointer;
+    QList<QTextOption::Tab> tabs = format->tabPositions();
+
+    jlongArray arr = env->NewLongArray(tabs.size());
+    jlong * buf = new jlong[tabs.size()];
+
+    for(int idx = 0; idx < tabs.size(); idx++) {
+        QTextOption::Tab * tab = new QTextOption::Tab();
+        *tab = tabs.at(idx);
+        buf[idx] = _P(tab);
+    }
+
+    env->SetLongArrayRegion(arr,0,tabs.size(),buf);
+    return arr;
+}
+
+
 
 /*
  * Class:     org_swdc_qt_internal_text_STextBlockFormat

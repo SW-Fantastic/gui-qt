@@ -385,6 +385,10 @@ public class TestQt {
 
         dockWidget.setLayout(dockLayout);
 
+        TextEdit textEdit = new TextEdit();
+        textEdit.allocate();
+        textEdit.setHtml("<h1>Title</h1>");
+
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
         tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
@@ -392,6 +396,7 @@ public class TestQt {
         tabWidget.addTab(tabToolBox,"ToolBox");
         tabWidget.addTab(mdiWidget,"Mdi area");
         tabWidget.addTab(dockWidget,"dock");
+        tabWidget.addTab(textEdit,"TextEdit");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();

@@ -507,7 +507,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_setFontSty
 (JNIEnv * env, jobject self, jlong pointer, jint hintVal, jlong styleStg) {
 
     QFont::StyleHint hint = QFont::StyleHint(hintVal);
-    QFont::StyleStrategy stg = QFont::StyleStrategy((unsigned long)styleStg);
+    QFont::StyleStrategy stg = QFont::StyleStrategy((unsigned int)styleStg);
 
     QTextCharFormat * format = (QTextCharFormat*)pointer;
     format->setFontStyleHint(hint,stg);
@@ -519,9 +519,9 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_setFontSty
  * Signature: (JI)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_setFontStyleStrategy
-(JNIEnv * env, jobject self, jlong pointer, jint stg) {
+(JNIEnv * env, jobject self, jlong pointer, jlong stg) {
 
-    QFont::StyleStrategy stgVal = QFont::StyleStrategy(stg);
+    QFont::StyleStrategy stgVal = QFont::StyleStrategy((unsigned int)stg);
     QTextCharFormat * format = (QTextCharFormat*)pointer;
     format->setFontStyleStrategy(stgVal);
 }

@@ -39,6 +39,15 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
 JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_createByFragment
   (JNIEnv *, jobject, jlong);
 
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextDocumentFragment
+ * Method:    dispose
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_dispose
+  (JNIEnv *, jobject, jlong);
+
 /*
  * Class:     org_swdc_qt_internal_text_STextDocumentFragment
  * Method:    isEmpty

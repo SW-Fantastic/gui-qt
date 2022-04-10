@@ -217,6 +217,23 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_setPageBr
 
 /*
  * Class:     org_swdc_qt_internal_text_STextBlockFormat
+ * Method:    setTabPositions
+ * Signature: (J[J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_setTabPositions
+  (JNIEnv *, jobject, jlong, jlongArray);
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextBlockFormat
+ * Method:    tabPositions
+ * Signature: (J)[J
+ */
+JNIEXPORT jlongArray JNICALL Java_org_swdc_qt_internal_text_STextBlockFormat_tabPositions
+  (JNIEnv *, jobject, jlong);
+
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextBlockFormat
  * Method:    setMarker
  * Signature: (JI)V
  */

@@ -51,8 +51,8 @@ public class STextDocument extends SPointer {
     public native long frameAt(long pointer,int pos);
     public native long rootFrame(long pointer);
 
-    public native long object(long pointer,int objectIndex);
-    public native long objectForFormat(long pointer,long textFormat);
+    // public native long object(long pointer,int objectIndex);
+    // public native long objectForFormat(long pointer,long textFormat);
 
     public native long findBlock(long pointer,int pos);
     public native long findBlockByNumber(long pointer,int blockNumber);

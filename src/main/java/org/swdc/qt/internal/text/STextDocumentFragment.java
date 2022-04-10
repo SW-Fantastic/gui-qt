@@ -9,6 +9,8 @@ public class STextDocumentFragment extends SPointer {
     public native long createByCursor(long range);
     public native long createByFragment(long rhs);
 
+    public native void dispose(long pointer);
+
     public native boolean isEmpty(long pointer);
 
     public native String toPlainText(long pointer);

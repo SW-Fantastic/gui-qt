@@ -17,6 +17,9 @@ public class STextFrame extends STextObject {
     public native long parentFrame(long pointer);
 
     private native long iterator(long pointer);
+    public STextFrameIterator iterator() {
+        return address() > 0 ? new STextFrameIterator(iterator(address())) : null;
+    }
 
 
 }

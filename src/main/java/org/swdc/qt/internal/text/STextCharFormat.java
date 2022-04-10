@@ -55,7 +55,7 @@ public class STextCharFormat extends STextFormat {
     public native int fontStretch(long pointer);
 
     public native void setFontStyleHint(long pointer,int hint, long strategy);
-    public native void setFontStyleStrategy(long pointer,int strategy);
+    public native void setFontStyleStrategy(long pointer,long strategy);
     public native int fontStyleHint(long pointer);
     public native long fontStyleStrategy(long pointer);
 

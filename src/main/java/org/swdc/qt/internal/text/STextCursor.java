@@ -9,95 +9,95 @@ public class STextCursor extends SPointer {
 
     public native void dispose(long pointer);
 
-    public native void setPosition(int pos, int mode);
-    public native int position();
-    public native int positionInBlock();
+    public native void setPosition(long pointer,int pos, int mode);
+    public native int position(long pointer);
+    public native int positionInBlock(long pointer);
 
-    public native int anchor();
+    public native int anchor(long pointer);
 
-    public native void insertText(String text);
-    public native void insertText(String text, long charFormat);
+    public native void insertText(long pointer,String text);
+    public native void insertText(long pointer,String text, long charFormat);
 
-    public native boolean movePosition(int op, int moveMode, int n);
+    public native boolean movePosition(long pointer,int op, int moveMode, int n);
 
-    public native boolean visualNavigation();
-    public native void setVisualNavigation(boolean b);
+    public native boolean visualNavigation(long pointer);
+    public native void setVisualNavigation(long pointer,boolean b);
 
-    public native void setVerticalMovementX(int x);
-    public native int verticalMovementX();
+    public native void setVerticalMovementX(long pointer,int x);
+    public native int verticalMovementX(long pointer);
 
-    public native void setKeepPositionOnInsert(boolean b);
-    public native void keepPositionOnInsert();
+    public native void setKeepPositionOnInsert(long pointer,boolean b);
+    public native boolean keepPositionOnInsert(long pointer);
 
-    public native void deleteChar();
-    public native void deletePreviousChar();
+    public native void deleteChar(long pointer);
+    public native void deletePreviousChar(long pointer);
 
-    public native void select(int selection);
+    public native void select(long pointer,int selection);
 
-    public native boolean hasSelection();
-    public native boolean hasComplexSelection();
-    public native void removeSelectedText();
-    public native void clearSelection();
-    public native int selectionStart();
-    public native int selectionEnd();
+    public native boolean hasSelection(long pointer);
+    public native boolean hasComplexSelection(long pointer);
+    public native void removeSelectedText(long pointer);
+    public native void clearSelection(long pointer);
+    public native int selectionStart(long pointer);
+    public native int selectionEnd(long pointer);
 
-    public native String selectedText();
-    public native long selection();
+    public native String selectedText(long pointer);
+    public native long selection(long pointer);
     //void selectedTableCells(int *firstRow, int *numRows, int *firstColumn, int *numColumns);
 
-    public native long block();
+    public native long block(long pointer);
 
-    public native long charFormat();
-    public native void setCharFormat(long charFormat);
-    public native void mergeCharFormat(long charFormat);
+    public native long charFormat(long pointer);
+    public native void setCharFormat(long pointer,long charFormat);
+    public native void mergeCharFormat(long pointer,long charFormat);
 
-    public native long blockFormat();
-    public native void setBlockFormat(long blockFormat);
-    public native void mergeBlockFormat(long blockFormat);
+    public native long blockFormat(long pointer);
+    public native void setBlockFormat(long pointer,long blockFormat);
+    public native void mergeBlockFormat(long pointer,long blockFormat);
 
-    public native long blockCharFormat();
-    public native void setBlockCharFormat(long blockCharFormat);
-    public native void mergeBlockCharFormat(long blockCharFormat);
+    public native long blockCharFormat(long pointer);
+    public native void setBlockCharFormat(long pointer,long blockCharFormat);
+    public native void mergeBlockCharFormat(long pointer,long blockCharFormat);
 
-    public native boolean atBlockStart();
-    public native boolean atBlockEnd();
-    public native boolean atStart();
-    public native boolean atEnd();
+    public native boolean atBlockStart(long pointer);
+    public native boolean atBlockEnd(long pointer);
+    public native boolean atStart(long pointer);
+    public native boolean atEnd(long pointer);
 
-    public native void insertBlock();
-    public native void insertBlock(long blockFormat);
-    public native void insertBlock(long blockformat,long charFormat);
+    public native void insertBlock(long pointer);
+    public native void insertBlock(long pointer,long blockFormat);
+    public native void insertBlock(long pointer,long blockformat,long charFormat);
 
-    public native long insertList(long listFormat);
-    public native long insertList(int style);
+    public native long insertList(long pointer,long listFormat);
+    public native long insertList(long pointer,int style);
 
-    public native long createList(long listFormat);
-    public native long createList(int listFormatStyle);
-    public native long currentList();
+    public native long createList(long pointer,long listFormat);
+    public native long createList(long pointer,int listFormatStyle);
+    public native long currentList(long pointer);
 
-    public native long insertTable(int rows, int cols, int tableFormat);
-    public native long insertTable(int rows, int cols);
-    public native long currentTable();
+    public native long insertTable(long pointer,int rows, int cols, long tableFormat);
+    public native long insertTable(long pointer,int rows, int cols);
+    public native long currentTable(long pointer);
 
-    public native long insertFrame(int format);
-    public native long currentFrame();
+    public native long insertFrame(long pointer,long format);
+    public native long currentFrame(long pointer);
 
-    public native void insertFragment(long docFragment);
+    public native void insertFragment(long pointer,long docFragment);
 
-    public native void insertImage(long imageFormat,int alignment);
-    public native void insertImage(long imageFormat);
-    public native void insertImage(String name);
-    public native void insertImage(long image, String name);
+    public native void insertImage(long pointer,long imageFormat,int alignment);
+    public native void insertImage(long pointer,long imageFormat);
+    public native void insertImage(long pointer,String name);
+    public native void insertImage(long pointer,long image, String name);
 
-    public native void beginEditBlock();
-    public native void joinPreviousEditBlock();
-    public native void endEditBlock();
+    public native void beginEditBlock(long pointer);
+    public native void joinPreviousEditBlock(long pointer);
+    public native void endEditBlock(long pointer);
 
-    public native boolean isCopyOf(long other);
+    public native boolean isCopyOf(long pointer,long other);
 
-    public native int blockNumber();
-    public native int columnNumber();
+    public native int blockNumber(long pointer);
+    public native int columnNumber(long pointer);
 
-    public native long document();
+    public native long document(long pointer);
 
 }

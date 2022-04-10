@@ -11,10 +11,10 @@ public class STextBlockFormat extends STextFormat {
     public native long alignment(long pointer);
 
     public native void setTopMargin(long pointer,double margin);
-    public native long topMargin(long pointer);
+    public native double topMargin(long pointer);
 
     public native void setBottomMargin(long pointer,double margin);
-    public native long bottomMargin(long pointer);
+    public native double bottomMargin(long pointer);
 
     public native void setLeftMargin(long pointer,double margin);
     public native double leftMargin(long pointer);
@@ -41,8 +41,8 @@ public class STextBlockFormat extends STextFormat {
 
     public native void setPageBreakPolicy(long pointer,int flags);
 
-    // void setTabPositions(const QList<QTextOption::Tab> &tabs);
-    // QList<QTextOption::Tab> tabPositions() const;
+    public native void setTabPositions(long pointer,long[] tabs);
+    public native long[] tabPositions(long pointer);
 
     public native void setMarker(long pointer,int marker);
     public native int marker(long pointer);

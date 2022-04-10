@@ -52,6 +52,20 @@ JNIEXPORT jlong JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_cre
     return _P(target);
 }
 
+
+/*
+ * Class:     org_swdc_qt_internal_text_STextDocumentFragment
+ * Method:    dispose
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextDocumentFragment_dispose
+(JNIEnv * env, jobject self, jlong pointer) {
+
+    QTextDocumentFragment * fragment = (QTextDocumentFragment*)pointer;
+    delete fragment;
+    cleanJavaPointer(env,self);
+}
+
 /*
  * Class:     org_swdc_qt_internal_text_STextDocumentFragment
  * Method:    isEmpty

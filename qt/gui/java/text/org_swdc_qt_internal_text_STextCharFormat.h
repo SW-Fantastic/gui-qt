@@ -325,7 +325,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_setFontSty
  * Signature: (JI)V
  */
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextCharFormat_setFontStyleStrategy
-  (JNIEnv *, jobject, jlong, jint);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     org_swdc_qt_internal_text_STextCharFormat
