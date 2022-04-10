@@ -1,15 +1,16 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.graphics.SFont;
 
 import java.io.File;
 
-public class Font{
+public class Font implements NativeAllocated {
 
     private SFont font = new SFont();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = font.create();
@@ -20,7 +21,7 @@ public class Font{
     }
 
     public void allocate(String family, int pointSize, int weight, boolean italic) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = font.create(family, pointSize, weight, italic);
@@ -31,7 +32,7 @@ public class Font{
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -41,104 +42,104 @@ public class Font{
     }
 
     public String getFamily() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.family(getPointer());
         }
         return null;
     }
 
     public void setFamily(String family) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setFamily(getPointer(),family);
         }
     }
 
     public String getStyleName() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.styleName(getPointer());
         }
         return null;
     }
 
     public void setStyleName(String name) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStyleName(getPointer(),name);
         }
     }
 
     public int getPointSize() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.pointSize(getPointer());
         }
         return 0;
     }
 
     public void setPointSize(int size) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setPointSize(getPointer(),size);
         }
     }
 
     public double getPointSizeF() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.pointSizeF(getPointer());
         }
         return 0;
     }
 
     public void setPointSizeF(double size) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setPointSizeF(getPointer(),size);
         }
     }
 
     public int getPixelSize() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.pixelSize(getPointer());
         }
         return 0;
     }
 
     public void setPixelSize(int size) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setPixelSize(getPointer(),size);
         }
     }
 
     public int getWeight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.weight(getPointer());
         }
         return 0;
     }
 
     public void setWeight(int weight) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setWeight(getPointer(),weight);
         }
     }
 
     public boolean isBold() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.bold(getPointer());
         }
         return false;
     }
 
     public void setBold(boolean bold) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setBold(getPointer(),bold);
         }
     }
 
     public void setStyle(FontStyle fontStyle) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStyle(getPointer(),fontStyle.getVal());
         }
     }
 
     public FontStyle getStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = font.style(getPointer());
             return FontStyle.valueOf(val);
         }
@@ -146,85 +147,85 @@ public class Font{
     }
 
     public boolean isItalic(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.italic(getPointer());
         }
         return false;
     }
 
     public void setItalic(boolean b) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setItalic(getPointer(),b);
         }
     }
 
     public boolean isUnderline() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.underline(getPointer());
         }
         return false;
     }
 
     public void setUnderline(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setUnderline(getPointer(),val);
         }
     }
 
     public boolean isOverLine() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.overline(getPointer());
         }
         return false;
     }
 
     public void setOverLine(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setOverline(getPointer(),val);
         }
     }
 
     public boolean isStrikeOut() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.strikeOut(getPointer());
         }
         return false;
     }
 
     public void setStrikeOut(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStrikeOut(getPointer(),val);
         }
     }
 
     public boolean isFixedPitch() {
-        if(getPointer() > 0) {
+        if(accessible()) {
             return font.fixedPitch(getPointer());
         }
         return false;
     }
 
     public void setFixedPitch(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setFixedPitch(getPointer(),val);
         }
     }
 
     public boolean isKerning() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.kerning(getPointer());
         }
         return false;
     }
 
     public void setKerning(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setKerning(getPointer(),val);
         }
     }
 
     public FontStyleHint styleHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = font.styleHint(getPointer());
             return FontStyleHint.valueOf(val);
         }
@@ -232,7 +233,7 @@ public class Font{
     }
 
     public FontStyleStrategy getStyleStrategy() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long val = font.styleStrategy(getPointer());
             return FontStyleStrategy.valueOf(val);
         }
@@ -240,39 +241,39 @@ public class Font{
     }
 
     public void setStyleHint(FontStyleHint styleHint, FontStyleStrategy fontStyleStrategy) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStyleHint(getPointer(),styleHint.getVal(),fontStyleStrategy.getVal());
         }
     }
 
     public void setStyleStrategy(FontStyleStrategy fontStyleStrategy) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStyleStrategy(getPointer(),fontStyleStrategy.getVal());
         }
     }
 
     public int getStretch() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.stretch(getPointer());
         }
         return 0;
     }
 
     public void setStretch(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setStretch(getPointer(),val);
         }
     }
 
     public double getLetterSpacing(){
-        if(getPointer() > 0) {
+        if(accessible()) {
             return font.letterSpacing(getPointer());
         }
         return 0;
     }
 
     public FontSpacingType getLetterSpacingType() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = font.letterSpacingType(getPointer());
             return FontSpacingType.valueOf(val);
         }
@@ -280,32 +281,32 @@ public class Font{
     }
 
     public void setLetterSpacing(FontSpacingType spacingType, double spacing){
-        if (getPointer() > 0) {
+        if (accessible()) {
            font.setLetterSpacing(getPointer(),spacingType.getVal(),spacing);
         }
     }
 
     public double getWordSpacing() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.wordSpacing(getPointer());
         }
         return 0;
     }
 
     public void setWordSpacing(double spacing) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setWordSpacing(getPointer(),spacing);
         }
     }
 
     public void setCapitalization(FontCapitalization capitalization) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setCapitalization(getPointer(),capitalization.getVal());
         }
     }
 
     public FontCapitalization getCapitalization() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = font.capitalization(getPointer());
             return FontCapitalization.valueOf(val);
         }
@@ -313,13 +314,13 @@ public class Font{
     }
 
     public void setHintingPreference(FontHintingPreference hintingPreference) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.setHintingPreference(getPointer(),hintingPreference.getVal());
         }
     }
 
     public FontHintingPreference getHintingPreference() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = font.hintingPreference(getPointer());
             return FontHintingPreference.valueOf(val);
         }
@@ -327,25 +328,27 @@ public class Font{
     }
 
     public boolean isCopyOf(Font anotherFont) {
-        if (getPointer() > 0 && anotherFont.getPointer() > 0) {
+        if (accessible() && anotherFont.accessible()) {
             return font.isCopyOf(getPointer(),anotherFont.getPointer());
         }
         return false;
     }
 
     public String key() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return font.key(getPointer());
         }
         return null;
     }
 
+    @Override
     public long getPointer() {
         return font.address();
     }
 
+    @Override
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             font.dispose(getPointer());
             font.cleanAddress();
         }

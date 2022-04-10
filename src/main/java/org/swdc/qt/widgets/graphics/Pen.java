@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.graphics.SPen;
 
-public class Pen {
+public class Pen implements NativeAllocated {
 
     private SPen pen = new SPen();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = pen.create();
@@ -18,7 +19,7 @@ public class Pen {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -27,13 +28,14 @@ public class Pen {
         pen.address(pointer);
     }
 
+    @Override
     public long getPointer() {
         return pen.address();
     }
 
 
     public PenStyle getStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = pen.style(getPointer());
             return PenStyle.valueOf(val);
         } else {
@@ -42,65 +44,65 @@ public class Pen {
     }
 
     public void setStyle(PenStyle style) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setStyle(getPointer(),style.getVal());
         }
     }
 
     public double[] dashPattern() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pen.dashPattern(getPointer());
         } else {
             return new double[0];
         }
     }
     public void setDashPattern(double[] pattern) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setDashPattern(getPointer(),pattern);
         }
     }
 
     public double dashOffset() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pen.dashOffset(getPointer());
         }
         return 0;
     }
 
     public void setDashOffset(double doffset) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setDashOffset(getPointer(),doffset);
         }
     }
 
     public double miterLimit() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pen.miterLimit(getPointer());
         }
         return 0;
     }
 
     public void setMiterLimit(double limit){
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setMiterLimit(getPointer(),limit);
         }
     }
 
     public int getWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.width(getPointer());
         }
         return 0;
     }
 
     public void setWidth(int width) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setWidth(getPointer(),width);
         }
     }
 
     public Color getColor() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long color = pen.color(getPointer());
             Color result = new Color();
             result.allocate(color);
@@ -111,13 +113,13 @@ public class Pen {
     }
 
     public void setColor(Color color) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setColor(getPointer(),color.getVal());
         }
     }
 
     public PenCapStyle getCapStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = pen.capStyle(getPointer());
             return PenCapStyle.valueOf(val);
         } else {
@@ -126,13 +128,13 @@ public class Pen {
     }
 
     public void setCapStyle(PenCapStyle pcs) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setCapStyle(getPointer(),pcs.getVal());
         }
     }
 
     public PenJoinStyle getJoinStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int joinStyle = pen.joinStyle(getPointer());
             return PenJoinStyle.valueOf(joinStyle);
         }
@@ -140,26 +142,27 @@ public class Pen {
     }
 
     public void setJoinStyle(PenJoinStyle pcs) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setJoinStyle(getPointer(),pcs.getVal());
         }
     }
 
     public boolean isCosmetic() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pen.isCosmetic(getPointer());
         }
         return false;
     }
 
     public void setCosmetic(boolean cosmetic) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.setCosmetic(getPointer(),cosmetic);
         }
     }
 
+    @Override
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pen.dispose(getPointer());
             pen.cleanAddress();
         }

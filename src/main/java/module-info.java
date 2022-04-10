@@ -9,6 +9,7 @@ module swdc.qt {
     exports org.swdc.qt.widgets.pane;
     exports org.swdc.qt.widgets.dialogs;
     exports org.swdc.qt.listeners;
+    exports org.swdc.qt.widgets.text;
 
     requires org.apache.commons.lang3;
 

@@ -277,4 +277,17 @@ public class Menu extends Widget {
     public long getPointer() {
         return menu.address();
     }
+
+    public static Menu asMenu(long pointer) {
+        if (pointer <= 0) {
+            throw new RuntimeException("can not create a menu, invalid pointer");
+        }
+        try {
+            Menu menu = new Menu();
+            menu.wrap(pointer);
+            return menu;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

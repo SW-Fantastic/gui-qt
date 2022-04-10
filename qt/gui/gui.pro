@@ -36,6 +36,7 @@ SOURCES += \
     ScrollBar.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
+    TextEdit.cpp \
     ToolBar.cpp \
     ToolBox.cpp \
     ToolButton.cpp \
@@ -61,6 +62,7 @@ SOURCES += \
     graphics/Icon.cpp \
     graphics/LinearGradient.cpp \
     graphics/PainterPath.cpp \
+    graphics/Palette.cpp \
     graphics/RadialGradient.cpp \
     graphics/Transformation.cpp \
     graphics/Image.cpp \
@@ -75,7 +77,40 @@ SOURCES += \
     layout/HBoxLayout.cpp \
     layout/LayoutItem.cpp \
     layout/SpacerItem.cpp \
-    layout/VBoxLayout.cpp
+    layout/VBoxLayout.cpp \
+    text/AbstractTextLayout.cpp \
+    text/RegExp.cpp \
+    text/RegularExpression.cpp \
+    text/RegularExpressionMatch.cpp \
+    text/RegularExpressionMatchIterator.cpp \
+    text/TextBlock.cpp \
+    text/TextBlockFormat.cpp \
+    text/TextBlockIter.cpp \
+    text/TextCharFotmat.cpp \
+    text/TextCursor.cpp \
+    text/TextDocument.cpp \
+    text/TextDocumentFragment.cpp \
+    text/TextDocumentLayoutPaintContext.cpp \
+    text/TextDocumentLayoutSelection.cpp \
+    text/TextEditExtraSelection.cpp \
+    text/TextFormat.cpp \
+    text/TextFragment.cpp \
+    text/TextFrame.cpp \
+    text/TextFrameFormat.cpp \
+    text/TextFrameIterator.cpp \
+    text/TextImageFormat.cpp \
+    text/TextLayout.cpp \
+    text/TextLayoutFormatRange.cpp \
+    text/TextLength.cpp \
+    text/TextLine.cpp \
+    text/TextList.cpp \
+    text/TextListFormat.cpp \
+    text/TextOption.cpp \
+    text/TextOptionTab.cpp \
+    text/TextTable.cpp \
+    text/TextTableCell.cpp \
+    text/TextTableCellFormat.cpp \
+    text/TextTableFormat.cpp
 
 HEADERS += \
     Executors.h \
@@ -103,6 +138,7 @@ HEADERS += \
     java/graphics/org_swdc_qt_internal_graphics_SIcon.h \
     java/graphics/org_swdc_qt_internal_graphics_SLinearGradient.h \
     java/graphics/org_swdc_qt_internal_graphics_SPainterPath.h \
+    java/graphics/org_swdc_qt_internal_graphics_SPalette.h \
     java/graphics/org_swdc_qt_internal_graphics_SRadialGradient.h \
     java/jni.h \
     java/layout/org_swdc_qt_internal_layout_SBoxLayout.h \
@@ -145,10 +181,44 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SScrollBar.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
+    java/org_swdc_qt_internal_widgets_STextEdit.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
     java/org_swdc_qt_internal_widgets_SToolBox.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
     java/org_swdc_qt_internal_widgets_SWidget.h \
+    java/text/org_swdc_qt_internal_text_SAbstractTextLayout.h \
+    java/text/org_swdc_qt_internal_text_SRegExp.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpression.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpressionMatch.h \
+    java/text/org_swdc_qt_internal_text_SRegularExpressionMatchIterator.h \
+    java/text/org_swdc_qt_internal_text_STextBlock.h \
+    java/text/org_swdc_qt_internal_text_STextBlockFormat.h \
+    java/text/org_swdc_qt_internal_text_STextBlockIterator.h \
+    java/text/org_swdc_qt_internal_text_STextCharFormat.h \
+    java/text/org_swdc_qt_internal_text_STextCursor.h \
+    java/text/org_swdc_qt_internal_text_STextDocument.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentFragment.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentLayoutPaintContext.h \
+    java/text/org_swdc_qt_internal_text_STextDocumentLayoutSelection.h \
+    java/text/org_swdc_qt_internal_text_STextEditExtraSelection.h \
+    java/text/org_swdc_qt_internal_text_STextFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFragment.h \
+    java/text/org_swdc_qt_internal_text_STextFrame.h \
+    java/text/org_swdc_qt_internal_text_STextFrameFormat.h \
+    java/text/org_swdc_qt_internal_text_STextFrameIterator.h \
+    java/text/org_swdc_qt_internal_text_STextImageFormat.h \
+    java/text/org_swdc_qt_internal_text_STextLayout.h \
+    java/text/org_swdc_qt_internal_text_STextLayoutFormatRange.h \
+    java/text/org_swdc_qt_internal_text_STextLength.h \
+    java/text/org_swdc_qt_internal_text_STextLine.h \
+    java/text/org_swdc_qt_internal_text_STextList.h \
+    java/text/org_swdc_qt_internal_text_STextListFormat.h \
+    java/text/org_swdc_qt_internal_text_STextOption.h \
+    java/text/org_swdc_qt_internal_text_STextOptionTab.h \
+    java/text/org_swdc_qt_internal_text_STextTable.h \
+    java/text/org_swdc_qt_internal_text_STextTableCell.h \
+    java/text/org_swdc_qt_internal_text_STextTableCellFormat.h \
+    java/text/org_swdc_qt_internal_text_STextTableFormat.h \
     java/types/SCheckBox.h \
     java/types/SComboBox.h \
     java/types/SCommandLinkButton.h \
@@ -165,6 +235,7 @@ HEADERS += \
     java/types/SScrollBar.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
+    java/types/STextEdit.h \
     java/types/SToolBar.h \
     java/types/SToolBox.h \
     java/types/SToolButton.h \
