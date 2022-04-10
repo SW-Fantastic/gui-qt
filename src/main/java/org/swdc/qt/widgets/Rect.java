@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SRect;
 
-public class Rect {
+public class Rect implements NativeAllocated {
 
     private SRect rect = new SRect();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = rect.create();
@@ -18,7 +19,7 @@ public class Rect {
     }
 
     public void allocate(int left,int top,int width, int height) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = rect.create(left,top,width,height);
@@ -29,7 +30,7 @@ public class Rect {
     }
 
     private void wrap(long nativePointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (nativePointer <= 0) {
@@ -39,7 +40,7 @@ public class Rect {
     }
 
     public Size getSize() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.size(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -50,13 +51,13 @@ public class Rect {
     }
 
     public void setSize(Size size) {
-        if (getPointer() > 0 && size.getPointer() > 0) {
+        if (accessible(size)) {
             rect.setSize(getPointer(),size.getPointer());
         }
     }
 
     public Rect marginsAdded(Margins margins) {
-        if (getPointer() > 0 && margins.getPointer() > 0) {
+        if (accessible(margins)) {
             long pointer = rect.marginsAdded(getPointer(),margins.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -67,7 +68,7 @@ public class Rect {
     }
 
     public Rect marginsRemoved(Margins margins) {
-        if (getPointer() > 0 && margins.getPointer() > 0) {
+        if (accessible(margins)) {
             long pointer = rect.marginsRemoved(getPointer(),margins.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -79,31 +80,31 @@ public class Rect {
 
 
     public void setTopLeft(Point point){
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setTopLeft(getPointer(),point.getPointer());
         }
     }
 
     public void setBottomRight(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setBottomRight(getPointer(),point.getPointer());
         }
     }
 
     public void setTopRight(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setTopRight(getPointer(),point.getPointer());
         }
     }
 
     public void setBottomLeft(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setBottomLeft(getPointer(),point.getPointer());
         }
     }
 
     public Point getTopLeft() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.topLeft(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -114,7 +115,7 @@ public class Rect {
     }
 
     public Point getBottomRight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.bottomRight(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -125,7 +126,7 @@ public class Rect {
     }
 
     public Point getTopRight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.topRight(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -136,7 +137,7 @@ public class Rect {
     }
 
     public Point getBottomLeft() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.bottomLeft(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -147,7 +148,7 @@ public class Rect {
     }
 
     public Point getCenter() {
-        if (getPointer() > 0){
+        if (accessible()){
             long pointer = rect.center(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -159,85 +160,85 @@ public class Rect {
 
 
     public void moveTopLeft(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTopLeft(getPointer(),point.getPointer());
         }
     }
 
     public void moveBottomRight(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveBottomRight(getPointer(),point.getPointer());
         }
     }
 
     public void moveTopRight(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTopRight(getPointer(),point.getPointer());
         }
     }
 
     public void moveBottomLeft(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveBottomLeft(getPointer(),point.getPointer());
         }
     }
 
     public void moveCenter(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveCenter(getPointer(),point.getPointer());
         }
     }
 
     public void moveTo(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTo(getPointer(),point.getPointer());
         }
     }
 
     public boolean isEmpty() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.isEmpty(getPointer());
         }
         return false;
     }
 
     public boolean isValid() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.isValid(getPointer());
         }
         return false;
     }
 
     public int left() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.left(getPointer());
         }
         return 0;
     }
 
     public int top() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.top(getPointer());
         }
         return 0;
     }
 
     public int right(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.right(getPointer());
         }
         return 0;
     }
 
     public int bottom() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.bottom(getPointer());
         }
         return 0;
     }
 
     public Rect normalized() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.normalized(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -249,87 +250,87 @@ public class Rect {
     }
 
     public int x() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.x(getPointer());
         }
         return 0;
     }
 
     public int y() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.y(getPointer());
         }
         return 0;
     }
 
     public void setLeft(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setLeft(getPointer(),pos);
         }
     }
 
     public void setTop(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setTop(getPointer(),pos);
         }
     }
 
     public void setRight(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setRight(getPointer(),pos);
         }
     }
 
     public void setBottom(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setBottom(getPointer(),pos);
         }
     }
 
     public void setX(int x) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setX(getPointer(),x);
         }
     }
 
     public void setY(int y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setY(getPointer(),y);
         }
     }
 
     public void moveLeft(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveLeft(getPointer(),pos);
         }
     }
 
     public void moveTop(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveTop(getPointer(),pos);
         }
     }
 
     public void moveRight(int pos){
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveRight(getPointer(),pos);
         }
     }
 
     public void moveBottom(int pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveBottom(getPointer(),pos);
         }
     }
 
     public void translate(int dx, int dy) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.translate(getPointer(),dx,dy);
         }
     }
 
     public Rect transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -341,66 +342,66 @@ public class Rect {
     }
 
     public void moveTo(int x, int t){
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveTo(getPointer(),x,t);
         }
     }
 
     public void adjust(int x1, int y1, int x2, int y2) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.adjust(getPointer(),x1,y1,x2,y2);
         }
     }
 
     public int width() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.width(getPointer());
         }
         return 0;
     }
 
     public int height() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.height(getPointer());
         }
         return 0;
     }
 
     public void setWidth(int w) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setWidth(getPointer(),w);
         }
     }
 
     public void setHeight(int h) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setHeight(getPointer(),h);
         }
     }
 
     public boolean contains(Rect anotherRect, boolean proper){
-        if (getPointer() > 0) {
+        if (accessible(anotherRect,proper)) {
             return rect.contains(getPointer(),anotherRect.getPointer(),proper);
         }
         return false;
     }
 
     public boolean contains(int x, int y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.contains(getPointer(),x,y);
         }
         return false;
     }
 
     public boolean contains(int x, int y, boolean proper) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.contains(getPointer(),x,y,proper);
         }
         return false;
     }
 
     public boolean intersects(Rect anotherRect) {
-        if (getPointer() > 0){
+        if (accessible(anotherRect)){
             return rect.intersects(getPointer(),anotherRect.getPointer());
         }
         return false;
@@ -411,7 +412,7 @@ public class Rect {
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.dispose(getPointer());
             rect.cleanAddress();
         }

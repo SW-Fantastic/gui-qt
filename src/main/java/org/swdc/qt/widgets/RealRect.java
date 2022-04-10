@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SRealRect;
 
-public class RealRect {
+public class RealRect implements NativeAllocated {
 
     private SRealRect rect = new SRealRect();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = rect.create();
@@ -18,7 +19,7 @@ public class RealRect {
     }
 
     public void allocate(double left,double top,double width, double height) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = rect.create(left,top,width,height);
@@ -29,7 +30,7 @@ public class RealRect {
     }
 
     private void wrap(long nativePointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (nativePointer <= 0) {
@@ -39,7 +40,7 @@ public class RealRect {
     }
 
     public RealSize getSize() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.size(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -50,13 +51,13 @@ public class RealRect {
     }
 
     public void setSize(RealSize size) {
-        if (getPointer() > 0 && size.getPointer() > 0) {
+        if (accessible(size)) {
             rect.setSize(getPointer(),size.getPointer());
         }
     }
 
     public RealRect marginsAdded(RealMargins margins) {
-        if (getPointer() > 0 && margins.getPointer() > 0) {
+        if (accessible(margins)) {
             long pointer = rect.marginsAdded(getPointer(),margins.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -67,7 +68,7 @@ public class RealRect {
     }
 
     public RealRect marginsRemoved(RealMargins margins) {
-        if (getPointer() > 0 && margins.getPointer() > 0) {
+        if (accessible(margins)) {
             long pointer = rect.marginsRemoved(getPointer(),margins.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -79,31 +80,31 @@ public class RealRect {
 
 
     public void setTopLeft(RealPoint point){
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setTopLeft(getPointer(),point.getPointer());
         }
     }
 
     public void setBottomRight(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setBottomRight(getPointer(),point.getPointer());
         }
     }
 
     public void setTopRight(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setTopRight(getPointer(),point.getPointer());
         }
     }
 
     public void setBottomLeft(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.setBottomLeft(getPointer(),point.getPointer());
         }
     }
 
     public RealPoint getTopLeft() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.topLeft(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -114,7 +115,7 @@ public class RealRect {
     }
 
     public RealPoint getBottomRight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.bottomRight(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -125,7 +126,7 @@ public class RealRect {
     }
 
     public RealPoint getTopRight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.topRight(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -136,7 +137,7 @@ public class RealRect {
     }
 
     public RealPoint getBottomLeft() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.bottomLeft(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -147,7 +148,7 @@ public class RealRect {
     }
 
     public RealPoint getCenter() {
-        if (getPointer() > 0){
+        if (accessible()){
             long pointer = rect.center(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -159,85 +160,85 @@ public class RealRect {
 
 
     public void moveTopLeft(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTopLeft(getPointer(),point.getPointer());
         }
     }
 
     public void moveBottomRight(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveBottomRight(getPointer(),point.getPointer());
         }
     }
 
     public void moveTopRight(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTopRight(getPointer(),point.getPointer());
         }
     }
 
     public void moveBottomLeft(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveBottomLeft(getPointer(),point.getPointer());
         }
     }
 
     public void moveCenter(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveCenter(getPointer(),point.getPointer());
         }
     }
 
     public void moveTo(RealPoint point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             rect.moveTo(getPointer(),point.getPointer());
         }
     }
 
     public boolean isEmpty() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.isEmpty(getPointer());
         }
         return false;
     }
 
     public boolean isValid() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.isValid(getPointer());
         }
         return false;
     }
 
     public double left() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.left(getPointer());
         }
         return 0;
     }
 
     public double top() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.top(getPointer());
         }
         return 0;
     }
 
     public double right(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.right(getPointer());
         }
         return 0;
     }
 
     public double bottom() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.bottom(getPointer());
         }
         return 0;
     }
 
     public RealRect normalized() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.normalized(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -249,87 +250,87 @@ public class RealRect {
     }
 
     public double x() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.x(getPointer());
         }
         return 0;
     }
 
     public double y() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.y(getPointer());
         }
         return 0;
     }
 
     public void setLeft(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setLeft(getPointer(),pos);
         }
     }
 
     public void setTop(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setTop(getPointer(),pos);
         }
     }
 
     public void setRight(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setRight(getPointer(),pos);
         }
     }
 
     public void setBottom(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setBottom(getPointer(),pos);
         }
     }
 
     public void setX(double x) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setX(getPointer(),x);
         }
     }
 
     public void setY(double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setY(getPointer(),y);
         }
     }
 
     public void moveLeft(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveLeft(getPointer(),pos);
         }
     }
 
     public void moveTop(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveTop(getPointer(),pos);
         }
     }
 
     public void moveRight(double pos){
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveRight(getPointer(),pos);
         }
     }
 
     public void moveBottom(double pos) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveBottom(getPointer(),pos);
         }
     }
 
     public void translate(double dx, double dy) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.translate(getPointer(),dx,dy);
         }
     }
 
     public RealRect transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = rect.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -341,52 +342,52 @@ public class RealRect {
     }
 
     public void moveTo(int x, int t){
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.moveTo(getPointer(),x,t);
         }
     }
 
     public void adjust(double x1, double y1, double x2, double y2) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.adjust(getPointer(),x1,y1,x2,y2);
         }
     }
 
     public double width() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.width(getPointer());
         }
         return 0;
     }
 
     public double height() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.height(getPointer());
         }
         return 0;
     }
 
     public void setWidth(double w) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setWidth(getPointer(),w);
         }
     }
 
     public void setHeight(double h) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.setHeight(getPointer(),h);
         }
     }
 
     public boolean contains(RealRect anotherRect){
-        if (getPointer() > 0) {
+        if (accessible(anotherRect)) {
             return rect.contains(getPointer(),anotherRect.getPointer());
         }
         return false;
     }
 
     public boolean contains(double x, double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return rect.contains(getPointer(),x,y);
         }
         return false;
@@ -394,7 +395,7 @@ public class RealRect {
 
 
     public boolean intersects(RealRect anotherRect) {
-        if (getPointer() > 0){
+        if (accessible(anotherRect)){
             return rect.intersects(getPointer(),anotherRect.getPointer());
         }
         return false;
@@ -405,7 +406,7 @@ public class RealRect {
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             rect.dispose(getPointer());
             rect.cleanAddress();
         }

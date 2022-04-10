@@ -1,15 +1,16 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SRealMargins;
 
-public class RealMargins {
+public class RealMargins implements NativeAllocated {
 
 
     private SRealMargins margins = new SRealMargins();
 
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = margins.create();
@@ -20,7 +21,7 @@ public class RealMargins {
     }
 
     public void allocate(double left, double top, double right, double bottom) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = margins.create(left, top, right, bottom);
@@ -31,7 +32,7 @@ public class RealMargins {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -41,59 +42,59 @@ public class RealMargins {
     }
 
     public double getLeft() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return margins.left(getPointer());
         }
         return 0;
     }
 
     public double getTop() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return margins.top(getPointer());
         }
         return 0;
     }
 
     public double getRight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return margins.right(getPointer());
         }
         return 0;
     }
 
     public double getBottom() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return margins.bottom(getPointer());
         }
         return 0;
     }
 
     public void setLeft(double left) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             margins.setLeft(getPointer(),left);
         }
     }
 
     public void setTop(double top) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             margins.setTop(getPointer(),top);
         }
     }
 
     public void setRight(double right) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             margins.setRight(getPointer(),right);
         }
     }
 
     public void setBottom(double bottom) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             margins.setBottom(getPointer(),bottom);
         }
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             margins.dispose(getPointer());
             margins.cleanAddress();
         }

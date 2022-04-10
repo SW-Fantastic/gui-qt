@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SPoint;
 
-public class Point {
+public class Point implements NativeAllocated {
 
     private SPoint point = new SPoint();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = point.create();
@@ -18,7 +19,7 @@ public class Point {
     }
 
     public void allocate(int x, int y) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = point.create(x, y);
@@ -29,7 +30,7 @@ public class Point {
     }
 
     private void wrap(long nativePointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (nativePointer <= 0) {
@@ -39,40 +40,40 @@ public class Point {
     }
 
     public int getX() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return point.x(getPointer());
         }
         return 0;
     }
 
     public int getY() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return point.y(getPointer());
         }
         return 0;
     }
 
     public void setX(int x) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             point.setX(getPointer(),x);
         }
     }
 
     public void setY(int y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             point.setY(getPointer(),y);
         }
     }
 
     public int manhattanLength() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return point.manhattanLength(getPointer());
         }
         return 0;
     }
 
     public Point transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = point.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -83,7 +84,7 @@ public class Point {
     }
 
     public void dispose(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             point.dispose(getPointer());
         }
     }

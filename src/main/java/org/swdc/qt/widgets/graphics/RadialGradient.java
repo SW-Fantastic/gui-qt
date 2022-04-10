@@ -8,7 +8,7 @@ public class RadialGradient extends Gradient {
     private SRadialGradient gradient = new SRadialGradient();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = gradient.create();
@@ -19,7 +19,7 @@ public class RadialGradient extends Gradient {
     }
 
     public void allocate(double cx, double cy, double radius, double fx, double fy) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = gradient.create(cx, cy, radius, fx, fy);
@@ -35,7 +35,7 @@ public class RadialGradient extends Gradient {
     }
 
     public RealPoint center() {
-        if(getPointer() > 0) {
+        if(accessible()) {
             long pointer = gradient.center(getPointer());
             if (pointer <= 0 ) {
                 return null;
@@ -46,19 +46,19 @@ public class RadialGradient extends Gradient {
     }
 
     public void setCenter(RealPoint center) {
-        if (getPointer() > 0 && center.getPointer() > 0) {
+        if (accessible(center)) {
             gradient.setCenter(getPointer(),center.getPointer());
         }
     }
 
     public void setCenter(double x, double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.setCenter(getPointer(),x,y);
         }
     }
 
     public RealPoint focalPoint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = gradient.focalPoint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -69,45 +69,45 @@ public class RadialGradient extends Gradient {
     }
 
     public void setFocalPoint(RealPoint focalPoint) {
-        if (getPointer() > 0 && focalPoint.getPointer() > 0) {
+        if (accessible(focalPoint)) {
             gradient.setFocalPoint(getPointer(),focalPoint.getPointer());
         }
     }
 
     public void setFocalPoint(double x, double y) {
-        if(getPointer() > 0) {
+        if(accessible()) {
             gradient.setFocalPoint(getPointer(),x,y);
         }
     }
 
     public double radius() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return gradient.radius(getPointer());
         }
         return 0;
     }
 
     public void setRadius(double radius) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.setRadius(getPointer(),radius);
         }
     }
 
     public double centerRadius() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return gradient.centerRadius(getPointer());
         }
         return 0;
     }
 
     public void setCenterRadius(double radius) {
-        if(getPointer() > 0) {
+        if(accessible()) {
             gradient.setCenterRadius(getPointer(),radius);
         }
     }
 
     public RealPoint focalRadius() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = gradient.focalRadius(getPointer());
             if (pointer <= 0 ) {
                 return null;
@@ -118,13 +118,13 @@ public class RadialGradient extends Gradient {
     }
 
     public void setFocalRadius(double radius) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.setFocalRadius(getPointer(),radius);
         }
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.dispose(getPointer());
             gradient.cleanAddress();
         }

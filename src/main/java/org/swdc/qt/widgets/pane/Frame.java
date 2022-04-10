@@ -9,7 +9,7 @@ public class Frame extends Widget{
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = frame.create(0L);
@@ -20,7 +20,7 @@ public class Frame extends Widget{
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (parent.getPointer() <= 0) {
@@ -34,33 +34,33 @@ public class Frame extends Widget{
     }
 
     public int getLineWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return frame.lineWidth(getPointer());
         }
         return 0;
     }
 
     public void setLineWidth(int width) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             frame.setLineWidth(getPointer(),width);
         }
     }
 
     public int getMidLineWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return frame.midLineWidth(getPointer());
         }
         return 0;
     }
 
     public void setMidLineWidth(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             frame.setMidLineWidth(getPointer(),val);
         }
     }
 
     public Rect getFrameRect() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = frame.frameRect(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -71,13 +71,13 @@ public class Frame extends Widget{
     }
 
     public void setFrameRect(Rect rect) {
-        if (getPointer() > 0 && rect.getPointer() > 0) {
+        if (accessible(rect)) {
             frame.setFrameRect(getPointer(),rect.getPointer());
         }
     }
 
     public FrameShape getFrameShape() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int shape = frame.frameShape(getPointer());
             return FrameShape.valueOf(shape);
         }
@@ -85,13 +85,13 @@ public class Frame extends Widget{
     }
 
     public void setFrameShape(FrameShape shape) {
-        if (getPointer() > 0) {
+        if (accessible(shape)) {
             frame.setFrameShape(getPointer(),shape.getVal());
         }
     }
 
     public FrameShadow getFrameShadow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = frame.frameShadow(getPointer());
             return FrameShadow.valueOf(val);
         }
@@ -99,7 +99,7 @@ public class Frame extends Widget{
     }
 
     public void setFrameShadow(FrameShadow shadow) {
-        if (getPointer() > 0) {
+        if (accessible(shadow)) {
             frame.setFrameShadow(getPointer(),shadow.getVal());
         }
     }

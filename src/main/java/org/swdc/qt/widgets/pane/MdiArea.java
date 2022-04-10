@@ -29,7 +29,7 @@ public class MdiArea extends AbstractScrollArea {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = area.create(0L);
@@ -40,7 +40,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public Size getSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -51,7 +51,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public Size getMinimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.minimumSizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -62,7 +62,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public MdiSubWindow currentSubWindow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.currentSubWindow(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -78,7 +78,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public MdiSubWindow activeSubWindow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.activeSubWindow(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -94,7 +94,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public List<MdiSubWindow> subWindowList(MdiWindowOrder order) {
-        if (getPointer() > 0) {
+        if (accessible(order)) {
             long[] windows = area.subWindowList(getPointer(),order.getVal());
             List<MdiSubWindow> windowList = new ArrayList<>();
             for (long pointer : windows) {
@@ -112,7 +112,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public <T extends Widget> MdiSubWindow addSubWindow(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
 
             if (widgetSubWindowMap.containsKey(widget.getPointer())) {
                 long windowPointer = widgetSubWindowMap.get(widget.getPointer());
@@ -133,7 +133,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public <T extends Widget> void removeSubWindow(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
 
             if (widgetSubWindowMap.containsKey(widget.getPointer())) {
                 long subWindow = widgetSubWindowMap.get(widget.getPointer());
@@ -146,7 +146,7 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public Brush getBackground() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.background(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -157,13 +157,13 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public void setBackground(Brush background) {
-        if (getPointer() > 0 && background.getPointer() > 0) {
+        if (accessible(background)) {
             area.setBackground(getPointer(),background.getPointer());
         }
     }
 
     public MdiWindowOrder getActivationOrder() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int order = area.activationOrder(getPointer());
             return MdiWindowOrder.valueOf(order);
         }
@@ -171,25 +171,25 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public void setActivationOrder(MdiWindowOrder order) {
-        if (getPointer() > 0) {
+        if (accessible(order)) {
             area.setActivationOrder(getPointer(),order.getVal());
         }
     }
 
     public void setOption(MdiSubWindowOption option, boolean on) {
-        if (getPointer() > 0) {
+        if (accessible(option)) {
             area.setOption(getPointer(),option.getVal(),on);
         }
     }
 
     public void setViewMode(MdiWindowViewMode mode) {
-        if (getPointer() > 0) {
+        if (accessible(mode)) {
             area.setViewMode(getPointer(),mode.getVal());
         }
     }
 
     public MdiWindowViewMode getViewMode() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int viewMode = area.viewMode(getPointer());
             return MdiWindowViewMode.valueOf(viewMode);
         }
@@ -197,52 +197,52 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public boolean isDocumentMode() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return area.documentMode(getPointer());
         }
         return false;
     }
 
     public void setDocumentMode(boolean enabled) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.setDocumentMode(getPointer(),enabled);
         }
     }
 
     public void setTabsClosable(boolean closable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.setTabsClosable(getPointer(),closable);
         }
     }
 
     public boolean isTabsClosable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return area.tabsClosable(getPointer());
         }
         return false;
     }
 
     public void setTabsMovable(boolean movable){
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.setTabsMovable(getPointer(),movable);
         }
     }
 
     public boolean isTabsMovable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return area.tabsMovable(getPointer());
         }
         return false;
     }
 
     public void setTabShape(TabWidgetShape shape) {
-        if (getPointer() > 0) {
+        if (accessible(shape)) {
             area.setTabShape(getPointer(),shape.getVal());
         }
     }
 
     public TabWidgetShape getTabShape() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = area.tabShape(getPointer());
             return TabWidgetShape.valueOf(val);
         }
@@ -250,13 +250,13 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public void setTabPosition(TabWidgetPositions position) {
-        if (getPointer() > 0) {
+        if (accessible(position)) {
             area.setTabPosition(getPointer(),position.getVal());
         }
     }
 
     public TabWidgetPositions tabPosition() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int pos = area.tabPosition(getPointer());
             return TabWidgetPositions.valueOf(pos);
         }
@@ -264,43 +264,43 @@ public class MdiArea extends AbstractScrollArea {
     }
 
     public void setActiveSubWindow(MdiSubWindow window) {
-        if (getPointer() > 0) {
+        if (accessible(window)) {
             area.setActiveSubWindow(getPointer(),window.getPointer());
         }
     }
 
     public void tileSubWindows() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.tileSubWindows(getPointer());
         }
     }
 
     public void cascadeSubWindows() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.cascadeSubWindows(getPointer());
         }
     }
 
     public void closeActiveSubWindow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.closeActiveSubWindow(getPointer());
         }
     }
 
     public void closeAllSubWindows() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.closeAllSubWindows(getPointer());
         }
     }
 
     public void activateNextSubWindow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.activateNextSubWindow(getPointer());
         }
     }
 
     public void activatePreviousSubWindow() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.activatePreviousSubWindow(getPointer());
         }
     }

@@ -9,7 +9,7 @@ public class FontCombBox extends ComboBox {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = comboBox.create(0L);
@@ -20,7 +20,7 @@ public class FontCombBox extends ComboBox {
     }
 
     public void setFontFilters(FontComboFilter ...filter) {
-        if (getPointer() > 0 && filter.length > 0) {
+        if (accessible(filter)) {
             int val = filter[0].getVal();
             for (int idx = 1; idx < filter.length; idx ++) {
                 val = val | filter[idx].getVal();
@@ -30,7 +30,7 @@ public class FontCombBox extends ComboBox {
     }
 
     public Font getCurrentFont() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = comboBox.currentFont(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -41,7 +41,7 @@ public class FontCombBox extends ComboBox {
     }
 
     public Size getSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = comboBox.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -52,14 +52,14 @@ public class FontCombBox extends ComboBox {
     }
 
     public void setCurrentFont(Font font) {
-        if (getPointer() > 0 && font != null && font.getPointer() > 0) {
+        if (accessible(font)) {
             comboBox.setCurrentFont(getPointer(),font.getPointer());
         }
     }
 
     @Override
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             comboBox.dispose(getPointer());
         }
     }

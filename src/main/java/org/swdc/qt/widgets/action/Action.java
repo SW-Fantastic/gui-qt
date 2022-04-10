@@ -11,7 +11,7 @@ public class Action extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = action.create();
@@ -22,7 +22,7 @@ public class Action extends Widget {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -41,77 +41,77 @@ public class Action extends Widget {
     }
 
     public void setText(String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             action.setText(getPointer(),text);
         }
     }
 
     public String getText() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.text(getPointer());
         }
         return "";
     }
 
     public void setIconText(String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             action.setIconText(getPointer(),text);
         }
     }
 
     public String getIconText() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.iconText(getPointer());
         }
         return "";
     }
 
     public void setToolTip(String tip) {
-        if (getPointer() > 0) {
+        if (accessible(tip)) {
             action.setToolTip(getPointer(),tip);
         }
     }
 
     public String getToolTip() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.toolTip(getPointer());
         }
         return "";
     }
 
     public void setStatusTip(String statusTip) {
-        if (getPointer() > 0) {
+        if (accessible(statusTip)) {
             action.setStatusTip(getPointer(),statusTip);
         }
     }
 
     public String getStatusTip(){
-        if (getPointer() > 0){
+        if (accessible()){
             return action.statusTip(getPointer());
         }
         return "";
     }
 
     public void setWhatsThis(String what) {
-        if (getPointer() > 0) {
+        if (accessible(what)) {
             action.setWhatsThis(getPointer(),what);
         }
     }
     public String getWhatsThis() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.whatsThis(getPointer());
         }
         return "";
     }
 
     public void setPriority(ActionPriority priority) {
-        if (getPointer() > 0) {
+        if (accessible(priority)) {
             action.setPriority(getPointer(),priority.getVal());
         }
     }
 
     public ActionPriority getPriority() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = action.priority(getPointer());
             return ActionPriority.valueOf(val);
         }
@@ -119,99 +119,99 @@ public class Action extends Widget {
     }
 
     public void setSeparator(boolean b) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.setSeparator(getPointer(),b);
         }
     }
 
     public boolean isSeparator() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.isSeparator(getPointer());
         }
         return false;
     }
 
     public void setAutoRepeat(boolean repeat) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.setAutoRepeat(getPointer(),repeat);
         }
     }
 
     public boolean isAutoRepeat() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.autoRepeat(getPointer());
         }
         return false;
     }
 
     public void setShortcut(String str) {
-        if (getPointer() > 0) {
+        if (accessible(str)) {
             action.setShortcut(getPointer(),str);
         }
     }
 
     public void setShortcut(KeyboardModifier modifier,KeyCode code) {
-        if (getPointer() > 0) {
+        if (accessible(modifier,code)) {
             long result = modifier.getVal() + code.getVal();
             action.setShortcut(getPointer(),result);
         }
     }
 
     public void setStandardShortcut(ActionStandardKey val) {
-        if (getPointer() > 0) {
+        if (accessible(val)) {
             action.setStandardShortcut(getPointer(),val.getValue());
         }
     }
 
     public String shortcut(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.shortcut(getPointer());
         }
         return "";
     }
 
     public void setCheckable(boolean checkable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.setCheckable(getPointer(),checkable);
         }
     }
 
     public boolean isCheckable() {
-        if (getPointer() > 0){
+        if (accessible()){
             return action.isCheckable(getPointer());
         }
         return false;
     }
 
     public boolean isChecked() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.isChecked(getPointer());
         }
         return false;
     }
 
     public boolean isEnabled() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.isEnabled(getPointer());
         }
         return false;
     }
 
     public boolean isVisible() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.isVisible(getPointer());
         }
         return false;
     }
 
     public void setMenuRole(ActionMenuRole menuRole) {
-        if (getPointer() > 0) {
+        if (accessible(menuRole)) {
             action.menuRole(menuRole.getVal());
         }
     }
 
     public ActionMenuRole getMenuRole() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = action.menuRole(getPointer());
             return ActionMenuRole.valueOf(val);
         }
@@ -219,26 +219,26 @@ public class Action extends Widget {
     }
 
     public void setIconVisibleInMenu(boolean visible){
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.setIconVisibleInMenu(getPointer(),visible);
         }
     }
 
     public boolean isIconVisibleInMenu() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return action.isIconVisibleInMenu(getPointer());
         }
         return false;
     }
 
     public void setShortcutVisibleInContextMenu(boolean show) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             action.setShortcutVisibleInContextMenu(getPointer(),show);
         }
     }
 
     public boolean isShortcutVisibleInContextMenu() {
-        if (getPointer() > 0){
+        if (accessible()){
             return action.isShortcutVisibleInContextMenu(getPointer());
         }
         return false;

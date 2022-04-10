@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.Alignment;
 import org.swdc.qt.internal.graphics.SIcon;
 import org.swdc.qt.widgets.Rect;
@@ -7,12 +8,12 @@ import org.swdc.qt.widgets.Size;
 
 import java.io.File;
 
-public class Icon {
+public class Icon implements NativeAllocated {
 
     private SIcon icon = new SIcon();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = icon.create();
@@ -23,7 +24,7 @@ public class Icon {
     }
 
     public void allocate(File file) throws Exception {
-        if (getPointer() > 0 || !file.exists()) {
+        if (accessible() || !file.exists()) {
             return;
         }
         long pointer = icon.createWithFile(file.getAbsolutePath());
@@ -34,7 +35,7 @@ public class Icon {
     }
 
     public void allocate(Pixmap pixmap) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible(pixmap)) {
             return;
         }
         if (pixmap.getPointer() <= 0) {
@@ -48,7 +49,7 @@ public class Icon {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -58,7 +59,7 @@ public class Icon {
     }
 
     public Size getActualSize(Size size, IconMode mode, IconState state) {
-        if (getPointer() > 0 && size.getPointer() > 0) {
+        if (accessible(size,mode,size)) {
             long pointer = icon.actualSize(getPointer(),size.getPointer(),mode.getVal(),state.getVal());
             if (pointer <= 0) {
                 return null;
@@ -69,14 +70,14 @@ public class Icon {
     }
 
     public String getName() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return icon.name(getPointer());
         }
         return null;
     }
 
     public void paint(Painter painter, Rect rect, Alignment alignment, IconMode iconMode, IconState iconState) {
-        if (getPointer() > 0 && painter.getPointer() > 0 && rect.getPointer() > 0) {
+        if (accessible(painter,rect)) {
             icon.paint(
                     getPointer(),
                     painter.getPointer(),
@@ -89,38 +90,38 @@ public class Icon {
     }
 
     public void paint(Painter painter, int x, int y, int w, int h,Alignment alignment, IconMode iconMode, IconState iconState) {
-        if (getPointer() > 0 && painter.getPointer() > 0) {
+        if (accessible(painter,x,y,w,h,alignment,iconMode,iconState)) {
             icon.paint(getPointer(),painter.getPointer(),x,y,w,h,alignment.getFlagValue(),iconMode.getVal(),iconState.getVal());
         }
     }
 
     public void addPixmap(Pixmap pixmap, IconMode iconMode, IconState iconState) {
-        if (getPointer() > 0 && pixmap.getPointer() > 0) {
+        if (accessible(pixmap,iconMode,iconState)) {
             icon.addPixmap(getPointer(),pixmap.getPointer(),iconMode.getVal(),iconState.getVal());
         }
     }
 
     public void addFile(File file, Size size, IconMode iconMode, IconState state) {
-        if (getPointer() > 0 && size.getPointer() > 0 && file.exists()) {
+        if (accessible(file,size,iconMode,state) && file.exists()) {
             icon.addFile(getPointer(),file.getAbsolutePath(),size.getPointer(),iconMode.getVal(),state.getVal());
         }
     }
 
     public void setMask(boolean isMask) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             icon.setIsMask(getPointer(),isMask);
         }
     }
 
     public boolean isMask() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return icon.isMask(getPointer());
         }
         return false;
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             icon.dispose(getPointer());
         }
     }

@@ -1,8 +1,9 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SVariant;
 
-public class Variant {
+public class Variant implements NativeAllocated {
 
     private SVariant variant = new SVariant();
 
@@ -114,6 +115,14 @@ public class Variant {
     public void setChar(char val) {
         if (getPointer() > 0) {
             variant.setChar(getPointer(),val);
+        }
+    }
+
+    @Override
+    public void dispose() {
+        if (accessible()){
+            variant.dispose(getPointer());
+            variant.cleanAddress();
         }
     }
 

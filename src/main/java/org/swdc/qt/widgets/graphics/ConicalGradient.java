@@ -8,7 +8,7 @@ public class ConicalGradient extends Gradient {
     private SConicalGradient gradient = new SConicalGradient();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = gradient.create();
@@ -19,7 +19,7 @@ public class ConicalGradient extends Gradient {
     }
 
     public void allocate(double cx, double cy, double startAngle) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = gradient.create(cx,cy,startAngle);
@@ -30,7 +30,7 @@ public class ConicalGradient extends Gradient {
     }
 
     public RealPoint center() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = gradient.center(getPointer());
             if (pointer <= 0) {
                 throw null;
@@ -41,32 +41,32 @@ public class ConicalGradient extends Gradient {
     }
 
     public void setCenter(RealPoint center) {
-        if (getPointer() > 0 && center.getPointer() > 0) {
+        if (accessible(center)) {
             gradient.setCenter(getPointer(),center.getPointer());
         }
     }
 
     public void setCenter(double x, double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.setCenter(getPointer(),x,y);
         }
     }
 
     public double angle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return gradient.angle(getPointer());
         }
         return 0;
     }
 
     public void setAngle(double angle) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.setAngle(getPointer(),angle);
         }
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             gradient.dispose(getPointer());
             gradient.cleanAddress();
         }

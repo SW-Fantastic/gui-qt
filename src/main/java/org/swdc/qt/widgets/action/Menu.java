@@ -12,7 +12,7 @@ public class Menu extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = menu.create();
@@ -23,7 +23,7 @@ public class Menu extends Widget {
     }
 
     void wrap(long pointer) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -34,7 +34,7 @@ public class Menu extends Widget {
     }
 
     public Action addAction(String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             long pointer = menu.addAction(getPointer(),text);
             if (pointer <= 0) {
                 return null;
@@ -45,7 +45,7 @@ public class Menu extends Widget {
     }
 
     public Action addAction(Icon icon,String text) {
-        if (getPointer() > 0 && icon.getPointer() > 0) {
+        if (accessible(icon,text)) {
             long pointer = menu.addAction(getPointer(),icon.getPointer(),text);
             if (pointer <= 0) {
                 return null;
@@ -56,7 +56,7 @@ public class Menu extends Widget {
     }
 
     public Action addMenu(Menu target) {
-        if (getPointer() > 0 && target.getPointer() > 0) {
+        if (accessible(menu)) {
             long pointer = menu.addMenu(getPointer(),target.getPointer());
             if (pointer <= 0){
                 return null;
@@ -67,7 +67,7 @@ public class Menu extends Widget {
     }
 
     public Menu addMenu(String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             long pointer = menu.addMenu(getPointer(),text);
             try {
                 Menu menu = new Menu();
@@ -81,7 +81,7 @@ public class Menu extends Widget {
     }
 
     public Menu addMenu(Icon icon,String text) {
-        if (getPointer() > 0 && icon.getPointer() > 0) {
+        if (accessible(icon,text)) {
             long pointer = menu.addMenu(getPointer(),icon.getPointer(),text);
             try {
                 Menu menu = new Menu();
@@ -95,7 +95,7 @@ public class Menu extends Widget {
     }
 
     public Action addSeparator() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = menu.addSeparator(getPointer());
             if (pointer <= 0){
                 return null;
@@ -106,7 +106,7 @@ public class Menu extends Widget {
     }
 
     public Action addSection(String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             long pointer = menu.addSection(getPointer(),text);
             if (getPointer() < 0) {
                 return null;
@@ -117,7 +117,7 @@ public class Menu extends Widget {
     }
 
     public Action insertMenu(Action beforeAction, Menu menu) {
-        if (getPointer() > 0 && beforeAction.getPointer() > 0 && menu.getPointer() > 0) {
+        if (accessible(menu)) {
             long pointer = this.menu.insertMenu(getPointer(),beforeAction.getPointer(),menu.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -127,7 +127,7 @@ public class Menu extends Widget {
         return null;
     }
     public Action insertSeparator(Action beforeAction) {
-        if (getPointer() > 0 && beforeAction.getPointer() > 0) {
+        if (accessible(beforeAction)) {
             long pointer = menu.insertSeparator(getPointer(),beforeAction.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -138,7 +138,7 @@ public class Menu extends Widget {
     }
 
     public Action insertSection(Action beforeAction, String text) {
-        if (getPointer() > 0 && beforeAction.getPointer() > 0) {
+        if (accessible(beforeAction,text)) {
             long pointer = menu.insertSection(getPointer(),beforeAction.getPointer(),text);
             if (pointer <= 0) {
                 return null;
@@ -149,115 +149,115 @@ public class Menu extends Widget {
     }
 
     public void setTearOffEnabled(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             menu.setTearOffEnabled(getPointer(),val);
         }
     }
 
     public boolean isTearOffEnabled() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.isTearOffEnabled(getPointer());
         }
         return false;
     }
 
     public boolean isTearOffMenuVisible() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.isTearOffMenuVisible(getPointer());
         }
         return false;
     }
 
     public void showTearOffMenu(int x, int y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             menu.showTearOffMenu(getPointer(),x,y);
         }
     }
 
     public void hideTearOffMenu() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             menu.hideTearOffMenu(getPointer());
         }
     }
 
     public void setDefaultAction(Action action) {
-        if (getPointer() > 0 && action.getPointer() > 0) {
+        if (accessible(action)) {
             menu.setDefaultAction(getPointer(),action.getPointer());
         }
     }
 
     public void setActiveAction(Action action) {
-        if (getPointer() > 0) {
+        if (accessible(action)) {
             menu.setActiveAction(getPointer(),action.getPointer());
         }
     }
 
     public boolean isSeparatorsCollapsible() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.separatorsCollapsible(getPointer());
         }
         return false;
     }
 
     public void setSeparatorsCollapsible(boolean collapse) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             menu.setSeparatorsCollapsible(getPointer(),collapse);
         }
     }
 
     public boolean isToolTipsVisible() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.toolTipsVisible(getPointer());
         }
         return false;
     }
 
     public void setToolTipsVisible(boolean visible) {
-        if (getPointer() > 0){
+        if (accessible()){
             menu.setToolTipsVisible(getPointer(),visible);
         }
     }
 
     public String getTitle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.title(getPointer());
         }
         return "";
     }
 
     public void setTitle(String title) {
-        if (getPointer() > 0) {
+        if (accessible(title)) {
             menu.setTitle(getPointer(),title);
         }
     }
 
     public boolean isEmpty() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return menu.isEmpty(getPointer());
         }
         return true;
     }
 
     public void clear(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             menu.clear(getPointer());
         }
     }
 
     public <T extends Widget> void popup(T widget,int x, int y) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             menu.popup(getPointer(),widget.getPointer(),x,y);
         }
     }
 
     public void popup(Point point) {
-        if (getPointer() > 0 && point.getPointer() > 0) {
+        if (accessible(point)) {
             menu.popup(getPointer(),point.getPointer());
         }
     }
 
     public Icon icon() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = menu.icon(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -268,7 +268,7 @@ public class Menu extends Widget {
     }
 
     public void setIcon(Icon icon) {
-        if (getPointer() > 0 && icon.getPointer() > 0) {
+        if (accessible(icon)) {
             menu.setIcon(getPointer(),icon.getPointer());
         }
     }

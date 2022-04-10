@@ -11,7 +11,7 @@ public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = button.create(0L);
@@ -22,7 +22,7 @@ public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
     }
 
     public Size sizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = button.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -33,14 +33,14 @@ public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
     }
 
     public int heightForWidth(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return button.heightForWidth(getPointer(),val);
         }
         return 0;
     }
 
     public Size minimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = button.minimumSizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -51,14 +51,14 @@ public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
     }
 
     public String description() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return button.description(getPointer());
         }
         return null;
     }
 
     public void setDescription(String description) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             button.setDescription(getPointer(),description);
         }
     }

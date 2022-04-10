@@ -10,7 +10,7 @@ public abstract class AbstractSlider extends Widget {
     private SAbstractSlider abstractSlider = new SAbstractSlider();
 
     public Orientation getOrientation() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long val = abstractSlider.orientation(getPointer());
             return Orientation.valueOf(val);
         }
@@ -18,148 +18,148 @@ public abstract class AbstractSlider extends Widget {
     }
 
     public void setMinimum(int min) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setMinimum(getPointer(),min);
         }
     }
 
     public int getMinimum() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.minimum(getPointer());
         }
         return 0;
     }
 
     public void setMaximum(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setMaximum(getPointer(),val);
         }
     }
     public int getMaximum() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.maximum(getPointer());
         }
         return 0;
     }
 
     public void setSingleStep(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setSingleStep(getPointer(),val);
         }
     }
 
     public int getSingleStep() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.singleStep(getPointer());
         }
         return 0;
     }
 
     public void setPageStep(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setPageStep(getPointer(),val);
         }
     }
 
     public int getPageStep() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.pageStep(getPointer());
         }
         return 0;
     }
 
     public void setTracking(boolean enable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setTracking(getPageStep(),enable);
         }
     }
 
     public boolean hasTracking() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.hasTracking(getPointer());
         }
         return false;
     }
 
     public void setSliderDown(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setSliderDown(getPointer(),val);
         }
     }
 
     public boolean isSliderDown() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.isSliderDown(getPointer());
         }
         return false;
     }
 
     public void setSliderPosition(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setSliderPosition(getPointer(),val);
         }
     }
 
     public int getSliderPosition() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.sliderPosition(getPointer());
         }
         return 0;
     }
 
     public void setInvertedAppearance(boolean val){
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setInvertedAppearance(getPointer(),val);
         }
     }
 
     public boolean isInvertedAppearance(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.invertedAppearance(getPointer());
         }
         return false;
     }
 
     public void setInvertedControls(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setInvertedControls(getPointer(),val);
         }
     }
 
     public boolean isInvertedControls() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.invertedControls(getPointer());
         }
         return false;
     }
 
     public int value() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return abstractSlider.value(getPointer());
         }
         return 0;
     }
 
     public void triggerAction(SliderAction action) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.triggerAction(getPointer(),action.getVal());
         }
     }
 
     public void setValue(int val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setValue(getPointer(),val);
         }
     }
 
     public void setOrientation(Orientation orientation) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setOrientation(getPointer(),orientation.getVal());
         }
     }
 
     public void setRange(int min, int max) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             abstractSlider.setRange(getPointer(),min,max);
         }
     }

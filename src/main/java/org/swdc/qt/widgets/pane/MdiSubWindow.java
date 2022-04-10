@@ -22,7 +22,7 @@ public class MdiSubWindow extends Widget {
     }
 
     public Size getSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = sMdiSubWindow.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -33,7 +33,7 @@ public class MdiSubWindow extends Widget {
     }
 
     public Size getMinimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = sMdiSubWindow.minimumSizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -44,53 +44,53 @@ public class MdiSubWindow extends Widget {
     }
 
     public <T extends Widget> void setWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             sMdiSubWindow.setWidget(getPointer(),widget.getPointer());
             this.widget = widget;
         }
     }
 
     public <T extends Widget> T widget() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return (T)widget;
         }
         return null;
     }
 
     public boolean isShaded(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return sMdiSubWindow.isShaded(getPointer());
         }
         return false;
     }
 
     public void setOption(MdiSubWindowOption option, boolean on) {
-        if (getPointer() > 0) {
+        if (accessible(option)) {
             sMdiSubWindow.setOption(getPointer(),option.getVal(),on);
         }
     }
 
     public void setKeyboardSingleStep(int step){
-        if (getPointer() > 0) {
+        if (accessible()) {
             sMdiSubWindow.setKeyboardSingleStep(getPointer(),step);
         }
     }
 
     public int getKeyboardSingleStep(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return sMdiSubWindow.keyboardSingleStep(getPointer());
         }
         return 0;
     }
 
     public void setKeyboardPageStep(int step) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             sMdiSubWindow.setKeyboardPageStep(getPointer(),step);
         }
     }
 
     public int getKeyboardPageStep() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return sMdiSubWindow.keyboardPageStep(getPointer());
         }
         return 0;

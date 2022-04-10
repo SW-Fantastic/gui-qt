@@ -8,7 +8,7 @@ public class LinearGradient extends Gradient {
     private SLinearGradient linearGradient = new SLinearGradient();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = linearGradient.create();
@@ -19,7 +19,7 @@ public class LinearGradient extends Gradient {
     }
 
     public void allocate(double xStart, double yStart, double xEnd, double yEnd) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = linearGradient.create(xStart,yStart,xEnd,yEnd);
@@ -30,7 +30,7 @@ public class LinearGradient extends Gradient {
     }
 
     public RealPoint start() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = linearGradient.start(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -41,19 +41,19 @@ public class LinearGradient extends Gradient {
     }
 
     public void setStart(RealPoint start){
-        if (getPointer() > 0 && start.getPointer() > 0) {
+        if (accessible(start)) {
             linearGradient.setStart(getPointer(),start.getPointer());
         }
     }
 
     public void setStart(double x, double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             linearGradient.setStart(getPointer(),x,y);
         }
     }
 
     public RealPoint finalStop() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = linearGradient.finalStop(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -64,18 +64,18 @@ public class LinearGradient extends Gradient {
     }
 
     public void setFinalStop(RealPoint stop) {
-        if (getPointer() > 0 && stop.getPointer() > 0) {
+        if (accessible(stop)) {
             linearGradient.setFinalStop(getPointer(),stop.getPointer());
         }
     }
     public void setFinalStop(double x, double y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             linearGradient.setFinalStop(getPointer(),x,y);
         }
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             linearGradient.dispose(getPointer());
         }
     }

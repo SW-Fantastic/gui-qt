@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.AspectRatioMode;
 import org.swdc.qt.internal.graphics.SPixmap;
 import org.swdc.qt.widgets.Rect;
@@ -8,12 +9,12 @@ import org.swdc.qt.widgets.pane.Widget;
 
 import java.io.File;
 
-public class Pixmap {
+public class Pixmap implements NativeAllocated {
 
     private SPixmap pixmap = new SPixmap();
 
     public void allocate(int width, int height) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = pixmap.create(width,height);
@@ -24,7 +25,7 @@ public class Pixmap {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -34,21 +35,21 @@ public class Pixmap {
     }
 
     public int width() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.width(getPointer());
         }
         return 0;
     }
 
     public int height() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.height(getPointer());
         }
         return 0;
     }
 
     public Size size() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = pixmap.size(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -59,7 +60,7 @@ public class Pixmap {
     }
 
     public Rect rect(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = pixmap.rect(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -70,47 +71,47 @@ public class Pixmap {
     }
 
     public int depth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.depth(getPointer());
         }
         return 0;
     }
 
     public void fill(Color color) {
-        if (getPointer() > 0) {
+        if (accessible(color)) {
             pixmap.fill(getPointer(),color.getVal());
         }
     }
 
     public double devicePixelRatio() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.devicePixelRatio(getPointer());
         }
         return 0;
     }
 
     public void setDevicePixelRatio(double scaleFactor) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             pixmap.setDevicePixelRatio(getPointer(),scaleFactor);
         }
     }
 
     public boolean hasAlpha() {
-        if (getPointer() > 0 ) {
+        if (accessible() ) {
             return pixmap.hasAlpha(getPointer());
         }
         return false;
     }
 
     public boolean hasAlphaChannel() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.hasAlphaChannel(getPointer());
         }
         return false;
     }
 
     public Pixmap scaled(int width, int height, AspectRatioMode aspectMode, TransformationMode transformationMode) {
-        if (getPointer() > 0) {
+        if (accessible(width,height,aspectMode,transformationMode)) {
             long pixmapPointer = pixmap.scaled(getPointer(),width,height,aspectMode.getVal(),transformationMode.getVal());
             if (pixmapPointer <= 0 ) {
                 return null;
@@ -126,7 +127,7 @@ public class Pixmap {
     }
 
     public Pixmap scaledToWidth(int w, TransformationMode transformationMode) {
-        if (getPointer() > 0) {
+        if (accessible(w,transformationMode)) {
             long pointer = pixmap.scaledToWidth(getPointer(),w,transformationMode.getVal());
             if (pointer <= 0) {
                 return null;
@@ -142,7 +143,7 @@ public class Pixmap {
     }
 
     public Pixmap scaledToHeight(int h, TransformationMode transformationMode) {
-        if (getPointer() > 0) {
+        if (accessible(h,transformationMode)) {
             long pointer = pixmap.scaledToHeight(getPointer(),h,transformationMode.getVal());
             if (pointer <= 0) {
                 return null;
@@ -157,9 +158,9 @@ public class Pixmap {
         return scaledToHeight(h,TransformationMode.FastTransformation);
     }
 
-    public Pixmap transformed(Transformation transformPointer, TransformationMode transformationMode) {
-        if (getPointer() > 0) {
-            long pointer = pixmap.transformed(getPointer(),transformPointer.getPointer(),transformationMode.getVal());
+    public Pixmap transformed(Transformation transform, TransformationMode transformationMode) {
+        if (accessible(transformationMode,transform)) {
+            long pointer = pixmap.transformed(getPointer(),transform.getPointer(),transformationMode.getVal());
             if (pointer <= 0) {
                 return null;
             }
@@ -174,7 +175,7 @@ public class Pixmap {
     }
 
     public Image toImage() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long imagePointer = pixmap.toImage(getPointer());
             if (imagePointer <= 0) {
                 return null;
@@ -192,7 +193,7 @@ public class Pixmap {
     }
 
     public boolean load(File file, String format, ImageConversation conversation) {
-        if (file.exists() && getPointer() > 0) {
+        if (accessible(file,format,conversation) && file.exists()) {
             file = file.getAbsoluteFile();
             return pixmap.load(getPointer(),file.getAbsolutePath(),format,conversation.getVal());
         }
@@ -200,7 +201,7 @@ public class Pixmap {
     }
 
     public boolean loadFromData(byte[] data, String format, ImageConversation conversation) {
-        if (getPointer() > 0) {
+        if (accessible(data,format,conversation)) {
             return pixmap.loadFromData(getPointer(),data,format,conversation.getVal());
         } else {
             return false;
@@ -208,7 +209,7 @@ public class Pixmap {
     }
 
     public boolean save(File absolutePath, String format) {
-        if (getPointer() > 0) {
+        if (accessible(absolutePath,format)) {
             absolutePath = absolutePath.getAbsoluteFile();
             return pixmap.save(getPointer(),absolutePath.getAbsolutePath(),format);
         } else {
@@ -217,14 +218,14 @@ public class Pixmap {
     }
 
     public boolean convertFromImage(Image image, ImageConversation conversation) {
-        if (getPointer() > 0) {
+        if (accessible(image,conversation)) {
             return pixmap.convertFromImage(getPointer(),image.getPointer(),conversation.getVal());
         }
         return false;
     }
 
     public Pixmap copy(int x, int y, int width, int height) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = pixmap.copy(getPointer(),x,y,width,height);
             if (pointer <= 0) {
                 return null;
@@ -236,7 +237,7 @@ public class Pixmap {
     }
 
     public boolean isBitmap() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return pixmap.isQBitmap(getPointer());
         } else {
             return false;
@@ -244,7 +245,7 @@ public class Pixmap {
     }
 
     public Bitmap mask() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = pixmap.mask(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -256,13 +257,13 @@ public class Pixmap {
     }
 
     public void setMask(Bitmap bitmap) {
-        if (getPointer() > 0 && bitmap.getPointer() > 0) {
+        if (accessible(bitmap)) {
             this.pixmap.setMask(getPointer(),bitmap.getPointer());
         }
     }
 
     public Bitmap createHeuristicMask(boolean clipTight) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = this.pixmap.createHeuristicMask(getPointer(),clipTight);
             if (pointer <= 0) {
                 return null;
@@ -274,7 +275,7 @@ public class Pixmap {
     }
 
     public Bitmap createMaskFromColor(Color maskColor, ImageMaskMode imageMaskMode) {
-        if (getPointer() > 0) {
+        if (accessible(maskColor,imageMaskMode)) {
             long pointer = pixmap.createMaskFromColor(getPointer(),maskColor.getVal(),imageMaskMode.getVal());
             if (pointer <= 0) {
                 return null;
@@ -308,7 +309,7 @@ public class Pixmap {
     }
 
     public void dispose() {
-        if (getPointer() > 0 ) {
+        if (accessible() ) {
             pixmap.dispose(getPointer());
             pixmap.cleanAddress();
         }

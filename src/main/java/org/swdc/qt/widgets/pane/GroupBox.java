@@ -10,7 +10,7 @@ public class GroupBox extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = groupBox.create(0L);
@@ -21,20 +21,20 @@ public class GroupBox extends Widget {
     }
 
     public String getTitle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return groupBox.title(getPointer());
         }
         return null;
     }
 
     public void setTitle(String title) {
-        if (getPointer() > 0) {
+        if (accessible(title)) {
             groupBox.setTitle(getPointer(),title);
         }
     }
 
     public Alignment getAlignment() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long val = groupBox.alignment(getPointer());
             return Alignment.valueOf(val);
         }
@@ -42,13 +42,13 @@ public class GroupBox extends Widget {
     }
 
     public void setAlignment(Alignment alignment){
-        if (getPointer() > 0) {
+        if (accessible(alignment)) {
             groupBox.setAlignment(getPointer(),alignment.getFlagValue());
         }
     }
 
     public Size getMinimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = groupBox.minimumSizeHint(getPointer());
             return Size.asSize(pointer);
         }
@@ -56,40 +56,40 @@ public class GroupBox extends Widget {
     }
 
     public boolean isFlat() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return groupBox.isFlat(getPointer());
         }
         return false;
     }
 
     public void setFlat(boolean flat) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             groupBox.setFlat(getPointer(),flat);
         }
     }
 
     public boolean isCheckable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return groupBox.isCheckable(getPointer());
         }
         return false;
     }
 
     public void setCheckable(boolean checkable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             groupBox.setCheckable(getPointer(),checkable);
         }
     }
 
     public boolean isChecked() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return groupBox.isChecked(getPointer());
         }
         return false;
     }
 
     public void setChecked(boolean checked) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             groupBox.setChecked(getPointer(),checked);
         }
     }

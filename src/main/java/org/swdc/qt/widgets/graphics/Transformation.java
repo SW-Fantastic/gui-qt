@@ -21,7 +21,7 @@ public class Transformation implements NativeAllocated {
     }
 
     private void wrap(long pointer) {
-        if (accessibleParam()) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0){

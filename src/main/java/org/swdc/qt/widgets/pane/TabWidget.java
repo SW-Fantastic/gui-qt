@@ -31,7 +31,7 @@ public class TabWidget extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0){
+        if (accessible()){
             return;
         }
         long pointer = tabWidget.create();
@@ -42,106 +42,106 @@ public class TabWidget extends Widget {
     }
 
     public <T extends Widget> int addTab(T widget, String text) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget,text)) {
             return tabWidget.addTab(getPointer(),widget.getPointer(),text);
         }
         return 0;
     }
 
     public <T extends Widget> int insertTab(int index,T  widget, String text) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget,text)) {
             return tabWidget.insertTab(getPointer(),index,widget.getPointer(),text);
         }
         return 0;
     }
 
     public void removeTab(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.removeTab(getPointer(),index);
         }
     }
 
     public boolean isTabEnabled(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.isTabEnabled(getPointer(),index);
         }
         return false;
     }
 
     public void setTabEnabled(int index, boolean enabled) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setTabEnabled(getPointer(),index,enabled);
         }
     }
 
     public boolean isTabVisible(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.isTabVisible(getPointer(),index);
         }
         return false;
     }
 
     public void setTabVisible(int index, boolean visible) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setTabVisible(getPointer(),index,visible);
         }
     }
 
     public String getTabText(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.tabText(getPointer(),index);
         }
         return "";
     }
 
     public void setTabText(int index, String text) {
-        if (getPointer() > 0){
+        if (accessible(text)){
             tabWidget.setTabText(getPointer(),index,text);
         }
     }
 
     public void setTabToolTip(int index, String tip) {
-        if (getPointer() > 0) {
+        if (accessible(tip)) {
             tabWidget.setTabToolTip(getPointer(),index,tip);
         }
     }
 
     public String tabToolTip(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.tabToolTip(getPointer(),index);
         }
         return "";
     }
 
     public void setTabWhatsThis(int index, String text) {
-        if (getPointer() > 0) {
+        if (accessible(text)) {
             tabWidget.setTabWhatsThis(getPointer(),index,text);
         }
     }
 
     public String tabWhatsThis(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.tabWhatsThis(getPointer(),index);
         }
         return "";
     }
 
     public int currentIndex() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.currentIndex(getPointer());
         }
         return 0;
     }
 
     public int count() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.count(getPointer());
         }
         return 0;
     }
 
     public TabWidgetPositions tabPosition() {
-        if (getPointer() > 0){
+        if (accessible()){
             int val = tabWidget.tabPosition(getPointer());
             return TabWidgetPositions.valueOf(val);
         }
@@ -149,39 +149,39 @@ public class TabWidget extends Widget {
     }
 
     public void setTabPosition(TabWidgetPositions position) {
-        if (getPointer() > 0) {
+        if (accessible(position)) {
             tabWidget.setTabPosition(getPointer(),position.getVal());
         }
     }
 
     public boolean tabsClosable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.tabsClosable(getPointer());
         }
         return false;
     }
 
     public void setTabsClosable(boolean closeable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setTabsClosable(getPointer(),closeable);
         }
     }
 
     public boolean isMovable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.isMovable(getPointer());
         }
         return false;
     }
 
     public void setMovable(boolean movable){
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setMovable(getPointer(),movable);
         }
     }
 
-    public TabWidgetShape tabShape(long pointer) {
-        if (getPointer() > 0) {
+    public TabWidgetShape tabShape() {
+        if (accessible()) {
             int tabShape = tabWidget.tabShape(getPointer());
             return TabWidgetShape.valueOf(tabShape);
         }
@@ -189,58 +189,58 @@ public class TabWidget extends Widget {
     }
 
     public void setTabShape(TabWidgetShape s) {
-        if (getPointer() > 0) {
+        if (accessible(s)) {
             tabWidget.setTabShape(getPointer(),s.getVal());
         }
     }
 
     public boolean usesScrollButtons() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.usesScrollButtons(getPointer());
         }
         return false;
     }
 
     public void setUsesScrollButtons(boolean useButtons) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setUsesScrollButtons(getPointer(),useButtons);
         }
     }
 
     public boolean documentMode() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.documentMode(getPointer());
         }
         return false;
     }
 
     public void setDocumentMode(boolean set) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setDocumentMode(getPointer(),set);
         }
     }
 
     public boolean tabBarAutoHide() {
-        if (getPointer() > 0){
+        if (accessible()){
             return tabWidget.tabBarAutoHide(getPointer());
         }
         return false;
     }
 
     public void setTabBarAutoHide(boolean enabled) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.setTabBarAutoHide(getPointer(),enabled);
         }
     }
 
     public void clear() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             tabWidget.clear(getPointer());
         }
     }
 
     public Size sizeHint() {
-        if (getPointer() > 0){
+        if (accessible()){
             long pointer = tabWidget.sizeHint(getPointer());
             if (pointer <= 0 ) {
                 return null;
@@ -251,7 +251,7 @@ public class TabWidget extends Widget {
     }
 
     public Size minimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = tabWidget.minimumSizeHint(getPointer());
             if (pointer <= 0 ){
                 return null;
@@ -262,14 +262,14 @@ public class TabWidget extends Widget {
     }
 
     public int heightForWidth(int width) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.heightForWidth(getPointer(),width);
         }
         return 0;
     }
 
     public boolean hasHeightForWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return tabWidget.hasHeightForWidth(getPointer());
         }
         return false;

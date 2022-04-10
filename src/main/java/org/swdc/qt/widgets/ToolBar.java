@@ -14,7 +14,7 @@ public class ToolBar extends Widget  {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = toolBar.create(0L);
@@ -25,7 +25,7 @@ public class ToolBar extends Widget  {
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (parent.getPointer() <= 0 ) {
@@ -40,26 +40,26 @@ public class ToolBar extends Widget  {
     }
 
     public void setMovable(boolean movable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.setMovable(getPointer(),movable);
         }
     }
 
     public boolean isMovable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return toolBar.isMovable(getPointer());
         }
         return false;
     }
 
     public void setOrientation(Orientation orientation) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.setOrientation(getPointer(),orientation.getVal());
         }
     }
 
     public Orientation orientation() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long orientation = toolBar.orientation(getPointer());
             return Orientation.valueOf(orientation);
         }
@@ -67,13 +67,13 @@ public class ToolBar extends Widget  {
     }
 
     public void clear() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.clear(getPointer());
         }
     }
 
     public Action addAction(String text) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = toolBar.addAction(getPointer(),text);
             if (pointer <= 0) {
                 return null;
@@ -84,7 +84,7 @@ public class ToolBar extends Widget  {
     }
 
     public Action addAction(Icon icon, String text) {
-        if (getPointer() > 0 && icon.getPointer() > 0) {
+        if (accessible(icon)) {
             long pointer = toolBar.addAction(getPointer(),icon.getPointer(),text);
             if (pointer <= 0) {
                 return null;
@@ -95,7 +95,7 @@ public class ToolBar extends Widget  {
     }
 
     public Action addSeparator() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = toolBar.addSeparator(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -106,7 +106,7 @@ public class ToolBar extends Widget  {
     }
 
     public Action insertSeparator(Action actionBefore) {
-        if (getPointer() > 0 && actionBefore.getPointer() > 0) {
+        if (accessible() && actionBefore.accessible()) {
             long pointer = toolBar.insertSeparator(getPointer(),actionBefore.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -117,7 +117,7 @@ public class ToolBar extends Widget  {
     }
 
     public <T extends Widget> Action addWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible() && widget.accessible()) {
             long pointer = toolBar.addWidget(getPointer(),widget.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -128,7 +128,7 @@ public class ToolBar extends Widget  {
     }
 
     public <T extends Widget> Action insertWidget(Action actionBefore, T widget) {
-        if (getPointer() > 0 && actionBefore.getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible() && actionBefore.accessible() && widget.accessible()) {
             long pointer = toolBar.insertWidget(getPointer(),actionBefore.getPointer(),widget.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -139,7 +139,7 @@ public class ToolBar extends Widget  {
     }
 
     public Rect actionGeometry(Action action) {
-        if (getPointer() > 0 && action.getPointer() > 0) {
+        if (accessible() && action.accessible()) {
             long rect = toolBar.actionGeometry(getPointer(),action.getPointer());
             if (rect <= 0) {
                 return null;
@@ -150,40 +150,40 @@ public class ToolBar extends Widget  {
     }
 
     public void setAllowedAreas(ToolbarAreas areas) {
-        if (getPointer() > 0){
+        if (accessible()){
             toolBar.setAllowedAreas(getPointer(),areas.getVal());
         }
     }
 
     public boolean isAreaAllowed(ToolbarAreas area) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return toolBar.isAreaAllowed(getPointer(),area.getVal());
         }
         return false;
     }
 
     public boolean isFloatable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return toolBar.isFloatable(getPointer());
         }
         return false;
     }
 
     public void setFloatable(boolean floatable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.setFloatable(getPointer(),floatable);
         }
     }
 
     public boolean isFloating() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return toolBar.isFloating(getPointer());
         }
         return false;
     }
 
     public Size getIconSize() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long size = toolBar.iconSize(getPointer());
             if (size <= 0) {
                 return null;
@@ -194,13 +194,13 @@ public class ToolBar extends Widget  {
     }
 
     public void setIconSize(Size iconSize) {
-        if (getPointer() > 0 && iconSize.getPointer() > 0) {
+        if (accessible() && iconSize.accessible()) {
             toolBar.setIconSize(getPointer(),iconSize.getPointer());
         }
     }
 
     public ToolButtonStyle getToolButtonStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = toolBar.toolButtonStyle(getPointer());
             return ToolButtonStyle.valueOf(val);
         }
@@ -208,13 +208,13 @@ public class ToolBar extends Widget  {
     }
 
     public void setToolButtonStyle(ToolButtonStyle toolButtonStyle) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.setToolButtonStyle(getPointer(),toolButtonStyle.getVal());
         }
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             toolBar.dispose(getPointer());
             toolBar.cleanAddress();
         }

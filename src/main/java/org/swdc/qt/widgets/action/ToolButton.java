@@ -34,7 +34,7 @@ public class ToolButton extends AbstractButton<SToolButton> {
     }
 
     public Size getSizeHint() {
-        if(getPointer() > 0) {
+        if(accessible()) {
             long pointer = button.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -45,7 +45,7 @@ public class ToolButton extends AbstractButton<SToolButton> {
     }
 
     public Size getMinimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = button.minimumSizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -56,33 +56,33 @@ public class ToolButton extends AbstractButton<SToolButton> {
     }
 
     public void setToolButtonStyle(ToolButtonStyle style) {
-        if (getPointer() > 0) {
+        if (accessible(style)) {
             button.setToolButtonStyle(getPointer(),style.getVal());
         }
     }
 
     public int getToolButtonStyle() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return button.toolButtonStyle(getPointer());
         }
         return 0;
     }
 
     public void setAutoRaise(boolean enable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             button.setAutoRaise(getPointer(),enable);
         }
     }
 
     public boolean isAutoRaise() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return button.autoRaise(getPointer());
         }
         return false;
     }
 
     public ToolArrowType getArrowType() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = button.arrowType(getPointer());
             return ToolArrowType.valueOf(val);
         }
@@ -90,25 +90,25 @@ public class ToolButton extends AbstractButton<SToolButton> {
     }
 
     public void setArrowType(ToolArrowType type) {
-        if (getPointer() > 0) {
+        if (accessible(type)) {
             button.setArrowType(getPointer(),type.getVal());
         }
     }
 
     public void setMenu(Menu menu) {
-        if (getPointer() > 0 && menu.getPointer() > 0) {
+        if (accessible(menu)) {
             button.setMenu(getPointer(),menu.getPointer());
         }
     }
 
     public void setPopupMode(ToolButtonPopupMode mode) {
-        if (getPointer() > 0) {
+        if (accessible(mode)) {
             button.setPopupMode(getPointer(),mode.getVal());
         }
     }
 
     public ToolButtonPopupMode getPopupMode() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int val = button.popupMode(getPointer());
             return ToolButtonPopupMode.valueOf(val);
         }
@@ -116,21 +116,21 @@ public class ToolButton extends AbstractButton<SToolButton> {
     }
 
     public void showMenu() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             button.showMenu(getPointer());
         }
     }
 
 
     public void setDefaultAction(Action action) {
-        if (getPointer() > 0 && action.getPointer() > 0) {
+        if (accessible(action)) {
             button.setDefaultAction(getPointer(),action.getPointer());
         }
     }
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = button.create();

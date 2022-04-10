@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.ItemDataRole;
 import org.swdc.qt.beans.MatchFlag;
 import org.swdc.qt.beans.Orientation;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractItemModel {
+public abstract class AbstractItemModel implements NativeAllocated {
 
 
     private SAbstractItemModel model = new SAbstractItemModel();
@@ -18,13 +19,13 @@ public abstract class AbstractItemModel {
     public abstract long getPointer();
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             model.dispose(getPointer());
         }
     }
 
     public boolean hasIndex(int row, int column,ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.hasIndex(getPointer(),row,column,
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -32,7 +33,7 @@ public abstract class AbstractItemModel {
     }
 
     public ModelIndex getIndex(int row, int column, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = model.index(getPointer(),row,column,
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
             if (pointer > 0) {
@@ -44,7 +45,7 @@ public abstract class AbstractItemModel {
     }
 
     public ModelIndex getParent(ModelIndex child) {
-        if (getPointer() > 0 ) {
+        if (accessible()) {
             long pointer = model.parent(getPointer(),
                     (child == null || child.getPointer() <= 0) ? 0L : child.getPointer());
             if (pointer <= 0) {
@@ -56,7 +57,7 @@ public abstract class AbstractItemModel {
     }
 
     public ModelIndex sibling(int row, int column, ModelIndex idx) {
-        if (getPointer() > 0 ){
+        if (accessible() ){
             long pointer = model.sibling(getPointer(),row,column,
                     (idx == null || idx.getPointer() <= 0) ? 0L : idx.getPointer());
             if (pointer <= 0) {
@@ -68,7 +69,7 @@ public abstract class AbstractItemModel {
     }
 
     public int getRowCount(ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.rowCount(getPointer(),
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -76,7 +77,7 @@ public abstract class AbstractItemModel {
     }
 
     public int getColumnCount(ModelIndex parent) {
-        if (getPointer() > 0 ) {
+        if (accessible() ) {
             return model.columnCount(getPointer(),
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -84,7 +85,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean hasChildren(ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.hasChildren(getPointer(),
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -92,7 +93,7 @@ public abstract class AbstractItemModel {
     }
 
     public Variant getData(ModelIndex index, ItemDataRole role) {
-        if (getPointer() > 0 && index != null && index.getPointer() >= 0) {
+        if (accessible(index,role)) {
             long pointer = model.data(getPointer(),index.getPointer(),role.getVal());
             if (pointer <= 0 ){
                 return null;
@@ -103,15 +104,14 @@ public abstract class AbstractItemModel {
     }
 
     public boolean setData(ModelIndex index,Variant value, ItemDataRole role) {
-        if (getPointer() > 0 && index != null && index.getPointer() > 0 &&
-                value != null && value.getPointer() > 0) {
+        if (accessible(index,value,role)) {
             return model.setData(getPointer(),index.getPointer(),value.getPointer(),role.getVal());
         }
         return false;
     }
 
     public Variant getHeaderData(int section, Orientation orientation, ItemDataRole role) {
-        if (getPointer() > 0) {
+        if (accessible(orientation,role)) {
             long pointer = model.headerData(getPointer(),section,orientation.getVal(),role.getVal());
             if (pointer <= 0) {
                 return null;
@@ -122,14 +122,14 @@ public abstract class AbstractItemModel {
     }
 
     public boolean setHeaderData(int section, Orientation orientation, Variant value, ItemDataRole role) {
-        if (getPointer() > 0 && value != null && value.getPointer() > 0) {
+        if (accessible(orientation,value,role)) {
             return model.setHeaderData(getPointer(),section,orientation.getVal(),value.getPointer(),role.getVal());
         }
         return false;
     }
 
     public boolean insertRows(int row, int count,ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.insertRows(getPointer(),row,count,
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -137,7 +137,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean insertColumns(int column, int count, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.insertColumns(getPointer(),column,count,
                     (parent == null || parent.getPointer() <= 0) ? 0L : parent.getPointer());
         }
@@ -145,7 +145,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean removeRows(int row, int count, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.removeRows(getPointer(),row,count,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -153,7 +153,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean removeColumns(int column, int count, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.removeColumns(getPointer(),column,count,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -202,7 +202,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean insertRow(int row, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.insertRow(getPointer(),row,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -210,7 +210,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean insertColumn(int column, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.insertColumn(getPointer(),column,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -218,7 +218,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean removeRow(int row, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.removeRow(getPointer(),row,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -226,7 +226,7 @@ public abstract class AbstractItemModel {
     }
 
     public boolean removeColumn(int column, ModelIndex parent) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.removeColumn(getPointer(),column,
                     (parent == null || parent.getPointer() <= 0 ? 0L : parent.getPointer()));
         }
@@ -291,13 +291,13 @@ public abstract class AbstractItemModel {
     }
 
     public void sort(int column, SortOrder order) {
-        if (getPointer() > 0) {
+        if (accessible(order)) {
             model.sort(getPointer(),column,order.getVal());
         }
     }
 
     public ModelIndex buddy(ModelIndex index) {
-        if (getPointer() > 0 && index != null && index.getPointer() > 0) {
+        if (accessible(index)) {
             long pointer = model.buddy(getPointer(),index.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -356,14 +356,14 @@ public abstract class AbstractItemModel {
     }
 
     public boolean submit() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return model.submit(getPointer());
         }
         return false;
     }
 
     public void revert() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             model.submit(getPointer());
         }
     }

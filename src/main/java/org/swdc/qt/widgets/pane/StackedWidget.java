@@ -30,7 +30,7 @@ public class StackedWidget extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = sStackWidget.create();
@@ -41,54 +41,54 @@ public class StackedWidget extends Widget {
     }
 
     public <T extends Widget> int addWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             return sStackWidget.addWidget(getPointer(),widget.getPointer());
         }
         return 0;
     }
 
     public <T extends Widget> int insertWidget(int index, T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             return sStackWidget.insertWidget(getPointer(),index,widget.getPointer());
         }
         return 0;
     }
 
     public <T extends Widget> void removeWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             sStackWidget.removeWidget(getPointer(),widget.getPointer());
         }
     }
 
     public int currentIndex() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return sStackWidget.currentIndex(getPointer());
         }
         return 0;
     }
 
     public <T extends Widget> int indexOf(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             return sStackWidget.indexOf(getPointer(),widget.getPointer());
         }
         return 0;
     }
 
     public int count() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return sStackWidget.count(getPointer());
         }
         return 0;
     }
 
     public void setCurrentIndex(int index) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             sStackWidget.setCurrentIndex(getPointer(),index);
         }
     }
 
     public <T extends Widget> void setCurrentWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             sStackWidget.setCurrentWidget(getPointer(),widget.getPointer());
         }
     }

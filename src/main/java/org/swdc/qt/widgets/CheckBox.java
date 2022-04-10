@@ -12,7 +12,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = button.create(0L);
@@ -23,7 +23,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (parent.getPointer() > 0) {
@@ -37,7 +37,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public Size sizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = button.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -48,7 +48,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public Size minimumSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = button.minimumSizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -59,7 +59,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public void setTristate(boolean y) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             button.setTristate(getPointer(),y);
         }
     }
@@ -72,7 +72,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public CheckState checkState() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             int state = button.checkState(getPointer());
             return CheckState.valueOf(state);
         }
@@ -80,7 +80,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
     }
 
     public void setCheckState(CheckState state) {
-        if (getPointer() > 0) {
+        if (accessible(state)) {
             button.setCheckState(getPointer(),state.getVal());
         }
     }

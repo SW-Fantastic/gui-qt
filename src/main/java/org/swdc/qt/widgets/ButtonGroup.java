@@ -1,16 +1,17 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.widgets.SButtonGroup;
 
 import java.util.*;
 
-public class ButtonGroup {
+public class ButtonGroup implements NativeAllocated {
 
     private SButtonGroup group = new SButtonGroup();
     private Map<Long,AbstractButton> buttons = new HashMap<>();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = group.create();
@@ -21,34 +22,34 @@ public class ButtonGroup {
     }
 
     public void setExclusive(boolean val) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             group.setExclusive(getPointer(),val);
         }
     }
 
     public boolean isExclusive() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return group.exclusive(getPointer());
         }
         return false;
     }
 
     public <T extends AbstractButton> void addButton(T button, int id) {
-        if (getPointer() > 0 && button.getPointer() > 0) {
+        if (accessible(button,id)) {
             group.addButton(getPointer(),button.getPointer(),id);
             buttons.put(button.getPointer(),button);
         }
     }
 
     public <T extends AbstractButton> void removeButton(T button) {
-        if (getPointer() > 0 && button.getPointer() > 0) {
+        if (accessible(button)) {
             group.removeButton(getPointer(),button.getPointer());
             buttons.remove(button.getPointer());
         }
     }
 
     public List<AbstractButton> buttons() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long [] pointers = group.buttons(getPointer());
             List<AbstractButton> result = new ArrayList<>();
             for (long item: pointers) {
@@ -66,7 +67,7 @@ public class ButtonGroup {
     }
 
     public <T extends AbstractButton> T checkedButton() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = group.checkedButton(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -77,7 +78,7 @@ public class ButtonGroup {
     }
 
     public <T extends AbstractButton> T button(int id) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = group.button(getPointer(),id);
             if (pointer <= 0) {
                 return null;
@@ -88,7 +89,7 @@ public class ButtonGroup {
     }
 
     public <T extends AbstractButton> void setId(T button, int id) {
-        if (getPointer() > 0 && button.getPointer() > 0) {
+        if (accessible(button)) {
             if (buttons.containsKey(button.getPointer())) {
                 group.setId(getPointer(),button.getPointer(),id);
             }
@@ -96,7 +97,7 @@ public class ButtonGroup {
     }
 
     public <T extends AbstractButton> int id(T button) {
-        if (getPointer() > 0 && button.getPointer() > 0) {
+        if (accessible(button)) {
             if (buttons.containsKey(button.getPointer())) {
                 return group.id(getPointer(),button.getPointer());
             }
@@ -105,14 +106,14 @@ public class ButtonGroup {
     }
 
     public int checkedId() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return group.checkedId(getPointer());
         }
         return 0;
     }
 
     public void dispose(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             group.dispose(getPointer());
         }
     }

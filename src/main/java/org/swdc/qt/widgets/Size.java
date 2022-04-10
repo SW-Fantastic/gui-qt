@@ -1,14 +1,15 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.AspectRatioMode;
 import org.swdc.qt.internal.common.SSize;
 
-public class Size {
+public class Size implements NativeAllocated {
 
     private SSize size = new SSize();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = size.create();
@@ -19,7 +20,7 @@ public class Size {
     }
 
     private void wrap(long nativePointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (nativePointer <= 0) {
@@ -29,53 +30,53 @@ public class Size {
     }
 
     public boolean isEmpty() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.isEmpty(getPointer());
         }
         return false;
     }
 
     public boolean isValid() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.isValid(getPointer());
         }
         return false;
     }
 
     public int getWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.width(getPointer());
         }
         return 0;
     }
 
     public int getHeight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.height(getPointer());
         }
         return 0;
     }
 
     public void setWidth(int w) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             size.setWidth(getPointer(),w);
         }
     }
 
     public void setHeight(int h){
-        if (getPointer() > 0) {
+        if (accessible()) {
             size.setHeight(getPointer(),h);
         }
     }
 
     public void transpose(Size size) {
-        if (getPointer() > 0 && size.getPointer() > 0) {
+        if (accessible(size)) {
             this.size.transpose(size.getPointer());
         }
     }
 
     public Size transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = size.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -92,13 +93,13 @@ public class Size {
     }
 
     public void scale(int w, int h, AspectRatioMode mode) {
-        if (getPointer() > 0) {
+        if (accessible(w,h,mode)) {
             this.size.scale(getPointer(),w,h,mode.getVal());
         }
     }
 
     public Size scaled(int w, int h,AspectRatioMode mode) {
-        if (getPointer() > 0) {
+        if (accessible(w,h,mode)) {
             long pointer = this.size.scaled(getPointer(),w,h,mode.getVal());
             if (getPointer() < 0) {
                 return null;
@@ -115,7 +116,7 @@ public class Size {
     }
 
     public Size expandedTo(Rect another){
-        if (getPointer() > 0 && another.getPointer() > 0) {
+        if (accessible(another)) {
             long pointer = size.expandedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -132,7 +133,7 @@ public class Size {
         }
     }
     public Size boundedTo(Size another) {
-        if (getPointer() > 0 && another.getPointer() > 0) {
+        if (accessible(another)) {
             long pointer = size.boundedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -149,13 +150,13 @@ public class Size {
     }
 
     public void dispose(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             this.size.dispose(getPointer());
         }
     }
 
     public Size grownBy(Margins margin) {
-        if (getPointer() > 0 && margin.getPointer() > 0) {
+        if (accessible(margin)) {
             long pointer = size.grownBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -173,7 +174,7 @@ public class Size {
     }
 
     public Size shrunkBy(Margins margin) {
-        if (getPointer() > 0 && margin.getPointer() > 0) {
+        if (accessible(margin)) {
             long pointer = size.shrunkBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;

@@ -1,9 +1,10 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.ItemDataRole;
 import org.swdc.qt.internal.common.SModelIndex;
 
-public class ModelIndex {
+public class ModelIndex implements NativeAllocated {
 
     private SModelIndex index = new SModelIndex();
     private ModelIndex parent;
@@ -18,7 +19,7 @@ public class ModelIndex {
     }
 
     public void dispose() {
-        if (getPointer() > 0 ) {
+        if (accessible() ) {
             index.dispose(getPointer());
         }
     }
@@ -28,22 +29,22 @@ public class ModelIndex {
     }
 
     public int getRow() {
-        if (getPointer() > 0 ) {
+        if (accessible() ) {
             return index.row(getPointer());
         }
         return 0;
     }
 
     public int getColumn() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return index.column(getPointer());
         }
         return 0;
     }
 
     public ModelIndex parent() {
-        if (getPointer() > 0) {
-            if (parent != null && parent.getPointer() > 0) {
+        if (accessible()) {
+            if (parent != null && parent.accessible()) {
                 return parent;
             }
             long parent = index.parent(getPointer());
@@ -59,7 +60,7 @@ public class ModelIndex {
     }
 
     public ModelIndex sibling(int row, int column){
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = index.sibling(getPointer(),row,column);
             if (pointer <= 0) {
                 return null;
@@ -70,7 +71,7 @@ public class ModelIndex {
     }
 
     public ModelIndex siblingAtColumn(int column) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = index.siblingAtColumn(getPointer(),column);
             if (pointer <= 0) {
                 return null;
@@ -81,7 +82,7 @@ public class ModelIndex {
     }
 
     public ModelIndex siblingAtRow(int row) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = index.siblingAtRow(getPointer(),row);
             if (pointer <= 0) {
                 return null;
@@ -92,7 +93,7 @@ public class ModelIndex {
     }
 
     public Variant data(ItemDataRole data) {
-        if (getPointer() > 0) {
+        if (accessible(data)) {
             long variantPointer = index.data(getPointer(),data.getVal());
             if (variantPointer > 0) {
                 return Variant.asVariant(variantPointer);

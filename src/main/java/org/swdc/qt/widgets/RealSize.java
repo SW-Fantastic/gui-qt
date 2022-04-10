@@ -1,14 +1,15 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.AspectRatioMode;
 import org.swdc.qt.internal.common.SRealSize;
 
-public class RealSize {
+public class RealSize implements NativeAllocated {
 
     private SRealSize size = new SRealSize();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = size.create();
@@ -19,7 +20,7 @@ public class RealSize {
     }
 
     private void wrap(long nativePointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (nativePointer <= 0) {
@@ -29,53 +30,53 @@ public class RealSize {
     }
 
     public boolean isEmpty() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.isEmpty(getPointer());
         }
         return false;
     }
 
     public boolean isValid() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.isValid(getPointer());
         }
         return false;
     }
 
     public double getWidth() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.width(getPointer());
         }
         return 0;
     }
 
     public double getHeight() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return size.height(getPointer());
         }
         return 0;
     }
 
     public void setWidth(double w) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             size.setWidth(getPointer(),w);
         }
     }
 
     public void setHeight(double h){
-        if (getPointer() > 0) {
+        if (accessible()) {
             size.setHeight(getPointer(),h);
         }
     }
 
     public void transpose(RealSize size) {
-        if (getPointer() > 0 && size.getPointer() > 0) {
+        if (accessible(size)) {
             this.size.transpose(size.getPointer());
         }
     }
 
     public RealSize transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = size.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -86,13 +87,13 @@ public class RealSize {
     }
 
     public void scale(double w, double h, AspectRatioMode mode) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             this.size.scale(getPointer(),w,h,mode.getVal());
         }
     }
 
     public RealSize scaled(int w, int h,AspectRatioMode mode) {
-        if (getPointer() > 0) {
+        if (accessible(mode)) {
             long pointer = this.size.scaled(getPointer(),w,h,mode.getVal());
             if (getPointer() < 0) {
                 return null;
@@ -103,7 +104,7 @@ public class RealSize {
     }
 
     public RealSize expandedTo(RealRect another){
-        if (getPointer() > 0 && another.getPointer() > 0) {
+        if (accessible(another)) {
             long pointer = size.expandedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -114,7 +115,7 @@ public class RealSize {
         }
     }
     public RealSize boundedTo(RealSize another) {
-        if (getPointer() > 0 && another.getPointer() > 0) {
+        if (accessible(another)) {
             long pointer = size.boundedTo(getPointer(),another.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -125,13 +126,13 @@ public class RealSize {
     }
 
     public void dispose(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             this.size.dispose(getPointer());
         }
     }
 
     public RealSize grownBy(RealMargins margin) {
-        if (getPointer() > 0 && margin.getPointer() > 0) {
+        if (accessible(margin)) {
             long pointer = size.grownBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -143,7 +144,7 @@ public class RealSize {
     }
 
     public RealSize shrunkBy(RealMargins margin) {
-        if (getPointer() > 0 && margin.getPointer() > 0) {
+        if (accessible(margin)) {
             long pointer = size.shrunkBy(getPointer(),margin.getPointer());
             if (pointer <= 0) {
                 return null;

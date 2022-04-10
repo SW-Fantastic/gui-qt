@@ -42,7 +42,7 @@ public class PushButton extends AbstractButton<SButton> {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = button.create(0L);

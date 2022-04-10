@@ -12,7 +12,7 @@ public class ScrollArea extends AbstractScrollArea {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = area.create(0L);
@@ -23,21 +23,21 @@ public class ScrollArea extends AbstractScrollArea {
     }
 
     public <T extends Widget> T getWidget() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return (T)widget;
         }
         return null;
     }
 
     public <T extends Widget> void setWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             area.setWidget(getPointer(),widget.getPointer());
             this.widget = widget;
         }
     }
 
     public <T extends Widget> T takeWidget() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.takeWidget(getPointer());
             Widget widget = this.widget;
             if (widget != null && widget.getPointer() == pointer) {
@@ -51,20 +51,20 @@ public class ScrollArea extends AbstractScrollArea {
     }
 
     public boolean isWidgetResizable() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return area.widgetResizable(getPointer());
         }
         return false;
     }
 
     public void setWidgetResizable(boolean resizable) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.setWidgetResizable(getPointer(),resizable);
         }
     }
 
     public Size getSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = area.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -75,14 +75,14 @@ public class ScrollArea extends AbstractScrollArea {
     }
 
     public boolean focusNextPrevChild(boolean next) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return area.focusNextPrevChild(getPointer(),next);
         }
         return false;
     }
 
     public Alignment getAlignment() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long val = area.alignment(getPointer());
             return Alignment.valueOf(val);
         }
@@ -90,19 +90,19 @@ public class ScrollArea extends AbstractScrollArea {
     }
 
     public void setAlignment(Alignment alignment) {
-        if (getPointer() > 0) {
+        if (accessible(alignment)) {
             area.setAlignment(getPointer(),alignment.getFlagValue());
         }
     }
 
     public void ensureVisible(int x, int y, int xmargin, int ymargin) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             area.ensureVisible(getPointer(),x,y,xmargin,ymargin);
         }
     }
 
     public void ensureWidgetVisible(Widget childWidget, int xmargin, int ymargin) {
-        if (getPointer() > 0 && childWidget.getPointer() >0) {
+        if (accessible(childWidget)) {
             area.ensureWidgetVisible(getPointer(),childWidget.getPointer(),xmargin,ymargin);
         }
     }

@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.graphics.SBrush;
 
-public class Brush {
+public class Brush implements NativeAllocated {
 
     private SBrush brush = new SBrush();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = brush.create();
@@ -18,7 +19,7 @@ public class Brush {
     }
 
     public <T extends Gradient> void allocate(T gradient) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (gradient.getPointer() <= 0) {
@@ -32,7 +33,7 @@ public class Brush {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -42,7 +43,7 @@ public class Brush {
     }
 
     public BrushStyle getStyle(){
-        if (getPointer() > 0) {
+        if (accessible()) {
             int style = brush.style(getPointer());
             return BrushStyle.valueOf(style);
         }
@@ -50,13 +51,13 @@ public class Brush {
     }
 
     public void setStyle(BrushStyle style){
-        if (getPointer() > 0) {
+        if (accessible(style)) {
             brush.setStyle(getPointer(),style.getVal());
         }
     }
 
     public Transformation getTransform() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = brush.transform(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -68,13 +69,13 @@ public class Brush {
     }
 
     public void setTransform(Transformation transform) {
-        if (getPointer() > 0 && transform.getPointer() > 0) {
+        if (accessible(transform)) {
             brush.setTransform(getPointer(),transform.getPointer());
         }
     }
 
     public Pixmap getTexture() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = brush.texture(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -86,13 +87,13 @@ public class Brush {
     }
 
     public void setTexture(Pixmap pixmap) {
-        if (getPointer() > 0 && pixmap.getPointer() > 0) {
+        if (accessible(pixmap)) {
             brush.setTexture(getPointer(),pixmap.getPointer());
         }
     }
 
     public Image getTextureImage() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = brush.textureImage(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -110,13 +111,13 @@ public class Brush {
     }
 
     public void setTextureImage(Image image) {
-        if (getPointer() > 0 && image.getPointer() > 0) {
+        if (accessible(image)) {
             brush.setTextureImage(getPointer(),image.getPointer());
         }
     }
 
     public Color getColor() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long color = brush.color(getPointer());
             Color result = new Color();
             result.allocate(color);
@@ -127,7 +128,7 @@ public class Brush {
     }
 
     public void setColor(Color color) {
-        if (getPointer() > 0) {
+        if (accessible(color)) {
             brush.setColor(getPointer(),color.getVal());
         }
     }
@@ -140,6 +141,14 @@ public class Brush {
         Brush brush = new Brush();
         brush.wrap(nativePointer);
         return brush;
+    }
+
+    @Override
+    public void dispose() {
+        if (accessible()) {
+            brush.dispose(getPointer());
+            brush.cleanAddress();
+        }
     }
 
     public long getPointer() {

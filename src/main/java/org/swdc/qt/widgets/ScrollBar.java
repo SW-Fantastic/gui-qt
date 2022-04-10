@@ -8,7 +8,7 @@ public class ScrollBar extends AbstractSlider {
 
     @Override
     public void allocate() throws Exception {
-        if(getPointer() > 0) {
+        if(accessible()) {
             return;
         }
         long pointer = bar.create(0L);
@@ -19,7 +19,7 @@ public class ScrollBar extends AbstractSlider {
     }
 
     public Size getSizeHint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = bar.sizeHint(getPointer());
             if (pointer <= 0) {
                 return null;

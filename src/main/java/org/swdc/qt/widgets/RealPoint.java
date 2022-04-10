@@ -1,13 +1,14 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.internal.common.SRealPoint;
 
-public class RealPoint {
+public class RealPoint implements NativeAllocated {
 
     private SRealPoint realPoint = new SRealPoint();
 
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = realPoint.create();
@@ -18,7 +19,7 @@ public class RealPoint {
     }
 
     public void allocate(double x,double y) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = realPoint.create(x,y);
@@ -29,7 +30,7 @@ public class RealPoint {
     }
 
     private void wrap(long pointer){
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -39,33 +40,33 @@ public class RealPoint {
     }
 
     public double getX() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return realPoint.x(getPointer());
         }
         return 0;
     }
 
     public double getY() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return realPoint.y(getPointer());
         }
         return 0;
     }
 
     public void setX(double x) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             realPoint.setX(getPointer(),x);
         }
     }
 
     public void setY(double y){
-        if (getPointer() > 0) {
+        if (accessible()) {
             realPoint.setY(getPointer(),y);
         }
     }
 
     public RealPoint transposed() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = realPoint.transposed(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -76,14 +77,14 @@ public class RealPoint {
     }
 
     public double manhattanLength() {
-        if (getPointer() > 0){
+        if (accessible()){
             return realPoint.manhattanLength(getPointer());
         }
         return 0;
     }
 
     public Point toPoint() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             long pointer = realPoint.toPoint(getPointer());
             if (pointer <= 0) {
                 return null;
@@ -94,7 +95,7 @@ public class RealPoint {
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             realPoint.dispose(getPointer());
             realPoint.cleanAddress();
         }

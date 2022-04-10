@@ -20,7 +20,7 @@ public class TextEdit extends AbstractScrollArea {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = textEdit.create(0L);
@@ -32,13 +32,13 @@ public class TextEdit extends AbstractScrollArea {
 
     @Override
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             textEdit.dispose(getPointer());
         }
     }
 
     public void setDocument(TextDocument document) {
-        if (getPointer() > 0 && document.getPointer() > 0) {
+        if (accessible(document)) {
             textEdit.setDocument(getPointer(),document.getPointer());
         }
     }

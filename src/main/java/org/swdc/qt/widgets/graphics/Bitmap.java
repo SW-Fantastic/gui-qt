@@ -9,7 +9,7 @@ public class Bitmap extends Pixmap {
     private SBitmap bitmap = new SBitmap();
 
     public void allocate(int width, int height) throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = bitmap.create(width,height);
@@ -21,7 +21,7 @@ public class Bitmap extends Pixmap {
     }
 
     public void allocate(Pixmap pixmap) throws Exception {
-        if (getPointer() > 0 || pixmap.getPointer() <= 0) {
+        if (accessible() || !accessibleParam(pixmap)) {
             return;
         }
         long pointer = bitmap.create(pixmap.getPointer());
@@ -32,7 +32,7 @@ public class Bitmap extends Pixmap {
     }
 
     public void allocate(File file) throws Exception {
-        if (getPointer() > 0 || !file.exists()) {
+        if (accessible() || file == null || !file.exists() ) {
             return;
         }
         file = file.getAbsoluteFile();
@@ -44,7 +44,7 @@ public class Bitmap extends Pixmap {
     }
 
     private void wrap(long pointer) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         if (pointer <= 0) {
@@ -54,19 +54,19 @@ public class Bitmap extends Pixmap {
     }
 
     public void swap(Bitmap otherBitmap) {
-        if (getPointer() > 0 && otherBitmap.getPointer() > 0) {
+        if (accessible(otherBitmap)) {
             bitmap.swap(getPointer(),otherBitmap.getPointer());
         }
     }
 
     public void clear() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             bitmap.clear(getPointer());
         }
     }
 
     public Bitmap transformed(Transformation transaction) {
-        if (getPointer() > 0) {
+        if (accessible(transaction)) {
             long pointer = bitmap.transformed(getPointer(),transaction.getPointer());
             if (pointer <= 0) {
                 return null;
@@ -78,7 +78,7 @@ public class Bitmap extends Pixmap {
     }
 
     public void dispose() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             bitmap.dispose(getPointer());
         }
     }

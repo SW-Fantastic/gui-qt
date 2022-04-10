@@ -9,7 +9,7 @@ public class DockWidget extends Widget {
 
     @Override
     public void allocate() throws Exception {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return;
         }
         long pointer = dockWidget.create(0L);
@@ -20,7 +20,7 @@ public class DockWidget extends Widget {
     }
 
     public void setFeatures(DockWidgetFuture ...features) {
-        if (getPointer() > 0 && features.length > 0) {
+        if (accessible() && features.length > 0) {
             int val = features[0].getVal();
             for (int idx = 1; idx < features.length; idx ++) {
                 val = val | features[idx].getVal();
@@ -30,20 +30,20 @@ public class DockWidget extends Widget {
     }
 
     public void setFloating(boolean floating) {
-        if (getPointer() > 0) {
+        if (accessible()) {
             dockWidget.setFloating(getPointer(),floating);
         }
     }
 
     public boolean isFloating() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             return dockWidget.isFloating(getPointer());
         }
         return false;
     }
 
     public void setAllowedAreas(DockWidgetArea ...areas) {
-        if (getPointer() > 0 && areas.length > 0) {
+        if (accessible(areas) && areas.length > 0) {
             int val = areas[0].getVal();
             for (int idx = 1; idx < areas.length;idx++) {
                 val = val | areas[idx].getVal();
@@ -53,14 +53,14 @@ public class DockWidget extends Widget {
     }
 
     public <T extends Widget> void setTitleBarWidget(T widget) {
-        if (getPointer() > 0 && widget.getPointer() > 0) {
+        if (accessible(widget)) {
             dockWidget.setTitleBarWidget(getPointer(),widget.getPointer());
             this.titleWidget = widget;
         }
     }
 
     public <T extends Widget> T getTitleBarWidget() {
-        if (getPointer() > 0) {
+        if (accessible()) {
             if (titleWidget == null) {
                 return null;
             }
@@ -74,7 +74,7 @@ public class DockWidget extends Widget {
     }
 
     public boolean isAreaAllowed(DockWidgetArea area) {
-        if (getPointer() > 0) {
+        if (accessible(area)) {
             return dockWidget.isAreaAllowed(getPointer(),area.getVal());
         }
         return false;
