@@ -43,6 +43,7 @@
 #include <QTextFrame>
 #include <QTextList>
 #include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QTextTable>
 #include <QAbstractTextDocumentLayout>
 

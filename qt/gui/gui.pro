@@ -31,6 +31,7 @@ SOURCES += \
     MdiSubWindow.cpp \
     Menu.cpp \
     MenuBar.cpp \
+    PlainTextEdit.cpp \
     RadioButton.cpp \
     ScrollArea.cpp \
     ScrollBar.cpp \
@@ -176,6 +177,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SMdiSubWindow.h \
     java/org_swdc_qt_internal_widgets_SMenu.h \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
+    java/org_swdc_qt_internal_widgets_SPlainTextEdit.h \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
     java/org_swdc_qt_internal_widgets_SScrollArea.h \
     java/org_swdc_qt_internal_widgets_SScrollBar.h \
@@ -229,6 +231,7 @@ HEADERS += \
     java/types/SLineEdit.h \
     java/types/SMdiArea.h \
     java/types/SMenuBar.h \
+    java/types/SPlainTextEdit.h \
     java/types/SPushButton.h \
     java/types/SRadioButton.h \
     java/types/SScrollArea.h \
