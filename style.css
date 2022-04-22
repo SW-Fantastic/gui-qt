@@ -1,0 +1,60 @@
+QWidget {
+    font-family:Microsoft YaHei;
+    background-color: #D8F3E4;
+    font-size: 14px;
+}
+
+ QPushButton{
+    font-family:FZMiaoWuS-GB;
+    font-size: 20px;
+    background-color:#68CA93;
+    color: #FFF;
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 4px;
+}
+                 
+QPushButton:hover{
+    background-color:#8DD8AE;
+}
+
+
+QLineEdit {
+    background-color: #FFF;
+    border-width:1px;
+    border-style:solid;
+    border-radius: 5px;
+    border-color:#8DD8AE
+}
+
+.tab-stacked{
+}
+
+QTabWidget::pane{
+    border-width:1px;
+    border-style:solid;
+    border-radius: 5px;
+    border-color:#8DD8AE;
+}
+
+QTabWidget QTabBar {
+    background-color: rgba(0,0,0,0);
+}
+
+QTabBar::tab {
+    background-color: #5e7c85;
+    color: #FFF;
+    border-style:solid;
+    border-width: 0.5px;
+    border-color: #5e7c85;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 6px 8px
+}
+
+QTabBar::tab:selected {
+    background-color: #fffef9;
+    border-color: #fffef9;
+    color: #5e7c85;
+}
+                

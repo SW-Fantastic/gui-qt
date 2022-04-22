@@ -18,6 +18,8 @@ import org.swdc.qt.widgets.graphics.*;
 import org.swdc.qt.widgets.pane.*;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 public class TestQt {
@@ -85,41 +87,7 @@ public class TestQt {
         System.err.println(rect);
         rect.dispose();
 
-        widget.setStyleSheet("" +
-                "QWidget { " +
-                "   font-family:Microsoft YaHei;" +
-                "   background-color: #D8F3E4;" +
-                "   font-size: 14px;" +
-                "}" +
-                "QPushButton{" +
-                "   font-family:FZMiaoWuS-GB;" +
-                "   font-size: 20px;" +
-                "   background-color:#68CA93;" +
-                "   color: #FFF;" +
-                "   border-width: 0px;" +
-                "   border-style: solid;" +
-                "   border-radius: 4px;" +
-                "}" +
-                "" +
-                "QPushButton:hover{" +
-                "   background-color:#8DD8AE;" +
-                "}" +
-                "QLineEdit {" +
-                "   background-color: #FFF;" +
-                "   border-width:1px;" +
-                "   border-style:solid;" +
-                "   border-radius: 5px;" +
-                "   border-color:#8DD8AE " +
-                "}" +
-                ".tab-stacked{" +
-                "}" +
-                "QTabWidget::pane{" +
-                "   border-width:1px;" +
-                "   border-style:solid;" +
-                "   border-radius: 5px;" +
-                "   border-color:#8DD8AE;" +
-                "}" +
-                "");
+        widget.setStyleSheet(Files.readString(Path.of("style.css")));
 
         LineEdit field = new LineEdit();
         field.allocate();
@@ -288,6 +256,31 @@ public class TestQt {
         gpBox.setTitle("Group box");
         gpBox.setMinSize(120,120);
         tabALayout.addWidget(gpBox);
+
+        HBoxLayout spinLayout = new HBoxLayout();
+        spinLayout.allocate();
+
+        SpinBox spinBox = new SpinBox();
+        spinBox.allocate();
+        spinLayout.addWidget(spinBox);
+
+        DoubleSpinBox doubleSpinBox = new DoubleSpinBox();
+        doubleSpinBox.allocate();
+        spinLayout.addWidget(doubleSpinBox);
+
+        DateTimeEdit edit = new DateTimeEdit();
+        edit.allocate();
+        spinLayout.addWidget(edit);
+
+        TimeEdit timeEdit = new TimeEdit();
+        timeEdit.allocate();
+        spinLayout.addWidget(timeEdit);
+
+        DateEdit dateEdit = new DateEdit();
+        dateEdit.allocate();
+        spinLayout.addWidget(dateEdit);
+
+        tabALayout.addLayout(spinLayout);
 
         tabALayout.addSpacerItem(itemTabA);
 

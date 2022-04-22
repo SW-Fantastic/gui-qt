@@ -6,6 +6,8 @@
 
 class SPlainTextEdit : public QPlainTextEdit {
 
+    Q_OBJECT
+
 private:
 
     jobject self;

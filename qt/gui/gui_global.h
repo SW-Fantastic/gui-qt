@@ -45,8 +45,13 @@
 #include <QTextEdit>
 #include <QPlainTextEdit>
 #include <QTextTable>
+#include <QSpinBox>
+#include <QDoubleSpinBox>
+#include <QTimeEdit>
+#include <QDateTimeEdit>
 #include <QAbstractTextDocumentLayout>
 
+#include <QTimeZone>
 #include <QFontDatabase>
 #include <QTextDocumentFragment>
 #include <QPainterPath>

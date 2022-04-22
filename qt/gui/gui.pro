@@ -19,7 +19,10 @@ SOURCES += \
     CheckBox.cpp \
     ComboBox.cpp \
     CommandLinkButton.cpp \
+    DateEdit.cpp \
+    DateTimeEdit.cpp \
     DockWidget.cpp \
+    DoubleSpinBox.cpp \
     Executors.cpp \
     FontComboBox.cpp \
     Frame.cpp \
@@ -33,11 +36,14 @@ SOURCES += \
     MenuBar.cpp \
     PlainTextEdit.cpp \
     RadioButton.cpp \
+    SAbstractSpinBox.cpp \
     ScrollArea.cpp \
     ScrollBar.cpp \
+    SpinBox.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
     TextEdit.cpp \
+    TimeEdit.cpp \
     ToolBar.cpp \
     ToolBox.cpp \
     ToolButton.cpp \
@@ -54,6 +60,10 @@ SOURCES += \
     common/RealSize.cpp \
     common/Rect.cpp \
     common/Size.cpp \
+    date/Calendar.cpp \
+    date/Date.cpp \
+    date/DateTime.cpp \
+    date/Time.cpp \
     dialogs/AbstractDialog.cpp \
     dialogs/InputDialog.cpp \
     dialogs/MessageDialog.cpp \
@@ -128,6 +138,10 @@ HEADERS += \
     java/common/org_swdc_qt_internal_common_SRect.h \
     java/common/org_swdc_qt_internal_common_SSize.h \
     java/common/org_swdc_qt_internal_common_SVariant.h \
+    java/date/org_swdc_qt_internal_date_SCalendar.h \
+    java/date/org_swdc_qt_internal_date_SDate.h \
+    java/date/org_swdc_qt_internal_date_SDateTime.h \
+    java/date/org_swdc_qt_internal_date_STime.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SInputDialog.h \
     java/dialogs/org_swdc_qt_internal_dialogs_SMessageDialog.h \
@@ -162,13 +176,17 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SAbstractButton.h \
     java/org_swdc_qt_internal_widgets_SAbstractScrollArea.h \
     java/org_swdc_qt_internal_widgets_SAbstractSlider.h \
+    java/org_swdc_qt_internal_widgets_SAbstractSpinBox.h \
     java/org_swdc_qt_internal_widgets_SAction.h \
     java/org_swdc_qt_internal_widgets_SButton.h \
     java/org_swdc_qt_internal_widgets_SButtonGroup.h \
     java/org_swdc_qt_internal_widgets_SCheckBox.h \
     java/org_swdc_qt_internal_widgets_SComboBox.h \
     java/org_swdc_qt_internal_widgets_SCommandLinkButton.h \
+    java/org_swdc_qt_internal_widgets_SDateEdit.h \
+    java/org_swdc_qt_internal_widgets_SDateTimeEdit.h \
     java/org_swdc_qt_internal_widgets_SDockWidget.h \
+    java/org_swdc_qt_internal_widgets_SDoubleSpinBox.h \
     java/org_swdc_qt_internal_widgets_SFontComboBox.h \
     java/org_swdc_qt_internal_widgets_SFrame.h \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
@@ -181,9 +199,11 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
     java/org_swdc_qt_internal_widgets_SScrollArea.h \
     java/org_swdc_qt_internal_widgets_SScrollBar.h \
+    java/org_swdc_qt_internal_widgets_SSpinBox.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
     java/org_swdc_qt_internal_widgets_STextEdit.h \
+    java/org_swdc_qt_internal_widgets_STimeEdit.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
     java/org_swdc_qt_internal_widgets_SToolBox.h \
     java/org_swdc_qt_internal_widgets_SToolButton.h \
@@ -224,7 +244,10 @@ HEADERS += \
     java/types/SCheckBox.h \
     java/types/SComboBox.h \
     java/types/SCommandLinkButton.h \
+    java/types/SDateEdit.h \
+    java/types/SDateTimeEdit.h \
     java/types/SDockWidget.h \
+    java/types/SDoubleSpinBox.h \
     java/types/SFontComboBox.h \
     java/types/SFrame.h \
     java/types/SGroupBox.h \
@@ -236,9 +259,11 @@ HEADERS += \
     java/types/SRadioButton.h \
     java/types/SScrollArea.h \
     java/types/SScrollBar.h \
+    java/types/SSpinBox.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
     java/types/STextEdit.h \
+    java/types/STimeEdit.h \
     java/types/SToolBar.h \
     java/types/SToolBox.h \
     java/types/SToolButton.h \

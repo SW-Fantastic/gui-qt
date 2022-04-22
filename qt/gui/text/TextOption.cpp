@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextOption_dispose
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextOption_setAlignment
 (JNIEnv * env, jobject self, jlong pointer, jlong alignmentVal) {
 
-    Qt::Alignment align = Qt::Alignment((unsigned long)alignmentVal);
+    Qt::Alignment align = Qt::Alignment((unsigned int)alignmentVal);
     QTextOption * option = (QTextOption*)pointer;
     option->setAlignment(align);
 }

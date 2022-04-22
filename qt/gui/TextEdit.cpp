@@ -1012,7 +1012,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STextEdit_setCurrentFon
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_widgets_STextEdit_setAlignment
 (JNIEnv * env, jobject self, jlong pointer, jlong align) {
 
-    Qt::Alignment alignVal = Qt::Alignment(align);
+    Qt::Alignment alignVal = Qt::Alignment((unsigned int)align);
     QTextEdit * edit = (QTextEdit*)pointer;
     edit->setAlignment(alignVal);
 }

@@ -152,7 +152,7 @@ JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextTableFormat_setCellPa
 JNIEXPORT void JNICALL Java_org_swdc_qt_internal_text_STextTableFormat_setAlignment
 (JNIEnv * env, jobject self, jlong pointer, jlong alignment){
 
-    Qt::Alignment align = Qt::Alignment((unsigned long)alignment);
+    Qt::Alignment align = Qt::Alignment((unsigned int)alignment);
     QTextTableFormat * tableFormat = (QTextTableFormat *)pointer;
     tableFormat->setAlignment(align);
 }
