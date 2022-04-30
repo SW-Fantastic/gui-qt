@@ -29,6 +29,8 @@ SOURCES += \
     GUI.cpp \
     GUIApplication.cpp \
     GroupBox.cpp \
+    KeySequence.cpp \
+    KeySequenceEdit.cpp \
     LineEdit.cpp \
     MdiArea.cpp \
     MdiSubWindow.cpp \
@@ -39,6 +41,7 @@ SOURCES += \
     SAbstractSpinBox.cpp \
     ScrollArea.cpp \
     ScrollBar.cpp \
+    Slider.cpp \
     SpinBox.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
@@ -190,6 +193,8 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SFontComboBox.h \
     java/org_swdc_qt_internal_widgets_SFrame.h \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
+    java/org_swdc_qt_internal_widgets_SKeySequence.h \
+    java/org_swdc_qt_internal_widgets_SKeySequenceEdit.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
     java/org_swdc_qt_internal_widgets_SMdiArea.h \
     java/org_swdc_qt_internal_widgets_SMdiSubWindow.h \
@@ -199,6 +204,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
     java/org_swdc_qt_internal_widgets_SScrollArea.h \
     java/org_swdc_qt_internal_widgets_SScrollBar.h \
+    java/org_swdc_qt_internal_widgets_SSlider.h \
     java/org_swdc_qt_internal_widgets_SSpinBox.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
@@ -251,6 +257,7 @@ HEADERS += \
     java/types/SFontComboBox.h \
     java/types/SFrame.h \
     java/types/SGroupBox.h \
+    java/types/SKeySequenceEdit.h \
     java/types/SLineEdit.h \
     java/types/SMdiArea.h \
     java/types/SMenuBar.h \
@@ -259,6 +266,7 @@ HEADERS += \
     java/types/SRadioButton.h \
     java/types/SScrollArea.h \
     java/types/SScrollBar.h \
+    java/types/SSlider.h \
     java/types/SSpinBox.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \

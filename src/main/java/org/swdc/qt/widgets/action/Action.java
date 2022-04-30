@@ -157,7 +157,7 @@ public class Action extends Widget {
         }
     }
 
-    public void setStandardShortcut(ActionStandardKey val) {
+    public void setStandardShortcut(SequenceStandardKey val) {
         if (accessible(val)) {
             action.setStandardShortcut(getPointer(),val.getValue());
         }

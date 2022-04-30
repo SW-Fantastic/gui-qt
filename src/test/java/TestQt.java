@@ -280,6 +280,15 @@ public class TestQt {
         dateEdit.allocate();
         spinLayout.addWidget(dateEdit);
 
+        Slider slider = new Slider();
+        slider.allocate();
+        slider.setOrientation(Orientation.Horizontal);
+        spinLayout.addWidget(slider);
+
+        KeySequenceEdit sequenceEdit = new KeySequenceEdit();
+        sequenceEdit.allocate();
+        spinLayout.addWidget(sequenceEdit);
+
         tabALayout.addLayout(spinLayout);
 
         tabALayout.addSpacerItem(itemTabA);

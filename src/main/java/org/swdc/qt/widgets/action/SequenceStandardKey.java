@@ -3,7 +3,7 @@ package org.swdc.qt.widgets.action;
 import java.util.Arrays;
 import java.util.List;
 
-public enum ActionStandardKey {
+public enum SequenceStandardKey {
 
     UnknownKey,
     HelpContents,
@@ -77,10 +77,10 @@ public enum ActionStandardKey {
     Backspace,
     Cancel;
 
-    private static List<ActionStandardKey> keyList = Arrays.asList(ActionStandardKey.values());
+    private static List<SequenceStandardKey> keyList = Arrays.asList(SequenceStandardKey.values());
 
-    public static ActionStandardKey valueOf(int enumVal) {
-        ActionStandardKey[] keys = ActionStandardKey.values();
+    public static SequenceStandardKey valueOf(int enumVal) {
+        SequenceStandardKey[] keys = SequenceStandardKey.values();
         if (enumVal <= keys.length) {
             return keys[enumVal];
         }

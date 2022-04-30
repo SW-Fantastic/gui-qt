@@ -49,6 +49,8 @@
 #include <QDoubleSpinBox>
 #include <QTimeEdit>
 #include <QDateTimeEdit>
+#include <QSlider>
+#include <QKeySequenceEdit>
 #include <QAbstractTextDocumentLayout>
 
 #include <QTimeZone>
