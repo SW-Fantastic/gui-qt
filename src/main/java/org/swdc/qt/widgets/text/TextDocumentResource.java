@@ -1,5 +1,8 @@
 package org.swdc.qt.widgets.text;
 
+/**
+ * QTextDocument::ResourceType
+ */
 public enum TextDocumentResource {
 
     UnknownResource (0),

@@ -51,6 +51,8 @@
 #include <QDateTimeEdit>
 #include <QSlider>
 #include <QKeySequenceEdit>
+#include <QLabel>
+#include <QTextBrowser>
 #include <QAbstractTextDocumentLayout>
 
 #include <QTimeZone>

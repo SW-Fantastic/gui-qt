@@ -132,6 +132,20 @@ public class TestQt {
             itemButton.allocate();
             itemButton.setText("button_" + i);
             itemButton.setContentMargins(4,2,2,4);
+            final int idx = i;
+            itemButton.setClickListener(() -> {
+                try {
+                    MessageDialog msg = new MessageDialog();
+                    msg.allocate(widget);
+                    msg.setText("Button Num : " + idx + " was Clicked");
+                    msg.setIcon(MsgIcon.Information);
+                    msg.setWindowTitle("hello world");
+                    msg.setStandardButtons(MsgStandardButton.No,MsgStandardButton.Yes);
+                    msg.exec();
+                } catch (Exception e) {
+                }
+
+            });
             areaLayout.addWidget(itemButton);
         }
 
@@ -259,6 +273,12 @@ public class TestQt {
 
         HBoxLayout spinLayout = new HBoxLayout();
         spinLayout.allocate();
+
+        Label label = new Label();
+        label.allocate();
+        label.setText("### Inputs");
+        label.setTextFormat(DefaultTextFormat.MarkdownText);
+        spinLayout.addWidget(label);
 
         SpinBox spinBox = new SpinBox();
         spinBox.allocate();
@@ -394,6 +414,18 @@ public class TestQt {
         PlainTextEdit plainTextEdit = new PlainTextEdit();
         plainTextEdit.allocate();
 
+        TextBrowser textBrowser = new TextBrowser();
+        textBrowser.allocate();
+        textBrowser.setHtml("<html>" +
+                "<head><style>" +
+                "body{" +
+                "    background-color: #FFF;" +
+                "}" +
+                "</style></head>" +
+                "<body>" +
+                "<h1>Hello Text browser</h1>" +
+                "</body></html>");
+
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
         tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
@@ -403,6 +435,7 @@ public class TestQt {
         tabWidget.addTab(dockWidget,"dock");
         tabWidget.addTab(textEdit,"TextEdit");
         tabWidget.addTab(plainTextEdit,"PlainTextEdit");
+        tabWidget.addTab(textBrowser,"TextBrowser");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();

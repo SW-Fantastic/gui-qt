@@ -31,6 +31,7 @@ SOURCES += \
     GroupBox.cpp \
     KeySequence.cpp \
     KeySequenceEdit.cpp \
+    Label.cpp \
     LineEdit.cpp \
     MdiArea.cpp \
     MdiSubWindow.cpp \
@@ -45,6 +46,7 @@ SOURCES += \
     SpinBox.cpp \
     StackWidget.cpp \
     TabWidget.cpp \
+    TextBrowser.cpp \
     TextEdit.cpp \
     TimeEdit.cpp \
     ToolBar.cpp \
@@ -195,6 +197,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
     java/org_swdc_qt_internal_widgets_SKeySequence.h \
     java/org_swdc_qt_internal_widgets_SKeySequenceEdit.h \
+    java/org_swdc_qt_internal_widgets_SLabel.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
     java/org_swdc_qt_internal_widgets_SMdiArea.h \
     java/org_swdc_qt_internal_widgets_SMdiSubWindow.h \
@@ -208,6 +211,7 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SSpinBox.h \
     java/org_swdc_qt_internal_widgets_SStackWidget.h \
     java/org_swdc_qt_internal_widgets_STabWidget.h \
+    java/org_swdc_qt_internal_widgets_STextBrowser.h \
     java/org_swdc_qt_internal_widgets_STextEdit.h \
     java/org_swdc_qt_internal_widgets_STimeEdit.h \
     java/org_swdc_qt_internal_widgets_SToolBar.h \
@@ -258,6 +262,7 @@ HEADERS += \
     java/types/SFrame.h \
     java/types/SGroupBox.h \
     java/types/SKeySequenceEdit.h \
+    java/types/SLabel.h \
     java/types/SLineEdit.h \
     java/types/SMdiArea.h \
     java/types/SMenuBar.h \
@@ -270,6 +275,7 @@ HEADERS += \
     java/types/SSpinBox.h \
     java/types/SStackWidget.h \
     java/types/STabWidget.h \
+    java/types/STextBrowser.h \
     java/types/STextEdit.h \
     java/types/STimeEdit.h \
     java/types/SToolBar.h \
