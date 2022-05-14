@@ -1,8 +1,11 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextFrameIterator;
 import org.swdc.qt.internal.text.STextTableCell;
+
+import java.util.function.Consumer;
 
 public class TextTableCell implements NativeAllocated {
 
@@ -14,6 +17,7 @@ public class TextTableCell implements NativeAllocated {
         }
         TextTableCell cell = new TextTableCell();
         cell.cell.address(pointer);
+        MemoryHolder.allocated(cell);
         return cell;
     }
 
@@ -26,6 +30,7 @@ public class TextTableCell implements NativeAllocated {
             throw new Exception("can not create a text-cell, invalid pointer");
         }
         cell.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextTableCell cell) throws Exception {
@@ -40,6 +45,7 @@ public class TextTableCell implements NativeAllocated {
             throw new Exception("can not create a text-cell, invalid pointer");
         }
         this.cell.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -155,6 +161,11 @@ public class TextTableCell implements NativeAllocated {
     @Override
     public long getPointer() {
         return cell.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextTableCell.CLEANER;
     }
 
 }

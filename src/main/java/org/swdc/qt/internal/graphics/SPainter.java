@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SPainter extends SPointer {
+
+    private static final SPainter instance = new SPainter();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long createWidget(long widgetPointer);
     public native long createPixmap(long pixmapPointer);

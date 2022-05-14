@@ -2,7 +2,12 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SRegularExpressionMatch extends SPointer {
+
+    private static final SRegularExpressionMatch instance = new SRegularExpressionMatch();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
 

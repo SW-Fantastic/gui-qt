@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SPixmap extends SPointer {
+
+    private static final SPixmap instance = new SPixmap();
+    public  static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(int width, int height);
     public native long create(String absolutePath);

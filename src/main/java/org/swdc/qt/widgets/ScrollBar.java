@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SScrollBar;
 
 public class ScrollBar extends AbstractSlider {
@@ -16,6 +17,7 @@ public class ScrollBar extends AbstractSlider {
             throw new Exception("can not create a scrollbar");
         }
         bar.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public Size getSizeHint() {

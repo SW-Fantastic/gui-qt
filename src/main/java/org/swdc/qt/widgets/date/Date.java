@@ -1,7 +1,11 @@
 package org.swdc.qt.widgets.date;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.date.SDate;
+import org.swdc.qt.internal.date.SDateTime;
+
+import java.util.function.Consumer;
 
 public class Date implements NativeAllocated {
 
@@ -16,6 +20,7 @@ public class Date implements NativeAllocated {
             throw new Exception("can not create calendar, invalid pointer");
         }
         date.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -29,6 +34,11 @@ public class Date implements NativeAllocated {
     @Override
     public long getPointer() {
         return date.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SDate.CLEANER;
     }
 
     public int getYear() {
@@ -173,6 +183,7 @@ public class Date implements NativeAllocated {
         }
         Date date = new Date();
         date.date.address(pointer);
+        MemoryHolder.allocated(date);
         return date;
     }
 }

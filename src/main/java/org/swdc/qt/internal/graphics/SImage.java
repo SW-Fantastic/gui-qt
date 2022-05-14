@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SImage extends SPointer {
+
+    private static final SImage instance = new SImage();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(byte[] data);
     public native long create(String absolutePath);

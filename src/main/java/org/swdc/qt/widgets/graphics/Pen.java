@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SPen;
+
+import java.util.function.Consumer;
 
 public class Pen implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Pen implements NativeAllocated {
             throw new Exception("failed to create pen");
         }
         pen.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -174,7 +178,12 @@ public class Pen implements NativeAllocated {
         }
         Pen pen = new Pen();
         pen.wrap(nativePointer);
+        MemoryHolder.allocated(pen);
         return pen;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SPen.CLEANER;
+    }
 }

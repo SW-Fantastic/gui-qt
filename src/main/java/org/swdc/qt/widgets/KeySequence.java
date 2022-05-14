@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SKeySequence;
 import org.swdc.qt.widgets.action.SequenceStandardKey;
 
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class KeySequence implements NativeAllocated {
@@ -23,6 +25,7 @@ public class KeySequence implements NativeAllocated {
             throw new Exception("can not create a key-sequence, allocate failed");
         }
         keySequence.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(String text) throws Exception {
@@ -34,6 +37,7 @@ public class KeySequence implements NativeAllocated {
             throw new Exception("can not create a key-sequence, allocate failed");
         }
         keySequence.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(SequenceStandardKey val) throws Exception {
@@ -45,6 +49,7 @@ public class KeySequence implements NativeAllocated {
             throw new Exception("can not create a key-sequence, allocate failed");
         }
         keySequence.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public KeySequenceMatch matches(KeySequence seq) {
@@ -82,6 +87,11 @@ public class KeySequence implements NativeAllocated {
     @Override
     public long getPointer() {
         return keySequence.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SKeySequence.CLEANER;
     }
 
     public static KeySequence asKeySequence(long pointer) {

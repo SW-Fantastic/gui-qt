@@ -1,6 +1,9 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SDoubleSpinBox;
+
+import java.util.function.Consumer;
 
 public class DoubleSpinBox extends AbstractSpinBox {
 
@@ -15,6 +18,7 @@ public class DoubleSpinBox extends AbstractSpinBox {
             throw new Exception("can not create the spin-box, invalid pointer");
         }
         doubleSpinBox.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -25,6 +29,10 @@ public class DoubleSpinBox extends AbstractSpinBox {
         }
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SDoubleSpinBox.CLEANER;
+    }
 
     @Override
     public long getPointer() {

@@ -2,6 +2,7 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.Orientation;
 import org.swdc.qt.beans.ToolbarAreas;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SToolBar;
 import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.action.ToolButtonStyle;
@@ -22,6 +23,7 @@ public class ToolBar extends Widget  {
             throw new Exception("can not create a tool-bar");
         }
         toolBar.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {

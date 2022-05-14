@@ -1,6 +1,11 @@
 package org.swdc.qt.internal.dialogs;
 
+import java.util.function.Consumer;
+
 public class SInputDialog extends SDialog {
+
+    private static final SInputDialog instance = new SInputDialog();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(long parent);
 

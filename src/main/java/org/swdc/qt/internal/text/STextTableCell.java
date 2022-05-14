@@ -2,7 +2,12 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class STextTableCell extends SPointer {
+
+    private static final STextTableCell instance = new STextTableCell();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(long cellPointer);

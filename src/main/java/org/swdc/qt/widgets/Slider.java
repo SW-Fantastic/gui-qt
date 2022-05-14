@@ -1,6 +1,9 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SSlider;
+
+import java.util.function.Consumer;
 
 public class Slider extends AbstractSlider {
 
@@ -16,6 +19,12 @@ public class Slider extends AbstractSlider {
             throw new Exception("can not create a slider, allocation failed");
         }
         slider.address(pointer);
+        MemoryHolder.allocated(this);
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SSlider.CLEANER;
     }
 
     @Override

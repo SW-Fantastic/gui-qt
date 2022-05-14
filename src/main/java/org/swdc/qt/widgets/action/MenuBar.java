@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.action;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SMenuBar;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -40,6 +41,7 @@ public class MenuBar extends Widget {
             throw new Exception("failed to create menu-bar");
         }
         menuBar.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
 

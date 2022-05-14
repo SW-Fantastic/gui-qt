@@ -2,7 +2,12 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class STextDocument extends SPointer {
+
+    private static final STextDocument instance = new STextDocument();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native void dispose(long pointer);

@@ -2,6 +2,7 @@ package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.LayoutDirection;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextBlock;
 import org.swdc.qt.internal.text.STextBlockIterator;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextBlock implements Iterable<TextBlock>, NativeAllocated {
@@ -49,12 +51,14 @@ public class TextBlock implements Iterable<TextBlock>, NativeAllocated {
             throw new Exception("can not create a block");
         }
         block.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
     public void dispose() {
         if (accessible()) {
             block.dispose(getPointer());
+            block.cleanAddress();
         }
     }
 
@@ -284,12 +288,18 @@ public class TextBlock implements Iterable<TextBlock>, NativeAllocated {
         return block.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextBlock.CLEANER;
+    }
+
     public static TextBlock asTextBlock(long pointer) {
         if (pointer <= 0) {
             throw new RuntimeException("can not wrap a text-block because pointer is invalid");
         }
         TextBlock block = new TextBlock();
         block.block.address(pointer);
+        MemoryHolder.allocated(block);
         return block;
     }
 

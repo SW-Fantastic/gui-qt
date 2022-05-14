@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextDocumentLayoutSelection;
+
+import java.util.function.Consumer;
 
 public class TextDocumentLayoutSelection implements NativeAllocated {
 
@@ -16,16 +19,23 @@ public class TextDocumentLayoutSelection implements NativeAllocated {
             throw new Exception("invalid pointer, can not create a text document layout selection.");
         }
         textDocumentLayoutSelection.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void dispose() {
         if (accessible()) {
             textDocumentLayoutSelection.dispose(getPointer());
+            textDocumentLayoutSelection.cleanAddress();
         }
     }
 
     public long getPointer() {
         return textDocumentLayoutSelection.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextDocumentLayoutSelection.CLEANER;
     }
 
     public TextCursor cursor() {
@@ -65,6 +75,7 @@ public class TextDocumentLayoutSelection implements NativeAllocated {
         }
         TextDocumentLayoutSelection selection = new TextDocumentLayoutSelection();
         selection.textDocumentLayoutSelection.address(pointer);
+        MemoryHolder.allocated(selection);
         return selection;
     }
 

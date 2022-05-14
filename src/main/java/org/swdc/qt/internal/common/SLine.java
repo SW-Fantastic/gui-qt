@@ -2,7 +2,12 @@ package org.swdc.qt.internal.common;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SLine extends SPointer {
+
+    private static final SLine instance = new SLine();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
 

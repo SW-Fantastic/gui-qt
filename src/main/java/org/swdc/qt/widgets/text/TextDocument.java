@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextDocument;
 import org.swdc.qt.widgets.RealRect;
 import org.swdc.qt.widgets.RealSize;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextDocument implements NativeAllocated {
@@ -28,6 +30,7 @@ public class TextDocument implements NativeAllocated {
             throw new Exception("can not create a document, invalid pointer");
         }
         document.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public boolean isEmpty() {
@@ -569,7 +572,12 @@ public class TextDocument implements NativeAllocated {
         }
         TextDocument document = new TextDocument();
         document.document.address(pointer);
+        MemoryHolder.allocated(document);
         return document;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextDocument.CLEANER;
+    }
 }

@@ -4,6 +4,7 @@ import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.ContextMenuPolicy;
 import org.swdc.qt.beans.SizePolicy;
 import org.swdc.qt.beans.WindowModality;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -15,6 +16,8 @@ import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.action.Action;
 import org.swdc.qt.widgets.graphics.Font;
 import org.swdc.qt.widgets.graphics.Icon;
+
+import java.util.function.Consumer;
 
 public class Widget implements NativeAllocated {
     
@@ -44,6 +47,7 @@ public class Widget implements NativeAllocated {
         if (pointer <= 0) {
             throw new Exception("failed to create widget.");
         }
+        MemoryHolder.allocated(this);
         widget.address(pointer);
     }
 
@@ -763,5 +767,10 @@ public class Widget implements NativeAllocated {
     public long getPointer() {
         return widget.address();
     }
-    
+
+    @Override
+    public Consumer<Long> disposer() {
+        return null;
+    }
+
 }

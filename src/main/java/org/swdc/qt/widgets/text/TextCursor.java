@@ -1,8 +1,11 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextCursor;
 import org.swdc.qt.widgets.graphics.Image;
+
+import java.util.function.Consumer;
 
 public class TextCursor implements NativeAllocated {
 
@@ -17,6 +20,7 @@ public class TextCursor implements NativeAllocated {
             throw new Exception("can not create a text cursor");
         }
         cursor.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextDocument document) throws Exception {
@@ -31,12 +35,14 @@ public class TextCursor implements NativeAllocated {
             throw new Exception("can not create a text cursor");
         }
         cursor.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
     public void dispose() {
         if (accessible()) {
             cursor.dispose(getPointer());
+            cursor.cleanAddress();
         }
     }
 
@@ -507,12 +513,18 @@ public class TextCursor implements NativeAllocated {
         return cursor.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextCursor.CLEANER;
+    }
+
     public static TextCursor asTextCursor(long pointer) {
         if (pointer <= 0) {
             throw new RuntimeException("can not create a text cursor because the pointer is invalid ");
         }
         TextCursor cursor = new TextCursor();
         cursor.cursor.address(pointer);
+        MemoryHolder.allocated(cursor);
         return cursor;
     }
 

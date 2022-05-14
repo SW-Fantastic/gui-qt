@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SVariant;
+
+import java.util.function.Consumer;
 
 public class Variant implements NativeAllocated {
 
@@ -13,18 +16,21 @@ public class Variant implements NativeAllocated {
         }
         Variant variant = new Variant();
         variant.variant.address(pointer);
+        MemoryHolder.allocated(variant);
+
         return variant;
     }
 
-    public void allocate() throws Exception {
+    public void allocate() {
         if (getPointer() >0 ){
             return;
         }
         long pointer = variant.create();
         if (pointer <= 0) {
-            throw new Exception("can not create variant");
+            throw new RuntimeException("can not create variant");
         }
         variant.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public int getInteger() {
@@ -130,4 +136,8 @@ public class Variant implements NativeAllocated {
         return variant.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SVariant.CLEANER;
+    }
 }

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SRealMargins;
+
+import java.util.function.Consumer;
 
 public class RealMargins implements NativeAllocated {
 
@@ -18,6 +21,7 @@ public class RealMargins implements NativeAllocated {
             throw new Exception("failed to create margin.");
         }
         margins.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(double left, double top, double right, double bottom) throws Exception {
@@ -29,6 +33,7 @@ public class RealMargins implements NativeAllocated {
             throw new Exception("failed to create margin.");
         }
         margins.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -110,6 +115,7 @@ public class RealMargins implements NativeAllocated {
         }
         RealMargins margins = new RealMargins();
         margins.wrap(nativePointer);
+        MemoryHolder.allocated(margins);
         return margins;
     }
 
@@ -121,5 +127,10 @@ public class RealMargins implements NativeAllocated {
                 ", right = " + getRight() +
                 ", bottom = " + getBottom() +
                 '}';
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SRealMargins.CLEANER;
     }
 }

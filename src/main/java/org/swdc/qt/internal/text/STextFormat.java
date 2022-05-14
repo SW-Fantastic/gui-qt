@@ -3,7 +3,12 @@ package org.swdc.qt.internal.text;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class STextFormat extends SPointer {
+
+    private static final STextFormat instance = new STextFormat();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     private ImmutablePair<Integer,Long> getPair(int propertyId, long pointer) {
         return ImmutablePair.of(propertyId,pointer);

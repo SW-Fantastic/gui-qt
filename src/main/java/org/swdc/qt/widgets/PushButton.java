@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SButton;
 import org.swdc.qt.listeners.ClickedListener;
 import org.swdc.qt.listeners.PaintListener;
@@ -50,6 +51,7 @@ public class PushButton extends AbstractButton<SButton> {
             throw new Exception("failed to create button");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public static PushButton asPushButton(long pointer) {

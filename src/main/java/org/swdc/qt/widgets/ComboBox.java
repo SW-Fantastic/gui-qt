@@ -2,6 +2,7 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.ItemDataRole;
 import org.swdc.qt.beans.MatchFlag;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SComboBox;
 import org.swdc.qt.widgets.graphics.Icon;
 import org.swdc.qt.widgets.pane.Widget;
@@ -22,6 +23,7 @@ public class ComboBox extends Widget {
             throw new Exception("can not create a combo-box");
         }
         comboBox.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SDockWidget;
 
 public class DockWidget extends Widget {
@@ -17,6 +18,7 @@ public class DockWidget extends Widget {
             throw new Exception("can not create dock-widget");
         }
         dockWidget.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void setFeatures(DockWidgetFuture ...features) {

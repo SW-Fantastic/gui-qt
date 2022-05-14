@@ -2,7 +2,12 @@ package org.swdc.qt.internal.common;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SPoint extends SPointer {
+
+    private static final SPoint instance = new SPoint();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(int x,int y);

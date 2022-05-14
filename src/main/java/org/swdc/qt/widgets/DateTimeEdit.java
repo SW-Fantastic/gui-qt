@@ -1,11 +1,14 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.TimeSpec;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SDateTimeEdit;
 import org.swdc.qt.widgets.date.Calendar;
 import org.swdc.qt.widgets.date.Date;
 import org.swdc.qt.widgets.date.DateTime;
 import org.swdc.qt.widgets.date.Time;
+
+import java.util.function.Consumer;
 
 public class DateTimeEdit extends AbstractSpinBox {
 
@@ -21,6 +24,7 @@ public class DateTimeEdit extends AbstractSpinBox {
             throw new Exception("can not create date-time-edit.");
         }
         edit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -29,6 +33,11 @@ public class DateTimeEdit extends AbstractSpinBox {
             edit.dispose(getPointer());
             edit.cleanAddress();
         }
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SDateTimeEdit.CLEANER;
     }
 
     @Override

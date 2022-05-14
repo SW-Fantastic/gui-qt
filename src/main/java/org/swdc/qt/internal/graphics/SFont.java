@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SFont extends SPointer {
+
+    private static final SFont instance = new SFont();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(String family, int pointSize, int weight, boolean italic);

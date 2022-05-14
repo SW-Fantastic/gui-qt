@@ -2,7 +2,12 @@ package org.swdc.qt.internal.common;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SModelIndex extends SPointer {
+
+    private static final SModelIndex instance = new SModelIndex();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native int row(long pointer);
     public native int column(long pointer);

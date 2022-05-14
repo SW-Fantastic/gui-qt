@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.Alignment;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SLineEdit;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -40,6 +41,7 @@ public class LineEdit extends Widget {
             throw new Exception("failed to create line-edit");
         }
         lineEdit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {

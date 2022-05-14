@@ -2,7 +2,10 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.ItemDataRole;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SModelIndex;
+
+import java.util.function.Consumer;
 
 public class ModelIndex implements NativeAllocated {
 
@@ -15,12 +18,14 @@ public class ModelIndex implements NativeAllocated {
         }
         ModelIndex index = new ModelIndex();
         index.index.address(pointer);
+        MemoryHolder.allocated(index);
         return index;
     }
 
     public void dispose() {
         if (accessible() ) {
             index.dispose(getPointer());
+            index.cleanAddress();
         }
     }
 
@@ -103,4 +108,8 @@ public class ModelIndex implements NativeAllocated {
         return null;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SModelIndex.CLEANER;
+    }
 }

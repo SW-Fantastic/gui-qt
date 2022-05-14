@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.InputMethodQuery;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SPlainTextEdit;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.pane.AbstractScrollArea;
@@ -11,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class PlainTextEdit extends AbstractScrollArea {
@@ -26,6 +28,7 @@ public class PlainTextEdit extends AbstractScrollArea {
             throw new Exception("can not allocate a plain-text-edit, invalid pointer");
         }
         plainTextEdit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> void allocate(T parent, String text) throws Exception {
@@ -40,6 +43,7 @@ public class PlainTextEdit extends AbstractScrollArea {
             throw new Exception("can not allocate a plain-text-edit, invalid pointer");
         }
         plainTextEdit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -48,6 +52,11 @@ public class PlainTextEdit extends AbstractScrollArea {
             plainTextEdit.dispose(getPointer());
             plainTextEdit.cleanAddress();
         }
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SPlainTextEdit.CLEANER;
     }
 
     @Override

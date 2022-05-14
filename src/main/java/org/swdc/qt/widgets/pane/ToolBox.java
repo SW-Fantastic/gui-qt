@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SToolBox;
 import org.swdc.qt.widgets.graphics.Icon;
 
@@ -22,6 +23,7 @@ public class ToolBox extends Frame {
             throw new Exception("can not create a tool-box");
         }
         box.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -37,6 +39,7 @@ public class ToolBox extends Frame {
             throw new Exception("can not create a tool-box");
         }
         box.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> int addItem(T widget, String text) {

@@ -3,6 +3,8 @@ package org.swdc.qt.widgets;
 import org.swdc.qt.internal.widgets.SFontComboBox;
 import org.swdc.qt.widgets.graphics.Font;
 
+import java.util.function.Consumer;
+
 public class FontCombBox extends ComboBox {
 
     private SFontComboBox comboBox = new SFontComboBox();
@@ -49,6 +51,11 @@ public class FontCombBox extends ComboBox {
             return Size.asSize(pointer);
         }
         return null;
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SFontComboBox.CLEANER;
     }
 
     public void setCurrentFont(Font font) {

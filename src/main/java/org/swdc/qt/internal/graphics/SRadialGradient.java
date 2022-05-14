@@ -1,6 +1,11 @@
 package org.swdc.qt.internal.graphics;
 
+import java.util.function.Consumer;
+
 public class SRadialGradient extends SGradient {
+
+    private static final SRadialGradient instance = new SRadialGradient();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(double cx, double cy, double radius, double fx, double fy);

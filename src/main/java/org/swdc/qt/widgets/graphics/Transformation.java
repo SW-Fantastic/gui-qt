@@ -2,8 +2,11 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.Axis;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.STransformation;
 import org.swdc.qt.layout.Layout;
+
+import java.util.function.Consumer;
 
 public class Transformation implements NativeAllocated {
 
@@ -18,6 +21,7 @@ public class Transformation implements NativeAllocated {
             throw new Exception("failed to create transformation");
         }
         transformation.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -234,11 +238,17 @@ public class Transformation implements NativeAllocated {
         }
         Transformation transformation = new Transformation();
         transformation.wrap(nativePointer);
+        MemoryHolder.allocated(transformation);
         return transformation;
     }
 
     public long getPointer() {
         return transformation.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STransformation.CLEANER;
     }
 
 }

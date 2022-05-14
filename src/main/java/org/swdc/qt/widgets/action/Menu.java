@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.action;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SMenu;
 import org.swdc.qt.widgets.Point;
 import org.swdc.qt.widgets.graphics.Icon;
@@ -20,6 +21,7 @@ public class Menu extends Widget {
             throw new Exception("failed to create menu");
         }
         this.menu.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     void wrap(long pointer) throws Exception {
@@ -285,6 +287,7 @@ public class Menu extends Widget {
         try {
             Menu menu = new Menu();
             menu.wrap(pointer);
+            MemoryHolder.allocated(menu);
             return menu;
         } catch (Exception e) {
             throw new RuntimeException(e);

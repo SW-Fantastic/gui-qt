@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SMdiSubWindow;
 import org.swdc.qt.widgets.Size;
 
@@ -104,6 +105,7 @@ public class MdiSubWindow extends Widget {
         window.sMdiSubWindow.address(pointer);
         window.sMdiSubWindow.wrap(pointer);
         window.sMdiSubWindow.setAfterDestroy(onClosed);
+        MemoryHolder.allocated(window);
         return window;
     }
 

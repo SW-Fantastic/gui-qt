@@ -2,12 +2,14 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.AspectRatioMode;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SPixmap;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.pane.Widget;
 
 import java.io.File;
+import java.util.function.Consumer;
 
 public class Pixmap implements NativeAllocated {
 
@@ -22,6 +24,7 @@ public class Pixmap implements NativeAllocated {
             throw new Exception("failed to create pixmap!");
         }
         pixmap.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -321,7 +324,13 @@ public class Pixmap implements NativeAllocated {
         }
         Pixmap pixmap = new Pixmap();
         pixmap.wrap(nativePointer);
+        MemoryHolder.allocated(pixmap);
         return pixmap;
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SPixmap.CLEANER;
     }
 
     public long getPointer() {

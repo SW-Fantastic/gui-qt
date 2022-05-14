@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SAbstractButton;
 import org.swdc.qt.widgets.graphics.Icon;
 import org.swdc.qt.widgets.pane.Widget;
@@ -169,6 +170,7 @@ public abstract class AbstractButton<T extends SAbstractButton> extends Widget {
 
             @Override
             public void allocate() throws Exception {
+                MemoryHolder.allocated(this);
             }
 
             @Override

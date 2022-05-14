@@ -2,7 +2,12 @@ package org.swdc.qt.internal.common;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SRect extends SPointer {
+
+    private static final SRect instance = new SRect();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(int left,int top, int width, int height);

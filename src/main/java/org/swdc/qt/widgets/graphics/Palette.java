@@ -3,7 +3,10 @@ package org.swdc.qt.widgets.graphics;
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.PaletteColorGroup;
 import org.swdc.qt.beans.PaletteColorRole;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SPalette;
+
+import java.util.function.Consumer;
 
 public class Palette implements NativeAllocated {
 
@@ -18,6 +21,7 @@ public class Palette implements NativeAllocated {
             throw new Exception("can not create a palette.");
         }
         palette.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(Palette another) throws Exception {
@@ -29,6 +33,7 @@ public class Palette implements NativeAllocated {
             throw new Exception("can not create a palette.");
         }
         palette.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(Color button, Color window) throws Exception {
@@ -40,6 +45,7 @@ public class Palette implements NativeAllocated {
             throw new Exception("can not create a palette.");
         }
         palette.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(Brush windowTextBrush,Brush buttonBrush,Brush lightBrush,
@@ -77,6 +83,7 @@ public class Palette implements NativeAllocated {
             throw new Exception("can not create a palette.");
         }
         palette.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(Color windowText,Color window,Color light,
@@ -99,6 +106,7 @@ public class Palette implements NativeAllocated {
             throw new Exception("can not create a palette.");
         }
         palette.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public PaletteColorGroup getCurrentColorGroup() {
@@ -422,11 +430,17 @@ public class Palette implements NativeAllocated {
     public void dispose() {
         if (accessible()) {
             palette.dispose(getPointer());
+            palette.cleanAddress();
         }
     }
 
     public long getPointer() {
         return palette.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SPalette.CLEANER;
     }
 
     public static Palette asPalette(long address) {
@@ -435,6 +449,7 @@ public class Palette implements NativeAllocated {
         }
         Palette palette = new Palette();
         palette.palette.address(address);
+        MemoryHolder.allocated(palette);
         return palette;
     }
 

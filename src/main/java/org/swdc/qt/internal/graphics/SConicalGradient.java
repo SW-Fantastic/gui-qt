@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SConicalGradient extends SPointer {
+
+    private static final SConicalGradient instance = new SConicalGradient();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(double cx, double cy, double startAngle);

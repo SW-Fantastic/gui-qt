@@ -1,6 +1,9 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SDateEdit;
+
+import java.util.function.Consumer;
 
 public class DateEdit extends DateTimeEdit {
 
@@ -16,11 +19,17 @@ public class DateEdit extends DateTimeEdit {
             throw new Exception("can not create a date-edit, allocation failed");
         }
         edit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
     public long getPointer() {
         return edit.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SDateEdit.CLEANER;
     }
 
     @Override

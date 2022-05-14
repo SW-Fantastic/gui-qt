@@ -1,7 +1,11 @@
 package org.swdc.qt.internal.widgets;
 
+import java.util.function.Consumer;
+
 public class SFontComboBox extends SComboBox {
 
+    private static final SFontComboBox instance = new SFontComboBox();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(long parentPointer);
     public native void dispose(long pointer);

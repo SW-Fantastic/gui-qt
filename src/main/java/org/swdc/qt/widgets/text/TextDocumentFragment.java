@@ -1,9 +1,11 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextDocumentFragment;
 
 import java.nio.charset.Charset;
+import java.util.function.Consumer;
 
 public class TextDocumentFragment implements NativeAllocated {
 
@@ -18,6 +20,7 @@ public class TextDocumentFragment implements NativeAllocated {
             throw new Exception("can not create a document fragment, invalid pointer");
         }
         fragment.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextDocument document) throws Exception {
@@ -29,6 +32,7 @@ public class TextDocumentFragment implements NativeAllocated {
             throw new Exception("can not create a document fragment, invalid pointer");
         }
         fragment.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextCursor cursor) throws Exception {
@@ -40,6 +44,7 @@ public class TextDocumentFragment implements NativeAllocated {
             throw new Exception("can not create a document fragment, invalid pointer");
         }
         fragment.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextDocumentFragment fragment) throws Exception {
@@ -51,6 +56,7 @@ public class TextDocumentFragment implements NativeAllocated {
             throw new Exception("can not create a document fragment, invalid pointer");
         }
         this.fragment.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public boolean isEmpty() {
@@ -102,12 +108,18 @@ public class TextDocumentFragment implements NativeAllocated {
     public void dispose() {
         if (accessible()) {
             fragment.dispose(getPointer());
+            fragment.cleanAddress();
         }
     }
 
     @Override
     public long getPointer() {
         return fragment.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextDocumentFragment.CLEANER;
     }
 
 }

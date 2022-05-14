@@ -1,9 +1,11 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SFont;
 
 import java.io.File;
+import java.util.function.Consumer;
 
 public class Font implements NativeAllocated {
 
@@ -18,6 +20,7 @@ public class Font implements NativeAllocated {
             throw new Exception("can not create a font");
         }
         font.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(String family, int pointSize, int weight, boolean italic) throws Exception {
@@ -29,6 +32,7 @@ public class Font implements NativeAllocated {
             throw new Exception("can not create a font");
         }
         font.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -347,6 +351,11 @@ public class Font implements NativeAllocated {
     }
 
     @Override
+    public Consumer<Long> disposer() {
+        return SFont.CLEANER;
+    }
+
+    @Override
     public void dispose() {
         if (accessible()) {
             font.dispose(getPointer());
@@ -360,6 +369,7 @@ public class Font implements NativeAllocated {
         }
         Font font = new Font();
         font.wrap(nativePointer);
+        MemoryHolder.allocated(font);
         return font;
     }
 

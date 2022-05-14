@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.STextBrowser;
 import org.swdc.qt.widgets.text.TextDocumentResource;
 
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextBrowser extends TextEdit {
@@ -23,6 +25,12 @@ public class TextBrowser extends TextEdit {
             throw new Exception("can not create text-browser, allocation failed");
         }
         textBrowser.address(pointer);
+        MemoryHolder.allocated(this);
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextBrowser.CLEANER;
     }
 
     @Override

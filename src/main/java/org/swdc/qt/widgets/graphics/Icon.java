@@ -2,11 +2,14 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.Alignment;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SIcon;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 
 import java.io.File;
+import java.lang.reflect.Member;
+import java.util.function.Consumer;
 
 public class Icon implements NativeAllocated {
 
@@ -32,6 +35,7 @@ public class Icon implements NativeAllocated {
             throw new Exception("can not create a icon");
         }
         icon.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(Pixmap pixmap) throws Exception {
@@ -46,6 +50,7 @@ public class Icon implements NativeAllocated {
             throw new Exception("can not create a icon");
         }
         icon.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -132,11 +137,17 @@ public class Icon implements NativeAllocated {
         }
         Icon icon = new Icon();
         icon.wrap(pointer);
+        MemoryHolder.allocated(icon);
         return icon;
     }
 
     public long getPointer() {
         return icon.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SIcon.CLEANER;
     }
 
 }

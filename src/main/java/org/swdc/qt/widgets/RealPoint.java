@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SRealPoint;
+
+import java.util.function.Consumer;
 
 public class RealPoint implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class RealPoint implements NativeAllocated {
             throw new Exception("failed to create real point");
         }
         realPoint.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(double x,double y) throws Exception {
@@ -27,6 +31,7 @@ public class RealPoint implements NativeAllocated {
             throw new Exception("failed to create real point");
         }
         realPoint.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer){
@@ -105,12 +110,18 @@ public class RealPoint implements NativeAllocated {
         return realPoint.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SRealPoint.CLEANER;
+    }
+
     public static RealPoint asRealPoint(long nativePointer) {
         if (nativePointer <= 0) {
             throw new RuntimeException("invalid Pointer");
         }
         RealPoint point = new RealPoint();
         point.wrap(nativePointer);
+        MemoryHolder.allocated(point);
         return point;
     }
 

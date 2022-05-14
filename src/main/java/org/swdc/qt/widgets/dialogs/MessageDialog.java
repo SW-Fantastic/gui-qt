@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.dialogs;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.dialogs.SMessageDialog;
 import org.swdc.qt.widgets.AbstractButton;
 import org.swdc.qt.widgets.PushButton;
@@ -23,6 +24,7 @@ public class MessageDialog extends AbstractDialog {
             throw new Exception("can not create a message dialog");
         }
         dialog.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -38,6 +40,7 @@ public class MessageDialog extends AbstractDialog {
             throw new Exception("can not create a message dialog");
         }
         dialog.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public String getText() {

@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.*;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.STextEdit;
 import org.swdc.qt.widgets.action.Menu;
 import org.swdc.qt.widgets.graphics.Color;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextEdit extends AbstractScrollArea {
@@ -28,12 +30,19 @@ public class TextEdit extends AbstractScrollArea {
             throw new Exception("can not create a text-edit, invalid pointer");
         }
         textEdit.address(pointer);
+        MemoryHolder.allocated(this);
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextEdit.CLEANER;
     }
 
     @Override
     public void dispose() {
         if (accessible()) {
             textEdit.dispose(getPointer());
+            textEdit.cleanAddress();
         }
     }
 

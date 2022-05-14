@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SBrush;
+
+import java.util.function.Consumer;
 
 public class Brush implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Brush implements NativeAllocated {
             throw new Exception("failed to create brush");
         }
         brush.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Gradient> void allocate(T gradient) throws Exception {
@@ -30,6 +34,7 @@ public class Brush implements NativeAllocated {
             throw new Exception("can not create brush");
         }
         brush.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -140,6 +145,7 @@ public class Brush implements NativeAllocated {
         }
         Brush brush = new Brush();
         brush.wrap(nativePointer);
+        MemoryHolder.allocated(brush);
         return brush;
     }
 
@@ -149,6 +155,11 @@ public class Brush implements NativeAllocated {
             brush.dispose(getPointer());
             brush.cleanAddress();
         }
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SBrush.CLEANER;
     }
 
     public long getPointer() {

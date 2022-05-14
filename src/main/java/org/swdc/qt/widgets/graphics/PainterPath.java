@@ -2,7 +2,10 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.SizeMode;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SPainterPath;
+
+import java.util.function.Consumer;
 
 public class PainterPath implements NativeAllocated {
 
@@ -17,6 +20,7 @@ public class PainterPath implements NativeAllocated {
             throw new Exception("can not create a painter path");
         }
         painterPath.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     void wrap(long pointer) throws Exception {
@@ -216,6 +220,11 @@ public class PainterPath implements NativeAllocated {
 
     public long getPointer() {
         return painterPath.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SPainterPath.CLEANER;
     }
 
 }

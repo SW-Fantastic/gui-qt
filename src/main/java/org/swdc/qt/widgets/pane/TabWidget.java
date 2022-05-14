@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.STabWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -39,6 +40,7 @@ public class TabWidget extends Widget {
             throw new Exception("failed to create tab-widget");
         }
         tabWidget.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> int addTab(T widget, String text) {

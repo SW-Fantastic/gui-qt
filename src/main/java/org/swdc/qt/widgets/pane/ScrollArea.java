@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.Alignment;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SScrollArea;
 import org.swdc.qt.widgets.Size;
 
@@ -20,6 +21,7 @@ public class ScrollArea extends AbstractScrollArea {
             throw new Exception("can not create scroll-area");
         }
         area.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> T getWidget() {

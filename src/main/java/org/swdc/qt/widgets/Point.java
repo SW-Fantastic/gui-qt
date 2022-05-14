@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SPoint;
+
+import java.util.function.Consumer;
 
 public class Point implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Point implements NativeAllocated {
             throw new Exception("failed to create point");
         }
         point.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(int x, int y) throws Exception {
@@ -27,6 +31,7 @@ public class Point implements NativeAllocated {
             throw new Exception("failed to create point");
         }
         point.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long nativePointer) {
@@ -99,7 +104,12 @@ public class Point implements NativeAllocated {
         }
         Point point = new Point();
         point.wrap(nativePointer);
+        MemoryHolder.allocated(point);
         return point;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SPoint.CLEANER;
+    }
 }

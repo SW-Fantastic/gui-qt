@@ -2,7 +2,12 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SRegExp extends SPointer {
+
+    private static final SRegExp instance = new SRegExp();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(long anotherRegexPointer);

@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class STransformation extends SPointer {
+
+    private static final STransformation instance = new STransformation();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
 

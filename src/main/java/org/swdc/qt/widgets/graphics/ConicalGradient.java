@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SConicalGradient;
 import org.swdc.qt.widgets.RealPoint;
+
+import java.util.function.Consumer;
 
 public class ConicalGradient extends Gradient {
 
@@ -16,6 +19,7 @@ public class ConicalGradient extends Gradient {
             throw new Exception("can not create a radial-gradient");
         }
         gradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(double cx, double cy, double startAngle) throws Exception {
@@ -27,6 +31,7 @@ public class ConicalGradient extends Gradient {
             throw new Exception("can not create a radial-gradient");
         }
         gradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public RealPoint center() {
@@ -75,5 +80,10 @@ public class ConicalGradient extends Gradient {
     @Override
     public long getPointer() {
         return gradient.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SConicalGradient.CLEANER;
     }
 }

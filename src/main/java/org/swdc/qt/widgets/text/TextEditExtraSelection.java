@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextEditExtraSelection;
+
+import java.util.function.Consumer;
 
 public class TextEditExtraSelection implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class TextEditExtraSelection implements NativeAllocated {
             throw new Exception("can not create a text-edit-extra-selection, invalid pointer");
         }
         selection.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -67,7 +71,12 @@ public class TextEditExtraSelection implements NativeAllocated {
         }
         TextEditExtraSelection selection = new TextEditExtraSelection();
         selection.selection.address(pointer);
+        MemoryHolder.allocated(selection);
         return selection;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextEditExtraSelection.CLEANER;
+    }
 }

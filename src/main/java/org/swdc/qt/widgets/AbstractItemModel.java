@@ -5,14 +5,15 @@ import org.swdc.qt.beans.ItemDataRole;
 import org.swdc.qt.beans.MatchFlag;
 import org.swdc.qt.beans.Orientation;
 import org.swdc.qt.beans.SortOrder;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SAbstractItemModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class AbstractItemModel implements NativeAllocated {
-
 
     private SAbstractItemModel model = new SAbstractItemModel();
 
@@ -21,6 +22,7 @@ public abstract class AbstractItemModel implements NativeAllocated {
     public void dispose() {
         if (accessible()) {
             model.dispose(getPointer());
+            model.cleanAddress();
         }
     }
 
@@ -377,7 +379,13 @@ public abstract class AbstractItemModel implements NativeAllocated {
             public long getPointer() {
                 return pointer;
             }
+
+            @Override
+            public Consumer<Long> disposer() {
+                return SAbstractItemModel.CLEANER;
+            }
         };
+        MemoryHolder.allocated(model);
         return model;
     }
 

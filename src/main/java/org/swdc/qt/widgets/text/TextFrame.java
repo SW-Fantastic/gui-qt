@@ -1,11 +1,13 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextFrame;
 import org.swdc.qt.internal.text.STextFrameIterItem;
 import org.swdc.qt.internal.text.STextFrameIterator;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextFrame implements Iterable<TextFrame.TextFrameIteratorItem>, NativeAllocated {
@@ -67,11 +69,17 @@ public class TextFrame implements Iterable<TextFrame.TextFrameIteratorItem>, Nat
             throw new Exception("can not create a textFrame because invalid pointer");
         }
         textFrame.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
     public long getPointer() {
         return textFrame.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STextFrame.CLEANER;
     }
 
     @Override
@@ -172,6 +180,7 @@ public class TextFrame implements Iterable<TextFrame.TextFrameIteratorItem>, Nat
         }
         TextFrame frame = new TextFrame();
         frame.textFrame.address(pointer);
+        MemoryHolder.allocated(frame);
         return frame;
     }
 }

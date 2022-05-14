@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SCommandLinkButton;
 
 public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
@@ -19,6 +20,7 @@ public class CommandLinkButton extends AbstractButton<SCommandLinkButton> {
             throw new Exception("can not create a command-link-button");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public Size sizeHint() {

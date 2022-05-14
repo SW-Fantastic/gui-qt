@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     AbstractButton.cpp \
+    AbstractItemView.cpp \
     AbstractScrollArea.cpp \
     AbstractSlider.cpp \
     Action.cpp \
@@ -29,15 +30,19 @@ SOURCES += \
     GUI.cpp \
     GUIApplication.cpp \
     GroupBox.cpp \
+    ItemModel.cpp \
+    ItemSelectionModel.cpp \
     KeySequence.cpp \
     KeySequenceEdit.cpp \
     Label.cpp \
     LineEdit.cpp \
+    ListView.cpp \
     MdiArea.cpp \
     MdiSubWindow.cpp \
     Menu.cpp \
     MenuBar.cpp \
     PlainTextEdit.cpp \
+    ProgressBar.cpp \
     RadioButton.cpp \
     SAbstractSpinBox.cpp \
     ScrollArea.cpp \
@@ -179,6 +184,7 @@ HEADERS += \
     java/graphics/org_swdc_qt_internal_graphics_STransformation.h \
     java/org_swdc_qt_SApplication.h \
     java/org_swdc_qt_internal_widgets_SAbstractButton.h \
+    java/org_swdc_qt_internal_widgets_SAbstractItemView.h \
     java/org_swdc_qt_internal_widgets_SAbstractScrollArea.h \
     java/org_swdc_qt_internal_widgets_SAbstractSlider.h \
     java/org_swdc_qt_internal_widgets_SAbstractSpinBox.h \
@@ -195,15 +201,19 @@ HEADERS += \
     java/org_swdc_qt_internal_widgets_SFontComboBox.h \
     java/org_swdc_qt_internal_widgets_SFrame.h \
     java/org_swdc_qt_internal_widgets_SGroupBox.h \
+    java/org_swdc_qt_internal_widgets_SItemModel.h \
+    java/org_swdc_qt_internal_widgets_SItemSelectionModel.h \
     java/org_swdc_qt_internal_widgets_SKeySequence.h \
     java/org_swdc_qt_internal_widgets_SKeySequenceEdit.h \
     java/org_swdc_qt_internal_widgets_SLabel.h \
     java/org_swdc_qt_internal_widgets_SLineEdit.h \
+    java/org_swdc_qt_internal_widgets_SListView.h \
     java/org_swdc_qt_internal_widgets_SMdiArea.h \
     java/org_swdc_qt_internal_widgets_SMdiSubWindow.h \
     java/org_swdc_qt_internal_widgets_SMenu.h \
     java/org_swdc_qt_internal_widgets_SMenuBar.h \
     java/org_swdc_qt_internal_widgets_SPlainTextEdit.h \
+    java/org_swdc_qt_internal_widgets_SProgressBar.h \
     java/org_swdc_qt_internal_widgets_SRadioButton.h \
     java/org_swdc_qt_internal_widgets_SScrollArea.h \
     java/org_swdc_qt_internal_widgets_SScrollBar.h \
@@ -251,6 +261,7 @@ HEADERS += \
     java/text/org_swdc_qt_internal_text_STextTableCell.h \
     java/text/org_swdc_qt_internal_text_STextTableCellFormat.h \
     java/text/org_swdc_qt_internal_text_STextTableFormat.h \
+    java/types/ItemModel.h \
     java/types/SCheckBox.h \
     java/types/SComboBox.h \
     java/types/SCommandLinkButton.h \
@@ -264,9 +275,11 @@ HEADERS += \
     java/types/SKeySequenceEdit.h \
     java/types/SLabel.h \
     java/types/SLineEdit.h \
+    java/types/SListView.h \
     java/types/SMdiArea.h \
     java/types/SMenuBar.h \
     java/types/SPlainTextEdit.h \
+    java/types/SProgressBar.h \
     java/types/SPushButton.h \
     java/types/SRadioButton.h \
     java/types/SScrollArea.h \

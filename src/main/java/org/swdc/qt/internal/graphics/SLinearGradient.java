@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SLinearGradient extends SGradient {
+
+    private static final SLinearGradient instance = new SLinearGradient();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(double startX,double startY, double endX, double endY);

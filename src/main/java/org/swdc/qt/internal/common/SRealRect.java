@@ -2,7 +2,12 @@ package org.swdc.qt.internal.common;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SRealRect extends SPointer {
+
+    private static final SRealRect instance = new SRealRect();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(double left,double top, double width, double height);

@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SMdiArea;
 import org.swdc.qt.widgets.Size;
 import org.swdc.qt.widgets.graphics.Brush;
@@ -37,6 +38,7 @@ public class MdiArea extends AbstractScrollArea {
             throw new Exception("can not create a mdi-area");
         }
         area.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public Size getSizeHint() {

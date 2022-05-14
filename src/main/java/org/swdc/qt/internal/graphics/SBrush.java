@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SBrush extends SPointer {
+
+    private static final SBrush instance = new SBrush();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long createWithGradient(long gradient);

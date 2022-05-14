@@ -2,6 +2,7 @@ package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.RegularExpressionMatchType;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.SRegularExpressionMatch;
 import org.swdc.qt.internal.text.SRegularExpressionMatchIterator;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RegularExpressionMatch implements NativeAllocated {
 
@@ -44,6 +46,7 @@ public class RegularExpressionMatch implements NativeAllocated {
             throw new Exception("can not create a regular-express-match");
         }
         match.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -57,6 +60,11 @@ public class RegularExpressionMatch implements NativeAllocated {
     @Override
     public long getPointer() {
         return match.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SRegularExpressionMatch.CLEANER;
     }
 
     public RegularExpression getRegularExpression() {
@@ -174,6 +182,7 @@ public class RegularExpressionMatch implements NativeAllocated {
         }
         RegularExpressionMatch match = new RegularExpressionMatch();
         match.match.address(pointer);
+        MemoryHolder.allocated(match);
         return match;
     }
 

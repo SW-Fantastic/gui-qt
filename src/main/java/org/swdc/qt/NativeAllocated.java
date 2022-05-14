@@ -2,6 +2,7 @@ package org.swdc.qt;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public interface NativeAllocated {
 
@@ -28,7 +29,10 @@ public interface NativeAllocated {
     }
 
     void dispose();
+
     long getPointer();
+
+    Consumer<Long> disposer();
 
 
 }

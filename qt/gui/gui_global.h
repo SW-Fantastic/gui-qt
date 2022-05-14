@@ -53,6 +53,13 @@
 #include <QKeySequenceEdit>
 #include <QLabel>
 #include <QTextBrowser>
+
+#include <QGraphicsWidget>
+#include <QGraphicsItem>
+#include <QGraphicsView>
+
+#include <QProgressBar>
+#include <QListView>
 #include <QAbstractTextDocumentLayout>
 
 #include <QTimeZone>

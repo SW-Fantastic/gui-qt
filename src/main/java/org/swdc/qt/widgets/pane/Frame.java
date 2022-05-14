@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SFrame;
 import org.swdc.qt.widgets.Rect;
 
@@ -17,6 +18,7 @@ public class Frame extends Widget{
             throw new Exception("can not create a frame");
         }
         frame.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {
@@ -31,6 +33,7 @@ public class Frame extends Widget{
             throw new Exception("can not create a frame");
         }
         frame.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public int getLineWidth() {

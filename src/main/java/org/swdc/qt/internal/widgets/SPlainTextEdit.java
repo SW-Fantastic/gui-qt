@@ -1,6 +1,11 @@
 package org.swdc.qt.internal.widgets;
 
+import java.util.function.Consumer;
+
 public class SPlainTextEdit extends SAbstractScrollArea {
+
+    private static final SPlainTextEdit instance = new SPlainTextEdit();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(long parent,String text);

@@ -2,7 +2,10 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.AspectRatioMode;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SSize;
+
+import java.util.function.Consumer;
 
 public class Size implements NativeAllocated {
 
@@ -17,6 +20,7 @@ public class Size implements NativeAllocated {
             throw new Exception("can not create size");
         }
         size.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long nativePointer) {
@@ -152,6 +156,7 @@ public class Size implements NativeAllocated {
     public void dispose(){
         if (accessible()) {
             this.size.dispose(getPointer());
+            this.size.cleanAddress();
         }
     }
 
@@ -196,11 +201,17 @@ public class Size implements NativeAllocated {
         }
         Size size = new Size();
         size.wrap(nativePointer);
+        MemoryHolder.allocated(size);
         return size;
     }
 
     public long getPointer() {
         return size.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SSize.CLEANER;
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SMargins;
+
+import java.util.function.Consumer;
 
 public class Margins implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Margins implements NativeAllocated {
             throw new Exception("failed to create margin.");
         }
         margins.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(int left, int top, int right, int bottom) throws Exception {
@@ -27,6 +31,7 @@ public class Margins implements NativeAllocated {
             throw new Exception("failed to create margin.");
         }
         margins.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -102,12 +107,18 @@ public class Margins implements NativeAllocated {
         return margins.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SMargins.CLEANER;
+    }
+
     public static Margins asMargins(long nativePointer) {
         if (nativePointer <= 0) {
             throw new RuntimeException("invalid pointer");
         }
         Margins margins = new Margins();
         margins.wrap(nativePointer);
+        MemoryHolder.allocated(margins);
         return margins;
     }
 

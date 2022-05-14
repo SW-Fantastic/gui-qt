@@ -2,7 +2,12 @@ package org.swdc.qt.internal.date;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SDateTime extends SPointer {
+
+    private static final SDateTime instance = new SDateTime();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native void dispose(long pointer);

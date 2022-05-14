@@ -1,6 +1,11 @@
 package org.swdc.qt.internal.widgets;
 
+import java.util.function.Consumer;
+
 public class SDoubleSpinBox extends SAbstractSpinBox {
+
+    private static final SDoubleSpinBox instance = new SDoubleSpinBox();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(long parentPointer);
     public native void dispose(long pointer);

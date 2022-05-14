@@ -2,9 +2,12 @@ package org.swdc.qt.widgets;
 
 import org.swdc.qt.beans.Alignment;
 import org.swdc.qt.beans.DefaultTextFormat;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SLabel;
 import org.swdc.qt.widgets.graphics.Pixmap;
 import org.swdc.qt.widgets.pane.Frame;
+
+import java.util.function.Consumer;
 
 public class Label extends Frame {
 
@@ -19,6 +22,7 @@ public class Label extends Frame {
             throw new Exception("can not create a label, allocation failed");
         }
         label.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void dispose() {
@@ -26,6 +30,11 @@ public class Label extends Frame {
             label.dispose(getPointer());
             label.cleanAddress();
         }
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SLabel.CLEANER;
     }
 
     @Override

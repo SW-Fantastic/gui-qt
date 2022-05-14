@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SRadioButton;
 
 public class RadioButton extends AbstractButton<SRadioButton> {
@@ -19,6 +20,7 @@ public class RadioButton extends AbstractButton<SRadioButton> {
             throw new Exception("can not create a radiobutton");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public long getPointer() {

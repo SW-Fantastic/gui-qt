@@ -271,6 +271,12 @@ public class TestQt {
         gpBox.setMinSize(120,120);
         tabALayout.addWidget(gpBox);
 
+        ProgressBar bar = new ProgressBar();
+        bar.allocate();
+        bar.setRange(0,100);
+        bar.setValue(45);
+        tabALayout.addWidget(bar);
+
         HBoxLayout spinLayout = new HBoxLayout();
         spinLayout.allocate();
 
@@ -426,6 +432,33 @@ public class TestQt {
                 "<h1>Hello Text browser</h1>" +
                 "</body></html>");
 
+
+        ListView<String> listView = new ListView<>();
+        listView.allocate();
+
+        ItemModel<String> model = new ItemModel<>();
+        model.allocate();
+        ItemModelNode<String> item = model.getRootNode();
+        item.setValue("Root");
+
+        ItemModelNode<String> child = new ItemModelNode<>();
+        child.setValue("Item A");
+
+        ItemModelNode<String> childB = new ItemModelNode<>();
+        childB.setValue("Item B");
+
+        item.addItem(child);
+        item.addItem(childB);
+
+        model.addColumn(ItemDataRole.DisplayRole,"Name",(s) -> {
+            Variant name = new Variant();
+            name.allocate();
+            name.setString(s.getValue());
+            return name;
+        }, ItemModelNode::setValue);
+
+        listView.setModel(model);
+
         TabWidget tabWidget = new TabWidget();
         tabWidget.allocate();
         tabWidget.addTab(tabA,"ToolBar/Radio/CheckBox");
@@ -436,6 +469,7 @@ public class TestQt {
         tabWidget.addTab(textEdit,"TextEdit");
         tabWidget.addTab(plainTextEdit,"PlainTextEdit");
         tabWidget.addTab(textBrowser,"TextBrowser");
+        tabWidget.addTab(listView,"ListView");
 
         StackedWidget stackedWidget = new StackedWidget();
         stackedWidget.allocate();
@@ -527,6 +561,30 @@ public class TestQt {
         actionTextA.setActionListener(listener);
         Action actionTextB = menu.addAction("Text B");
         actionTextB.setCheckable(true);
+        actionTextB.setActionListener(new ActionListener() {
+            @Override
+            public void onAction(boolean isSelected) {
+                ModelIndex index = listView.getSelectionModel().getCurrentIndex();
+                if (index != null) {
+                    System.err.println(index.data(ItemDataRole.DisplayRole).getString());
+                }
+            }
+
+            @Override
+            public void onToggle(boolean isSelected) {
+
+            }
+
+            @Override
+            public void onHover() {
+
+            }
+
+            @Override
+            public void onChanged() {
+
+            }
+        });
 
         Size size = new Size();
         size.allocate();

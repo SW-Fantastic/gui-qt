@@ -5,7 +5,11 @@ import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
 import org.swdc.qt.widgets.graphics.Painter;
 
+import java.util.function.Consumer;
+
 public class SWidget extends SPointer  {
+
+    public static final Consumer<Long> CLEANER = (p) -> new SWidget().doDispose(p);
 
     private WindowListener windowListener;
 

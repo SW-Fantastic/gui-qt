@@ -2,7 +2,12 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class STextCursor extends SPointer {
+
+    private static final STextCursor instance = new STextCursor();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(long document);

@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SPalette extends SPointer {
+
+    private static final SPalette instance = new SPalette();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(long button, long window);

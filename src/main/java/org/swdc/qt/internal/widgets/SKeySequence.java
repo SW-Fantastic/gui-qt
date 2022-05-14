@@ -2,7 +2,12 @@ package org.swdc.qt.internal.widgets;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SKeySequence extends SPointer {
+
+    private static final SKeySequence instance = new SKeySequence();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long create(String text);

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SKeySequenceEdit;
 import org.swdc.qt.widgets.pane.Widget;
+
+import java.util.function.Consumer;
 
 public class KeySequenceEdit extends Widget {
 
@@ -16,6 +19,7 @@ public class KeySequenceEdit extends Widget {
             throw new Exception("can not create a key-sequence-edit, allocate failed");
         }
         sequenceEdit.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -51,5 +55,10 @@ public class KeySequenceEdit extends Widget {
             }
         }
         return null;
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SKeySequenceEdit.CLEANER;
     }
 }

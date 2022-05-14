@@ -2,10 +2,15 @@ package org.swdc.qt.internal.text;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 /**
  * QAbstractTextDocumentLayout::PaintContext
  */
 public class STextDocumentLayoutPaintContext extends SPointer {
+
+    private static final STextDocumentLayoutPaintContext instance = new STextDocumentLayoutPaintContext();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native void dispose(long pointer);

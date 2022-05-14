@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SCheckBox;
 import org.swdc.qt.widgets.pane.Widget;
 
@@ -20,6 +21,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
             throw new Exception("can not create a checkbox");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> void allocate(T parent) throws Exception {
@@ -34,6 +36,7 @@ public class CheckBox extends AbstractButton<SCheckBox> {
             throw new Exception("can not create Checkbox");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public Size sizeHint() {

@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.pane;
 
 import org.swdc.qt.beans.Alignment;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SGroupBox;
 import org.swdc.qt.widgets.Size;
 
@@ -18,6 +19,7 @@ public class GroupBox extends Widget {
             throw new Exception("can not create a groupbox");
         }
         groupBox.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public String getTitle() {

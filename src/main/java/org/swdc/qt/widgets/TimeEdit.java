@@ -1,6 +1,9 @@
 package org.swdc.qt.widgets;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.STimeEdit;
+
+import java.util.function.Consumer;
 
 public class TimeEdit extends DateTimeEdit {
 
@@ -16,6 +19,12 @@ public class TimeEdit extends DateTimeEdit {
             throw new Exception("can not create date-time-edit.");
         }
         edit.address(pointer);
+        MemoryHolder.allocated(this);
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return STimeEdit.CLEANER;
     }
 
     @Override

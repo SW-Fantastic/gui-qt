@@ -2,7 +2,12 @@ package org.swdc.qt.internal.graphics;
 
 import org.swdc.qt.internal.SPointer;
 
+import java.util.function.Consumer;
+
 public class SIcon extends SPointer {
+
+    private static final SIcon instance = new SIcon();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
     public native long createWithFile(String filePath);

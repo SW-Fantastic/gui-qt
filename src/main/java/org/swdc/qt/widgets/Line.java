@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SLine;
+
+import java.util.function.Consumer;
 
 public class Line implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Line implements NativeAllocated {
             throw new Exception("can not create a line");
         }
         line.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {
@@ -173,12 +177,18 @@ public class Line implements NativeAllocated {
         return line.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SLine.CLEANER;
+    }
+
     public static Line asLine(long nativePointer) {
         if (nativePointer <= 0) {
             throw new RuntimeException("invalid pointer");
         }
         Line line = new Line();
         line.wrap(nativePointer);
+        MemoryHolder.allocated(line);
         return line;
     }
 

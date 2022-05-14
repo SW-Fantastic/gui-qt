@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.action;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SToolButton;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -138,6 +139,7 @@ public class ToolButton extends AbstractButton<SToolButton> {
             throw new Exception("failed to create tool button");
         }
         button.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override

@@ -20,6 +20,7 @@ public class SPointer {
     }
 
     public void cleanAddress() {
+        MemoryHolder.onDispose(pointer);
         this.pointer = 0;
     }
 

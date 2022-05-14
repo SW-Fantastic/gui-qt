@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.text;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextDocumentLayoutPaintContext;
 import org.swdc.qt.widgets.RealRect;
 import org.swdc.qt.widgets.graphics.Palette;
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class AbstractTextDocumentPaintContext implements NativeAllocated {
@@ -24,6 +26,7 @@ public class AbstractTextDocumentPaintContext implements NativeAllocated {
             throw new Exception("can not create a context");
         }
         paintContext.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public int getCursorPosition() {
@@ -98,9 +101,15 @@ public class AbstractTextDocumentPaintContext implements NativeAllocated {
         return paintContext.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextDocumentLayoutPaintContext.CLEANER;
+    }
+
     public void dispose() {
         if (accessible()) {
             paintContext.dispose(getPointer());
+            paintContext.cleanAddress();
         }
     }
 

@@ -2,7 +2,10 @@ package org.swdc.qt.widgets.date;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.TimeSpec;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.date.SDateTime;
+
+import java.util.function.Consumer;
 
 public class DateTime implements NativeAllocated {
 
@@ -17,6 +20,7 @@ public class DateTime implements NativeAllocated {
             throw new Exception("can not create a date-time, invalid pointer");
         }
         dateTime.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -30,6 +34,11 @@ public class DateTime implements NativeAllocated {
     @Override
     public long getPointer() {
         return dateTime.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SDateTime.CLEANER;
     }
 
     public Date getDate() {
@@ -252,6 +261,7 @@ public class DateTime implements NativeAllocated {
         }
         DateTime dateTime = new DateTime();
         dateTime.dateTime.address(pointer);
+        MemoryHolder.allocated(dateTime);
         return dateTime;
     }
 

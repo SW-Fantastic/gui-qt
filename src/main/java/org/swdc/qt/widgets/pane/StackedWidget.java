@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.pane;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SStackWidget;
 import org.swdc.qt.listeners.PaintListener;
 import org.swdc.qt.listeners.WindowListener;
@@ -38,6 +39,7 @@ public class StackedWidget extends Widget {
             throw new Exception("failed to create stacked-widget");
         }
         sStackWidget.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Widget> int addWidget(T widget) {

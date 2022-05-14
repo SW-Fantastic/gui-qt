@@ -1,9 +1,11 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SButtonGroup;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class ButtonGroup implements NativeAllocated {
 
@@ -19,6 +21,7 @@ public class ButtonGroup implements NativeAllocated {
             throw new Exception("can not create button group");
         }
         group.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void setExclusive(boolean val) {
@@ -115,11 +118,17 @@ public class ButtonGroup implements NativeAllocated {
     public void dispose(){
         if (accessible()) {
             group.dispose(getPointer());
+            group.cleanAddress();
         }
     }
 
     public long getPointer() {
         return group.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SButtonGroup.CLEANER;
     }
 
 }

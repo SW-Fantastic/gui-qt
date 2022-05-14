@@ -3,8 +3,12 @@ package org.swdc.qt.internal.graphics;
 import org.swdc.qt.internal.SPointer;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class SPen extends SPointer {
+
+    private static final SPen instance = new SPen();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create();
 

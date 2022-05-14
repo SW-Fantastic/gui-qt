@@ -3,6 +3,7 @@ package org.swdc.qt.widgets.text;
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.RegularExpressionMatchType;
 import org.swdc.qt.beans.RegularPatternOptions;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.SRegularExpression;
 import org.swdc.qt.internal.text.SRegularExpressionMatchIterator;
 
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class RegularExpression implements NativeAllocated {
 
@@ -22,6 +24,7 @@ public class RegularExpression implements NativeAllocated {
         }
         RegularExpression expression = new RegularExpression();
         expression.regularExpression.address(pointer);
+        MemoryHolder.allocated(expression);
         return expression;
     }
 
@@ -34,6 +37,7 @@ public class RegularExpression implements NativeAllocated {
             throw new Exception("can not create a regular-expression, invalid pointer");
         }
         regularExpression.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(String pattern, RegularPatternOptions ...options) throws Exception {
@@ -55,6 +59,7 @@ public class RegularExpression implements NativeAllocated {
             throw new Exception("can not create a regular-expression, invalid pointer");
         }
         regularExpression.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -68,6 +73,11 @@ public class RegularExpression implements NativeAllocated {
     @Override
     public long getPointer() {
         return regularExpression.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SRegularExpression.CLEANER;
     }
 
     public void setPatternOptions(RegularPatternOptions ...options) {

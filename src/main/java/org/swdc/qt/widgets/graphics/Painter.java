@@ -3,11 +3,13 @@ package org.swdc.qt.widgets.graphics;
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.BGMode;
 import org.swdc.qt.beans.SizeMode;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SPainter;
 import org.swdc.qt.widgets.*;
 import org.swdc.qt.widgets.pane.Widget;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Painter implements NativeAllocated {
@@ -26,6 +28,7 @@ public class Painter implements NativeAllocated {
             throw new Exception("failed to create painter");
         }
         painter.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public <T extends Pixmap> void allocate(T pixmap) throws Exception {
@@ -40,7 +43,7 @@ public class Painter implements NativeAllocated {
             throw new Exception("can not create painter");
         }
         painter.address(pointer);
-
+        MemoryHolder.allocated(this);
     }
 
     public void allocateNativeWidget(long widgetPointer) throws Exception{
@@ -55,6 +58,7 @@ public class Painter implements NativeAllocated {
             throw new Exception("can not create pointer");
         }
         painter.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void setCompositionMode(PainterCompositionMode mode) {
@@ -736,6 +740,11 @@ public class Painter implements NativeAllocated {
 
     public long getPointer(){
         return painter.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SPainter.CLEANER;
     }
 
     public void setFont(Font font) {

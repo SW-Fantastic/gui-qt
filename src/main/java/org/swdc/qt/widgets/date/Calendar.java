@@ -2,7 +2,10 @@ package org.swdc.qt.widgets.date;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.CalendarSystem;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.date.SCalendar;
+
+import java.util.function.Consumer;
 
 public class Calendar implements NativeAllocated {
 
@@ -17,6 +20,7 @@ public class Calendar implements NativeAllocated {
             throw new Exception("can not create calendar, invalid pointer");
         }
         calendar.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(CalendarSystem system) throws Exception {
@@ -31,6 +35,7 @@ public class Calendar implements NativeAllocated {
             throw new Exception("can not create calendar, invalid pointer");
         }
         calendar.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     // QCalendar is a trivially copyable value type.
@@ -139,7 +144,13 @@ public class Calendar implements NativeAllocated {
         }
         Calendar calendar = new Calendar();
         calendar.calendar.address(pointer);
+        MemoryHolder.allocated(calendar);
         return calendar;
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SCalendar.CLEANER;
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets;
 
 import org.swdc.qt.NativeAllocated;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.common.SRect;
+
+import java.util.function.Consumer;
 
 public class Rect implements NativeAllocated {
 
@@ -16,6 +19,7 @@ public class Rect implements NativeAllocated {
             throw new Exception("fail to create rect");
         }
         rect.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(int left,int top,int width, int height) throws Exception {
@@ -27,6 +31,7 @@ public class Rect implements NativeAllocated {
             throw new Exception("fail to create rect");
         }
         rect.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long nativePointer) {
@@ -411,6 +416,11 @@ public class Rect implements NativeAllocated {
         return rect.address();
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return SRect.CLEANER;
+    }
+
     public void dispose() {
         if (accessible()) {
             rect.dispose(getPointer());
@@ -437,6 +447,7 @@ public class Rect implements NativeAllocated {
         }
         Rect rect = new Rect();
         rect.wrap(nativePointer);
+        MemoryHolder.allocated(rect);
         return rect;
     }
 

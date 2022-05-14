@@ -4,11 +4,13 @@ import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.CaretMode;
 import org.swdc.qt.beans.CaseSensitive;
 import org.swdc.qt.beans.RegExpPatternSyntax;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.SRegExp;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RegExp implements NativeAllocated {
 
@@ -23,6 +25,7 @@ public class RegExp implements NativeAllocated {
             throw new Exception("can not create a regexp , failed to allocate object");
         }
         regExp.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(RegExp exp) throws Exception {
@@ -37,6 +40,7 @@ public class RegExp implements NativeAllocated {
             throw new Exception("can not create a regexp , failed to allocate object");
         }
         regExp.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(String pattern, CaseSensitive caseSensitive, RegExpPatternSyntax syntax) throws Exception {
@@ -51,6 +55,7 @@ public class RegExp implements NativeAllocated {
             throw new Exception("can not create a regexp , failed to allocate object");
         }
         regExp.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public boolean isEmpty() {
@@ -199,5 +204,10 @@ public class RegExp implements NativeAllocated {
     @Override
     public long getPointer() {
         return regExp.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SRegExp.CLEANER;
     }
 }

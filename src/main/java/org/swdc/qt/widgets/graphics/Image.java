@@ -2,12 +2,14 @@ package org.swdc.qt.widgets.graphics;
 
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.*;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SImage;
 import org.swdc.qt.internal.graphics.SRgb;
 import org.swdc.qt.widgets.Rect;
 import org.swdc.qt.widgets.Size;
 
 import java.io.File;
+import java.util.function.Consumer;
 
 public class Image implements NativeAllocated {
 
@@ -23,6 +25,7 @@ public class Image implements NativeAllocated {
             throw new Exception("can not create image with path: " + file.getAbsolutePath());
         }
         image.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(byte[] data) throws Exception {
@@ -38,6 +41,7 @@ public class Image implements NativeAllocated {
             throw new Exception("failed to create image.");
         }
         image.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     void wrap(long pointer) throws Exception {
@@ -48,6 +52,7 @@ public class Image implements NativeAllocated {
             throw new Exception("invalid pointer");
         }
         image.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public int width() {
@@ -430,6 +435,11 @@ public class Image implements NativeAllocated {
     @Override
     public long getPointer() {
         return image.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SImage.CLEANER;
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SLinearGradient;
 import org.swdc.qt.widgets.RealPoint;
+
+import java.util.function.Consumer;
 
 public class LinearGradient extends Gradient {
 
@@ -16,6 +19,7 @@ public class LinearGradient extends Gradient {
             throw new Exception("can not create a linear gradient");
         }
         linearGradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(double xStart, double yStart, double xEnd, double yEnd) throws Exception {
@@ -27,6 +31,7 @@ public class LinearGradient extends Gradient {
             throw new Exception("can not create a linear gradient");
         }
         linearGradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public RealPoint start() {
@@ -77,12 +82,18 @@ public class LinearGradient extends Gradient {
     public void dispose() {
         if (accessible()) {
             linearGradient.dispose(getPointer());
+            linearGradient.cleanAddress();
         }
     }
 
     @Override
     public long getPointer() {
         return linearGradient.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SLinearGradient.CLEANER;
     }
 
 }

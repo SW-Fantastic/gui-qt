@@ -1,6 +1,7 @@
 package org.swdc.qt.widgets.action;
 
 import org.swdc.qt.beans.*;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.widgets.SAction;
 import org.swdc.qt.listeners.ActionListener;
 import org.swdc.qt.widgets.pane.Widget;
@@ -19,6 +20,7 @@ public class Action extends Widget {
             throw new Exception("failed to create action");
         }
         action.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     private void wrap(long pointer) {

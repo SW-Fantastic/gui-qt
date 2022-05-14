@@ -1,5 +1,6 @@
 package org.swdc.qt.widgets.dialogs;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.dialogs.SInputDialog;
 import org.swdc.qt.widgets.EditEchoMode;
 import org.swdc.qt.widgets.pane.Widget;
@@ -7,6 +8,7 @@ import org.swdc.qt.widgets.pane.Widget;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class InputDialog extends AbstractDialog {
 
@@ -22,6 +24,7 @@ public class InputDialog extends AbstractDialog {
             throw new Exception("can not create a input dialog");
         }
         inputDialog.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -37,6 +40,12 @@ public class InputDialog extends AbstractDialog {
             throw new Exception("can not create a input dialog");
         }
         inputDialog.address(pointer);
+        MemoryHolder.allocated(this);
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SInputDialog.CLEANER;
     }
 
     public void setTextValue(String text) {

@@ -1,7 +1,10 @@
 package org.swdc.qt.widgets.graphics;
 
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.graphics.SRadialGradient;
 import org.swdc.qt.widgets.RealPoint;
+
+import java.util.function.Consumer;
 
 public class RadialGradient extends Gradient {
 
@@ -16,6 +19,7 @@ public class RadialGradient extends Gradient {
             throw new Exception("can not create a radial-gradient");
         }
         gradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(double cx, double cy, double radius, double fx, double fy) throws Exception {
@@ -27,11 +31,17 @@ public class RadialGradient extends Gradient {
             throw new Exception("can not create a radial-gradient");
         }
         gradient.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
     public long getPointer() {
         return gradient.address();
+    }
+
+    @Override
+    public Consumer<Long> disposer() {
+        return SRadialGradient.CLEANER;
     }
 
     public RealPoint center() {

@@ -3,6 +3,7 @@ package org.swdc.qt.widgets.text;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.swdc.qt.NativeAllocated;
 import org.swdc.qt.beans.LayoutDirection;
+import org.swdc.qt.internal.MemoryHolder;
 import org.swdc.qt.internal.text.STextFormat;
 import org.swdc.qt.widgets.Variant;
 import org.swdc.qt.widgets.graphics.Brush;
@@ -10,6 +11,7 @@ import org.swdc.qt.widgets.graphics.Color;
 import org.swdc.qt.widgets.graphics.Pen;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TextFormat implements NativeAllocated {
@@ -25,6 +27,7 @@ public class TextFormat implements NativeAllocated {
             throw new Exception("can not create a text-format because invalid pointer");
         }
         format.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     public void allocate(TextFormatType type) throws Exception {
@@ -39,6 +42,7 @@ public class TextFormat implements NativeAllocated {
             throw new Exception("can not create a text-format because invalid pointer");
         }
         format.address(pointer);
+        MemoryHolder.allocated(this);
     }
 
     @Override
@@ -435,7 +439,12 @@ public class TextFormat implements NativeAllocated {
         }
         TextFormat format = new TextFormat();
         format.format.address(pointer);
+        MemoryHolder.allocated(format);
         return format;
     }
 
+    @Override
+    public Consumer<Long> disposer() {
+        return STextFormat.CLEANER;
+    }
 }

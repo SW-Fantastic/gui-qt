@@ -1,6 +1,11 @@
 package org.swdc.qt.internal.text;
 
+import java.util.function.Consumer;
+
 public class STextFrame extends STextObject {
+
+    private static final STextFrame instance = new STextFrame();
+    public static final Consumer<Long> CLEANER = instance::dispose;
 
     public native long create(long documentPointer);
     public native void dispose(long pointer);
